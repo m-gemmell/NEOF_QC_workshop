@@ -1,0 +1,5 @@
+book_filename: "Illumina Quality Control"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: FALSE

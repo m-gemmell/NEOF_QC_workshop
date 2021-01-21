@@ -1,0 +1,24 @@
+--- 
+title: "Illumina Quality Control"
+author: "Matthew Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+# Introduction
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
+``` 
+
+This practical session aims to introduce you to Illumina Quality Control. The topics covered are:
+
+- Logging in to our teaching environment
+- Acquiring the workshop data
+- Examples of quality control of genomic data
+- Quality control of Whole genome shotgun data
+- Quality control of 16S rRNA metagenetic data
