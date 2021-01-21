@@ -1,0 +1,14 @@
+# Introduction
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+## The data
+
+The first step of this practical is to acquire the data.
+
+In your home directory carry out the following command:
+
+```{bash eval=FALSE}
+
+```

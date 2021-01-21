@@ -1,0 +1,5 @@
+# PacBio
+
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
+``` 
