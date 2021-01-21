@@ -1,0 +1,57 @@
+--- 
+title: "Long read Quality Control"
+author: "Matthew Gemmell & Helen Hipperson"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+# Introduction
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
+``` 
+
+This practical session aims to introduce you to Long read Quality Control. The topics covered are:
+
+- Acquiring the workshop data
+- Example of PacBio quality control
+- Example of ONT quality control
+
+<!--chapter:end:01-Long_read_QC.Rmd-->
+
+# Introduction
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
+``` 
+
+## The data
+
+The first step of this practical is to acquire the data.
+
+In your home directory carry out the following command:
+
+```{bash eval=FALSE}
+
+```
+
+<!--chapter:end:02-Intro.Rmd-->
+
+# PacBio
+
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
+``` 
+
+<!--chapter:end:03-PB.Rmd-->
+
+# ONT
+```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
+``` 
+
+<!--chapter:end:04-ONT.Rmd-->
+
