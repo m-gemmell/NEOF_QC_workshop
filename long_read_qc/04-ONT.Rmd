@@ -2,3 +2,13 @@
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 ``` 
+
+## Basecalling and demultiplexxing
+
+(Here give a quick intro to guides from basecalling and demultiplexxing of ONT data)
+
+## Porechop
+
+(Intro to porechop and useage
+Mention here that guppy(?) carries out porechop
+Porechop is no longer supported but additionally there is no alternative)
