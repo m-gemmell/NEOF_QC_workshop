@@ -5,10 +5,10 @@ knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
 
 ## The data
 
-The first step of this practical is to acquire the data.
+The data for today is in the "QC_workshop" directory that you copied into your home directory ("~") in the Illumina QC day.
 
-In your home directory carry out the following command:
+If you do not have this directory the command to copy it to your home directory is below.
 
 ```{bash eval=FALSE}
-
+cp -r /pub39/tea/matthew/NEOF/QC_workshop/ ~
 ```
