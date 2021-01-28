@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2021-01-21" />
+<meta name="date" content="2021-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="02-Intro.html"/>
 <link rel="next" href="04-ONT.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,24 +51,20 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,11 +134,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="01-Long_read_QC.html"><a href="01-Long_read_QC.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="02-Intro.html"><a href="02-Intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2" data-path="02-Intro.html"><a href="02-Intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="02-Intro.html"><a href="02-Intro.html#the-data"><i class="fa fa-check"></i><b>2.1</b> The data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="03-PB.html"><a href="03-PB.html"><i class="fa fa-check"></i><b>3</b> PacBio</a></li>
-<li class="chapter" data-level="4" data-path="04-ONT.html"><a href="04-ONT.html"><i class="fa fa-check"></i><b>4</b> ONT</a></li>
+<li class="chapter" data-level="4" data-path="04-ONT.html"><a href="04-ONT.html"><i class="fa fa-check"></i><b>4</b> ONT</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-ONT.html"><a href="04-ONT.html#file-formats"><i class="fa fa-check"></i><b>4.1</b> File formats</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-ONT.html"><a href="04-ONT.html#summary-file"><i class="fa fa-check"></i><b>4.1.1</b> Summary file</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-ONT.html"><a href="04-ONT.html#bam-file"><i class="fa fa-check"></i><b>4.1.2</b> Bam file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-ONT.html"><a href="04-ONT.html#fastq-file"><i class="fa fa-check"></i><b>4.1.3</b> fastq file</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-ONT.html"><a href="04-ONT.html#basecalling-and-demultiplexxing"><i class="fa fa-check"></i><b>4.2</b> Basecalling and demultiplexxing</a></li>
+<li class="chapter" data-level="4.3" data-path="04-ONT.html"><a href="04-ONT.html#qc-of-fastq-file"><i class="fa fa-check"></i><b>4.3</b> QC of fastq file</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-ONT.html"><a href="04-ONT.html#nanostat"><i class="fa fa-check"></i><b>4.3.1</b> NanoStat</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="04-ONT.html"><a href="04-ONT.html#porechop"><i class="fa fa-check"></i><b>4.4</b> Porechop</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -162,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pacbio" class="section level1">
+<div id="pacbio" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> PacBio</h1>
 <p><img src="figures/Pacbio_logo.png" width="40%" style="display: block; margin: auto;" /></p>
 

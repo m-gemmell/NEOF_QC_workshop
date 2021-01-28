@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2021-01-21" />
+<meta name="date" content="2021-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="03-PB.html"/>
 
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,24 +51,20 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,11 +134,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="01-Long_read_QC.html"><a href="01-Long_read_QC.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="02-Intro.html"><a href="02-Intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2" data-path="02-Intro.html"><a href="02-Intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="02-Intro.html"><a href="02-Intro.html#the-data"><i class="fa fa-check"></i><b>2.1</b> The data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="03-PB.html"><a href="03-PB.html"><i class="fa fa-check"></i><b>3</b> PacBio</a></li>
-<li class="chapter" data-level="4" data-path="04-ONT.html"><a href="04-ONT.html"><i class="fa fa-check"></i><b>4</b> ONT</a></li>
+<li class="chapter" data-level="4" data-path="04-ONT.html"><a href="04-ONT.html"><i class="fa fa-check"></i><b>4</b> ONT</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-ONT.html"><a href="04-ONT.html#file-formats"><i class="fa fa-check"></i><b>4.1</b> File formats</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-ONT.html"><a href="04-ONT.html#summary-file"><i class="fa fa-check"></i><b>4.1.1</b> Summary file</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-ONT.html"><a href="04-ONT.html#bam-file"><i class="fa fa-check"></i><b>4.1.2</b> Bam file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-ONT.html"><a href="04-ONT.html#fastq-file"><i class="fa fa-check"></i><b>4.1.3</b> fastq file</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-ONT.html"><a href="04-ONT.html#basecalling-and-demultiplexxing"><i class="fa fa-check"></i><b>4.2</b> Basecalling and demultiplexxing</a></li>
+<li class="chapter" data-level="4.3" data-path="04-ONT.html"><a href="04-ONT.html#qc-of-fastq-file"><i class="fa fa-check"></i><b>4.3</b> QC of fastq file</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-ONT.html"><a href="04-ONT.html#nanostat"><i class="fa fa-check"></i><b>4.3.1</b> NanoStat</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="04-ONT.html"><a href="04-ONT.html#porechop"><i class="fa fa-check"></i><b>4.4</b> Porechop</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -162,10 +174,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ont" class="section level1">
+<div id="ont" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> ONT</h1>
 <p><img src="figures/ONT_logo.png" width="60%" style="display: block; margin: auto;" /></p>
+<div id="file-formats" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> File formats</h2>
+<div id="summary-file" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Summary file</h3>
+</div>
+<div id="bam-file" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Bam file</h3>
+</div>
+<div id="fastq-file" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> fastq file</h3>
+</div>
+</div>
+<div id="basecalling-and-demultiplexxing" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Basecalling and demultiplexxing</h2>
+<p>(Here give a quick intro to guides from basecalling and demultiplexxing of ONT data)</p>
+</div>
+<div id="qc-of-fastq-file" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> QC of fastq file</h2>
+<p>Explain why we are focussing on fastq file</p>
+<p>Before carrying out any specific commands we will first move into the relevant directory.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="04-ONT.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/ONT_QC/</span></code></pre></div>
+<p>Look in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="04-ONT.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/*</span></code></pre></div>
+<p>You will notice that each directory has one fastq file. ONT data likes to be organised with data for one sample being in one file. This is reflected in the ONT software we will use that likes to be pointed to a directory with one sample in it.</p>
+<p>To start with we will only use the fastq file within the directory called “Acinetobacter.” As you may have figured out this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.</p>
+<div id="nanostat" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> NanoStat</h3>
+<p>First step is to acquire stats of the sequences in our fastq file. We will use NanoStat (<a href="https://github.com/wdecoster/nanostat" class="uri">https://github.com/wdecoster/nanostat</a>).</p>
+<p>NanoStat is one of the scripts of NanoPack (<a href="https://github.com/wdecoster/nanopack" class="uri">https://github.com/wdecoster/nanopack</a>). We will also use the scripts NanoPlot and NanoFilt.</p>
+<p>We want to have a tidy set of directories at the end of this as it would be a large mess to have all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="04-ONT.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanostats</span></code></pre></div>
+<p>Finally we will now run NanoStat. The options used are:</p>
+<ul>
+<li><code>-n</code> : File name/path for the output.</li>
+<li><code>-t</code> : Number of threads the script can use.</li>
+<li><code>--fastq</code> : zData is in fastq format. Other options that can be used instead are <code>--fasta</code>, <code>--summary</code>, and <code>--bam</code>.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="04-ONT.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoStat</span> -n nanostats/Acinetobacter_nanostats.tsv <span class="kw">\</span></span>
+<span id="cb5-2"><a href="04-ONT.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> 4 --fastq ./data/Acinetobacter_genome_ONT.fastq</span></code></pre></div>
+<p>Now we can look at the output with any software in Linux that can view text files. In this case we will use the convenient <code>less</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="04-ONT.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> nanostats/Acinetobacter_nanostats.tsv</span></code></pre></div>
+<p>The files contains four section with informative headers. These are:</p>
+<ol style="list-style-type: decimal">
+<li>General summary</li>
+</ol>
+<ul>
+<li>A list of general summary metrics.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Number, percentage and megabases of reads above quality cutoffs</li>
+</ol>
+<ul>
+<li>Based on the mean quality value of a read.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Top 5 highest mean basecall quality scores and their read lengths</li>
+</ol>
+<ul>
+<li>Shows the top 5 reads based on mean quality score.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Top 5 longest reads and their mean basecall quality score</li>
+</ol>
+<ul>
+<li>Shows the top 5 reads based on read length.</li>
+</ul>
+</div>
+</div>
+<div id="porechop" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Porechop</h2>
+<p>(Intro to porechop and useage
+Mention here that guppy(?) carries out porechop
+Porechop is no longer supported but additionally there is no alternative)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="04-ONT.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> -r /pub39/tea/matthew/NEOF/QC_workshop/ ~</span></code></pre></div>
 
+</div>
 </div>
             </section>
 

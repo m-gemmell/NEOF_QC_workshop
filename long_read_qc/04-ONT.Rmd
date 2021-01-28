@@ -69,7 +69,13 @@ less nanostats/Acinetobacter_nanostats.tsv
 The files contains four section with informative headers. These are:
 
 1. General summary
-  - 
+  - A list of general summary metrics.
+2. Number, percentage and megabases of reads above quality cutoffs
+  - Based on the mean quality value of a read.
+3. Top 5 highest mean basecall quality scores and their read lengths
+  - Shows the top 5 reads based on mean quality score.
+4. Top 5 longest reads and their mean basecall quality score
+  - Shows the top 5 reads based on read length.
 
 ## Porechop
 
