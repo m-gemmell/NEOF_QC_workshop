@@ -88,6 +88,9 @@ You will notice that each directory has one fastq file. ONT data likes to be org
 To start with we will only use the fastq file within the directory called "Acinetobacter". As you may have figured out this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.
 
 ### NanoStat
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/metrics.png", auto_pdf = TRUE)
+``` 
 
 First step is to acquire stats of the sequences in our fastq file. We will use NanoStat (https://github.com/wdecoster/nanostat).
 
@@ -128,13 +131,18 @@ The files contains four section with informative headers. These are:
   - Shows the top 5 reads based on read length.
 
 ### Porechop
+```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRUE)
+``` 
+
+https://github.com/rrwick/Porechop
 
 (Intro to porechop and useage
 Mention here that guppy(?) carries out porechop
 Porechop is no longer supported but additionally there is no alternative)
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/QC_workshop/ ~
+
 ```
 
 <!--chapter:end:04-ONT.Rmd-->

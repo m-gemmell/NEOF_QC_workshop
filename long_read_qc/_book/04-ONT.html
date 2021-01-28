@@ -204,6 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To start with we will only use the fastq file within the directory called “Acinetobacter.” As you may have figured out this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.</p>
 <div id="nanostat" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> NanoStat</h3>
+<p><img src="figures/metrics.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>First step is to acquire stats of the sequences in our fastq file. We will use NanoStat (<a href="https://github.com/wdecoster/nanostat" class="uri">https://github.com/wdecoster/nanostat</a>).</p>
 <p>NanoStat is one of the scripts of NanoPack (<a href="https://github.com/wdecoster/nanopack" class="uri">https://github.com/wdecoster/nanopack</a>). We will also use the scripts NanoPlot and NanoFilt.</p>
 <p>We want to have a tidy set of directories at the end of this as it would be a large mess to have all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.</p>
@@ -246,10 +247,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="porechop" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Porechop</h3>
+<p><img src="figures/porechop_logo_knife.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><a href="https://github.com/rrwick/Porechop" class="uri">https://github.com/rrwick/Porechop</a></p>
 <p>(Intro to porechop and useage
 Mention here that guppy(?) carries out porechop
 Porechop is no longer supported but additionally there is no alternative)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="04-ONT.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> -r /pub39/tea/matthew/NEOF/QC_workshop/ ~</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"></code></pre></div>
 
 </div>
 </div>
