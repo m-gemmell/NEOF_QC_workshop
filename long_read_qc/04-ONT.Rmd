@@ -77,7 +77,7 @@ The files contains four section with informative headers. These are:
 4. Top 5 longest reads and their mean basecall quality score
   - Shows the top 5 reads based on read length.
 
-## Porechop
+### Porechop
 
 (Intro to porechop and useage
 Mention here that guppy(?) carries out porechop

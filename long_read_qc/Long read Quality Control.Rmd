@@ -11,7 +11,7 @@ link-citations: yes
 ---
 
 # Introduction
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
 ``` 
 
@@ -127,7 +127,7 @@ The files contains four section with informative headers. These are:
 4. Top 5 longest reads and their mean basecall quality score
   - Shows the top 5 reads based on read length.
 
-## Porechop
+### Porechop
 
 (Intro to porechop and useage
 Mention here that guppy(?) carries out porechop
