@@ -19,7 +19,13 @@ knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 
 ## QC of fastq file
 
-Explain why we are focussing on fastq file
+For this tutorial we will carry out QC on fastq files. Some QC steps can be carried out on summary files and/or BAM files. HOwever we will be using fastq files for a variety of reasons:
+
+- fastq files are the smallest and so these processes will run quicker and the files will take up less storage. Ideal for a tutorial.
+- You will likely be most familiar with fastq files and they are the easiest to work with.
+- You will most likely use fastq files in the future for ONT data. 
+  - If you get your data sequenced by a genomic centre they will most likely give you our data in demultiplexxed fastq files.
+  - ONT machines generally come with in built basecalling and so will most likely provide fastq files as well as the other formats now.
 
 Before carrying out any specific commands we will first move into the relevant directory.
 
@@ -92,5 +98,24 @@ Mention here that guppy(?) carries out porechop
 Porechop is no longer supported but additionally there is no alternative)
 
 ```{bash eval=FALSE}
+mkdir porechop
+porechop -t 4 -i data/Acinetobacter -o porechop/Acinetobacter.porechop.fastq
+```
 
+### NanoPlot
+
+https://github.com/wdecoster/NanoPlot
+
+Prior to running NanoPlot we will make a directory for NanoPlot output. NanoPlot makes a lot of files so within that directory we'll make a subdirectory for the NanoPlot output of porechopped fastq files.
+
+```{bash eval=FALSE}
+mkdir nanoplot
+mkdir nanoplot/porechop
+```
+
+Now to run NanoPlot.
+
+```{bash eval=FALSE}
+NanoPlot -t 4 --fastq porechop/Acinetobacter.porechop.fastq \
+--plots hex -o nanoplot/porechop -p Acinetobacter
 ```
