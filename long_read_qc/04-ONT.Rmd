@@ -4,7 +4,6 @@ knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 ``` 
 
 ## File formats
-test
 
 ### Summary file
 
@@ -34,6 +33,12 @@ Before carrying out any specific commands we will first move into the relevant d
 cd ~/QC_workshop/ONT_QC/
 ```
 
+Initialise environment. This needs to be done if you start working in a new terminal. Each terminal will only rmember what you have told it.
+
+```{bash eval=FALSE}
+source ONT_QC_env.sh
+```
+
 Look in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.
 
 ```{bash eval=FALSE}
@@ -49,11 +54,11 @@ To start with we will only use the fastq file within the directory called "Acine
 knitr::include_graphics(path = "figures/metrics.png", auto_pdf = TRUE)
 ``` 
 
-First step is to acquire stats of the sequences in our fastq file. We will use NanoStat (https://github.com/wdecoster/nanostat).
+First step is to acquire stats for the sequences in our fastq file. We will use NanoStat (https://github.com/wdecoster/nanostat).
 
 NanoStat is one of the scripts of NanoPack (https://github.com/wdecoster/nanopack). We will also use the scripts NanoPlot and NanoFilt.
 
-We want to have a tidy set of directories at the end of this as it would be a large mess to have all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
+We want to have a tidy set of directories at the end of this analysis. It would be a large mess to have all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
 
 ```{bash eval=FALSE}
 mkdir nanostats
