@@ -19,12 +19,12 @@ knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 
 ## QC of fastq file
 
-For this tutorial we will carry out QC on fastq files. Some QC steps can be carried out on summary files and/or BAM files. HOwever we will be using fastq files for a variety of reasons:
+For this tutorial we will carry out quality control and checking on fastq files. Some QC steps can be carried out on summary files and/or BAM files. However we will be using fastq files for a variety of reasons:
 
 - fastq files are the smallest and so these processes will run quicker and the files will take up less storage. Ideal for a tutorial.
-- You will likely be most familiar with fastq files and they are the easiest to work with.
+- You are most likely to be more familiar with fastq files and they are the easiest to work with.
 - You will most likely use fastq files in the future for ONT data. 
-  - If you get your data sequenced by a genomic centre they will most likely give you our data in demultiplexxed fastq files.
+  - If you get your data sequenced by a genomic centre they will most likely give you your data in demultiplexxed fastq files.
   - ONT machines generally come with in built basecalling and so will most likely provide fastq files as well as the other formats now.
 
 Before carrying out any specific commands we will first move into the relevant directory.
@@ -33,7 +33,7 @@ Before carrying out any specific commands we will first move into the relevant d
 cd ~/QC_workshop/ONT_QC/
 ```
 
-Initialise environment. This needs to be done if you start working in a new terminal. Each terminal will only rmember what you have told it.
+Initialise environment. This needs to be done if you start working in a new terminal. Each terminal will only remember what you have told it.
 
 ```{bash eval=FALSE}
 source ONT_QC_env.sh
@@ -45,7 +45,7 @@ Look in the directory called data and you will notice there are a few directorie
 ls data/*
 ```
 
-You will notice that each directory has one fastq file. ONT data likes to be organised with data for one sample being in one file. This is reflected in the ONT software we will use that likes to be pointed to a directory with one sample in it.
+You will notice that each directory has one fastq file. ONT data likes to be organised with data for one sample being in one file. This is reflected in the ONT software we will use that likes you to point it to a directory with one sample in it.
 
 To start with we will only use the fastq file within the directory called "Acinetobacter". As you may have figured out this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.
 
@@ -125,3 +125,38 @@ Now to run NanoPlot.
 NanoPlot -t 4 --fastq porechop/Acinetobacter.porechop.fastq \
 --plots hex -o nanoplot/porechop -p Acinetobacter
 ```
+
+May get below error which is file:
+
+/pub37/matt/programs_chos_8/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
+  return len(self._mapping)
+/pub37/matt/programs_chos_8/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
+  yield from self._mapping
+
+
+### NanoFilt
+
+```{bash eval=FALSE}
+mkdir nanofilt
+```
+
+```{bash eval=FALSE}
+cat porechop/Acinetobacter.porechop.fastq | \
+NanoFilt -l 500 -q 10 > nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq
+```
+
+
+### Final check
+
+```{bash eval=FALSE}
+NanoStat -t 4 \
+-n nanostats/Acinetobacter_nanofiltq10minlen500_porechop_nanostats.tsv \
+--fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq
+```
+
+```{bash eval=FALSE}
+NanoPlot -t 4 \
+--fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq \
+--plots hex -o nanoplot/nanofiltq10minlen500_porechop/Acinetobacter
+```
+
