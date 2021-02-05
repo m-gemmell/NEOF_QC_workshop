@@ -36,7 +36,7 @@ cd ~/QC_workshop/ONT_QC/
 Initialise environment. This needs to be done if you start working in a new terminal. Each terminal will only remember what you have told it.
 
 ```{bash eval=FALSE}
-source ONT_QC_env.sh
+. usenanopack-1.1.0
 ```
 
 Look in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.
@@ -122,8 +122,10 @@ mkdir nanoplot/porechop
 Now to run NanoPlot.
 
 ```{bash eval=FALSE}
-NanoPlot -t 4 --fastq porechop/Acinetobacter.porechop.fastq \
---plots hex -o nanoplot/porechop -p Acinetobacter
+NanoPlot -t 4 \
+--fastq porechop/Acinetobacter.porechop.fastq \
+-o nanoplot/porechop -p Acinetobacter_ \
+--plots hex 
 ```
 
 May get below error which is file:
@@ -133,6 +135,11 @@ May get below error which is file:
 /pub37/matt/programs_chos_8/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
   yield from self._mapping
 
+Check HMTL plot
+
+```{bash eval=FALSE}
+firefox nanoplot/porechop/Acinetobacter_NanoPlot-report.html
+```
 
 ### NanoFilt
 
@@ -142,7 +149,7 @@ mkdir nanofilt
 
 ```{bash eval=FALSE}
 cat porechop/Acinetobacter.porechop.fastq | \
-NanoFilt -l 500 -q 10 > nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq
+NanoFilt -l 500 -q 10 > \ nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq
 ```
 
 
@@ -155,8 +162,11 @@ NanoStat -t 4 \
 ```
 
 ```{bash eval=FALSE}
+mkdir nanoplot/nanofiltq10minlen500_porechop
+
 NanoPlot -t 4 \
 --fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq \
---plots hex -o nanoplot/nanofiltq10minlen500_porechop/Acinetobacter
+-o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ \
+--plots hex 
 ```
 
