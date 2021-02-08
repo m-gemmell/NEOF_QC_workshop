@@ -11,3 +11,6 @@ basecalling-and-demultiplexxing
 qc-of-fastq-file
 nanostat
 porechop
+nanoplot
+nanofilt
+final-check

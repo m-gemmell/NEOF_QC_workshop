@@ -11,6 +11,27 @@ knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 
 ### fastq file
 
+The fastq file format is very consistent and so there is no real difference between fastq files for Illumina, PacBio, and ONT data.
+
+All fastq files will contain a number of lines divisible by 4. This is because each entry/sequence will take up four lines consisting of the following information:
+
+1. Header for fastq entry known as the fastq header. 
+    + This always begins with a __‘@’__
+    + This is where you might see the most difference between different data. Different machines and different public databases will use different formats for fastq headers.
+2. Sequence content
+3. Quality header 
+    + Always begins with a ‘+’. Sometimes also contains the same information as fastq header.  
+4. Quality
+    + Each base in the 2nd line will have a corresponding quality value in this line.
+    + Note this uses Phred encoding, of which there are different formats. Most, if not all, new files will use Phred+33 but be careful if you are using older data as it may use a different one. See the "Encoding" section in the following link for more info: https://en.wikipedia.org/wiki/FASTQ_format.
+    +  NOTE: ‘@’ can be used as quality values.
+
+An example of the information of one sequence/entry is:
+
+__\@Sequence 1__  
+__CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__  
+__+__  
+__=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
 ## Basecalling and demultiplexxing
 
