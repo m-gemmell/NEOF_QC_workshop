@@ -59,9 +59,18 @@ knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 
 ### Bam file
 
+BAM files (.bam) are the binary version of SAM files (.sam). This means:
+
+- BAM files are not human readable whilst SAM files are.
+- SAM files are larger than BAM.
+
+Generally programs can work on both BAM and SAM files and it is preferable to store data in BAM format over SAM. 
+
+
+
 ### fastq file
 
-The fastq file format is thankfully very consistent and so there is no real difference between fastq files for Illumina, PacBio, and ONT data.
+The fastq file format is very consistent and so there is no real difference between fastq files for Illumina, PacBio, and ONT data.
 
 All fastq files will contain a number of lines divisible by 4. This is because each entry/sequence will take up four lines consisting of the following information:
 
@@ -76,7 +85,7 @@ All fastq files will contain a number of lines divisible by 4. This is because e
     + Note this uses Phred encoding, of which there are different formats. Most, if not all, new files will use Phred+33 but be careful if you are using older data as it may use a different one. See the "Encoding" section in the following link for more info: https://en.wikipedia.org/wiki/FASTQ_format.
     +  NOTE: ‘@’ can be used as quality values.
 
-An example of the information of one sequence is:
+An example of the information of one sequence/entry is:
 
 __\@Sequence 1__  
 __CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__  

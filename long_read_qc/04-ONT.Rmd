@@ -9,6 +9,15 @@ knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 
 ### Bam file
 
+BAM files (.bam) are the binary version of SAM files (.sam). This means:
+
+- BAM files are not human readable whilst SAM files are.
+- SAM files are larger than BAM.
+
+Generally programs can work on both BAM and SAM files and it is preferable to store data in BAM format over SAM. Even though BAM files are smaller than their matching SAM file they are still very large and can be > 100GB.
+
+
+
 ### fastq file
 
 The fastq file format is very consistent and so there is no real difference between fastq files for Illumina, PacBio, and ONT data.
