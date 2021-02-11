@@ -4,6 +4,7 @@ the-data
 pacbio
 ont
 file-formats
+fast5
 summary-file
 bam-file
 fastq-file
