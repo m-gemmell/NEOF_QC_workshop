@@ -8,7 +8,7 @@ fast5
 summary-file
 bam-file
 fastq-file
-basecalling-and-demultiplexxing
+basecalling
 qc-of-fastq-file
 nanostat
 porechop

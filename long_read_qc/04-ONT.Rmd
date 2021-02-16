@@ -29,6 +29,10 @@ https://github.com/nanoporetech/ont_fast5_api
 
 ### Summary file
 
+The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which descirbes each sequenced read.
+
+We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be intially provided to you by a sequencing service as they are large and not often needed. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
+
 ### BAM file
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/bam.png", auto_pdf = TRUE)
@@ -79,13 +83,21 @@ __CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__
 __+__  
 __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
-## Basecalling and demultiplexxing
+## Basecalling
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/guppy.png", auto_pdf = TRUE)
 ``` 
 
-(Here give a quick intro to guides from basecalling and demultiplexxing of ONT data)
+In short, basecalling is the converting of ONT signals to bases and quality. In other word it is the conversion of Fast5 files to BAM and/or fastq files.
 
+There are many tools to carry out basecalling with ONT data with ONT sequencing machines carrying this out themselves. However, if you are interested in the tools used for this the primary ones are Guppy and Albacore with others. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
+
+Basecalling with Guppy tutorial:
+
+https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html
+
+Basecalling with Albacore tutorial:
+https://denbi-nanopore-training-course.readthedocs.io/en/stable/basecalling/basecalling.html
 
 ## QC of fastq file
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
