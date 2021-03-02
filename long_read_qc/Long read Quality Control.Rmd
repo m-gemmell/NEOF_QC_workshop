@@ -307,7 +307,7 @@ NanoPlot -t 4 \
 --plots hex 
 ```
 
-You may get below warning. This is fin and can be ignored.
+You may get below warning. This is fine and can be ignored.
 
 ```{bash, eval = FALSE}
 /pub37/matt/programs_chos_8/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
@@ -322,13 +322,13 @@ List the files in the output directory.
 ls nanoplot/porechop/
 ```
 
-You will notice there are quite a bit of files which all start with "Acinetobacter_" thanks to the `-p` option. To quickly check all the results we can open the produced html file with firefox.
+You will notice there are quite a few of files which all start with "Acinetobacter_" thanks to the `-p` option. To quickly check all the results we can open the produced html file with firefox.
 
 ```{bash eval=FALSE}
 firefox nanoplot/porechop/Acinetobacter_NanoPlot-report.html
 ```
 
-The first section contains NanoStat output. Quickly look over this and see how it compares to the NanoStat output of the reads pre-porechopping.
+The first section contains NanoStat output. Quickly look over this and see how it compares to the NanoStat output of the pre-porechopped reads.
 
 Tip: To open a new terminal, right click VNC background -> Applications -> Shells -> Bash.
 
@@ -348,9 +348,9 @@ After the __Summary Statistics__ section there is a __Plots__ section. This cont
 - __Yield by length__
    - Plot showing the "Cumulative yield for minimal length" (y) by "Read length" (x).
    - The cumulative yield is measured in Gigabases (billion bases).
-   - This plot is useful to know how much bases you would retain if you filtered reads based on read length.
+   - This plot is useful to know how many bases you would retain if you filtered reads based on read length.
 - __Read lengths vs Average read quality plot using hexagonal bins__
-   - This is the most informative plot and is the bivariate plot we indicated we wanted as hexagonal with the option `--plots hex`.
+   - This is the most informative plot. It is the bivariate plot we indicated we wanted as hexagonal with the option `--plots hex`.
    - Each hex is a bin with a darker colour representing more reads.
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
@@ -359,9 +359,9 @@ Questions to be answered with the html file:
 
 - How long is the longest read?
 - What is the highest mean basecall quality score of a read?
-- Are there more reads with a mean basecall quality score >Q10 than with a mean basecall quality score <=Q10?
-- Approximately where is the highest density of reads interm of read lengths and average read quality.
-- Roughly, do the longer reads have realtively high, medium, or low mean qualities?
+- How many reads have a mean basecall quality score >Q10?
+- Approximately where is the highest density of reads in terms of read lengths and average read quality.
+- Roughly, do the longer reads have relatively high, medium, or low mean qualities?
 
 Using different input files will give you different plots. For more details please see the "Plots Generated" section on: https://github.com/wdecoster/NanoPlot.
 
@@ -386,8 +386,9 @@ knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ```
 
 ```{bash eval=FALSE}
+#Make an output directory before running NanoPlot
 mkdir nanoplot/nanofiltq10minlen500_porechop
-
+#Run NanoPlot on the filtered and porechopped data
 NanoPlot -t 4 \
 --fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq \
 -o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ \
