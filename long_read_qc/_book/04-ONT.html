@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2021-03-02" />
+<meta name="date" content="2021-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/metrics.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The first step is to acquire stats for the sequences in our fastq file. We will use NanoStat (<a href="https://github.com/wdecoster/nanostat" class="uri">https://github.com/wdecoster/nanostat</a>).</p>
 <p>NanoStat is one of the many tools contained in the NanoPack suite (<a href="https://github.com/wdecoster/nanopack" class="uri">https://github.com/wdecoster/nanopack</a>). We will also use the tools NanoPlot and NanoFilt.</p>
-<p>We will want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.</p>
+<p>We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="04-ONT.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanostats</span></code></pre></div>
 <p>Finally we will now run NanoStat. The options used are:</p>
 <ul>
@@ -324,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="porechop" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Porechop</h3>
 <p><img src="figures/porechop_logo_knife.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Porechop is a tool to find and remove adapters from ONT data (<a href="https://github.com/rrwick/Porechop" class="uri">https://github.com/rrwick/Porechop</a>). Adapters are artificial sequences of no biological value and so you will always want them removed.</p>
+<p>Porechop is a tool to find and remove adapters from ONT data (<a href="https://github.com/rrwick/Porechop" class="uri">https://github.com/rrwick/Porechop</a>). Adapters are artificial sequences essnetial for sequencing but of no biological value and so you will always want them removed.</p>
 <p>Porechop is no longer supported but it still works and there is no alternative for adapter removal. Depending on which basecaller was used on your data, adapter removal may have already been carried out. However, it is always best to run porechop if you are not sure.</p>
 <p>Porechop has a list of known adapters it will look for and remove. These contain:</p>
 <ul>
@@ -364,6 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.3</span> NanoPlot</h3>
 <p><img src="figures/nanoplot_hexes.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>NanoPlot can be thought of as the FastQC for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for fastq, fasta, bam, and sequencing summary files. The link for its github page is: <a href="https://github.com/wdecoster/NanoPlot" class="uri">https://github.com/wdecoster/NanoPlot</a></p>
+<p>ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.</p>
 <p>Prior to running NanoPlot we will make a directory for the NanoPlot output. NanoPlot creates a lot of files so we’ll make a subdirectory for the NanoPlot output of porechopped fastq files.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="04-ONT.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot</span>
 <span id="cb9-2"><a href="04-ONT.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/porechop</span></code></pre></div>
@@ -386,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-4"><a href="04-ONT.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">yield</span> from self._mapping</span></code></pre></div>
 <p>List the files in the output directory.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="04-ONT.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> nanoplot/porechop/</span></code></pre></div>
-<p>You will notice there are quite a few of files which all start with “Acinetobacter_” thanks to the <code>-p</code> option. To quickly check all the results we can open the produced html file with firefox.</p>
+<p>You will notice there are quite a few files. These should all start with “Acinetobacter_” thanks to the <code>-p</code> option. To quickly check all the results we can open the produced html file with firefox.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="04-ONT.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> nanoplot/porechop/Acinetobacter_NanoPlot-report.html</span></code></pre></div>
 <p>The first section contains NanoStat output. Quickly look over this and see how it compares to the NanoStat output of the pre-porechopped reads.</p>
 <p>Tip: To open a new terminal, right click VNC background -&gt; Applications -&gt; Shells -&gt; Bash.</p>
@@ -440,13 +441,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="nanofilt" class="section level3" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> NanoFilt</h3>
 <p><img src="figures/quality_filtering.png" width="10%" style="display: block; margin: auto;" /></p>
+<p>NanoFilt can be used to remove/filter reads by quality and/or read length (<a href="https://github.com/wdecoster/nanofilt" class="uri">https://github.com/wdecoster/nanofilt</a>). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.</p>
+<p>It is always important to know what you data is and if your planned filtering and triming is appropriate. FOr example you may be working with amplicon data where the read lenghts will vary between 500bp and 750bp. In that case it is useful to set a min length of 500 and a maxlength of 750.</p>
+<p>This data is from a genome so wanting long and high quality reads is appropriate. Overall with NanoPlot the quality looks good. The main exception is the amount of sequencing/the coverage but this is because it is a subset of the whole data for workshop purposes. There are some shorter and lower quality reads which we will want removed.</p>
+<p>First we will create an output directory.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="04-ONT.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanofilt</span></code></pre></div>
+<p>We will filter out sequences that are shorter than 500bp (<code>-l 500bp</code>) and filter out sequences with a average read quality less than Q10 (<code>-q 10</code>. We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from NanoPLot as the vast majorit of reads had a quality of &gt;Q10.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="04-ONT.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> porechop/Acinetobacter.porechop.fastq <span class="kw">|</span> <span class="kw">\</span></span>
 <span id="cb15-2"><a href="04-ONT.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoFilt</span> -l 500 -q 10 <span class="op">&gt;</span> <span class="dt">\ </span>nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq</span></code></pre></div>
+<p>Are the chosen options appropriate? Let us find out.</p>
 </div>
 <div id="final-check" class="section level3" number="4.3.5">
 <h3><span class="header-section-number">4.3.5</span> Final check</h3>
 <p><img src="figures/finish.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>After trimming or filtering reads (quality control) it is always important to carry out quality check. We will therefore run NanoPlot again.</p>
+<p>Note: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="04-ONT.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make an output directory before running NanoPlot</span></span>
 <span id="cb16-2"><a href="04-ONT.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/nanofiltq10minlen500_porechop</span>
 <span id="cb16-3"><a href="04-ONT.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run NanoPlot on the filtered and porechopped data</span></span>

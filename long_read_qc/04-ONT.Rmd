@@ -146,7 +146,7 @@ The first step is to acquire stats for the sequences in our fastq file. We will 
 
 NanoStat is one of the many tools contained in the NanoPack suite (https://github.com/wdecoster/nanopack). We will also use the tools NanoPlot and NanoFilt.
 
-We will want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
+We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
 
 ```{bash eval=FALSE}
 mkdir nanostats
@@ -186,7 +186,7 @@ The file contains four sections with informative headers. These are:
 knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRUE)
 ``` 
 
-Porechop is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences of no biological value and so you will always want them removed.
+Porechop is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences essnetial for sequencing but of no biological value and so you will always want them removed.
 
 Porechop is no longer supported but it still works and there is no alternative for adapter removal. Depending on which basecaller was used on your data, adapter removal may have already been carried out. However, it is always best to run porechop if you are not sure. 
 
@@ -235,6 +235,8 @@ knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
 
 NanoPlot can be thought of as the FastQC for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for fastq, fasta, bam, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
 
+ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.
+
 Prior to running NanoPlot we will make a directory for the NanoPlot output. NanoPlot creates a lot of files so we'll make a subdirectory for the NanoPlot output of porechopped fastq files.
 
 ```{bash eval=FALSE}
@@ -272,7 +274,7 @@ List the files in the output directory.
 ls nanoplot/porechop/
 ```
 
-You will notice there are quite a few of files which all start with "Acinetobacter_" thanks to the `-p` option. To quickly check all the results we can open the produced html file with firefox.
+You will notice there are quite a few files. These should all start with "Acinetobacter_" thanks to the `-p` option. To quickly check all the results we can open the produced html file with firefox.
 
 ```{bash eval=FALSE}
 firefox nanoplot/porechop/Acinetobacter_NanoPlot-report.html
@@ -320,20 +322,34 @@ Using different input files will give you different plots. For more details plea
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ```
 
+NanoFilt can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/nanofilt). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
+
+It is always important to know what you data is and if your planned filtering and triming is appropriate. FOr example you may be working with amplicon data where the read lenghts will vary between 500bp and 750bp. In that case it is useful to set a min length of 500 and a maxlength of 750.
+
+This data is from a genome so wanting long and high quality reads is appropriate. Overall with NanoPlot the quality looks good. The main exception is the amount of sequencing/the coverage but this is because it is a subset of the whole data for workshop purposes. There are some shorter and lower quality reads which we will want removed.
+
+First we will create an output directory.
 ```{bash eval=FALSE}
 mkdir nanofilt
 ```
+
+We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with a average read quality less than Q10 (`-q 10`. We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from NanoPLot as the vast majorit of reads had a quality of >Q10.
 
 ```{bash eval=FALSE}
 cat porechop/Acinetobacter.porechop.fastq | \
 NanoFilt -l 500 -q 10 > \ nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq
 ```
 
+Are the chosen options appropriate? Let us find out.
 
 ### Final check
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ```
+
+After trimming or filtering reads (quality control) it is always important to carry out quality check. We will therefore run NanoPlot again.
+
+Note: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy. 
 
 ```{bash eval=FALSE}
 #Make an output directory before running NanoPlot
