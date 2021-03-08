@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 ONT | Long read Quality Control</title>
-  <meta name="description" content="Chapter 4 ONT | Long read Quality Control" />
+  <title>Chapter 6 ONT | Long read Quality Control</title>
+  <meta name="description" content="Chapter 6 ONT | Long read Quality Control" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 ONT | Long read Quality Control" />
+  <meta property="og:title" content="Chapter 6 ONT | Long read Quality Control" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 ONT | Long read Quality Control" />
+  <meta name="twitter:title" content="Chapter 6 ONT | Long read Quality Control" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="03-PB.html"/>
-<link rel="next" href="05-Practice.html"/>
+<link rel="prev" href="05-Practice.html"/>
+
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,16 +201,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ont" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> ONT</h1>
+<div id="ont-1" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> ONT</h1>
 <p><img src="figures/ONT_logo.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use the fastq files.</p>
-<div id="file-formats" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> File formats</h2>
+<div id="file-formats-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> File formats</h2>
 <p><img src="figures/files.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.</p>
-<div id="fast5" class="section level3" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Fast5</h3>
+<div id="fast5-1" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Fast5</h3>
 <p><img src="figures/fast5.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>The raw data from ONT machines come as Fast5 (.fast5) files. This contains the signal data from the pore which can be processed into more useful files.</p>
 <p>Fast5 files can contain:</p>
@@ -223,13 +223,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The Fast5 file format is an implementation of the HDF5 file format specifically for ONT sequencing data. For more information on Fast5 and a tool to interface with these types of file please see:
 <a href="https://github.com/nanoporetech/ont_fast5_api" class="uri">https://github.com/nanoporetech/ont_fast5_api</a></p>
 </div>
-<div id="summary-file" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> Summary file</h3>
+<div id="summary-file-1" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Summary file</h3>
 <p>The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which descirbes each sequenced read.</p>
 <p>We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be intially provided to you by a sequencing service as they are large and not often needed. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.</p>
 </div>
-<div id="bam-file" class="section level3" number="4.1.3">
-<h3><span class="header-section-number">4.1.3</span> BAM file</h3>
+<div id="bam-file-1" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> BAM file</h3>
 <p><img src="figures/bam.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>BAM files (.bam) are the binary version of SAM files (.sam). This means:</p>
 <ul>
@@ -244,8 +244,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For more information on the SAM and BAM format please see:
 <a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a></p>
 </div>
-<div id="fastq-file" class="section level3" number="4.1.4">
-<h3><span class="header-section-number">4.1.4</span> fastq file</h3>
+<div id="fastq-file-1" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> fastq file</h3>
 <p><img src="figures/fastq.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>The fastq file format is very consistent and so there is no real difference between fastq files for Illumina, PacBio, and ONT data.</p>
 <p>All fastq files will contain a number of lines divisible by 4. This is because each entry/sequence will take up four lines consisting of the following information:</p>
@@ -275,8 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>=&lt;&lt;&lt;=&gt;@@@ACDCBCDAC@BAA@BA@BBCBBDA@BB@&gt;CD@A@B?B@@</strong></p>
 </div>
 </div>
-<div id="basecalling" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Basecalling</h2>
+<div id="basecalling-1" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Basecalling</h2>
 <p><img src="figures/guppy.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>In short, basecalling is the converting of ONT signals to bases and quality. In other word it is the conversion of Fast5 files to BAM and/or fastq files.</p>
 <p>There are many tools to carry out basecalling with ONT data with ONT sequencing machines carrying this out themselves. However, if you are interested in the tools used for this the primary ones are Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.</p>
@@ -285,8 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Basecalling with Albacore tutorial:</p>
 <p><a href="https://denbi-nanopore-training-course.readthedocs.io/en/stable/basecalling/basecalling.html" class="uri">https://denbi-nanopore-training-course.readthedocs.io/en/stable/basecalling/basecalling.html</a></p>
 </div>
-<div id="qc-of-fastq-file" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> QC of fastq file</h2>
+<div id="qc-of-fastq-file-1" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> QC of fastq file</h2>
 <p><img src="figures/qc_inspection.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>For this tutorial we will carry out quality control and checking on fastq files. Some QC steps can be carried out on summary files and/or BAM files. However we will be using fastq files for a variety of reasons:</p>
 <ul>
@@ -299,30 +299,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Before carrying out any specific commands we will first move into the relevant directory.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="04-ONT.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/ONT_QC/</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="06-Furter_resources.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/ONT_QC/</span></code></pre></div>
 <p>Initialise environment. This needs to be done if you start working in a new terminal. Each terminal will only remember what you have told it.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="04-ONT.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> <span class="ex">usenanopack-1.1.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="06-Furter_resources.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> <span class="ex">usenanopack-1.1.0</span></span></code></pre></div>
 <p>Look in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="04-ONT.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/*</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="06-Furter_resources.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/*</span></code></pre></div>
 <p>You will notice that each directory has one fastq file. ONT data likes to be organised with data for one sample being in one directory. This is reflected in the software that we will use which likes to be pointed a directory with one sample in it.</p>
 <p>To start with we will only use the fastq file within the directory called “Acinetobacter.” As you may have figured out this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.</p>
-<div id="nanostat" class="section level3" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> NanoStat</h3>
+<div id="nanostat-1" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> NanoStat</h3>
 <p><img src="figures/metrics.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The first step is to acquire stats for the sequences in our fastq file. We will use NanoStat (<a href="https://github.com/wdecoster/nanostat" class="uri">https://github.com/wdecoster/nanostat</a>).</p>
 <p>NanoStat is one of the many tools contained in the NanoPack suite (<a href="https://github.com/wdecoster/nanopack" class="uri">https://github.com/wdecoster/nanopack</a>). We will also use the tools NanoPlot and NanoFilt.</p>
 <p>We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="04-ONT.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanostats</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="06-Furter_resources.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanostats</span></code></pre></div>
 <p>Finally we will now run NanoStat. The options used are:</p>
 <ul>
 <li><code>-n</code> : File name/path for the output.</li>
 <li><code>-t</code> : Number of threads the script can use.</li>
 <li><code>--fastq</code> : Input data is in fastq format. Other options that can be used are <code>--fasta</code>, <code>--summary</code>, and <code>--bam</code>.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="04-ONT.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoStat</span> -n nanostats/Acinetobacter_nanostats.tsv <span class="kw">\</span></span>
-<span id="cb6-2"><a href="04-ONT.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> 4 --fastq ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="06-Furter_resources.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoStat</span> -n nanostats/Acinetobacter_nanostats.tsv <span class="kw">\</span></span>
+<span id="cb21-2"><a href="06-Furter_resources.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-t</span> 4 --fastq ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq</span></code></pre></div>
 <p>Now we can look at the output text file. In this case we will use the convenient <code>less</code> command.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="04-ONT.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> nanostats/Acinetobacter_nanostats.tsv</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="06-Furter_resources.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> nanostats/Acinetobacter_nanostats.tsv</span></code></pre></div>
 <p>The file contains four sections with informative headers. These are:</p>
 <ol style="list-style-type: decimal">
 <li><strong>General summary</strong>
@@ -344,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 </div>
-<div id="porechop" class="section level3" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Porechop</h3>
+<div id="porechop-1" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Porechop</h3>
 <p><img src="figures/porechop_logo_knife.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Porechop is a tool to find and remove adapters from ONT data (<a href="https://github.com/rrwick/Porechop" class="uri">https://github.com/rrwick/Porechop</a>). Adapters are artificial sequences essnetial for sequencing but of no biological value and so you will always want them removed.</p>
 <p>Porechop is no longer supported but it still works and there is no alternative for adapter removal. Depending on which basecaller was used on your data, adapter removal may have already been carried out. However, it is always best to run porechop if you are not sure.</p>
@@ -365,11 +365,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>-i</code>: Input path of a fasta file, fastq file, or a directory. If a directory is specified it will be recursively searched for fastq files.</li>
 <li><code>-o</code>: Output path. This will either be a fastq or fasta file name.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="04-ONT.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create output directory</span></span>
-<span id="cb8-2"><a href="04-ONT.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> porechop</span>
-<span id="cb8-3"><a href="04-ONT.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run porechop command</span></span>
-<span id="cb8-4"><a href="04-ONT.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">porechop</span> -t 4 -i ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq <span class="kw">\</span></span>
-<span id="cb8-5"><a href="04-ONT.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> porechop/Acinetobacter.porechop.fastq</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="06-Furter_resources.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create output directory</span></span>
+<span id="cb23-2"><a href="06-Furter_resources.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> porechop</span>
+<span id="cb23-3"><a href="06-Furter_resources.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run porechop command</span></span>
+<span id="cb23-4"><a href="06-Furter_resources.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">porechop</span> -t 4 -i ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq <span class="kw">\</span></span>
+<span id="cb23-5"><a href="06-Furter_resources.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> porechop/Acinetobacter.porechop.fastq</span></code></pre></div>
 <p>Porechop will take a while to run. Whilst it is running look at the screen output to get an idea of what it is doing. Once it is finished look at the bottom of the printed results.</p>
 <p>Questions:</p>
 <ul>
@@ -383,14 +383,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/rrwick/Porechop#full-usage" class="uri">https://github.com/rrwick/Porechop#full-usage</a></li>
 </ul>
 </div>
-<div id="nanoplot" class="section level3" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> NanoPlot</h3>
+<div id="nanoplot-1" class="section level3" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> NanoPlot</h3>
 <p><img src="figures/nanoplot_hexes.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>NanoPlot can be thought of as the FastQC for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for fastq, fasta, bam, and sequencing summary files. The link for its github page is: <a href="https://github.com/wdecoster/NanoPlot" class="uri">https://github.com/wdecoster/NanoPlot</a></p>
 <p>ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.</p>
 <p>Prior to running NanoPlot we will make a directory for the NanoPlot output. NanoPlot creates a lot of files so we’ll make a subdirectory for the NanoPlot output of porechopped fastq files.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="04-ONT.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot</span>
-<span id="cb9-2"><a href="04-ONT.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/porechop</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="06-Furter_resources.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot</span>
+<span id="cb24-2"><a href="06-Furter_resources.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/porechop</span></code></pre></div>
 <p>Now to run NanoPlot. The options we will use are:</p>
 <ul>
 <li><code>-t</code>: Number of threads to be used.</li>
@@ -399,19 +399,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>-p</code>: Prefix of output files. It is useful to have "_" at the end of the prefix.</li>
 <li><code>--plots</code>: Specifies what type of bivariate plot is to be created (more on this later). I find “hex” to be the best.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="04-ONT.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoPlot</span> -t 4 <span class="kw">\</span></span>
-<span id="cb10-2"><a href="04-ONT.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--fastq</span> porechop/Acinetobacter.porechop.fastq <span class="kw">\</span></span>
-<span id="cb10-3"><a href="04-ONT.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> nanoplot/porechop -p Acinetobacter_ <span class="kw">\</span></span>
-<span id="cb10-4"><a href="04-ONT.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--plots</span> hex </span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="06-Furter_resources.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoPlot</span> -t 4 <span class="kw">\</span></span>
+<span id="cb25-2"><a href="06-Furter_resources.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--fastq</span> porechop/Acinetobacter.porechop.fastq <span class="kw">\</span></span>
+<span id="cb25-3"><a href="06-Furter_resources.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> nanoplot/porechop -p Acinetobacter_ <span class="kw">\</span></span>
+<span id="cb25-4"><a href="06-Furter_resources.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--plots</span> hex </span></code></pre></div>
 <p>You may get below warning. This is fine and can be ignored.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="04-ONT.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub37/matt/programs_chos_8/anaconda3/lib/python3.7</span>/_collections_abc.py:<span class="ex">702</span>: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.</span>
-<span id="cb11-2"><a href="04-ONT.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">return</span> len(self._mapping)</span>
-<span id="cb11-3"><a href="04-ONT.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub37/matt/programs_chos_8/anaconda3/lib/python3.7</span>/_collections_abc.py:<span class="ex">720</span>: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.</span>
-<span id="cb11-4"><a href="04-ONT.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">yield</span> from self._mapping</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="06-Furter_resources.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub37/matt/programs_chos_8/anaconda3/lib/python3.7</span>/_collections_abc.py:<span class="ex">702</span>: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.</span>
+<span id="cb26-2"><a href="06-Furter_resources.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">return</span> len(self._mapping)</span>
+<span id="cb26-3"><a href="06-Furter_resources.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub37/matt/programs_chos_8/anaconda3/lib/python3.7</span>/_collections_abc.py:<span class="ex">720</span>: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.</span>
+<span id="cb26-4"><a href="06-Furter_resources.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">yield</span> from self._mapping</span></code></pre></div>
 <p>List the files in the output directory.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="04-ONT.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> nanoplot/porechop/</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="06-Furter_resources.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> nanoplot/porechop/</span></code></pre></div>
 <p>You will notice there are quite a few files. These should all start with “Acinetobacter_” thanks to the <code>-p</code> option. To quickly check all the results we can open the produced html file with firefox.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="04-ONT.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> nanoplot/porechop/Acinetobacter_NanoPlot-report.html</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="06-Furter_resources.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> nanoplot/porechop/Acinetobacter_NanoPlot-report.html</span></code></pre></div>
 <p>The first section contains NanoStat output. Quickly look over this and see how it compares to the NanoStat output of the pre-porechopped reads.</p>
 <p>Tip: To open a new terminal, right click VNC background -&gt; Applications -&gt; Shells -&gt; Bash.</p>
 <p>After the <strong>Summary Statistics</strong> section there is a <strong>Plots</strong> section. This contains the plots:</p>
@@ -461,32 +461,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Using different input files will give you different plots. For more details please see the “Plots Generated” section on: <a href="https://github.com/wdecoster/NanoPlot" class="uri">https://github.com/wdecoster/NanoPlot</a>.</p>
 </div>
-<div id="nanofilt" class="section level3" number="4.3.4">
-<h3><span class="header-section-number">4.3.4</span> NanoFilt</h3>
+<div id="nanofilt-1" class="section level3" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> NanoFilt</h3>
 <p><img src="figures/quality_filtering.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>NanoFilt can be used to remove/filter reads by quality and/or read length (<a href="https://github.com/wdecoster/nanofilt" class="uri">https://github.com/wdecoster/nanofilt</a>). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.</p>
 <p>It is always important to know what your data is and if your planned filtering and trimming is appropriate. For example you may be working with amplicon data where the read lengths will vary between 500bp and 750bp. In that case it is useful to set a min length of 500 and a maxlength of 750.</p>
 <p>This data is from a genome so wanting long and high quality reads is appropriate. Overall quality looks good. The main exception is the amount of sequencing/coverage, this is because it is a subset of the whole data for workshop purposes. There are some shorter length and lower quality reads which we will remove.</p>
 <p>First we will create an output directory.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="04-ONT.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanofilt</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="06-Furter_resources.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanofilt</span></code></pre></div>
 <p>We will filter out sequences that are shorter than 500bp (<code>-l 500bp</code>) and filter out sequences with a average read quality less than Q10 (<code>-q 10</code>. We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from NanoPlot as the vast majority of reads had a quality of &gt;Q10.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="04-ONT.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> porechop/Acinetobacter.porechop.fastq <span class="kw">|</span> <span class="kw">\</span></span>
-<span id="cb15-2"><a href="04-ONT.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoFilt</span> -l 500 -q 10 <span class="op">&gt;</span> <span class="kw">\</span></span>
-<span id="cb15-3"><a href="04-ONT.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="06-Furter_resources.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> porechop/Acinetobacter.porechop.fastq <span class="kw">|</span> <span class="kw">\</span></span>
+<span id="cb30-2"><a href="06-Furter_resources.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoFilt</span> -l 500 -q 10 <span class="op">&gt;</span> <span class="kw">\</span></span>
+<span id="cb30-3"><a href="06-Furter_resources.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq</span></span></code></pre></div>
 <p>Are the chosen options appropriate? Let us find out.</p>
 </div>
-<div id="final-check" class="section level3" number="4.3.5">
-<h3><span class="header-section-number">4.3.5</span> Final check</h3>
+<div id="final-check-1" class="section level3" number="6.3.5">
+<h3><span class="header-section-number">6.3.5</span> Final check</h3>
 <p><img src="figures/finish.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>After trimming or filtering reads (quality control) it is always important to carry out a quality check. We will therefore run NanoPlot again.</p>
 <p>Note: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="04-ONT.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make an output directory before running NanoPlot</span></span>
-<span id="cb16-2"><a href="04-ONT.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/nanofiltq10minlen500_porechop</span>
-<span id="cb16-3"><a href="04-ONT.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run NanoPlot on the fastq file with the filtered and porechopped data</span></span>
-<span id="cb16-4"><a href="04-ONT.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoPlot</span> -t 4 <span class="kw">\</span></span>
-<span id="cb16-5"><a href="04-ONT.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--fastq</span> nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq <span class="kw">\</span></span>
-<span id="cb16-6"><a href="04-ONT.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ <span class="kw">\</span></span>
-<span id="cb16-7"><a href="04-ONT.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--plots</span> hex </span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="06-Furter_resources.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make an output directory before running NanoPlot</span></span>
+<span id="cb31-2"><a href="06-Furter_resources.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/nanofiltq10minlen500_porechop</span>
+<span id="cb31-3"><a href="06-Furter_resources.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run NanoPlot on the fastq file with the filtered and porechopped data</span></span>
+<span id="cb31-4"><a href="06-Furter_resources.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">NanoPlot</span> -t 4 <span class="kw">\</span></span>
+<span id="cb31-5"><a href="06-Furter_resources.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--fastq</span> nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq <span class="kw">\</span></span>
+<span id="cb31-6"><a href="06-Furter_resources.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ <span class="kw">\</span></span>
+<span id="cb31-7"><a href="06-Furter_resources.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--plots</span> hex </span></code></pre></div>
 <p>Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren’t left with a lot of poor quality data.</p>
 <p>Depending on our application the quality of the reads may be less important, or the other way around. The is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types</p>
 <p>A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We will want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.</p>
@@ -513,8 +513,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="03-PB.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05-Practice.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="05-Practice.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
