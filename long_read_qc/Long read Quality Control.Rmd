@@ -25,7 +25,7 @@ This practical session aims to introduce you to Long read Quality Control. The t
 
 <!--chapter:end:01-Long_read_QC.Rmd-->
 
-# Introduction
+# Data
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
 ``` 
@@ -33,6 +33,12 @@ knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
 ## The data
 
 The data for today is in the "QC_workshop" directory that you copied into your home directory ("~") in the Illumina QC day.
+
+Check you have the directory.
+
+```{bash, eval=FALSE}
+ls ~
+```
 
 If you do not have this directory the command to copy it to your home directory is below.
 
