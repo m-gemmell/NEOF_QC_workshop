@@ -473,7 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.5</span> Final check</h3>
 <p><img src="figures/finish.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>After trimming or filtering reads (quality control) it is always important to carry out a quality check. We will therefore run NanoPlot again.</p>
-<p>Note: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy.</p>
+<p><strong>Note</strong>: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="04-ONT.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make an output directory before running NanoPlot</span></span>
 <span id="cb16-2"><a href="04-ONT.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/nanofiltq10minlen500_porechop</span>
 <span id="cb16-3"><a href="04-ONT.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Run NanoPlot on the fastq file with the filtered and porechopped data</span></span>
@@ -483,10 +483,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-7"><a href="04-ONT.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--plots</span> hex </span></code></pre></div>
 <p>Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren’t left with a lot of poor quality data.</p>
 <p>Depending on our application the quality of the reads may be less important, or the other way around. The is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types</p>
-<p>A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We will want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.</p>
-<p>In addition to the amount of bases the length is also important. One read that is 10kbp long is most likely better than 10 reads that are each 1kbp long for a genome assembly. This is beacuse less reads will need to be assembled.</p>
+<p>A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We’ll want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.</p>
+<p>In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is most likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads will need to be assembled.</p>
 <p>Keeping all this in mind, let’s say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000.0 total bases). Do we have this for the data that was porechopped and nanofiltered?</p>
-<p>If not, try running NanoFilt with a different choice for <code>--q</code> until you do.</p>
+<p>If not, try running NanoFilt with a different choices for <code>--q</code> until you do.</p>
 <ul>
 <li>What is an option that works to get the desired coverage?</li>
 <li>Is the overall quality decent (Mean &amp; Median read quality &gt; 10)?</li>
