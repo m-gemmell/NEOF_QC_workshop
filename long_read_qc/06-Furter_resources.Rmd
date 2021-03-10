@@ -3,3 +3,74 @@
 knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
 ``` 
 
+
+## Long read sequencing resources
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/journal.png", auto_pdf = TRUE)
+``` 
+
+__Comparison of the two up-to-date sequencing technologies for genome assembly: HiFi reads of Pacific Biosciences Sequel II system and ultralong reads of Oxford Nanopore__
+
+https://academic.oup.com/gigascience/article/9/12/giaa123/6034784
+
+__Opportunities and challenges in long-read sequencing data analysis__
+
+https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1935-5
+
+## PacBio resources
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
+``` 
+
+__Pacbio glossary of terms__
+
+https://www.pacb.com/wp-content/uploads/2015/09/Pacific-Biosciences-Glossary-of-Terms.pdf
+
+__Pacbio Brochure__
+
+https://www.pacb.com/wp-content/uploads/SMRT-Sequencing-Brochure-Delivering-highly-accurate-long-reads-to-drive-discovery-in-life-science.pdf
+
+__PacBio Sequencing 101: Understanding Accuracy in DNA Sequencing__
+
+https://www.pacb.com/blog/understanding-accuracy-in-dna-sequencing/
+
+__Sequel systems__
+
+https://www.pacb.com/products-and-services/sequel-system/
+
+
+## ONT resources
+```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
+``` 
+
+__Products comparison__
+
+https://nanoporetech.com/products/comparison
+
+__Nanopore accuracy__
+
+https://nanoporetech.com/accuracy
+
+__Adaptive Sampling__
+
+https://nanoporetech.com/about-us/news/towards-real-time-targeting-enrichment-or-other-sampling-nanopore-sequencing-devices
+
+__Blog on history of Nanopore sequencing__
+
+https://www.whatisbiotechnology.org/index.php/science/summary/nanopore/nanopore-sequencing-makes-it-possible-to-decode-the
+
+## Tools
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
+``` 
+
+__LONG-READ-TOOLS__
+
+https://long-read-tools.org/
+
+## Misc
+
+__What's N50__
+
+https://www.molecularecologist.com/2017/03/29/whats-n50/

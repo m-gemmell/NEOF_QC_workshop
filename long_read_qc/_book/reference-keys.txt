@@ -20,3 +20,8 @@ final-check
 practice
 ont-data
 further-resources
+long-read-sequencing-resources
+pacbio-resources
+ont-resources
+tools
+misc
