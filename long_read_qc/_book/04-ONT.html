@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2021-03-10" />
+<meta name="date" content="2021-03-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -488,6 +488,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-5"><a href="04-ONT.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--fastq</span> nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq <span class="kw">\</span></span>
 <span id="cb17-6"><a href="04-ONT.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-o</span> nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ <span class="kw">\</span></span>
 <span id="cb17-7"><a href="04-ONT.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--plots</span> hex </span></code></pre></div>
+<p>Now inspect the report</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="04-ONT.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.html</span></code></pre></div>
 <p>Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren’t left with a lot of poor quality data.</p>
 <p>Depending on our application the quality of the reads may be less important, or the other way around. The is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types</p>
 <p>A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We’ll want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.</p>

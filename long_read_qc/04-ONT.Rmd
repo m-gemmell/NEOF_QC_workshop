@@ -370,6 +370,12 @@ NanoPlot -t 4 \
 --plots hex 
 ```
 
+Now inspect the report
+
+```{bash, eval=FALSE}
+firefox nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.html
+```
+
 Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren't left with a lot of poor quality data.
 
 Depending on our application the quality of the reads may be less important, or the other way around. The is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types
