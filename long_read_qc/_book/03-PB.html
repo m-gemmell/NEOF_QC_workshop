@@ -138,10 +138,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="02-Intro.html"><a href="02-Intro.html#the-data"><i class="fa fa-check"></i><b>2.1</b> The data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="03-PB.html"><a href="03-PB.html"><i class="fa fa-check"></i><b>3</b> PacBio</a></li>
+<li class="chapter" data-level="3" data-path="03-PB.html"><a href="03-PB.html"><i class="fa fa-check"></i><b>3</b> PacBio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-PB.html"><a href="03-PB.html#file-formats"><i class="fa fa-check"></i><b>3.1</b> File formats</a></li>
+<li class="chapter" data-level="3.2" data-path="03-PB.html"><a href="03-PB.html#continuous-long-reads"><i class="fa fa-check"></i><b>3.2</b> Continuous Long Reads</a></li>
+<li class="chapter" data-level="3.3" data-path="03-PB.html"><a href="03-PB.html#circular-consensus-sequences"><i class="fa fa-check"></i><b>3.3</b> Circular Consensus Sequences</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="04-ONT.html"><a href="04-ONT.html"><i class="fa fa-check"></i><b>4</b> ONT</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="04-ONT.html"><a href="04-ONT.html#file-formats"><i class="fa fa-check"></i><b>4.1</b> File formats</a>
+<li class="chapter" data-level="4.1" data-path="04-ONT.html"><a href="04-ONT.html#file-formats-1"><i class="fa fa-check"></i><b>4.1</b> File formats</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="04-ONT.html"><a href="04-ONT.html#fast5"><i class="fa fa-check"></i><b>4.1.1</b> Fast5</a></li>
 <li class="chapter" data-level="4.1.2" data-path="04-ONT.html"><a href="04-ONT.html#summary-file"><i class="fa fa-check"></i><b>4.1.2</b> Summary file</a></li>
@@ -194,7 +199,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> PacBio</h1>
 <p><img src="figures/Pacbio_logo.png" width="40%" style="display: block; margin: auto;" /></p>
 <p>In this section we will quality check PacBio sequencing raw data (BAM files), perform a filter to retain only the longest reads and output the data in fastq format.</p>
+<div id="file-formats" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> File formats</h2>
+<p><img src="figures/files.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 4.1.3).</p>
+<p>The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:</p>
+<ul>
+<li>Black, I = Insert DNA, i.e. the double-stranded DNA of your sample</li>
+<li>Red, B = Barcodes, optional single (Left or Right) or double (Left &amp; Right) for multiplexing samples</li>
+<li>Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.</li>
+</ul>
+<p><img src="figures/smrtbell.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.</p>
+<p>A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.</p>
+<p><img src="figures/zmw.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
+For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/10.0/Primer.html" class="uri">https://pacbiofileformats.readthedocs.io/en/10.0/Primer.html</a></p>
+<p><strong>subreads.bam file</strong></p>
+<p>This contains the sequence for each read (or pass) of the insert DNA (grey).</p>
+<p><strong>scraps.bam file</strong></p>
+<p>This contains the adapter (green) and barcode (red) sequences, as well as any low quality (black) regions.</p>
+<p>These BAM files will usually have an accompanying PacBio BAM index file (subreads.bam.pbi and scraps.bam.pbi).</p>
+<p>PacBio data can be treated in two ways depending on the goal of the experiment. With Continuous Long Reads (CLR) the aim is to produce sequence reads as long as possible, such as for genome assembly, sequencing through long repeat regions or finding other large structural variants. With Circular Consensus Sequences (CCS) the aim is to sequence shorter molecules (up to 10-15kb), such as amplicons, and to generate accurate consensus sequences. CLR runs usually generate one subread and seqeunces have a higher error rate than CCS runs that generate higher-accuracy sequences from a consensus of many subreads.</p>
+<p>For this tutorial we will carry out quality checking and control on both CLR and CCS BAM files.</p>
+<p><img src="figures/toolbox.png" width="10%" style="display: block; margin: auto;" />
+<strong>SequelTools</strong></p>
+<p><a href="https://github.com/ISUgenomics/SequelTools" class="uri">https://github.com/ISUgenomics/SequelTools</a></p>
+<p>We will use the SequelTools program to both assess and filter our PacBio CLR and CCS data.</p>
+<p><strong>smrttools</strong></p>
+<p><a href="https://www.pacb.com/wp-content/uploads/SMRT_Tools_Reference_Guide_v90.pdf" class="uri">https://www.pacb.com/wp-content/uploads/SMRT_Tools_Reference_Guide_v90.pdf</a></p>
+<p>We will also use smrttools from PacBio to generate any missing index files and CCS reads from subreads BAM files, plus convert BAM to fasta/q format.</p>
+</div>
+<div id="continuous-long-reads" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Continuous Long Reads</h2>
+<p><img src="figures/clr.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Before carrying out any specific commands we will first move into the relevant directory.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="03-PB.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/PB_QC/data/CLR</span></code></pre></div>
+<p>Use <code>ls</code> to list the contents of this directory. You will see that there are BAM subreads and scraps files for three samples, plus their BAM index files.</p>
+<p>We will use the SequelTools program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="03-PB.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> -name <span class="st">&quot;*subreads.bam&quot;</span> <span class="op">&gt;</span> CLR_subreads.txt</span></code></pre></div>
+<p>This command line will find all of the files in our current working directory whose names end in ‘subreads.bam’ and prints these names into a new text file.</p>
+<p>The SequelTools program has three different tools, specified with the <code>-t</code> argument. The options for <code>-t</code> are:</p>
+<ul>
+<li><code>Q</code> for quality control</li>
+<li><code>S</code> for subsampling the data</li>
+<li><code>F</code> for filtering the data</li>
+</ul>
+<p>We will first use <code>Q</code> to assess our data. Other options used are:</p>
+<ul>
+<li><code>-u</code> to specify the file containing the list of subread .bam files</li>
+<li><code>-o</code> to specify the name of an output folder for the plots</li>
+<li><code>-p</code> to specify which plots to produce. <code>b</code> for a few basic plots, <code>i</code> includes a few more detailed plots and <code>a</code> generates all available plots.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="03-PB.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SequelTools.sh</span> -t Q -p a -u CLR_subreads.txt -o CLR_QC</span></code></pre></div>
+<p>When this has finished running the CLR_QC folder will contain a ‘summaryTable.txt’ file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="03-PB.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/totalBasesBarplot.pdf</span></code></pre></div>
+<p>This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and ‘longestSubs’ (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.</p>
+<p>There are also plots for the N50 and L50 of each sample:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="03-PB.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/n50s.pdf CLR_QC/l50s.pdf</span></code></pre></div>
+<ul>
+<li>N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal or greater than this length.</li>
+<li>L50 = the minimum number of subreads whose length makes up the N50 value.</li>
+</ul>
+<p>We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="03-PB.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> -name <span class="st">&quot;*scraps.bam&quot;</span> <span class="op">&gt;</span> CLR_scraps.txt</span></code></pre></div>
+</div>
+<div id="circular-consensus-sequences" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Circular Consensus Sequences</h2>
+<p><img src="figures/ccs.png" width="30%" style="display: block; margin: auto;" />
+Before carrying out any specific commands we will first move into the relevant directory.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="03-PB.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/PB_QC/data/CCS</span></code></pre></div>
 
+</div>
 </div>
             </section>
 
