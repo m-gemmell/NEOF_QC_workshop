@@ -6,3 +6,130 @@ knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
 
 In this section we will quality check PacBio sequencing raw data (BAM files), perform a filter to retain only the longest reads and output the data in fastq format.
 
+## File formats
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
+``` 
+
+Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 4.1.3).
+
+The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:
+
+- Black, I = Insert DNA, i.e. the double-stranded DNA of your sample
+- Red, B = Barcodes, optional single (Left or Right) or double (Left & Right) for multiplexing samples
+- Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
+
+```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
+knitr::include_graphics(path = "figures/smrtbell.png", auto_pdf = TRUE)
+``` 
+
+Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
+
+A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
+
+```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
+knitr::include_graphics(path = "figures/zmw.png", auto_pdf = TRUE)
+``` 
+
+This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
+For more information see: https://pacbiofileformats.readthedocs.io/en/10.0/Primer.html
+
+__subreads.bam file__
+
+This contains the sequence for each read (or pass) of the insert DNA (grey).
+
+__scraps.bam file__
+
+This contains the adapter (green) and barcode (red) sequences, as well as any low quality (black) regions.
+
+These BAM files will usually have an accompanying PacBio BAM index file (subreads.bam.pbi and scraps.bam.pbi).
+
+PacBio data can be treated in two ways depending on the goal of the experiment. With Continuous Long Reads (CLR) the aim is to produce sequence reads as long as possible, such as for genome assembly, sequencing through long repeat regions or finding other large structural variants. With Circular Consensus Sequences (CCS) the aim is to sequence shorter molecules (up to 10-15kb), such as amplicons, and to generate accurate consensus sequences. CLR runs usually generate one subread and seqeunces have a higher error rate than CCS runs that generate higher-accuracy sequences from a consensus of many subreads.
+
+For this tutorial we will carry out quality checking and control on both CLR and CCS BAM files.
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
+``` 
+__SequelTools__
+
+https://github.com/ISUgenomics/SequelTools
+
+We will use the SequelTools program to both assess and filter our PacBio CLR and CCS data.
+
+__smrttools__
+
+https://www.pacb.com/wp-content/uploads/SMRT_Tools_Reference_Guide_v90.pdf
+
+We will also use smrttools from PacBio to generate any missing index files and CCS reads from subreads BAM files, plus convert BAM to fasta/q format.
+
+## Continuous Long Reads
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
+``` 
+
+Before carrying out any specific commands we will first move into the relevant directory.
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/PB_QC/data/CLR
+```
+
+Use `ls` to list the contents of this directory. You will see that there are BAM subreads and scraps files for three samples, plus their BAM index files.
+
+We will use the SequelTools program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:
+
+```{bash eval=FALSE}
+find $(pwd) -name "*subreads.bam" > CLR_subreads.txt
+```
+
+This command line will find all of the files in our current working directory whose names end in 'subreads.bam' and prints these names into a new text file.
+
+The SequelTools program has three different tools, specified with the `-t` argument. The options for `-t` are:
+
+- `Q` for quality control
+- `S` for subsampling the data
+- `F` for filtering the data
+
+We will first use `Q` to assess our data. Other options used are:
+
+- `-u` to specify the file containing the list of subread .bam files
+- `-o` to specify the name of an output folder for the plots
+- `-p` to specify which plots to produce. `b` for a few basic plots, `i` includes a few more detailed plots and `a` generates all available plots.
+
+```{bash eval=FALSE}
+SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
+```
+
+When this has finished running the CLR_QC folder will contain a 'summaryTable.txt' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
+
+```{bash eval=FALSE}
+firefox CLR_QC/totalBasesBarplot.pdf
+```
+
+This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and 'longestSubs' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
+
+There are also plots for the N50 and L50 of each sample:
+
+```{bash eval=FALSE}
+firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf
+```
+
+- N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal or greater than this length.
+- L50 = the minimum number of subreads whose length makes up the N50 value.
+
+We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2.
+
+```{bash eval=FALSE}
+find $(pwd) -name "*scraps.bam" > CLR_scraps.txt
+```
+
+
+## Circular Consensus Sequences
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
+``` 
+Before carrying out any specific commands we will first move into the relevant directory.
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/PB_QC/data/CCS
+```
