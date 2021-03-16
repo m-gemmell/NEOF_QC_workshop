@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,6 +57,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -237,7 +238,7 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="03-PB.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/PB_QC/data/CLR</span></code></pre></div>
 <p>Use <code>ls</code> to list the contents of this directory. You will see that there are BAM subreads and scraps files for three samples, plus their BAM index files.</p>
 <p>We will use the SequelTools program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="03-PB.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> -name <span class="st">&quot;*subreads.bam&quot;</span> <span class="op">&gt;</span> CLR_subreads.txt</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="03-PB.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> <span class="at">-name</span> <span class="st">&quot;*subreads.bam&quot;</span> <span class="op">&gt;</span> CLR_subreads.txt</span></code></pre></div>
 <p>This command line will find all of the files in our current working directory whose names end in ‘subreads.bam’ and prints these names into a new text file.</p>
 <p>The SequelTools program has three different tools, specified with the <code>-t</code> argument. The options for <code>-t</code> are:</p>
 <ul>
@@ -251,10 +252,10 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 <li><code>-o</code> to specify the name of an output folder for the plots</li>
 <li><code>-p</code> to specify which plots to produce. <code>b</code> for a few basic plots, <code>i</code> includes a few more detailed plots and <code>a</code> generates all available plots.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="03-PB.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SequelTools.sh</span> -t Q -p a -u CLR_subreads.txt -o CLR_QC</span></code></pre></div>
-<p>When this has finished running the CLR_QC folder will contain a ‘summaryTable.txt’ file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="03-PB.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SequelTools.sh</span> <span class="at">-t</span> Q <span class="at">-p</span> a <span class="at">-u</span> CLR_subreads.txt <span class="at">-o</span> CLR_QC</span></code></pre></div>
+<p>When this has finished running the CLR_QC folder will contain a 'summaryTable.txt' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="03-PB.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/totalBasesBarplot.pdf</span></code></pre></div>
-<p>This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and ‘longestSubs’ (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.</p>
+<p>This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and 'longestSubs' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.</p>
 <p>There are also plots for the N50 and L50 of each sample:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="03-PB.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/n50s.pdf CLR_QC/l50s.pdf</span></code></pre></div>
 <ul>
@@ -262,7 +263,7 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 <li>L50 = the minimum number of subreads whose length makes up the N50 value.</li>
 </ul>
 <p>We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="03-PB.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> -name <span class="st">&quot;*scraps.bam&quot;</span> <span class="op">&gt;</span> CLR_scraps.txt</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="03-PB.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> <span class="at">-name</span> <span class="st">&quot;*scraps.bam&quot;</span> <span class="op">&gt;</span> CLR_scraps.txt</span></code></pre></div>
 </div>
 <div id="circular-consensus-sequences" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Circular Consensus Sequences</h2>

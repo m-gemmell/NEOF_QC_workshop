@@ -71,6 +71,6 @@ https://long-read-tools.org/
 
 ## Misc
 
-__What's N50__
+__What\'s N50__
 
 https://www.molecularecologist.com/2017/03/29/whats-n50/

@@ -100,13 +100,13 @@ We will first use `Q` to assess our data. Other options used are:
 SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 ```
 
-When this has finished running the CLR_QC folder will contain a 'summaryTable.txt' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
+When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
 
 ```{bash eval=FALSE}
 firefox CLR_QC/totalBasesBarplot.pdf
 ```
 
-This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and 'longestSubs' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
+This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and \'longestSubs\' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
 
 There are also plots for the N50 and L50 of each sample:
 

@@ -18,14 +18,14 @@ The read data is within the exercise_1 directory. The reads have been subsampled
 
 Carry out fastqc on the raw reads and answer the below questions.
 
-1. What may be causing the weird GC content and kmer content at the start of the reads?
+1. What may be causing the weird GC content at the start of the reads?
 2. The \"Per sequence GC content\" has a weird peak. Why might this be?
 
 Carry out sickle quality control, deciding on a quality and length threshold. After sickle carry out fastqc on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
 
 1. Is the number of quality controlled reads above 60,000?
 2. Does the quality for either R1 or R2 drop below Q24, if so at what position?
-3. Is the weird GC content and kmer content still at the start of the read?
+3. Is the weird GC content still at the start of the read?
 4. Does the \"Per sequence GC content\" still have a weird peak?
 
 In this case it helps to know the adapter sequence, that was used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. In previous tests i have trimmed off the first 20bp to remove this bias and not removed the first 20bp and I found there was little difference in the downstream results for both methods. 
@@ -49,6 +49,6 @@ The dataset in the cluster is the full dataset and in the exercise_2 directory.
 Once you have looked at the fastQC output of the reads you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
 
 - The base quality of R2 is very low towards the end. For most 16S rRNA studies the paired reads overlap and so poor quality bases of R1 are corrected by R2 and vice versa.
-- The \"Per base sequence content\" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the \"Per sequence GC content\", \"Sequence duplication levels\", \"overrepresented sequences\" and \"kmer content\" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
+- The \"Per base sequence content\" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the \"Per sequence GC content\", \"Sequence duplication levels\", and \"overrepresented sequences\" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
 
 These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
