@@ -32,7 +32,7 @@ knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
 
 ## The data
 
-The data for today is in the \"QC_workshop\" directory that you copied into your home directory ("~") in the Illumina QC day.
+The data for today is in the \"QC_workshop\" directory that you copied into your home directory (\"~\") in the Illumina QC day.
 
 Check you have the directory.
 
@@ -65,7 +65,7 @@ Sequence data from PacBio are output as subreads in unaligned BAM format. (Furth
 
 The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:
 
-- Black, I = Insert DNA, i.e. the double-stranded DNA of your sample
+- Black, I = Insert DNA, i.e\. the double-stranded DNA of your sample
 - Red, B = Barcodes, optional single (Left or Right) or double (Left & Right) for multiplexing samples
 - Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
 
@@ -132,7 +132,7 @@ We will use the SequelTools program to both assess and filter our PacBio CLR dat
 find $(pwd) -name "*subreads.bam" > CLR_subreads.txt
 ```
 
-This command line will find all of the files in our current working directory whose names end in 'subreads.bam' and prints these names into a new text file.
+This command line will find all of the files in our current working directory whose names end in \'subreads.bam\' and prints these names into a new text file.
 
 The SequelTools program has three different tools, specified with the `-t` argument. The options for `-t` are:
 
@@ -256,7 +256,7 @@ The fastq file format is very consistent and so there is no real difference betw
 All fastq files will contain a number of lines divisible by 4. This is because each entry/sequence will take up four lines consisting of the following information:
 
 1. Header for fastq entry known as the fastq header. 
-    + This always begins with a __‘@’__
+    + This always begins with a __\'@\'__
     + This is where you might see the most difference between different data. Different machines and different public databases will use different formats for fastq headers.
 2. Sequence content
 3. Quality header 
@@ -479,9 +479,9 @@ Tip: To open a new terminal, right click VNC background -> Applications -> Shell
 After the __Summary Statistics__ section there is a __Plots__ section. This contains the plots:
 
 - __Histogram of read lengths__
-   - Histogram of \"Number of _reads_\" (y) against "Read length" (x).
+   - Histogram of \"Number of _reads_\" (y) against \"Read length\" (x).
 - __Histogram of read lengths after log transformations__
-   - Histogram of \"Number of _reads_\" (y) against log transformed "Read length" (x).
+   - Histogram of \"Number of _reads_\" (y) against log transformed \"Read length\" (x).
 - __Weighted Histogram of read lengths__
    - Histogram of \"Number of _bases_\" (y) against \"Read length\" (x).
 - __Weighted Histogram of read lengths after log transformation__
@@ -494,7 +494,7 @@ After the __Summary Statistics__ section there is a __Plots__ section. This cont
       - Click and drag up or down only to zoom into a specific part of the y axis. 
       - Click the home icon on the top right to reset the axes.
 - __Yield by length__
-   - Plot showing the \"Cumulative yield for minimal length\" (y) by "Read length" (x).
+   - Plot showing the \"Cumulative yield for minimal length\" (y) by \"Read length\" (x).
    - The cumulative yield is measured in Gigabases (billion bases).
    - This plot is useful to know how many bases you would retain if you filtered reads based on read length.
 - __Read lengths vs Average read quality plot using hexagonal bins__
@@ -511,7 +511,7 @@ Questions to be answered with the html file:
 - Approximately where is the highest density of reads in terms of read lengths and average read quality.
 - Roughly, do the longer reads have relatively high, medium, or low mean qualities?
 
-Using different input files will give you different plots. For more details please see the "Plots Generated" section on: https://github.com/wdecoster/NanoPlot.
+Using different input files will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.
 
 ### NanoFilt
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -568,7 +568,7 @@ Ultimately when quality checking we need to take into account how much data we a
 
 Depending on our application the quality of the reads may be less important, or the other way around. The is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types
 
-A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We'll want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.
+A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We\'ll want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.
 
 In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is most likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads will need to be assembled.
 

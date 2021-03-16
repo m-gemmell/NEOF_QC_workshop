@@ -15,7 +15,7 @@ Sequence data from PacBio are output as subreads in unaligned BAM format. (Furth
 
 The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:
 
-- Black, I = Insert DNA, i.e. the double-stranded DNA of your sample
+- Black, I = Insert DNA, i.e\. the double-stranded DNA of your sample
 - Red, B = Barcodes, optional single (Left or Right) or double (Left & Right) for multiplexing samples
 - Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
 
@@ -82,7 +82,7 @@ We will use the SequelTools program to both assess and filter our PacBio CLR dat
 find $(pwd) -name "*subreads.bam" > CLR_subreads.txt
 ```
 
-This command line will find all of the files in our current working directory whose names end in 'subreads.bam' and prints these names into a new text file.
+This command line will find all of the files in our current working directory whose names end in \'subreads.bam\' and prints these names into a new text file.
 
 The SequelTools program has three different tools, specified with the `-t` argument. The options for `-t` are:
 

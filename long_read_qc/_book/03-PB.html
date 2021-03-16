@@ -206,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 4.1.3).</p>
 <p>The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:</p>
 <ul>
-<li>Black, I = Insert DNA, i.e. the double-stranded DNA of your sample</li>
+<li>Black, I = Insert DNA, i.e. the double-stranded DNA of your sample</li>
 <li>Red, B = Barcodes, optional single (Left or Right) or double (Left &amp; Right) for multiplexing samples</li>
 <li>Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.</li>
 </ul>
@@ -239,7 +239,7 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 <p>Use <code>ls</code> to list the contents of this directory. You will see that there are BAM subreads and scraps files for three samples, plus their BAM index files.</p>
 <p>We will use the SequelTools program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="03-PB.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> <span class="at">-name</span> <span class="st">&quot;*subreads.bam&quot;</span> <span class="op">&gt;</span> CLR_subreads.txt</span></code></pre></div>
-<p>This command line will find all of the files in our current working directory whose names end in ‘subreads.bam’ and prints these names into a new text file.</p>
+<p>This command line will find all of the files in our current working directory whose names end in 'subreads.bam' and prints these names into a new text file.</p>
 <p>The SequelTools program has three different tools, specified with the <code>-t</code> argument. The options for <code>-t</code> are:</p>
 <ul>
 <li><code>Q</code> for quality control</li>
