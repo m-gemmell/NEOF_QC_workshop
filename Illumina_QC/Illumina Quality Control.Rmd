@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 --- 
 title: "Illumina Quality Control"
 author: "Matthew Gemmell"
@@ -468,3 +469,475 @@ __Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheats
 
 <!--chapter:end:05-Useful_Tools_and_Considerations.Rmd-->
 
+=======
+--- 
+title: "Illumina Quality Control"
+author: "Matthew Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+# Introduction
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
+``` 
+
+This practical session aims to introduce you to Illumina Quality Control. The topics covered are:
+
+- Logging in to our teaching environment
+- Acquiring the workshop data
+- Examples of quality control of genomic data
+- Quality control of Whole genome shotgun data
+- Quality control of 16S rRNA metagenetic data
+
+<!--chapter:end:01-Illumina_Quality_Control.Rmd-->
+
+# Cluster Introduction
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+## Logon instructions
+For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
+
+You will now be in a logged-in Linux VNC desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/logon_pic.png", auto_pdf = TRUE)
+``` 
+
+If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
+
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu. 
+
+The following link is a guide to install Ubuntu:  
+https://www.ubuntu.com/download/desktop/install-ubuntu-desktop.  
+If you use a USB you need to create a bootable USB stick. The following link will assist:  
+https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows 
+
+## The Terminal Window
+In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
+``` 
+
+Already there is useful information for us on the terminal window.
+
+- __nsc006__: This is the login name, also known as the username. In this case nsc006 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+- __gauss03__: This is the machine name the user is logged into.
+- __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __'~'__ is a shortcut to the user's home directory.
+- Everything after the __'$'__ is where commands are typed into the terminal. This is also referred to as the command line.
+
+To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
+
+<!--chapter:end:02-Cluster_Introduction.Rmd-->
+
+# QC Tutorials
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
+```  
+This tutorial will give hands on experience with quality control of genomic Illumina data. We will first look at a good quality dataset followed by a poorer quality data set. 
+
+## Workshop data
+Before we can carry on with the workshop you will need the workshop data. First ensure you are in your home directory. 
+```{bash eval=FALSE}
+cd ~
+```
+
+Now copy the specified folder to you home directory.
+```{bash eval=FALSE}
+cp -r /pub39/tea/matthew/NEOF/QC_workshop/ .
+```
+
+Before running any examples let us change directory to the Illumina Quality control directory.
+```{bash eval=FALSE}
+cd QC_workshop/Illumina_QC/
+```
+
+## Good quality Genomic dataset
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
+``` 
+The first dataset will comprise of good quality reads for the genome of _Psychrobacter arcticus_.
+
+_P. arcticus_ is a bacteria that was first isolated from Siberian permafrost. I have chosen it here as my BSc project involved studying _Psychrobacter_ so I am fond of it.
+
+Prior to analysis we need to change directory to the example 1 directory.
+```{bash eval=FALSE}
+cd example_1
+```
+
+This directory contains the forward (R1) and reverse (R2) read fastq files. 
+
+List the contents of the current directory to confirm this.
+```{bash eval=FALSE}
+ls
+```
+
+We will carry out fastqc quality checking of the reads.
+
+First make a directory for the output.
+```{bash eval=FALSE}
+mkdir raw_fastqc_output
+```
+
+Now we can run __fastqc__.
+
+__Note__: 
+
+- The below command can be run over one line excluding the `\`
+- Alternatively, you can type `\` during a command and then press the enter key. The next line on the command line will start with `>`.  This will allow you to continue typing the command on the line. This can be used to type one command over multiple lines.
+
+```{bash eval=FALSE}
+fastqc -o raw_fastqc_output \
+p_arcticus_R1.fastq p_arcticus_R2.fastq
+```
+
+Normally when you run a command it will run the process in the foreground. This means your command line will be locked whilst the process is running. You will only be able to type a new command in the terminal once the foreground process is finished.
+
+This is normally wanted but not always, for example when you run a process like firefox. To run a process in the background, so you can type and run new commands, you can add the symbol `&` to the end of a command. We will use this for running firefox.
+
+Please see the following link for more info on the foreground and background: https://www.lifewire.com/multitasking-background-foreground-process-2180219
+
+Using firefox have a look at the output html reports and answer the following questions.
+
+To look at R1 fastqc output
+```{bash eval=FALSE}
+firefox raw_fastqc_output/p_arcticus_R1_fastqc.html &
+```
+
+To look at R2 fastqc output
+```{bash eval=FALSE}
+firefox raw_fastqc_output/p_arcticus_R2_fastqc.html &
+```
+
+1. How many total reads are there in both the files?
+2. What is the length of the reads.
+3. In the read 1 file, at what base position range does the quality of all the reads go above 28 (I.e. the position where all of the box plot is in the green)?
+4. What is the average GC content of the reads?
+
+
+In this case the reads have been simulated from a genome assembly. This is the reason it looks so nice. Real data from a sequencing machine will unfortunately not look so nice and will require quality trimming and filtering. 
+
+Generally even if data does look very nice we would carry out quality control to get rid of any poor data that is masked by the very good data. However, for the purposes of time we will skip this at the moment.
+
+For your own interest the genome assembly can be found in the following link:
+https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1
+
+## Poorer quality Genomic dataset
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
+```
+Now let us look at actual read data. We will be looking at _Bacillus cereus_ MiSeq data that can be found in the following link:
+https://ccb.jhu.edu/gage_b/datasets/index.html. 
+
+I chose this dataset as it was a good set I found.
+
+For the purposes of the tutorial I subsampled the reads down to a more manageable 50,000 pairs, normally read data will not come in such round numbers.
+
+First before running any analysis we need to change directory to the example_2 directory. From the example_1 directory we can use the following command, where `../` represents going up one directory.
+```{bash eval=FALSE}
+cd ../example_2
+```
+
+### Quality checking
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
+```
+
+Next we’ll make a directory for the fastqc output
+```{bash eval=FALSE}
+mkdir raw_fastqc_output
+```
+
+Now run fastqc on the two paired read files
+```{bash eval=FALSE}
+fastqc -o raw_fastqc_output B_cereus_R1.fastq B_cereus_R2.fastq
+```
+
+We can open the fastqc output with the following commands
+```{bash eval=FALSE}
+firefox raw_fastqc_output/B_cereus_R1_fastqc.html &
+firefox raw_fastqc_output/B_cereus_R2_fastqc.html &
+```
+
+Some typical features to note that are:
+
+- The quality decreases towards the end of the reads
+- The R2 reads have poorer quality than the R1 reads
+- The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
+
+Let’s answer the same questions from the first example so we can see some of the differences between real and simulated reads. We’ll add some additional questions on top of those.
+
+1. How many total reads are there in both the files?
+2. What is the length of the reads?
+3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
+4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (i.e. at what position is the box plot no longer fully in the green. This includes the box plot whiskers)?
+5. What is the average GC content of the reads?
+6. Are there any overrepresented sequences?
+
+This data is pretty typical of what would normally be seen. We are therefore going to quality trim and filter the data. Unfortunately data straight from the sequencer always needs quality control.
+
+### Quality control
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+  knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
+```
+Quality control generally comes in two forms:
+
+1. __Trimming__: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
+2. __Filtering__: This occurs when entire reads are removed. A typical occurrence of this is when a read is too small as we do not want reads below a certain length.
+
+To carry this out we are going to use sickle.
+https://github.com/najoshi/sickle
+
+To run sickle with the reads we will use the below command. 
+```{bash eval=FALSE}
+sickle pe -t sanger \
+-f B_cereus_R1.fastq \
+-r B_cereus_R2.fastq \
+-o B_cereus_R1_Q28_minlen_50.fastq \
+-p B_cereus_R2_Q28_minlen_50.fastq \
+-s B_cereus_Q28_minlen_50.fastq \
+-q 28 -l 50
+```
+
+The parameter meanings are:
+
+- `pe`: Input data consists of paired-end reads.
+- `-t`: Type of quality Phred encoding. In this case it is sanger as our fastq files use the sanger encoding like most Illumina data.
+- `-f`: Indicates the input forward reads for quality control.
+- `-r`: Indicates the input reverse reads for quality control.
+- `-o`: Indicates the output quality controlled forward reads.
+- `-p`: Indicates the output quality controlled reverse reads.
+- `-s`: This file contains all resulting unpaired reads. These comes about when one read from a pair is filtered out but the other one is not. We can normally ignore this file after the sickle trimming. However, sickle must have this value to run.
+- `-q`: Quality threshold. This is the quality value used to trim the reads. This is based on the average quality across a window.
+- `-l`: Length threshold. This indicates the minimum length of a trimmed read. If it is below this length the read will be filtered out (removed).
+
+Once the command is run it will give you some useful output to the screen.
+Based on it, approximately what percentage of paired reads were kept?
+
+### Post Quality control check
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
+```
+To see how successful the quality control has been we need to run fastqc on the sickle output.
+
+First create a new directory for the fastqc output
+```{bash eval=FALSE}
+mkdir sickle_fastqc_output
+```
+
+Now run fastqc on the two paired read files
+```{bash eval=FALSE}
+fastqc -o sickle_fastqc_output \
+B_cereus_R1_Q28_minlen_50.fastq B_cereus_R2_Q28_minlen_50.fastq
+```
+
+We can open the fastqc output with the following commands
+```{bash eval=FALSE}
+firefox \
+sickle_fastqc_output/B_cereus_R1_Q28_minlen_50_fastqc.html &
+firefox \
+sickle_fastqc_output/B_cereus_R2_Q28_minlen_50_fastqc.html &
+```
+
+To see how well the reads have improved let’s answer the below questions and compare to them to the answers of the raw read fastqc questions.
+
+1. How many total reads are there in both the files?
+2. What is the length of the reads.
+3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
+4. In both the read 1 and read 2 file at what position does the quality drop below Q28?
+5. What is the average GC content of the reads?
+6. Are there any overrepresented sequences?
+
+Some things to note:
+
+- The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
+- R2 quality is still worse than R1 quality. Again this is normal.
+- The quality controlled reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
+- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by sickle. This is good as we don’t need them anymore.
+
+<!--chapter:end:03-QC_tutorials.Rmd-->
+
+# QC exercises
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
+```
+Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
+
+## Whole shotgun metagenomics
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
+```
+The data from this exercise comes from the following link:
+
+https://www.ebi.ac.uk/ena/data/search?query=shotgun
+
+This contains the genomic content of many organisms.
+
+The read data is within the exercise_1 directory. The reads have been subsampled so you will be working on 100,000 paired reads.
+
+Carry out fastqc on the raw reads and answer the below questions.
+
+1. What may be causing the weird GC content and kmer content at the start of the reads?
+2. The “Per sequence GC content” has a weird peak. Why might this be?
+
+Carry out sickle quality control, deciding on a quality and length threshold. After sickle carry out fastqc on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
+
+1. Is the number of quality controlled reads above 60,000?
+2. Does the quality for either R1 or R2 drop below Q24, if so at what position?
+3. Is the weird GC content and kmer content still at the start of the read?
+4. Does the “Per sequence GC content” still have a weird peak?
+
+In this case it helps to know the adapter sequence, that was used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. In previous tests i have trimmed off the first 20bp to remove this bias and not removed the first 20bp and I found there was little difference in the downstream results for both methods. 
+
+As for the weird “Per sequence GC content” peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
+
+## 16S rRNA Metagenetics
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/chime.png", auto_pdf = TRUE)
+```
+Before starting this exercise I must note this is not the normal method to quality control 16S rRNA data. Both QIIME2 and MOTHUR have their own methods but it can be useful to check the quality of 16S rRNA data.
+
+With that in mind we will only use fastQC to check the quality and features of a 16S rRNA dataset.
+
+The dataset can be found in the following link:
+
+https://www.ebi.ac.uk/ena/data/view/SRR2081030
+
+The dataset in the cluster is the full dataset and in the exercise_2 directory.
+
+Once you have looked at the fastQC output of the reads you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
+
+- The base quality of R2 is very low towards the end. For most 16S rRNA studies the paired reads overlap and so poor quality bases of R1 are corrected by R2 and vice versa.
+- The “Per base sequence content” is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the “Per sequence GC content”, “Sequence duplication levels”, “overrepresented sequences” and “kmer content” look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
+
+These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
+
+
+
+
+<!--chapter:end:04-QC_exercises.Rmd-->
+
+# Useful tools and considerations
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
+``` 
+
+There are various other useful tools for sequencing QC of Illumina data. Below are some suggestions but there are many more.
+
+## Quality trimming and filtering tools
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
+``` 
+
+### Trim Galore
+From the people who brought you FastQC, Trim Galore. This is a wrapper around cutadapt and FastQC. It has a lot of options and can output fastqc results of the quality controlled reads at the same time.
+
+__Github page:__
+https://github.com/FelixKrueger/TrimGalore
+
+__Manual:__
+https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
+
+### Trimmomatic
+A flexible read trimming tool for Illumina data.
+
+__Main page:__
+http://www.usadellab.org/cms/?page=trimmomatic
+
+__Manual:__
+http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
+
+## MultiQC
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
+``` 
+MultiQC is a brilliant tool that can be used to collate multiple fastQC reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into 1 MultiQC report and the reverse reads into another.
+
+__Main page:__ https://multiqc.info/
+
+__Documentation:__ https://multiqc.info/docs/
+
+MultiQC can be to collate the output from many other bioinformatic tools.
+
+__Supported tools:__ https://multiqc.info/#supported-tools
+
+## Fasta and fastq processing toolkits
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
+``` 
+Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
+
+### Fastp
+This is a tool designed to be a "all-in-one" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
+
+You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
+
+```{bash eval=FALSE}
+fastp --in1 R1.fastq --in2 R2.fastq --out1 R1.120.fastq --out2 R2.120.fastq --max_len1 120 --max_len2 120 --length_required 120
+```
+
+__Main page:__ https://github.com/OpenGene/fastp
+
+### Seqtk
+A tool to process fasta or fastq files. It can carry out many tasks but I primarily use it to:
+
+- convert fastq files to fasta
+```{bash eval=FALSE}
+seqtk seq -a in.fastq > out.fasta
+```
+- subsample paired reads from fastq files
+```{bash eval=FALSE}
+seqtk sample -s100 read1.fastq 10000 > subsample1.fastq
+seqtk sample -s100 read2.fastq 10000 > subsample2.fastq
+```
+
+For more information on how these commands work and for further commands please see the link below.
+
+__Github:__ https://github.com/lh3/seqtk
+
+### FASTX-Toolkit
+A tool to process fasta or fastq files. It is quite useful but unfortunately does not take paired read information into context. This means if a read is removed from the reverse read it will not necessarily be removed from the forward file.
+
+My favourite tool from this is 'fasta_formatter`. It can be used to set the maximum number of bases that will be on one line in a fasta file. I primarily use this so that each seq in a fasta file is on one line.
+```{bash eval=FALSE}
+fasta_formatter -i in.fasta -o out.fasta -w 0
+```
+
+__Main page:__ http://hannonlab.cshl.edu/fastx_toolkit/
+
+__Commands:__ http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
+
+### BBTools
+BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
+
+__Main page__: https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/
+
+__General usage guide:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/usage-guide/
+
+__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/data-preprocessing/
+
+## Conda
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+``` 
+As you can tell there are many bioinformatic tools. It would take a lot of work to install these all if it was easy. However some tools can be difficult to install. Thankfully conda exists.
+
+Conda is a very useful and highly used package and environmental management system. In other words you can use it to install many tools very easily. Additionally it is very easy to install conda.
+
+__Getting started with conda:__ https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html
+
+__Main page:__ https://docs.conda.io/en/latest/
+
+__Installation instructions:__ https://docs.conda.io/projects/conda/en/latest/user-guide/install/
+
+__Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html
+
+<!--chapter:end:05-Useful_Tools_and_Considerations.Rmd-->
+
+>>>>>>> Stashed changes
