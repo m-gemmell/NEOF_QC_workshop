@@ -84,7 +84,7 @@ find $(pwd) -name "*subreads.bam" > CLR_subreads.txt
 
 This command line will find all of the files in our current working directory whose names end in 'subreads.bam' and prints these names into a new text file.
 
-The SequelTools program has three different tools, specified with the `-t` argument. The options for `-t` are:
+The SequelTools program has three different tools, specified with the `-t` argument, which are:
 
 - `Q` for quality control
 - `S` for subsampling the data
@@ -103,21 +103,29 @@ SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 When this has finished running the CLR_QC folder will contain a 'summaryTable.txt' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
 
 ```{bash eval=FALSE}
-firefox CLR_QC/totalBasesBarplot.pdf
+firefox CLR_QC/totalBasesBarplot.pdf &
 ```
 
-This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and 'longestSubs' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - lomg fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
+This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and 'longestSubs' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
 
 There are also plots for the N50 and L50 of each sample:
 
 ```{bash eval=FALSE}
-firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf
+firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf &
 ```
 
-- N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal or greater than this length.
+- N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
 - L50 = the minimum number of subreads whose length makes up the N50 value.
 
-We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2.
+We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. COnversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.
+
+We can see information on the subread lengths in more detail as boxplots and histograms in the following plots:
+
+```{bash eval=FALSE}
+firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf &
+```
+
+
 
 ```{bash eval=FALSE}
 find $(pwd) -name "*scraps.bam" > CLR_scraps.txt
