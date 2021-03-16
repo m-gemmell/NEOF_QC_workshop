@@ -111,7 +111,7 @@ cd ../example_2
 knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
 ```
 
-Next we’ll make a directory for the fastqc output
+Next we\'ll make a directory for the fastqc output
 ```{bash eval=FALSE}
 mkdir raw_fastqc_output
 ```
@@ -133,12 +133,12 @@ Some typical features to note that are:
 - The R2 reads have poorer quality than the R1 reads
 - The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
 
-Let’s answer the same questions from the first example so we can see some of the differences between real and simulated reads. We’ll add some additional questions on top of those.
+Let\'s answer the same questions from the first example so we can see some of the differences between real and simulated reads. We\'ll add some additional questions on top of those.
 
 1. How many total reads are there in both the files?
 2. What is the length of the reads?
 3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
-4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (i.e. at what position is the box plot no longer fully in the green. This includes the box plot whiskers)?
+4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green. This includes the box plot whiskers)?
 5. What is the average GC content of the reads?
 6. Are there any overrepresented sequences?
 
@@ -207,7 +207,7 @@ firefox \
 sickle_fastqc_output/B_cereus_R2_Q28_minlen_50_fastqc.html &
 ```
 
-To see how well the reads have improved let’s answer the below questions and compare to them to the answers of the raw read fastqc questions.
+To see how well the reads have improved let\'s answer the below questions and compare to them to the answers of the raw read fastqc questions.
 
 1. How many total reads are there in both the files?
 2. What is the length of the reads.
