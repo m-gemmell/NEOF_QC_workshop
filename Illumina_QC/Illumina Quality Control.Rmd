@@ -55,10 +55,10 @@ knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
 
 Already there is useful information for us on the terminal window.
 
-- __nsc006__: This is the login name, also known as the username. In this case nsc006 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+- __nsc006__: This is the login name, also known as the username. In this case nsc006 is a demonstrator\'s account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
 - __gauss03__: This is the machine name the user is logged into.
-- __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __'~'__ is a shortcut to the user's home directory.
-- Everything after the __'$'__ is where commands are typed into the terminal. This is also referred to as the command line.
+- __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __\'~\'__ is a shortcut to the user's home directory.
+- Everything after the __\'$\'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
 To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
 
@@ -177,7 +177,7 @@ cd ../example_2
 knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
 ```
 
-Next we’ll make a directory for the fastqc output
+Next we\'ll make a directory for the fastqc output
 ```{bash eval=FALSE}
 mkdir raw_fastqc_output
 ```
@@ -199,12 +199,12 @@ Some typical features to note that are:
 - The R2 reads have poorer quality than the R1 reads
 - The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
 
-Let’s answer the same questions from the first example so we can see some of the differences between real and simulated reads. We’ll add some additional questions on top of those.
+Let\'s answer the same questions from the first example so we can see some of the differences between real and simulated reads. We\'ll add some additional questions on top of those.
 
 1. How many total reads are there in both the files?
 2. What is the length of the reads?
 3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
-4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (i.e. at what position is the box plot no longer fully in the green. This includes the box plot whiskers)?
+4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green. This includes the box plot whiskers)?
 5. What is the average GC content of the reads?
 6. Are there any overrepresented sequences?
 
@@ -273,7 +273,7 @@ firefox \
 sickle_fastqc_output/B_cereus_R2_Q28_minlen_50_fastqc.html &
 ```
 
-To see how well the reads have improved let’s answer the below questions and compare to them to the answers of the raw read fastqc questions.
+To see how well the reads have improved let\'s answer the below questions and compare to them to the answers of the raw read fastqc questions.
 
 1. How many total reads are there in both the files?
 2. What is the length of the reads.
@@ -287,7 +287,7 @@ Some things to note:
 - The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
 - R2 quality is still worse than R1 quality. Again this is normal.
 - The quality controlled reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
-- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by sickle. This is good as we don’t need them anymore.
+- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by sickle. This is good as we don\’t need them anymore.
 
 <!--chapter:end:03-QC_tutorials.Rmd-->
 
@@ -311,19 +311,19 @@ The read data is within the exercise_1 directory. The reads have been subsampled
 
 Carry out fastqc on the raw reads and answer the below questions.
 
-1. What may be causing the weird GC content and kmer content at the start of the reads?
-2. The “Per sequence GC content” has a weird peak. Why might this be?
+1. What may be causing the weird GC content at the start of the reads?
+2. The \"Per sequence GC content\" has a weird peak. Why might this be?
 
 Carry out sickle quality control, deciding on a quality and length threshold. After sickle carry out fastqc on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
 
 1. Is the number of quality controlled reads above 60,000?
 2. Does the quality for either R1 or R2 drop below Q24, if so at what position?
-3. Is the weird GC content and kmer content still at the start of the read?
-4. Does the “Per sequence GC content” still have a weird peak?
+3. Is the weird GC content still at the start of the read?
+4. Does the \"Per sequence GC content\" still have a weird peak?
 
 In this case it helps to know the adapter sequence, that was used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. In previous tests i have trimmed off the first 20bp to remove this bias and not removed the first 20bp and I found there was little difference in the downstream results for both methods. 
 
-As for the weird “Per sequence GC content” peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
+As for the weird \"Per sequence GC content\" peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
 
 ## 16S rRNA Metagenetics
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -342,12 +342,9 @@ The dataset in the cluster is the full dataset and in the exercise_2 directory.
 Once you have looked at the fastQC output of the reads you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
 
 - The base quality of R2 is very low towards the end. For most 16S rRNA studies the paired reads overlap and so poor quality bases of R1 are corrected by R2 and vice versa.
-- The “Per base sequence content” is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the “Per sequence GC content”, “Sequence duplication levels”, “overrepresented sequences” and “kmer content” look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
+- The \"Per base sequence content\" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the \"Per sequence GC content\", \"Sequence duplication levels\", and \"overrepresented sequences\" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
 
 These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
-
-
-
 
 <!--chapter:end:04-QC_exercises.Rmd-->
 
@@ -402,7 +399,7 @@ knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
 
 ### Fastp
-This is a tool designed to be a "all-in-one" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
+This is a tool designed to be a \"all-in-one\" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
 
 You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
 
@@ -432,7 +429,7 @@ __Github:__ https://github.com/lh3/seqtk
 ### FASTX-Toolkit
 A tool to process fasta or fastq files. It is quite useful but unfortunately does not take paired read information into context. This means if a read is removed from the reverse read it will not necessarily be removed from the forward file.
 
-My favourite tool from this is 'fasta_formatter`. It can be used to set the maximum number of bases that will be on one line in a fasta file. I primarily use this so that each seq in a fasta file is on one line.
+My favourite tool from this is \'fasta_formatter\'. It can be used to set the maximum number of bases that will be on one line in a fasta file. I primarily use this so that each seq in a fasta file is on one line.
 ```{bash eval=FALSE}
 fasta_formatter -i in.fasta -o out.fasta -w 0
 ```

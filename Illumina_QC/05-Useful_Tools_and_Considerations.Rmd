@@ -49,7 +49,7 @@ knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
 
 ### Fastp
-This is a tool designed to be a "all-in-one" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
+This is a tool designed to be a \"all-in-one\" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
 
 You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
 
@@ -79,7 +79,7 @@ __Github:__ https://github.com/lh3/seqtk
 ### FASTX-Toolkit
 A tool to process fasta or fastq files. It is quite useful but unfortunately does not take paired read information into context. This means if a read is removed from the reverse read it will not necessarily be removed from the forward file.
 
-My favourite tool from this is 'fasta_formatter`. It can be used to set the maximum number of bases that will be on one line in a fasta file. I primarily use this so that each seq in a fasta file is on one line.
+My favourite tool from this is \'fasta_formatter\'. It can be used to set the maximum number of bases that will be on one line in a fasta file. I primarily use this so that each seq in a fasta file is on one line.
 ```{bash eval=FALSE}
 fasta_formatter -i in.fasta -o out.fasta -w 0
 ```
