@@ -52,6 +52,3 @@ Once you have looked at the fastQC output of the reads you may be worried by its
 - The \"Per base sequence content\" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the \"Per sequence GC content\", \"Sequence duplication levels\", \"overrepresented sequences\" and \"kmer content\" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
 
 These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
-
-
-
