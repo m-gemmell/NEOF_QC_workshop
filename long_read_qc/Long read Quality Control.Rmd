@@ -854,6 +854,15 @@ Hopefully that has been good practice and you are ready to QC your own data.
 knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
 ``` 
 
+## Videos
+
+__ONT Sequencing__
+
+https://www.youtube.com/watch?v=RcP85JHLmnI
+
+__PacBio Sequencing__
+
+https://www.youtube.com/watch?v=_lD8JyAbwEo
 
 ## Long read sequencing resources
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

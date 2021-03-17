@@ -26,6 +26,7 @@ practice
 ont-data
 pacbio-data
 further-resources
+videos
 long-read-sequencing-resources
 pacbio-resources
 ont-resources
