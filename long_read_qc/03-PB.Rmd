@@ -89,10 +89,10 @@ Use `ls` to list the contents of this directory. You will see that there are BAM
 We will use the SequelTools program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:
 
 ```{bash eval=FALSE}
-find $(pwd) -name "*subreads.bam" > CLR_subreads.txt
+find $(pwd) -name "*subreads.bam" | sort > CLR_subreads.txt
 ```
 
-This command line will find all of the files in our current working directory whose names end in \'subreads.bam\' and prints these names into a new text file.
+This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file.
 
 ### Quality check
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -164,12 +164,13 @@ Other options used are:
 
 First we need to make a fofn for the scraps.bam files, as these are needed when using the filtering tool:
 ```{bash eval=FALSE}
-find $(pwd) -name "*scraps.bam" > CLR_scraps.txt
+find $(pwd) -name "*scraps.bam" | sort > CLR_scraps.txt
 ```
 
 Then we can run the filtering command. Here we will keep only CLRs of at least 10,000 bp:
 ```{bash eval=FALSE}
-SequelTools.sh -t F -u CLR_subreads.txt -c CLR_scraps.txt -C -Z 10000 -f b -o filtered
+SequelTools.sh -t F -u CLR_subreads.txt -c CLR_scraps.txt \
+-C -Z 10000 -f b -o filtered
 ```
 
 When this has finished running the 'filtered' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
@@ -179,7 +180,7 @@ cd filtered
 
 From here let's run the quality control tool on the filtered files and compare the plots to those from the raw files. First we need a new fofn for the filtered subread files:
 ```{bash eval=FALSE}
-find $(pwd) -name "*subreads.bam" > filt_subreads.txt
+find $(pwd) -name "*subreads.bam" | sort > filt_subreads.txt
 ```
 
 Then run the quality control tool again:
@@ -217,6 +218,8 @@ To do this use the commands `pbindex` and `bam2fastq` from the smrttools package
 ```{bash eval=FALSE}
 pbindex Sample1_flt.subreads.bam
 ```
+
+Note that you may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
 
 This command generates a .pbi index file that is needed before we can convert the BAM file to fastq format. The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert:
 ```{bash eval=FALSE}
@@ -280,6 +283,7 @@ Questions:
 - For what reasons did the rest of the subreads fail to generate a CCS?
 
 
+
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/rabbit_qc.png", auto_pdf = TRUE)
 ``` 
@@ -304,7 +308,7 @@ rabbit_qc -i S4_ccs.fastq -D -w 1 -h S4_ccs_qc.html
 ```
 
 ```{bash eval=FALSE}
-firefox ccs_qc.html &
+firefox S4_ccs_qc.html &
 ```
 
 The "Reads Length Distribution" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb - in fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplifcation and sequencing has worked well.
