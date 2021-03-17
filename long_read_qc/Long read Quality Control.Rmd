@@ -828,9 +828,9 @@ The extra data sets are from whole genome sequencing projects for three microbia
 
 The data sets are:
 
-- _Helicobacter pylori_ in the file "bc1018.subreads.bam"
-- _Methanocorpusculum labreanum_ in the file "bc1037.subreads.bam"
-- _Neisseria meningitidis_ in the file "bc1044.subreads.bam"
+- _Helicobacter pylori_ in the file \"bc1018.subreads.bam\"
+- _Methanocorpusculum labreanum_ in the file \"bc1037.subreads.bam\"
+- _Neisseria meningitidis_ in the file \"bc1044.subreads.bam\"
 
 These files are in the directory `~/QC_workshop/PB_QC/data/PB_exercise`
 
@@ -840,12 +840,10 @@ __Questions__:
 
 1. Which of the three samples contains the most subread data (Mb)?
 2. Which samples has the highest subread N50? And which the lowest?
-3. Which sample contains the longest subread, and what is it's approximate length?
+3. Which sample contains the longest subread, and what is it\'s approximate length?
 4. Considering all three samples, do any of them looked to have failed or sequenced very badly compared to the others?
 
-
 The filtering tool from SequelTools would likely be of limited use here as the longest subread and total subread lengths are very similar, as we would want in a whole genome CLR project. For PacBio data it is common for downstream tools (such as assemblers, or ccs for amplicon data) will apply some filtering and thye require the raw data as input. We will cover specific examples in our future workshops that use PacBio sequences.
-
 
 Hopefully that has been good practice and you are ready to QC your own data.
 
