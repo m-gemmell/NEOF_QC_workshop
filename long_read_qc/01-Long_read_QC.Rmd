@@ -18,7 +18,7 @@ knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
 This practical session aims to introduce you to Long read Quality Control. The topics covered are:
 
 - Acquiring the workshop data
-- Example of PacBio quality control
 - Example of ONT quality control
+- Example of PacBio quality control
 - Practice data
 - Further resources

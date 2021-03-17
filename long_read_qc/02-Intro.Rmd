@@ -13,7 +13,7 @@ Check you have the directory.
 ls ~
 ```
 
-To add some more recently added PacBio files to yuor home directory run the following command:
+To add some more recently added PacBio files to your home directory run the following command:
 
 ```{bash eval=FALSE}
 cp -r /pub39/tea/matthew/NEOF/QC_workshop/PB_QC ~/QC_workshop/PB_QC
