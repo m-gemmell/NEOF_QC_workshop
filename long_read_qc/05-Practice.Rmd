@@ -68,6 +68,7 @@ __Questions__:
 3. Which sample contains the longest subread, and what is it's approximate length?
 4. Considering all three samples, do any of them looked to have failed or sequenced very badly compared to the others?
 
+
 The filtering tool from SequelTools would likely be of limited use here as the longest subread and total subread lengths are very similar, as we would want in a whole genome CLR project. For PacBio data it is common for downstream tools (such as assemblers, or ccs for amplicon data) will apply some filtering and thye require the raw data as input. We will cover specific examples in our future workshops that use PacBio sequences.
 
 
