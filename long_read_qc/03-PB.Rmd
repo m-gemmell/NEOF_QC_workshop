@@ -46,9 +46,9 @@ These BAM files will usually have an accompanying PacBio BAM index file (subread
 
 PacBio data can be generated in two ways depending on the goal of the experiment.
 
-- __Continuous Long Reads (CLR)__ the aim is to produce sequence reads as long as possible, such as for genome assembly, sequencing through long repeat regions or finding other large structural variants. CLR runs usually generate one subread (i.e. there would be just one or one and a bit of the grey insert regions shown above) and sequences have an error rate of ~ 10-15%.
+- __Continuous Long Reads (CLR)__ the aim is to produce sequence reads as long as possible, such as for genome assembly, sequencing through long repeat regions or finding other large structural variants. CLR runs usually generate one subread (i.e\. there would be just one or one and a bit of the grey insert regions shown above) and sequences have an error rate of ~ 10-15%.
 
-- __Circular Consensus Sequences (CCS)__ the aim is to sequence shorter molecules (up to 10-15kb max), such as amplicons, and to generate accurate consensus sequences. CCS runs generate higher-accuracy sequences from a consensus of many subreads (i.e. there would be several of the grey insert regions shown above in every ZMW read).
+- __Circular Consensus Sequences (CCS)__ the aim is to sequence shorter molecules (up to 10-15kb max), such as amplicons, and to generate accurate consensus sequences. CCS runs generate higher-accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read).
 
 For this tutorial we will carry out quality checking and control on both CLR and CCS BAM files.
 
@@ -142,14 +142,14 @@ firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf &
 
 The boxplots show that Sample3 does indeed have the longest subread lengths, and highest N50 as indicated by the blue diamond. Sample2 has a larger range of subread lengths than Sample1, but has a slightly lower median length and N50 value.
 
-The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads - why do you think this is? (We'll come back to this after the filtering step!)
+The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads - why do you think this is? (We\'ll come back to this after the filtering step!)
 
 ### Filtering
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ``` 
 
-Our quality check of the PacBio data doesn't include any assessment of sequence quality. Unaligned PacBio data doesn't have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use just the longest PacBio reads for a _de novo_ assembly.
+Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use just the longest PacBio reads for a _de novo_ assembly.
 
 To filter the data by minimum CLR length we will use SequelTools option `-t F`.
 
@@ -173,12 +173,12 @@ SequelTools.sh -t F -u CLR_subreads.txt -c CLR_scraps.txt \
 -C -Z 10000 -f b -o filtered
 ```
 
-When this has finished running the 'filtered' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
+When this has finished running the \'filtered\' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
 ```{bash eval=FALSE}
 cd filtered
 ```
 
-From here let's run the quality control tool on the filtered files and compare the plots to those from the raw files. First we need a new fofn for the filtered subread files:
+From here let\'s run the quality control tool on the filtered files and compare the plots to those from the raw files. First we need a new fofn for the filtered subread files:
 ```{bash eval=FALSE}
 find $(pwd) -name "*subreads.bam" | sort > filt_subreads.txt
 ```
@@ -188,7 +188,7 @@ Then run the quality control tool again:
 SequelTools.sh -t Q -p a -u filt_subreads.txt -o filt_QC
 ```
 
-When this has finished running the 'filt_QC' folder will contain a text file of summary values and a series of plots saved as pdf files. We can view these as before, for example:
+When this has finished running the \'filt_QC\' folder will contain a text file of summary values and a series of plots saved as pdf files. We can view these as before, for example:
 ```{bash eval=FALSE}
 firefox filt_QC/subreadSizesBoxplots.pdf &
 ```
@@ -210,9 +210,9 @@ firefox ~/QC_workshop/PB_QC/data/CLR/CLR_QC/Sample3.readLenHists.pdf \
 filt_QC/Sample3_flt.readLenHists.pdf &
 ```
 
-For this sample the DNA fragment length of the library was much greater than 10,000 bp, and so the majority of CLRs consist of just one pass of this long insert. The large number of short subreads remaining in the filtered file (blue bars) represent subreads only partially sequenced on the 'return journey' of the circular library DNA molecule. These are not present when we look only at the longest subread present in each CLR (green bars).
+For this sample the DNA fragment length of the library was much greater than 10,000 bp, and so the majority of CLRs consist of just one pass of this long insert. The large number of short subreads remaining in the filtered file (blue bars) represent subreads only partially sequenced on the \'return journey\' of the circular library DNA molecule. These are not present when we look only at the longest subread present in each CLR (green bars).
 
-SequelTools doesn't have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of '!' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
+SequelTools doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
 
 To do this use the commands `pbindex` and `bam2fastq` from the smrttools package:
 ```{bash eval=FALSE}
@@ -241,7 +241,7 @@ Before carrying out any specific commands we will first move into the relevant d
 cd ~/QC_workshop/PB_QC/data/CCS
 ```
 
-This folder contains one file of subreads from the ampicons sequenicng run, named 'Sample4.subreads.bam'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
+This folder contains one file of subreads from the ampicons sequenicng run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
 ```{bash eval=FALSE}
 find $(pwd) -name "*subreads.bam"  > subreads.txt
 ```
@@ -250,7 +250,7 @@ find $(pwd) -name "*subreads.bam"  > subreads.txt
 SequelTools.sh -t Q -p a -u subreads.txt -o S4QC
 ```
 
-When these commands have run you will have a 'S4QC' folder containing the 'summaryTable.txt’ file the series of plots saved as pdf files. Let's have a look at the subread length histogram:
+When these commands have run you will have a \'S4QC\' folder containing the \'summaryTable.txt\' file the series of plots saved as pdf files. Let\'s have a look at the subread length histogram:
 ```{bash eval=FALSE}
 firefox S4QC/Sample4.readLenHists.pdf &
 ```
@@ -282,23 +282,21 @@ Questions:
 - What percentage of the subreads generated a CCS?
 - For what reasons did the rest of the subreads fail to generate a CCS?
 
-
-
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/rabbit_qc.png", auto_pdf = TRUE)
 ``` 
 
-Lastly, let's perform a quality check on the 'ccs.bam' file to assess the lengths of the ccs reads. SequelTools only works with the raw subread BAM files, so we will use an alternative program - RabbitQC. However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
+Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. SequelTools only works with the raw subread BAM files, so we will use an alternative program - RabbitQC. However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
 
-The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert. We'll also include the option `-u` to give an uncompressed fastq output:
+The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert. We\'ll also include the option `-u` to give an uncompressed fastq output:
 ```{bash eval=FALSE}
 bam2fastq -u -o S4_ccs S4_ccs.bam
 ```
 
-We're now ready to run RabbitQC. The options to use are:
+We\'re now ready to run RabbitQC. The options to use are:
 
 - `-i` to specify the input fastq file name
-- `-D` to specify these are long-read data (i.e. not Illumina)
+- `-D` to specify these are long-read data (i.e\. not Illumina)
 - `-w` to specify the number of threads
 - `-h` to specify a name for the html results file
 
@@ -311,6 +309,6 @@ rabbit_qc -i S4_ccs.fastq -D -w 1 -h S4_ccs_qc.html
 firefox S4_ccs_qc.html &
 ```
 
-The "Reads Length Distribution" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb - in fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplifcation and sequencing has worked well.
+The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb - in fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplifcation and sequencing has worked well.
 
-The other plots show the % nucleotide frequencies and mean quality scores for the beginning and end of the reads. These aren't especially useful as such a short region is shown, but we can see the quality of the ccs reads is very high, and the main advantage of RabbitQC is that it is a very fast way to assess the processed read lengths.
+The other plots show the % nucleotide frequencies and mean quality scores for the beginning and end of the reads. These aren\'t especially useful as such a short region is shown, but we can see the quality of the ccs reads is very high, and the main advantage of RabbitQC is that it is a very fast way to assess the processed read lengths.

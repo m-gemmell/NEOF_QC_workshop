@@ -4,6 +4,8 @@ the-data
 pacbio
 file-formats
 continuous-long-reads
+quality-check
+filtering
 circular-consensus-sequences
 ont
 file-formats-1
@@ -22,6 +24,7 @@ nanofilt
 final-check
 practice
 ont-data
+pacbio-data
 further-resources
 long-read-sequencing-resources
 pacbio-resources
