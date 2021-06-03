@@ -10,6 +10,10 @@ biblio-style: apalike
 link-citations: yes
 ---
 
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+``` 
+
 # Introduction
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
