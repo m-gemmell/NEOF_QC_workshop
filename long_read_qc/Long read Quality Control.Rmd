@@ -8,6 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the Long read quality control workshop
+cover-image: "figures/NEOF.png"
 ---
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -21,15 +24,14 @@ knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
 
 This practical session aims to introduce you to Long read Quality Control. The topics covered are:
 
-- Acquiring the workshop data
-- Example of ONT quality control
-- Example of PacBio quality control
-- Practice data
-- Further resources
+- [Acquiring the workshop data](#data)
+- [ONT quality control](#ont)
+- [PacBio quality control](#pb)
+- [Practice data](#practice)
 
 <!--chapter:end:01-Long_read_QC.Rmd-->
 
-# Data
+# Data {#data}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
 ``` 
@@ -58,7 +60,7 @@ cp -r /pub39/tea/matthew/NEOF/QC_workshop/ ~
 
 <!--chapter:end:02-Intro.Rmd-->
 
-# ONT
+# ONT {#ont}
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 ``` 
@@ -460,7 +462,7 @@ Tips:
 
 <!--chapter:end:03-ONT.Rmd-->
 
-# PacBio
+# PacBio {#pb}
 
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
@@ -473,7 +475,7 @@ In this section we will quality check PacBio sequencing raw data (BAM files), pe
 knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
 ``` 
 
-Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 4.1.3).
+Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.3).
 
 The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:
 
@@ -486,6 +488,8 @@ knitr::include_graphics(path = "figures/smrtbell.png", auto_pdf = TRUE)
 ``` 
 
 Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
+
+PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. This are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.
 
 A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
 
@@ -580,7 +584,7 @@ SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
 
 ```{bash eval=FALSE}
-firefox CLR_QC/totalBasesBarplot.pdf &
+firefox CLR_QC/totalBasesBarplot.pdf
 ```
 
 This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and \'longestSubs\' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
@@ -588,18 +592,18 @@ This shows the total amount of sequence data for each of the three samples, both
 There are also plots for the N50 and L50 of each sample:
 
 ```{bash eval=FALSE}
-firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf &
+firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf
 ```
 
 - N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
 - L50 = the minimum number of subreads whose length makes up the N50 value.
 
-We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. Cnversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.
+We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. Conversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.
 
 We can see information on the subread lengths in more detail as boxplots and histograms in the following plots:
 
 ```{bash eval=FALSE}
-firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf &
+firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf
 ```
 
 The boxplots show that Sample3 does indeed have the longest subread lengths, and highest N50 as indicated by the blue diamond. Sample2 has a larger range of subread lengths than Sample1, but has a slightly lower median length and N50 value.
@@ -652,12 +656,12 @@ SequelTools.sh -t Q -p a -u filt_subreads.txt -o filt_QC
 
 When this has finished running the \'filt_QC\' folder will contain a text file of summary values and a series of plots saved as pdf files. We can view these as before, for example:
 ```{bash eval=FALSE}
-firefox filt_QC/subreadSizesBoxplots.pdf &
+firefox filt_QC/subreadSizesBoxplots.pdf
 ```
 
 And compare this to the boxplots from the unfiltered data:
 ```{bash eval=FALSE}
-firefox ~/QC_workshop/PB_QC/data/CLR/CLR_QC/subreadSizesBoxplots.pdf &
+firefox ~/QC_workshop/PB_QC/data/CLR/CLR_QC/subreadSizesBoxplots.pdf
 ```
 
 The difference looks quite subtle on the plots as the size range of reads is large, but the subread N50 value (indicated by the blue diamond) has increased by ~2,000 bp in the filtered data for Sample2 and Sample3.
@@ -669,7 +673,7 @@ This is definitely the case for Sample1 and Sample2, where the DNA fragment leng
 Sample3 shows a more obvious difference before and after filtering:
 ```{bash eval=FALSE}
 firefox ~/QC_workshop/PB_QC/data/CLR/CLR_QC/Sample3.readLenHists.pdf \
-filt_QC/Sample3_flt.readLenHists.pdf &
+filt_QC/Sample3_flt.readLenHists.pdf
 ```
 
 For this sample the DNA fragment length of the library was much greater than 10,000 bp, and so the majority of CLRs consist of just one pass of this long insert. The large number of short subreads remaining in the filtered file (blue bars) represent subreads only partially sequenced on the \'return journey\' of the circular library DNA molecule. These are not present when we look only at the longest subread present in each CLR (green bars).
@@ -691,7 +695,7 @@ bam2fastq -o Sample1_filtered Sample1_flt.subreads.bam
 You should now have a compressed fastq file for the CLR-filtered subreads from Sample1.
 
 ## Circular Consensus Sequences
-```{r, fig.align = 'center',out.width= '45%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
 knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
 ``` 
 
@@ -714,7 +718,7 @@ SequelTools.sh -t Q -p a -u subreads.txt -o S4QC
 
 When these commands have run you will have a \'S4QC\' folder containing the \'summaryTable.txt\' file the series of plots saved as pdf files. Let\'s have a look at the subread length histogram:
 ```{bash eval=FALSE}
-firefox S4QC/Sample4.readLenHists.pdf &
+firefox S4QC/Sample4.readLenHists.pdf
 ```
 
 The majority of the longest subreads (green bars) are ~ 4kb (the length of our amplicon), but there are also lots of shorter reads. To filter and further process these data we will use the `ccs` tool from smrttools package.
@@ -768,7 +772,7 @@ rabbit_qc -i S4_ccs.fastq -D -w 1 -h S4_ccs_qc.html
 ```
 
 ```{bash eval=FALSE}
-firefox S4_ccs_qc.html &
+firefox S4_ccs_qc.html
 ```
 
 The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb - in fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplifcation and sequencing has worked well.
@@ -777,7 +781,7 @@ The other plots show the % nucleotide frequencies and mean quality scores for th
 
 <!--chapter:end:04-PB.Rmd-->
 
-# Practice
+# Practice {#practice}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/weight.png", auto_pdf = TRUE)
 ``` 
@@ -821,7 +825,6 @@ Ultimately, knowing what is good and poor data takes experience and practice. Th
 
 Hopefully that has been good practice and you are ready to QC your own data.
 
-
 ## PacBio data
 
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
@@ -853,12 +856,9 @@ Hopefully that has been good practice and you are ready to QC your own data.
 
 <!--chapter:end:05-Practice.Rmd-->
 
-# Further resources
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
-``` 
+# (APPENDIX) Appendix {-}
 
-## Videos
+# Videos
 
 __ONT Sequencing__
 
@@ -868,7 +868,7 @@ __PacBio Sequencing__
 
 https://www.youtube.com/watch?v=_lD8JyAbwEo
 
-## Long read sequencing resources
+# Long read sequencing resources
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/journal.png", auto_pdf = TRUE)
 ``` 
@@ -881,7 +881,7 @@ __Opportunities and challenges in long-read sequencing data analysis__
 
 https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1935-5
 
-## PacBio resources
+# PacBio resources
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
 ``` 
@@ -902,8 +902,7 @@ __Sequel systems__
 
 https://www.pacb.com/products-and-services/sequel-system/
 
-
-## ONT resources
+# ONT resources
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 ``` 
@@ -924,7 +923,7 @@ __Blog on history of Nanopore sequencing__
 
 https://www.whatisbiotechnology.org/index.php/science/summary/nanopore/nanopore-sequencing-makes-it-possible-to-decode-the
 
-## Tools
+# Tools
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
 ``` 
@@ -933,7 +932,7 @@ __LONG-READ-TOOLS__
 
 https://long-read-tools.org/
 
-## Misc
+# Misc
 
 __What\'s N50__
 

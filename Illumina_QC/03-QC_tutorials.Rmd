@@ -1,10 +1,10 @@
-# QC Tutorials
+# QC tutorial
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
 ```  
 This tutorial will give hands on experience with quality control of genomic Illumina data. We will first look at a good quality dataset followed by a poorer quality data set. 
 
-## Workshop data
+## Workshop data {#data}
 Before we can carry on with the workshop you will need the workshop data. First ensure you are in your home directory. 
 ```{bash eval=FALSE}
 cd ~
@@ -20,7 +20,7 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
-## Good quality Genomic dataset
+## Good quality Genomic dataset {#goodtutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
 ``` 
@@ -90,7 +90,7 @@ Generally even if data does look very nice we would carry out quality control to
 For your own interest the genome assembly can be found in the following link:
 https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1
 
-## Poorer quality Genomic dataset
+## Poorer quality Genomic dataset {#poortutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
 ```

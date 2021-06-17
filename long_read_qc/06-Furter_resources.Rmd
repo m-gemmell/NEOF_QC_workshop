@@ -1,9 +1,6 @@
-# Further resources
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
-``` 
+# (APPENDIX) Appendix {-}
 
-## Videos
+# Videos
 
 __ONT Sequencing__
 
@@ -13,7 +10,7 @@ __PacBio Sequencing__
 
 https://www.youtube.com/watch?v=_lD8JyAbwEo
 
-## Long read sequencing resources
+# Long read sequencing resources
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/journal.png", auto_pdf = TRUE)
 ``` 
@@ -26,7 +23,7 @@ __Opportunities and challenges in long-read sequencing data analysis__
 
 https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1935-5
 
-## PacBio resources
+# PacBio resources
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
 ``` 
@@ -47,8 +44,7 @@ __Sequel systems__
 
 https://www.pacb.com/products-and-services/sequel-system/
 
-
-## ONT resources
+# ONT resources
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
 ``` 
@@ -69,7 +65,7 @@ __Blog on history of Nanopore sequencing__
 
 https://www.whatisbiotechnology.org/index.php/science/summary/nanopore/nanopore-sequencing-makes-it-possible-to-decode-the
 
-## Tools
+# Tools
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
 ``` 
@@ -78,7 +74,7 @@ __LONG-READ-TOOLS__
 
 https://long-read-tools.org/
 
-## Misc
+# Misc
 
 __What\'s N50__
 

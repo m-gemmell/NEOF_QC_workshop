@@ -8,6 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the Illumina quality control workshop
+cover-image: "figures/NEOF.png"
 ---
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -21,15 +24,16 @@ knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
 
 This practical session aims to introduce you to Illumina Quality Control. The topics covered are:
 
-- Logging in to our teaching environment
-- Acquiring the workshop data
-- Examples of quality control of genomic data
-- Quality control of Whole genome shotgun data
-- Quality control of 16S rRNA metagenetic data
+- [Logging in to our teaching environment](#cluster)
+- [Acquiring the workshop data](#data)
+- [Quality control of good quality genomic data](#goodtutorial)
+- [Quality control of poor quality genomic data](#poortutorial)
+- [Quality control of Whole genome shotgun data](#shotgun)
+- [Quality control of 16S rRNA metagenetic data](#metagenetics)
 
 <!--chapter:end:01-Illumina_Quality_Control.Rmd-->
 
-# Cluster Introduction
+# Cluster Introduction {#cluster}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
@@ -66,15 +70,17 @@ Already there is useful information for us on the terminal window.
 
 To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
 
+
+
 <!--chapter:end:02-Cluster_Introduction.Rmd-->
 
-# QC Tutorials
+# QC tutorial
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
 ```  
 This tutorial will give hands on experience with quality control of genomic Illumina data. We will first look at a good quality dataset followed by a poorer quality data set. 
 
-## Workshop data
+## Workshop data {#data}
 Before we can carry on with the workshop you will need the workshop data. First ensure you are in your home directory. 
 ```{bash eval=FALSE}
 cd ~
@@ -90,7 +96,7 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
-## Good quality Genomic dataset
+## Good quality Genomic dataset {#goodtutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
 ``` 
@@ -160,7 +166,7 @@ Generally even if data does look very nice we would carry out quality control to
 For your own interest the genome assembly can be found in the following link:
 https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1
 
-## Poorer quality Genomic dataset
+## Poorer quality Genomic dataset {#poortutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
 ```
@@ -301,7 +307,7 @@ knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
 ```
 Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
 
-## Whole shotgun metagenomics
+## Whole shotgun metagenomics {#shotgun}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
 ```
@@ -329,7 +335,7 @@ In this case it helps to know the adapter sequence, that was used for the Illumi
 
 As for the weird \"Per sequence GC content\" peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
 
-## 16S rRNA Metagenetics
+## 16S rRNA Metagenetics {#metagenetics}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/chime.png", auto_pdf = TRUE)
 ```
@@ -351,6 +357,8 @@ Once you have looked at the fastQC output of the reads you may be worried by its
 These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
 
 <!--chapter:end:04-QC_exercises.Rmd-->
+
+# (APPENDIX) Appendix {-}
 
 # Useful tools and considerations
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }

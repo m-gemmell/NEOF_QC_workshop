@@ -16,7 +16,7 @@ nanoplot
 nanoplot-output-format
 nanofilt
 final-check
-pacbio
+pb
 file-formats-1
 continuous-long-reads
 quality-check
@@ -25,7 +25,6 @@ circular-consensus-sequences
 practice
 ont-data
 pacbio-data
-further-resources
 videos
 long-read-sequencing-resources
 pacbio-resources

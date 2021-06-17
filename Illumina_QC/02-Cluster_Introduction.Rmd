@@ -1,4 +1,4 @@
-# Cluster Introduction
+# Cluster Introduction {#cluster}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
@@ -34,3 +34,5 @@ Already there is useful information for us on the terminal window.
 - Everything after the __\'$\'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
 To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
+
+

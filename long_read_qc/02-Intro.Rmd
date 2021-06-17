@@ -1,4 +1,4 @@
-# Data
+# Data {#data}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
 ``` 

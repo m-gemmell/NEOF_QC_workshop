@@ -1,4 +1,4 @@
-# Practice
+# Practice {#practice}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/weight.png", auto_pdf = TRUE)
 ``` 
@@ -41,7 +41,6 @@ __Questions__:
 Ultimately, knowing what is good and poor data takes experience and practice. The `-l 500` and `-q10` is a good default for ONT genomic data and may be good for other uses. As with all defaults you may need to change these for your particular data.
 
 Hopefully that has been good practice and you are ready to QC your own data.
-
 
 ## PacBio data
 

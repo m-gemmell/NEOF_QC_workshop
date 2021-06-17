@@ -4,7 +4,7 @@ knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
 ```
 Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
 
-## Whole shotgun metagenomics
+## Whole shotgun metagenomics {#shotgun}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
 ```
@@ -32,7 +32,7 @@ In this case it helps to know the adapter sequence, that was used for the Illumi
 
 As for the weird \"Per sequence GC content\" peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
 
-## 16S rRNA Metagenetics
+## 16S rRNA Metagenetics {#metagenetics}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/chime.png", auto_pdf = TRUE)
 ```
