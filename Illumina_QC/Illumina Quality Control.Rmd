@@ -90,7 +90,7 @@ cd ~
 
 Now copy the specified folder to you home directory.
 ```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/QC_workshop/ .
+cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ .
 ```
 
 Before running any examples let us change directory to the Illumina Quality control directory.

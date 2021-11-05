@@ -264,9 +264,9 @@ NanoPlot -t 4 \
 You may get the below warning. This is fine and can be ignored.
 
 ```{bash, eval = FALSE}
-/pub37/matt/programs_chos_8/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
+/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
   return len(self._mapping)
-/pub37/matt/programs_chos_8/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
+/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
   yield from self._mapping
 ```
 

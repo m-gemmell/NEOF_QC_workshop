@@ -13,14 +13,8 @@ Check you have the directory.
 ls ~
 ```
 
-To add some more recently added PacBio files to your home directory run the following command:
+If you do not have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/QC_workshop/PB_QC ~/QC_workshop/PB_QC
-```
-
-Or if you do not have the \"QC_workshop\" directory at all the command to copy it all to your home directory is below.
-
-```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/QC_workshop/ ~
+cp -r /pub39/nsc006/NEOF/QC_workshop/ ~
 ```
