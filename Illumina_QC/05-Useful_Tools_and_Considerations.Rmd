@@ -21,15 +21,6 @@ https://github.com/FelixKrueger/TrimGalore
 __Manual:__
 https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
 
-### Trimmomatic
-A flexible read trimming tool for Illumina data.
-
-__Main page:__
-http://www.usadellab.org/cms/?page=trimmomatic
-
-__Manual:__
-http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
-
 ## MultiQC
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)

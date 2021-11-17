@@ -118,7 +118,7 @@ List the contents of the current directory to confirm this.
 ls
 ```
 
-We will carry out fastqc quality checking of the reads.
+We will carry out `fastqc` quality checking of the reads.
 
 First make a directory for the output.
 ```{bash eval=FALSE}
@@ -145,21 +145,18 @@ Please see the following link for more info on the foreground and background: ht
 
 Using firefox have a look at the output html reports and answer the following questions.
 
-To look at R1 fastqc output
-```{bash eval=FALSE}
-firefox raw_fastqc_output/p_arcticus_R1_fastqc.html &
-```
+Open all the fastqc html files in the directory.
 
-To look at R2 fastqc output
+__Note__: The `*` is a wildcard character that represents anything. `*_fastqc.html` represents all the files that end with `_fastqc.html`.
+
 ```{bash eval=FALSE}
-firefox raw_fastqc_output/p_arcticus_R2_fastqc.html &
+firefox raw_fastqc_output/*_fastqc.html &
 ```
 
 1. How many total reads are there in both the files?
 2. What is the length of the reads.
 3. In the read 1 file, at what base position range does the quality of all the reads go above 28 (I.e. the position where all of the box plot is in the green)?
 4. What is the average GC content of the reads?
-
 
 In this case the reads have been simulated from a genome assembly. This is the reason it looks so nice. Real data from a sequencing machine will unfortunately not look so nice and will require quality trimming and filtering. 
 
@@ -182,6 +179,8 @@ For the purposes of the tutorial I subsampled the reads down to a more manageabl
 First before running any analysis we need to change directory to the example_2 directory. From the example_1 directory we can use the following command, where `../` represents going up one directory.
 ```{bash eval=FALSE}
 cd ../example_2
+#List contents of directory
+ls
 ```
 
 ### Quality checking
@@ -194,15 +193,14 @@ Next we\'ll make a directory for the fastqc output
 mkdir raw_fastqc_output
 ```
 
-Now run fastqc on the two paired read files
+Now run fastqc on the all paired read files (`*.fastq` representing al the files that end with `.fastq`)
 ```{bash eval=FALSE}
-fastqc -o raw_fastqc_output B_cereus_R1.fastq B_cereus_R2.fastq
+fastqc -o raw_fastqc_output *.fastq
 ```
 
-We can open the fastqc output with the following commands
+We can open the fastqc output with the following command
 ```{bash eval=FALSE}
-firefox raw_fastqc_output/B_cereus_R1_fastqc.html &
-firefox raw_fastqc_output/B_cereus_R2_fastqc.html &
+firefox raw_fastqc_output/*_fastqc.html &
 ```
 
 Some typical features to note that are:
@@ -216,7 +214,7 @@ Let\'s answer the same questions from the first example so we can see some of th
 1. How many total reads are there in both the files?
 2. What is the length of the reads?
 3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
-4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green. This includes the box plot whiskers)?
+4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green, including the box plot whiskers)?
 5. What is the average GC content of the reads?
 6. Are there any overrepresented sequences?
 
@@ -231,66 +229,67 @@ Quality control generally comes in two forms:
 1. __Trimming__: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
 2. __Filtering__: This occurs when entire reads are removed. A typical occurrence of this is when a read is too small as we do not want reads below a certain length.
 
-To carry this out we are going to use sickle.
-https://github.com/najoshi/sickle
+To carry this out we are going to use `trimmomatic`.
+http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
 
-To run sickle with the reads we will use the below command. 
+To run `trimmomatic` with the reads we will use the below command. 
 ```{bash eval=FALSE}
-sickle pe -t sanger \
--f B_cereus_R1.fastq \
--r B_cereus_R2.fastq \
--o B_cereus_R1_Q28_minlen_50.fastq \
--p B_cereus_R2_Q28_minlen_50.fastq \
--s B_cereus_Q28_minlen_50.fastq \
--q 28 -l 50
+trimmomatic PE \
+-phred33 \
+-baseout B_cereus.fastq \
+SLIDINGWINDOW:4:20 MINLEN:50
 ```
 
-The parameter meanings are:
+__Parameters__:
 
-- `pe`: Input data consists of paired-end reads.
-- `-t`: Type of quality Phred encoding. In this case it is sanger as our fastq files use the sanger encoding like most Illumina data.
-- `-f`: Indicates the input forward reads for quality control.
-- `-r`: Indicates the input reverse reads for quality control.
-- `-o`: Indicates the output quality controlled forward reads.
-- `-p`: Indicates the output quality controlled reverse reads.
-- `-s`: This file contains all resulting unpaired reads. These comes about when one read from a pair is filtered out but the other one is not. We can normally ignore this file after the sickle trimming. However, sickle must have this value to run.
-- `-q`: Quality threshold. This is the quality value used to trim the reads. This is based on the average quality across a window.
-- `-l`: Length threshold. This indicates the minimum length of a trimmed read. If it is below this length the read will be filtered out (removed).
+- `PE`: Input data consists of paired-end reads.
+- `-phred33`: indicates input data has Phred33 encoding. Phred33 includes Sanger, Illumina 1.8+, and PacBio quality encoding.
+- `B_cereus_R1.fastq B_cereus_R2.fastq`: The input forward and reverse read files.
+- `-baseout`: This parameter is used to create the names of the four output files (more info below).
+- `SLIDINGWINDOW`: This will cause siding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
+- `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
+
+__Note__: When using `Trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
 
 Once the command is run it will give you some useful output to the screen.
 Based on it, approximately what percentage of paired reads were kept?
+
+__Output__
+
+The command produces four files with names based off the `-baseout` parameter. The files are:
+
+-`B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The __paired__ forward and reverse reads after successful trimming. In the vast majority of cases these are the two files which will be used for further analysis.
+- `B_cereus_1U.fastq`: The trimmed __unpaired__ forward reads. These are produced when the forward read is retained after trimming but not the matching reverse read. This can be ignored in most cases.
+- `B_cereus_2U.fastq`: The trimmed __unpaired__ reverse reads. These are produced when the reverse read is retained after trimming but not the matching forward read. This can be ignored in most cases.
 
 ### Post Quality control check
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
 ```
-To see how successful the quality control has been we need to run fastqc on the sickle output.
+To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
 
-First create a new directory for the fastqc output
+First create a new directory for the `fastqc` output
 ```{bash eval=FALSE}
-mkdir sickle_fastqc_output
+mkdir trimmomatic_fastqc_output
 ```
 
-Now run fastqc on the two paired read files
+Now run `fastqc` on the two paired read files
 ```{bash eval=FALSE}
-fastqc -o sickle_fastqc_output \
-B_cereus_R1_Q28_minlen_50.fastq B_cereus_R2_Q28_minlen_50.fastq
+fastqc -o trimmomatic_fastqc_output \
+B_cereus_1P.fastq B_cereus_2P.fastq
 ```
 
-We can open the fastqc output with the following commands
+We can open the `fastqc` output with the following commands
 ```{bash eval=FALSE}
-firefox \
-sickle_fastqc_output/B_cereus_R1_Q28_minlen_50_fastqc.html &
-firefox \
-sickle_fastqc_output/B_cereus_R2_Q28_minlen_50_fastqc.html &
+firefox trimmomatic_fastqc_output/*_fastqc.html $
 ```
 
-To see how well the reads have improved let\'s answer the below questions and compare to them to the answers of the raw read fastqc questions.
+To see how well the reads have improved let\'s answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
 
-1. How many total reads are there in both the files?
-2. What is the length of the reads.
-3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
-4. In both the read 1 and read 2 file at what position does the quality drop below Q28?
+1. What is the sum of the reads in both the files?
+2. What is the length range of the reads?
+3. In the forward file, does the quality fall below Q28 at any point?
+4. In the reverse reads at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green, including the box plot whiskers)?
 5. What is the average GC content of the reads?
 6. Are there any overrepresented sequences?
 
@@ -298,8 +297,12 @@ Some things to note:
 
 - The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
 - R2 quality is still worse than R1 quality. Again this is normal.
-- The quality controlled reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
-- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by sickle. This is good as we don\’t need them anymore.
+- The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
+- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by sickle. This is good as we don\’t need them any more.
+
+__Note__: If you are getting data from a sequencing centre they will have mostly removed the adapters already. Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing. 
+
+If adapters are present you can use `Cutadapt` to remove them: https://cutadapt.readthedocs.io/en/stable/guide.html
 
 <!--chapter:end:03-QC_tutorials.Rmd-->
 
@@ -382,15 +385,6 @@ https://github.com/FelixKrueger/TrimGalore
 
 __Manual:__
 https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
-
-### Trimmomatic
-A flexible read trimming tool for Illumina data.
-
-__Main page:__
-http://www.usadellab.org/cms/?page=trimmomatic
-
-__Manual:__
-http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
 
 ## MultiQC
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
