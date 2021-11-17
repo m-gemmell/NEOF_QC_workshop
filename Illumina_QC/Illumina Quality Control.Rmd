@@ -98,6 +98,18 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
+## Conda
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+```
+
+We need to activate the  `illumina_qc` `conda` environment in your terminal so we have access to all the tool we need. The first step is to use `chos 8` which is a custom command for our cluster. It will Change the Unix OS to version 8 as version 7 (default in our cluster) is too old for some of the programs.
+
+```{bash eval=FALSE}
+chos 8
+. usemetawrap
+```
+
 ## Good quality Genomic dataset {#goodtutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
@@ -145,7 +157,7 @@ Please see the following link for more info on the foreground and background: ht
 
 Using firefox have a look at the output html reports and answer the following questions.
 
-Open all the fastqc html files in the directory.
+Open all the `fastqc` html files in the directory.
 
 __Note__: The `*` is a wildcard character that represents anything. `*_fastqc.html` represents all the files that end with `_fastqc.html`.
 
@@ -188,17 +200,17 @@ ls
 knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
 ```
 
-Next we\'ll make a directory for the fastqc output
+Next we\'ll make a directory for the `fastqc` output
 ```{bash eval=FALSE}
 mkdir raw_fastqc_output
 ```
 
-Now run fastqc on the all paired read files (`*.fastq` representing al the files that end with `.fastq`)
+Now run `fastqc` on the all paired read files (`*.fastq` representing al the files that end with `.fastq`)
 ```{bash eval=FALSE}
 fastqc -o raw_fastqc_output *.fastq
 ```
 
-We can open the fastqc output with the following command
+We can open the `fastqc` output with the following command
 ```{bash eval=FALSE}
 firefox raw_fastqc_output/*_fastqc.html &
 ```
@@ -236,6 +248,7 @@ To run `trimmomatic` with the reads we will use the below command.
 ```{bash eval=FALSE}
 trimmomatic PE \
 -phred33 \
+B_cereus_R1.fastq B_cereus_R2.fastq \
 -baseout B_cereus.fastq \
 SLIDINGWINDOW:4:20 MINLEN:50
 ```
@@ -249,7 +262,7 @@ __Parameters__:
 - `SLIDINGWINDOW`: This will cause siding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
 - `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
 
-__Note__: When using `Trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
+__Note__: When using `trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
 
 Once the command is run it will give you some useful output to the screen.
 Based on it, approximately what percentage of paired reads were kept?
@@ -298,7 +311,7 @@ Some things to note:
 - The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
 - R2 quality is still worse than R1 quality. Again this is normal.
 - The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
-- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by sickle. This is good as we don\’t need them any more.
+- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by `trimmomatic`. This is good as we don\’t need them any more.
 
 __Note__: If you are getting data from a sequencing centre they will have mostly removed the adapters already. Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing. 
 
@@ -324,19 +337,21 @@ This contains the genomic content of many organisms.
 
 The read data is within the exercise_1 directory. The reads have been subsampled so you will be working on 100,000 paired reads.
 
-Carry out fastqc on the raw reads and answer the below questions.
+Carry out `fastqc` on the raw reads and answer the below questions.
 
 1. What may be causing the weird GC content at the start of the reads?
 2. The \"Per sequence GC content\" has a weird peak. Why might this be?
 
-Carry out sickle quality control, deciding on a quality and length threshold. After sickle carry out fastqc on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
+Carry out `trimmomatic` quality control, deciding on the sliding window and the length threshold. After `trimmomatic` carry out `fastqc` on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
 
 1. Is the number of quality controlled reads above 60,000?
 2. Does the quality for either R1 or R2 drop below Q24, if so at what position?
 3. Is the weird GC content still at the start of the read?
 4. Does the \"Per sequence GC content\" still have a weird peak?
 
-In this case it helps to know the adapter sequence, that was used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. In previous tests i have trimmed off the first 20bp to remove this bias and not removed the first 20bp and I found there was little difference in the downstream results for both methods. 
+In this case it helps to know the adapter sequence, that was used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. 
+
+In previous tests I have trimmed off the first 20bp to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
 
 As for the weird \"Per sequence GC content\" peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
 
@@ -352,11 +367,11 @@ The dataset can be found in the following link:
 
 https://www.ebi.ac.uk/ena/data/view/SRR2081030
 
-The dataset in the cluster is the full dataset and in the exercise_2 directory.
+The dataset in the cluster is the full dataset. It can be found in the exercise_2 directory.
 
-Once you have looked at the fastQC output of the reads you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
+Once you have looked at the `fastqc` output of the reads you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
 
-- The base quality of R2 is very low towards the end. For most 16S rRNA studies the paired reads overlap and so poor quality bases of R1 are corrected by R2 and vice versa.
+- The base quality of R2 is very low towards the end. For most 16S rRNA studies the paired reads overlap and so poor quality bases at the end of R1 are corrected by the overlapping R2 reads and vice versa.
 - The \"Per base sequence content\" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the \"Per sequence GC content\", \"Sequence duplication levels\", and \"overrepresented sequences\" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
 
 These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
