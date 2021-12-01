@@ -89,9 +89,9 @@ https://github.com/nanoporetech/ont_fast5_api
 
 ### Summary file
 
-The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which descirbes each sequenced read.
+The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which describes each sequenced read.
 
-We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be intially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
+We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
 
 ### BAM file
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -105,7 +105,7 @@ BAM files (.bam) are the binary version of SAM files (.sam).
 - BAM files are not human readable whilst SAM files are.
 - SAM files are larger than BAM.
 
-Generally programs that can work on SAM files can also work on BAM files. Due to the size difference it is preferable to store data in BAM format over SAM. Even though a BAM file is smaller than their matching SAM file, BAM files are still very large and can be >100GB.
+Generally programs that can work on SAM files can also work on BAM files. Due to the size difference it is preferable to store data in BAM format over SAM. Even though a BAM file is smaller than its matching SAM file, BAM files are still very large and can be >100GB.
 
 It can be useful to contain unaligned reads from sequencing machines (e.g\. PacBio and ONT) in BAM files as they can contain more metadata in the header and per-record auxiliary tags compared to fastq files. 
 
@@ -173,16 +173,18 @@ For this tutorial we will carry out quality control and checking on fastq files.
   - If you get your data sequenced by a genomic centre they will most likely give you your data in demultiplexxed (one fastq file per sample) fastq files.
   - ONT machines generally come with in built basecalling and so will most likely provide fastq files as well as the other formats now.
 
-Before carrying out any specific commands we will first move into the relevant directory.
-
-```{bash eval=FALSE}
-cd ~/QC_workshop/ONT_QC/
-```
-
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the below commands in. Each terminal will only remember what you have told that terminal.
+
+Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`.
 
 ```{bash eval=FALSE}
 . usenanopack-1.1.0
+```
+
+Before carrying out any more commands we will move into the relevant directory.
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/ONT_QC/
 ```
 
 Look in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.
@@ -193,7 +195,7 @@ ls data/*
 
 Each directory has one fastq file. ONT data likes to be organised with data for one sample being in one directory.
 
-To start with we will only use the fastq file within the directory called \"Acinetobacter\". As you may have figured out, this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.
+To start we will only use the fastq file within the directory called \"Acinetobacter\". As you may have figured out, this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.
 
 ### NanoStat
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -392,7 +394,7 @@ NanoFilt can be used to remove/filter reads by quality and/or read length (https
 
 It is always important to know what your data is and if your planned filtering and trimming is appropriate. For example, you may be working with amplicon data where the read lengths will vary between 500bp and 750bp. In that case it is useful to set a min length of 500 and a maxlength of 750.
 
-This data is from a genome so wanting long and high quality reads is appropriate. Overall quality looks good. The main exception is the low amount of sequencing/coverage. The low coverage is because it is a subset of the whole data for workshop purposes (the full dataset would take too long to run through). There are some shorter length and lower quality reads which we will remove.
+This data is from a genome so wanting long and high quality reads is appropriate. Overall the quality of our data looks good. The main exception is the low amount of sequencing/coverage. The low coverage is because it is a subset of the whole data for workshop purposes (the full dataset would take too long to run through). There are some shorter length and lower quality reads which we will remove.
 
 First we will create an output directory.
 ```{bash eval=FALSE}
@@ -436,13 +438,13 @@ firefox nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.htm
 
 Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren\'t left with a lot of poor quality data.
 
-Depending on our application the quality of the reads may be less important, or the other way around. The is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types
+Depending on our application the quality of the reads may be less important, or the other way around. This is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types
 
 A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We\'ll want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.
 
 In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is most likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads will need to be assembled.
 
-Keeping all this in mind, let\'s say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000.0 total bases). Do we have this for the data that was porechopped and nanofiltered?
+Keeping all this in mind, let\'s say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and nanofiltered?
 
 If not, try running NanoFilt with a different choices for `--q` until you do. 
 

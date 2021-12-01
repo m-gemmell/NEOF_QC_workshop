@@ -65,7 +65,7 @@ knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
 
 Already there is useful information for us on the terminal window.
 
-- __nsc006__: This is the login name, also known as the username. In this case nsc006 is a demonstrator\'s account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+- __nsc065__: This is the login name, also known as the username. Your screen will show your username for the Linux machine/cluster you are logged into.
 - __gauss03__: This is the machine name the user is logged into.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __\'~\'__ is a shortcut to the user's home directory.
 - Everything after the __\'$\'__ is where commands are typed into the terminal. This is also referred to as the command line.
@@ -107,7 +107,7 @@ We need to activate the  `illumina_qc` `conda` environment in your terminal so w
 
 ```{bash eval=FALSE}
 chos 8
-. usemetawrap
+. useilluminaqc
 ```
 
 ## Good quality Genomic dataset {#goodtutorial}
@@ -398,7 +398,7 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 Move into the multiqc_example directory:
 
 ```{bash eval=FALSE}
-cd ~/QC/Illumina_QC/multiqc_example
+cd ~/QC_workshop/Illumina_QC/multiqc_example
 ```
 
 __Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment.
@@ -427,7 +427,7 @@ The first step is to carry out `fastqc` in the raw data.
 #Make output directory
 mkdir raw_fastq_output
 #Run fastqc
-fasqc -o raw_fastq_output *_R*.fastq
+fastqc -o raw_fastq_output *_R*.fastq
 ```
 
 Now that we have our `fastqc` output we can carry out `multiqc`. Due to the inherent differences between the forward and reverse reads it is best to make separate `multiqc` reports for them.
@@ -461,14 +461,14 @@ Now that you have looked at the `multiqc` report for the raw data it is time to 
 #Make fastqc output directory
 mkdir trimmomatic_fastq_output
 #Run fastqc
-fasqc -o trimmomatic_fastq_output *_R*.fastq
+fastqc -o trimmomatic_fastq_output *P.fastq
 #Create output directories
 mkdir trimmomatic_multiqc_output
 mkdir trimmomatic_multiqc_output/r1
 mkdir trimmomatic_multiqc_output/r2
 #Run multiqc
-multiqc -o trimmomatic_multiqc_output/r1 raw_fastq_output/*R1*
-multiqc -o trimmomatic_multiqc_output/r2 raw_fastq_output/*R2*
+multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastq_output/*1P*
+multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastq_output/*2P*
 #Look at the reports in firefox
 firefox trimmomatic_multiqc_output/*/*.html
 ```

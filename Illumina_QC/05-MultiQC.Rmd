@@ -18,7 +18,7 @@ knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
 Move into the multiqc_example directory:
 
 ```{bash eval=FALSE}
-cd ~/QC/Illumina_QC/multiqc_example
+cd ~/QC_workshop/Illumina_QC/multiqc_example
 ```
 
 __Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment.
@@ -47,7 +47,7 @@ The first step is to carry out `fastqc` in the raw data.
 #Make output directory
 mkdir raw_fastq_output
 #Run fastqc
-fasqc -o raw_fastq_output *_R*.fastq
+fastqc -o raw_fastq_output *_R*.fastq
 ```
 
 Now that we have our `fastqc` output we can carry out `multiqc`. Due to the inherent differences between the forward and reverse reads it is best to make separate `multiqc` reports for them.
@@ -81,14 +81,14 @@ Now that you have looked at the `multiqc` report for the raw data it is time to 
 #Make fastqc output directory
 mkdir trimmomatic_fastq_output
 #Run fastqc
-fasqc -o trimmomatic_fastq_output *_R*.fastq
+fastqc -o trimmomatic_fastq_output *P.fastq
 #Create output directories
 mkdir trimmomatic_multiqc_output
 mkdir trimmomatic_multiqc_output/r1
 mkdir trimmomatic_multiqc_output/r2
 #Run multiqc
-multiqc -o trimmomatic_multiqc_output/r1 raw_fastq_output/*R1*
-multiqc -o trimmomatic_multiqc_output/r2 raw_fastq_output/*R2*
+multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastq_output/*1P*
+multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastq_output/*2P*
 #Look at the reports in firefox
 firefox trimmomatic_multiqc_output/*/*.html
 ```

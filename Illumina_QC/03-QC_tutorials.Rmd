@@ -29,7 +29,7 @@ We need to activate the  `illumina_qc` `conda` environment in your terminal so w
 
 ```{bash eval=FALSE}
 chos 8
-. usemetawrap
+. useilluminaqc
 ```
 
 ## Good quality Genomic dataset {#goodtutorial}
