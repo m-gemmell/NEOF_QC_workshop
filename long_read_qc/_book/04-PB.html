@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2021-12-01" />
+<meta name="date" content="2021-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -220,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><img src="figures/smrtbell.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.</p>
-<p>PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. This are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.</p>
+<p>PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. These are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.</p>
 <p>A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.</p>
 <p><img src="figures/zmw.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
@@ -298,7 +298,7 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 <li><code>-c</code> to specify the file containing the list of scraps .bam files</li>
 <li><code>-C</code> to specify to filter by minimum CLR length</li>
 <li><code>-Z</code> to specify the minimum length to keep a CLR</li>
-<li><code>-f</code> to specify the format o the output files: <code>s</code>=sam, <code>b</code>=bam, <code>2</code>=both</li>
+<li><code>-f</code> to specify the format of the output files: <code>s</code>=sam, <code>b</code>=bam, <code>2</code>=both</li>
 <li><code>-o</code> to specify the name of an output folder for the filtered data files</li>
 </ul>
 <p>First we need to make a fofn for the scraps.bam files, as these are needed when using the filtering tool:</p>
@@ -338,10 +338,10 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 <p>We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.</p>
 <p>Before carrying out any specific commands we will first move into the relevant directory.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="04-PB.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/QC_workshop/PB_QC/data/CCS</span></code></pre></div>
-<p>This folder contains one file of subreads from the ampicons sequenicng run, named 'Sample4.subreads.bam'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:</p>
+<p>This folder contains one file of subreads from the ampicons sequencing run, named 'Sample4.subreads.bam'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="04-PB.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> <span class="at">-name</span> <span class="st">&quot;*subreads.bam&quot;</span>  <span class="op">&gt;</span> subreads.txt</span></code></pre></div>
 <div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="04-PB.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SequelTools.sh</span> <span class="at">-t</span> Q <span class="at">-p</span> a <span class="at">-u</span> subreads.txt <span class="at">-o</span> S4QC</span></code></pre></div>
-<p>When these commands have run you will have a 'S4QC' folder containing the 'summaryTable.txt' file the series of plots saved as pdf files. Let's have a look at the subread length histogram:</p>
+<p>When these commands have run you will have a 'S4QC' folder containing the 'summaryTable.txt' file and the series of plots saved as pdf files. Let's have a look at the subread length histogram:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="04-PB.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> S4QC/Sample4.readLenHists.pdf</span></code></pre></div>
 <p>The majority of the longest subreads (green bars) are ~ 4kb (the length of our amplicon), but there are also lots of shorter reads. To filter and further process these data we will use the <code>ccs</code> tool from smrttools package.</p>
 <p>Options to specify for this tool are:</p>
@@ -352,7 +352,7 @@ For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/1
 </ul>
 <p>Followed by the input filename (the subreads.bam) and the name you want to call the output.</p>
 <p>The full command to generate CCS reads is:</p>
-<pre><code>      `ccs --minLength 3500 --minPasses 7 -j 1 Sample4.subreads.bam S4_ccs.bam`</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="04-PB.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ccs</span> <span class="at">--minLength</span> 3500 <span class="at">--minPasses</span> 7 <span class="at">-j</span> 1 Sample4.subreads.bam S4_ccs.bam</span></code></pre></div>
 <p>However, even though this is a heavily downsized data set this command still takes ~20 minutes to run. To avoid you having to wait we have included the results file already in your directory. If you have typed in the above command to run you can kill it by pressing Ctrl - C.</p>
 <p>To see the results summary:</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="04-PB.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ccs_results</span>

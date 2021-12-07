@@ -20,6 +20,8 @@ The data sets are:
    + Genomic data for a __Pseudonocardia__ isolate.
    + Original data from: SRA run SRR7447112.
    
+These files are in the directory `~/QC_workshop/ONT_QC/data`
+   
 Run through all the ONT QC steps for these two datasets. Use all the same parameters and options, making sure to change input and output file paths and prefixes where appropriate.
 
 __Tips__: 

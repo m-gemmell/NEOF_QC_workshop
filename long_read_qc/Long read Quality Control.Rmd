@@ -51,7 +51,7 @@ ls ~
 If you do not have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
 
 ```{bash eval=FALSE}
-cp -r /pub39/nsc006/NEOF/QC_workshop/ ~
+cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ ~
 ```
 
 <!--chapter:end:02-Intro.Rmd-->
@@ -487,7 +487,7 @@ knitr::include_graphics(path = "figures/smrtbell.png", auto_pdf = TRUE)
 
 Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
 
-PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. This are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.
+PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. These are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.
 
 A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
 
@@ -623,7 +623,7 @@ Other options used are:
 - `-c` to specify the file containing the list of scraps .bam files
 - `-C` to specify to filter by minimum CLR length
 - `-Z` to specify the minimum length to keep a CLR
-- `-f` to specify the format o the output files: `s`=sam, `b`=bam, `2`=both
+- `-f` to specify the format of the output files: `s`=sam, `b`=bam, `2`=both
 - `-o` to specify the name of an output folder for the filtered data files
 
 First we need to make a fofn for the scraps.bam files, as these are needed when using the filtering tool:
@@ -705,7 +705,7 @@ Before carrying out any specific commands we will first move into the relevant d
 cd ~/QC_workshop/PB_QC/data/CCS
 ```
 
-This folder contains one file of subreads from the ampicons sequenicng run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
+This folder contains one file of subreads from the ampicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
 ```{bash eval=FALSE}
 find $(pwd) -name "*subreads.bam"  > subreads.txt
 ```
@@ -714,7 +714,7 @@ find $(pwd) -name "*subreads.bam"  > subreads.txt
 SequelTools.sh -t Q -p a -u subreads.txt -o S4QC
 ```
 
-When these commands have run you will have a \'S4QC\' folder containing the \'summaryTable.txt\' file the series of plots saved as pdf files. Let\'s have a look at the subread length histogram:
+When these commands have run you will have a \'S4QC\' folder containing the \'summaryTable.txt\' file and the series of plots saved as pdf files. Let\'s have a look at the subread length histogram:
 ```{bash eval=FALSE}
 firefox S4QC/Sample4.readLenHists.pdf
 ```
@@ -731,7 +731,9 @@ Followed by the input filename (the subreads.bam) and the name you want to call 
 
 The full command to generate CCS reads is:
 
-          `ccs --minLength 3500 --minPasses 7 -j 1 Sample4.subreads.bam S4_ccs.bam`
+```{bash eval=FALSE}
+ccs --minLength 3500 --minPasses 7 -j 1 Sample4.subreads.bam S4_ccs.bam
+```
 
 However, even though this is a heavily downsized data set this command still takes ~20 minutes to run. To avoid you having to wait we have included the results file already in your directory. If you have typed in the above command to run you can kill it by pressing Ctrl - C.
 
@@ -800,6 +802,8 @@ The data sets are:
 + Pseudonocardia
    + Genomic data for a __Pseudonocardia__ isolate.
    + Original data from: SRA run SRR7447112.
+   
+These files are in the directory `~/QC_workshop/ONT_QC/data`
    
 Run through all the ONT QC steps for these two datasets. Use all the same parameters and options, making sure to change input and output file paths and prefixes where appropriate.
 

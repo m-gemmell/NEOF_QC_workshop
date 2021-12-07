@@ -16,5 +16,5 @@ ls ~
 If you do not have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
 
 ```{bash eval=FALSE}
-cp -r /pub39/nsc006/NEOF/QC_workshop/ ~
+cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ ~
 ```
