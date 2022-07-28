@@ -1,0 +1,47 @@
+# Setup
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
+```
+
+This tutorial will give hands on experience with quality control of genomic Illumina data.
+
+We will look at a good quality dataset followed by a poorer quality data set for practice. Afterwards you will carry out some self directed Quality checking as an exercise.
+
+However, prior to this we need to get our workshops data and setup our environment.
+
+## Workshop data {#data}
+
+Before we can carry on with the workshop you will need the workshop data.
+First ensure you are in your home directory.
+
+```{bash eval=FALSE}
+cd ~
+```
+
+Now copy the specified folder to you home directory.
+
+```{bash eval=FALSE}
+cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ .
+```
+
+Before running any examples let us change directory to the Illumina Quality control directory.
+
+```{bash eval=FALSE}
+cd QC_workshop/Illumina_QC/
+```
+
+## Conda
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+```
+
+We need to activate the `illumina_qc` `conda` environment in your terminal so we have access to all the tools we need.
+The first step is to use `chos 8` which is a custom command for our cluster.
+It will Change the Unix OS form version 7 to version 8.
+Version 7 (default in our cluster) is too old for some of the programs.
+
+```{bash eval=FALSE}
+chos 8
+. useilluminaqc
+```

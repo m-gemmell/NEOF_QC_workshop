@@ -1,0 +1,354 @@
+---
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# QC tutorial
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
+```
+
+This tutorial will give hands on experience with quality control of genomic Illumina data.
+We will first look at a good quality dataset followed by a poorer quality data set.
+
+## Workshop data {#data}
+
+Before we can carry on with the workshop you will need the workshop data.
+First ensure you are in your home directory.
+
+```{bash eval=FALSE}
+cd ~
+```
+
+Now copy the specified folder to you home directory.
+
+```{bash eval=FALSE}
+cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ .
+```
+
+Before running any examples let us change directory to the Illumina Quality control directory.
+
+```{bash eval=FALSE}
+cd QC_workshop/Illumina_QC/
+```
+
+## Conda
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+```
+
+We need to activate the `illumina_qc` `conda` environment in your terminal so we have access to all the tools we need.
+The first step is to use `chos 8` which is a custom command for our cluster.
+It will Change the Unix OS form version 7 to version 8.
+Version 7 (default in our cluster) is too old for some of the programs.
+
+```{bash eval=FALSE}
+chos 8
+. useilluminaqc
+```
+
+## Good quality Genomic dataset {#goodtutorial}
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
+```
+
+The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
+
+*P. arcticus* is a bacteria that was first isolated from Siberian permafrost.
+I am fond of *Psychrobacter* as my BSc project involved studying it.
+
+Prior to analysis we need to change directory to the example 1 directory.
+
+```{bash eval=FALSE}
+cd example_1
+```
+
+This directory contains the forward (R1) and reverse (R2) read fastq files.
+
+List the contents of the current directory to confirm this.
+
+```{bash eval=FALSE}
+ls
+```
+
+### Run fastqc
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key.png", auto_pdf = TRUE)
+```
+
+We will carry out `fastqc` quality checking of the reads.
+
+First make a directory for the output.
+
+```{bash eval=FALSE}
+mkdir raw_fastqc_output
+```
+
+Now we can run **`fastqc`**.
+
+**Note**:
+
+-   The below command can be run over one line excluding the `\`.
+-   Alternatively, you can type `\` during a command and then press the enter key. The next line on the command line will start with `>`. This will allow you to continue typing the command on the line. This can be used to type one command over multiple lines.
+-   For more information on bash escape please see our [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/05-Tips_and_tricks.html#bash-escape)
+
+```{bash eval=FALSE}
+fastqc -o raw_fastqc_output \
+p_arcticus_R1.fastq p_arcticus_R2.fastq
+```
+
+### Background and Foreground processes
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
+```
+
+The next step is to view the `fastqc` report.
+But first we will talk about **background** and **foreground** processes.
+
+Normally when you run a command it will run the process in the **foreground**.
+This means your command line will be locked whilst the process is running.
+You will only be able to type a new command in the terminal once the **foreground** process is finished.
+
+This is normally wanted but not always, for example when you run a process like `firefox`.
+To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
+
+Please see the following link for more info on the **foreground** and **background**: <https://www.lifewire.com/multitasking-background-foreground-process-2180219>
+
+### View fastqc output
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
+```
+
+Using `firefox` have a look at the output html reports and answer the following questions.
+
+Open all the `fastqc` html files in the directory.
+
+```{bash eval=FALSE}
+firefox raw_fastqc_output/*_fastqc.html &
+```
+
+`r hide("Note on *")` 
+
+The `*` is a wildcard character that represents anything.
+
+`*_fastqc.html` represents all the files that end with `_fastqc.html`.
+
+For more information on wildcard characters please see ou [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/12-Advanced_linux_practice.html#wildcard-characters)
+`r unhide()`
+
+```{r, echo = FALSE}
+opts_p <- c("__42__", answer="__175,697__", "__150__")
+```
+1.  How many total reads/sequences are there in the R1 file? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__42__", "__175,697__", answer="__150__")
+```
+2.  What is the length of the reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__42__", "__175,697__", "__150__")
+```
+3.  What is the average GC content of the reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", answer="__20-40__", "__28-40__")
+```
+4. In R1 at what quality range is base position 1?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", "__20-40__", answer="__28-40__")
+```
+5. In R2 at what quality range are base positions 15-19? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", "__20-40__", answer="__28-40__")
+```
+6. In R1 at what quality range are base positions 45-49?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", answer="__20-40__", "__28-40__")
+```
+7. In R2 at what quality range is base position 150?  `r longmcq(opts_p)`
+
+In this case the reads have been simulated from a genome assembly.
+This is the reason it looks so nice.
+Real data from a sequencing machine will unfortunately not look as good and will require quality trimming and filtering.
+
+Generally even if data does look very nice we would carry out quality control to get rid of any poor data that is masked by the very good data.
+However, for the purposes of time we will skip this at the moment.
+
+For your own interest the genome assembly can be found in the following link: <https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1>
+
+## Poorer quality Genomic dataset {#poortutorial}
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
+```
+
+Now let us look at actual read data.
+We will be looking at *Bacillus cereus* MiSeq data that can be found in the following link: <https://ccb.jhu.edu/gage_b/datasets/index.html>.
+
+For the purposes of the tutorial I subsampled the reads down to a more manageable 50,000 pairs, normally read data will not come in such round numbers.
+
+Before running any analysis we need to change directory to the example_2 directory.
+From the example_1 directory we can use the following command, where `../` represents going up one directory.
+
+```{bash eval=FALSE}
+cd ../example_2
+#List contents of directory
+ls
+```
+
+### Quality checking
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
+```
+
+Let's make a directory for the `fastqc` output
+
+```{bash eval=FALSE}
+mkdir raw_fastqc_output
+```
+
+Run `fastqc` on the all paired read files (`*.fastq` representing all the files that end with `.fastq`)
+
+```{bash eval=FALSE}
+fastqc -o raw_fastqc_output *.fastq
+```
+
+We can open the `fastqc` output with the following command
+
+```{bash eval=FALSE}
+firefox raw_fastqc_output/*_fastqc.html &
+```
+
+Some typical features to note are:
+
+-   The quality decreases towards the end of the reads
+-   The R2 reads have poorer quality than the R1 reads
+-   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
+
+Investigate the `fastqc` reports and answer the below question. Answer the below questions 
+
+Let's answer the same questions from the first example so we can see some of the differences between real and simulated reads.
+We'll add some additional questions on top of those.
+
+1.  How many total reads are there in both the files?
+2.  What is the length of the reads?
+3.  In the read 1 file, at what base position range does the quality of all the reads go above 28?
+4.  In both the read 1 and read 2 file at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green, including the box plot whiskers)?
+5.  What is the average GC content of the reads?
+6.  Are there any overrepresented sequences?
+
+This data is pretty typical of what would normally be seen.
+We are therefore going to quality trim and filter the data.
+Unfortunately data straight from the sequencer always needs quality control.
+
+### Quality control
+
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+  knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
+```
+
+Quality control generally comes in two forms:
+
+1.  **Trimming**: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
+2.  **Filtering**: This occurs when entire reads are removed. A typical occurrence of this is when a read is too small as we do not want reads below a certain length.
+
+To carry this out we are going to use `trimmomatic`.
+<http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf>
+
+To run `trimmomatic` with the reads we will use the below command.
+
+```{bash eval=FALSE}
+trimmomatic PE \
+-phred33 \
+B_cereus_R1.fastq B_cereus_R2.fastq \
+-baseout B_cereus.fastq \
+SLIDINGWINDOW:4:20 MINLEN:50
+```
+
+**Parameters**:
+
+-   `PE`: Input data consists of paired-end reads.
+-   `-phred33`: indicates input data has Phred33 encoding. Phred33 includes Sanger, Illumina 1.8+, and PacBio quality encoding.
+-   `B_cereus_R1.fastq B_cereus_R2.fastq`: The input forward and reverse read files.
+-   `-baseout`: This parameter is used to create the names of the four output files (more info below).
+-   `SLIDINGWINDOW`: This will cause siding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
+-   `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
+
+**Note**: When using `trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
+
+Once the command is run it will give you some useful output to the screen.
+Based on it, approximately what percentage of paired reads were kept?
+
+**Output**
+
+The command produces four files with names based off the `-baseout` parameter.
+The files are:
+
+\-`B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The **paired** forward and reverse reads after successful trimming.
+In the vast majority of cases these are the two files which will be used for further analysis.
+- `B_cereus_1U.fastq`: The trimmed **unpaired** forward reads.
+These are produced when the forward read is retained after trimming but not the matching reverse read.
+This can be ignored in most cases.
+- `B_cereus_2U.fastq`: The trimmed **unpaired** reverse reads.
+These are produced when the reverse read is retained after trimming but not the matching forward read.
+This can be ignored in most cases.
+
+### Post Quality control check
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
+```
+
+To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
+
+First create a new directory for the `fastqc` output
+
+```{bash eval=FALSE}
+mkdir trimmomatic_fastqc_output
+```
+
+Now run `fastqc` on the two paired read files
+
+```{bash eval=FALSE}
+fastqc -o trimmomatic_fastqc_output \
+B_cereus_1P.fastq B_cereus_2P.fastq
+```
+
+We can open the `fastqc` output with the following commands
+
+```{bash eval=FALSE}
+firefox trimmomatic_fastqc_output/*_fastqc.html $
+```
+
+To see how well the reads have improved let's answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
+
+1.  What is the sum of the reads in both the files?
+2.  What is the length range of the reads?
+3.  In the forward file, does the quality fall below Q28 at any point?
+4.  In the reverse reads at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green, including the box plot whiskers)?
+5.  What is the average GC content of the reads?
+6.  Are there any overrepresented sequences?
+
+Some things to note:
+
+-   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
+-   R2 quality is still worse than R1 quality. Again this is normal.
+-   The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
+-   The overrepresented sequences which were Illumina adapters needed for sequencing were removed by `trimmomatic`. This is good as we don't need them any more.
+
+**Note**: If you are getting data from a sequencing centre they will have mostly removed the adapters already.
+Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
+
+If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt.readthedocs.io/en/stable/guide.html>

@@ -1,0 +1,135 @@
+# Good quality genomic dataset {#goodtutorial}
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
+```
+
+The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
+
+*P. arcticus* is a bacteria that was first isolated from Siberian permafrost.
+I am fond of *Psychrobacter* as my BSc project involved studying it.
+
+Prior to analysis we need to change directory to the example 1 directory.
+
+```{bash eval=FALSE}
+cd example_1
+```
+
+This directory contains the forward (R1) and reverse (R2) read fastq files.
+
+List the contents of the current directory to confirm this.
+
+```{bash eval=FALSE}
+ls
+```
+
+## Run fastqc
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key.png", auto_pdf = TRUE)
+```
+
+We will carry out `fastqc` quality checking of the reads.
+
+First make a directory for the output.
+
+```{bash eval=FALSE}
+mkdir raw_fastqc_output
+```
+
+Now we can run **`fastqc`**.
+
+**Note**:
+
+-   The below command can be run over one line excluding the `\`.
+-   Alternatively, you can type `\` during a command and then press the enter key. The next line on the command line will start with `>`. This will allow you to continue typing the command on the line. This can be used to type one command over multiple lines.
+-   For more information on bash escape please see our [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/05-Tips_and_tricks.html#bash-escape)
+
+```{bash eval=FALSE}
+fastqc -o raw_fastqc_output \
+p_arcticus_R1.fastq p_arcticus_R2.fastq
+```
+
+## Background and Foreground processes
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
+```
+
+The next step is to view the `fastqc` report.
+But first we will talk about **background** and **foreground** processes.
+
+Normally when you run a command it will run the process in the **foreground**.
+This means your command line will be locked whilst the process is running.
+You will only be able to type a new command in the terminal once the **foreground** process is finished.
+
+This is normally wanted but not always, for example when you run a process like `firefox`.
+To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
+
+Please see the following link for more info on the **foreground** and **background**: <https://www.lifewire.com/multitasking-background-foreground-process-2180219>
+
+## View fastqc output
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
+```
+
+Using `firefox` have a look at the output html reports and answer the following questions.
+
+Open all the `fastqc` html files in the directory.
+
+```{bash eval=FALSE}
+firefox raw_fastqc_output/*_fastqc.html &
+```
+
+`r hide("Note on *")` 
+
+The `*` is a wildcard character that represents anything.
+
+`*_fastqc.html` represents all the files that end with `_fastqc.html`.
+
+For more information on wildcard characters please see ou [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/12-Advanced_linux_practice.html#wildcard-characters)
+`r unhide()`
+
+```{r, echo = FALSE}
+opts_p <- c("__42__", answer="__175,697__", "__150__")
+```
+1.  How many total reads/sequences are there in the R1 file? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__42__", "__175,697__", answer="__150__")
+```
+2.  What is the length of the reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__42__", "__175,697__", "__150__")
+```
+3.  What is the average GC (%) content of the reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", answer="__20-40__", "__28-40__")
+```
+4. In R1 at what quality range is base position 1?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", "__20-40__", answer="__28-40__")
+```
+5. In R2 at what quality range are base positions 15-19? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", "__20-40__", answer="__28-40__")
+```
+6. In R1 at what quality range are base positions 45-49?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", answer="__20-40__", "__28-40__")
+```
+7. In R2 at what quality range is base position 150?  `r longmcq(opts_p)`
+
+In this case the reads have been simulated from a genome assembly.
+This is the reason it looks so nice.
+Real data from a sequencing machine will unfortunately not look as good and will require quality trimming and filtering.
+
+Generally even if data does look very nice we would carry out quality control to get rid of any poor data that is masked by the very good data.
+However, for the purposes of time we will skip this at the moment.
+
+For your own interest the genome assembly can be found in the following link: <https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1>

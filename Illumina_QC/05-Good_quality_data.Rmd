@@ -1,0 +1,248 @@
+# Poorer quality genomic dataset {#poortutorial}
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
+```
+
+Now let us look at actual read data.
+We will be looking at *Bacillus cereus* MiSeq data that can be found in the following link: <https://ccb.jhu.edu/gage_b/datasets/index.html>.
+
+For the purposes of the tutorial I subsampled the reads down to a more manageable 50,000 pairs, normally read data will not come in such round numbers.
+
+Before running any analysis we need to change directory to the example_2 directory.
+From the example_1 directory we can use the following command, where `../` represents going up one directory.
+
+```{bash eval=FALSE}
+cd ../example_2
+#List contents of directory
+ls
+```
+
+## Quality checking
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
+```
+
+Let's make a directory for the `fastqc` output
+
+```{bash eval=FALSE}
+mkdir raw_fastqc_output
+```
+
+Run `fastqc` on the all paired read files (`*.fastq` representing all the files that end with `.fastq`)
+
+```{bash eval=FALSE}
+fastqc -o raw_fastqc_output *.fastq
+```
+
+We can open the `fastqc` output with the following command
+
+```{bash eval=FALSE}
+firefox raw_fastqc_output/*_fastqc.html &
+```
+
+Some typical features to note are:
+
+-   The quality decreases towards the end of the reads
+-   The R2 reads have poorer quality than the R1 reads
+-   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
+
+### Quality checking MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
+```
+
+Investigate the `fastqc` reports and answer the below question. 
+
+```{r, echo = FALSE}
+opts_p <- c("__36__", "__35-251__", answer="__50,000__")
+```
+1.  How many total reads/sequences are there in the R2 file? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__36__", answer="__35-251__", "__50,000__")
+```
+2.  What is the length range of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__36__", "__35-251__", "__50,000__")
+```
+3.  What is the average GC (%) content of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__15-19__", "__235-239__", answer="__251__")
+```
+4. At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R1 data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__15-19__", "__235-239__", "__251__")
+```
+5.  At what base position/s does the IQR and whiskers (lines) first completely go above a quality of Q28 for the R2 data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__15-19__", answer="__235-239__", "__251__")
+```
+6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R2 data?`r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__37__", "__129__", "__250-252__")
+```
+7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__37__", answer="__129__", "__250-252__")
+```
+8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__37__", "__129__", answer="__250-252__")
+```
+9. What is the most common base length range for R2 (see the peak of the "Sequence Length Distribution" graph)? `r longmcq(opts_p)`
+
+This data is pretty typical of what would normally be seen.
+We are therefore going to quality trim and filter the data.
+Unfortunately data straight from the sequencer always needs quality control.
+
+## Quality control
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+  knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
+```
+
+Quality control generally comes in two forms:
+
+1.  **Trimming**: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
+2.  **Filtering**: This occurs when entire reads are removed. A typical occurrence of this is when a read is too small as we do not want reads below a certain length.
+
+To carry this out we are going to use `trimmomatic`.
+<http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf>
+
+To run `trimmomatic` with the reads we will use the below command.
+
+```{bash eval=FALSE}
+trimmomatic PE \
+-phred33 \
+B_cereus_R1.fastq B_cereus_R2.fastq \
+-baseout B_cereus.fastq \
+SLIDINGWINDOW:4:20 MINLEN:50
+```
+
+**Parameters**:
+
+-   `PE`: Input data consists of paired-end reads.
+-   `-phred33`: indicates input data has Phred33 encoding. Phred33 includes Sanger, Illumina 1.8+, and PacBio quality encoding.
+-   `B_cereus_R1.fastq B_cereus_R2.fastq`: The input forward and reverse read files.
+-   `-baseout`: This parameter is used to create the names of the four output files (more info below).
+-   `SLIDINGWINDOW`: This will cause sliding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
+-   `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
+
+**Note**: When using `trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
+
+```{r, echo = FALSE}
+opts_p <- c("__4.73%__", "__14.99%__", answer="__76.62%__")
+```
+Once the command is run it will give you some useful output to the screen. 
+Based on it, what percentage of paired reads were kept? `r longmcq(opts_p)` <br>
+
+**Output**
+
+The command produces four files with names based off the `-baseout` parameter.
+The files are:
+
+- `B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The **paired** forward and reverse reads after successful trimming.
+In the vast majority of cases these are the two files which will be used for further analysis.
+- `B_cereus_1U.fastq`: The trimmed **unpaired** forward reads.
+These are produced when the forward read is retained after trimming but not the matching reverse read.
+This can be ignored in most cases.
+- `B_cereus_2U.fastq`: The trimmed **unpaired** reverse reads.
+These are produced when the reverse read is retained after trimming but not the matching forward read.
+This can be ignored in most cases.
+
+## Post Quality control check
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
+```
+
+To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
+
+First create a new directory for the `fastqc` output
+
+```{bash eval=FALSE}
+mkdir trimmomatic_fastqc_output
+```
+
+Now run `fastqc` on the two paired read files
+
+```{bash eval=FALSE}
+fastqc -o trimmomatic_fastqc_output \
+B_cereus_1P.fastq B_cereus_2P.fastq
+```
+
+We can open the `fastqc` output with the following commands
+
+```{bash eval=FALSE}
+firefox trimmomatic_fastqc_output/*_fastqc.html $
+```
+
+### Quality checking MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
+```
+
+To see how well the reads have improved answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
+
+```{r, echo = FALSE}
+opts_p <- c("__35__", "__50-251__", answer="__38,309__")
+```
+1.  How many total reads/sequences are there in the R2 file? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__35__", answer="__50-251__", "__38,309__")
+```
+2.  What is the length range of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__35__", "__50-251__", "__38,309__")
+```
+3.  What is the average GC (%) content of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+4. In R1, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+5. In R2, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+6. In R2, do the IQRs drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0__",answer="__37__", "__250-251__")
+```
+7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__0__","__37__", "__250-251__")
+```
+8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0__","__37__", answer="__250-251__")
+```
+9. What is the most common base length range for R2 (see the peak of the "Sequence Length Distribution" graph)? `r longmcq(opts_p)`
+
+Some things to note:
+
+-   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
+-   R2 quality is still worse than R1 quality. Again this is normal.
+-   The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
+-   The overrepresented sequences, which were Illumina adapters needed for sequencing, were removed by `trimmomatic`. This is good as we don't need/want them any more.
+
+**Note**: If you are getting data from a sequencing centre they will have most likely removed the adapters already.
+Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
+
+If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt.readthedocs.io/en/stable/guide.html>

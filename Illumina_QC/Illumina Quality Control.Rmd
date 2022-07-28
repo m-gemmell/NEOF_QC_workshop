@@ -1,6 +1,6 @@
 --- 
 title: "Illumina Quality Control"
-author: "Matthew Gemmell"
+author: "Matthew R. Gemmell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -12,6 +12,31 @@ favicon: figures/NEOF_favicon.png
 description: NEOF book for the Illumina quality control workshop
 cover-image: "figures/NEOF.png"
 ---
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
@@ -35,6 +60,23 @@ This practical session aims to introduce you to Illumina Quality Control. The to
 
 <!--chapter:end:01-Illumina_Quality_Control.Rmd-->
 
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
 # Cluster Introduction {#cluster}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
@@ -50,12 +92,10 @@ knitr::include_graphics(path = "figures/logon_pic.png", auto_pdf = TRUE)
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu. 
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
 
-The following link is a guide to install Ubuntu:  
-https://www.ubuntu.com/download/desktop/install-ubuntu-desktop.  
-If you use a USB you need to create a bootable USB stick. The following link will assist:  
-https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows 
+The following link is a guide to install Mint Linux:  
+https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## The Terminal Window
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
@@ -76,175 +116,364 @@ To open a new terminal window, right click on the main screen, choose `Applicati
 
 <!--chapter:end:02-Cluster_Introduction.Rmd-->
 
-# QC tutorial
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Setup
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
-```  
-This tutorial will give hands on experience with quality control of genomic Illumina data. We will first look at a good quality dataset followed by a poorer quality data set. 
+knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
+```
+
+This tutorial will give hands on experience with quality control of genomic Illumina data.
+
+We will look at a good quality dataset followed by a poorer quality data set for practice. Afterwards you will carry out some self directed Quality checking as an exercise.
+
+However, prior to this we need to get our workshops data and setup our environment.
 
 ## Workshop data {#data}
-Before we can carry on with the workshop you will need the workshop data. First ensure you are in your home directory. 
+
+Before we can carry on with the workshop you will need the workshop data.
+First ensure you are in your home directory.
+
 ```{bash eval=FALSE}
 cd ~
 ```
 
 Now copy the specified folder to you home directory.
+
 ```{bash eval=FALSE}
 cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ .
 ```
 
 Before running any examples let us change directory to the Illumina Quality control directory.
+
 ```{bash eval=FALSE}
 cd QC_workshop/Illumina_QC/
 ```
 
 ## Conda
+
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
 ```
 
-We need to activate the  `illumina_qc` `conda` environment in your terminal so we have access to all the tool we need. The first step is to use `chos 8` which is a custom command for our cluster. It will Change the Unix OS to version 8 as version 7 (default in our cluster) is too old for some of the programs.
+We need to activate the `illumina_qc` `conda` environment in your terminal so we have access to all the tools we need.
+The first step is to use `chos 8` which is a custom command for our cluster.
+It will Change the Unix OS form version 7 to version 8.
+Version 7 (default in our cluster) is too old for some of the programs.
 
 ```{bash eval=FALSE}
 chos 8
 . useilluminaqc
 ```
 
-## Good quality Genomic dataset {#goodtutorial}
+<!--chapter:end:03-Setup.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Good quality genomic dataset {#goodtutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
-``` 
-The first dataset will comprise of good quality reads for the genome of _Psychrobacter arcticus_.
+```
 
-_P. arcticus_ is a bacteria that was first isolated from Siberian permafrost. I have chosen it here as my BSc project involved studying _Psychrobacter_ so I am fond of it.
+The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
+
+*P. arcticus* is a bacteria that was first isolated from Siberian permafrost.
+I am fond of *Psychrobacter* as my BSc project involved studying it.
 
 Prior to analysis we need to change directory to the example 1 directory.
+
 ```{bash eval=FALSE}
 cd example_1
 ```
 
-This directory contains the forward (R1) and reverse (R2) read fastq files. 
+This directory contains the forward (R1) and reverse (R2) read fastq files.
 
 List the contents of the current directory to confirm this.
+
 ```{bash eval=FALSE}
 ls
+```
+
+## Run fastqc
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key.png", auto_pdf = TRUE)
 ```
 
 We will carry out `fastqc` quality checking of the reads.
 
 First make a directory for the output.
+
 ```{bash eval=FALSE}
 mkdir raw_fastqc_output
 ```
 
-Now we can run __fastqc__.
+Now we can run **`fastqc`**.
 
-__Note__: 
+**Note**:
 
-- The below command can be run over one line excluding the `\`
-- Alternatively, you can type `\` during a command and then press the enter key. The next line on the command line will start with `>`.  This will allow you to continue typing the command on the line. This can be used to type one command over multiple lines.
+-   The below command can be run over one line excluding the `\`.
+-   Alternatively, you can type `\` during a command and then press the enter key. The next line on the command line will start with `>`. This will allow you to continue typing the command on the line. This can be used to type one command over multiple lines.
+-   For more information on bash escape please see our [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/05-Tips_and_tricks.html#bash-escape)
 
 ```{bash eval=FALSE}
 fastqc -o raw_fastqc_output \
 p_arcticus_R1.fastq p_arcticus_R2.fastq
 ```
 
-Normally when you run a command it will run the process in the foreground. This means your command line will be locked whilst the process is running. You will only be able to type a new command in the terminal once the foreground process is finished.
+## Background and Foreground processes
 
-This is normally wanted but not always, for example when you run a process like firefox. To run a process in the background, so you can type and run new commands, you can add the symbol `&` to the end of a command. We will use this for running firefox.
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
+```
 
-Please see the following link for more info on the foreground and background: https://www.lifewire.com/multitasking-background-foreground-process-2180219
+The next step is to view the `fastqc` report.
+But first we will talk about **background** and **foreground** processes.
 
-Using firefox have a look at the output html reports and answer the following questions.
+Normally when you run a command it will run the process in the **foreground**.
+This means your command line will be locked whilst the process is running.
+You will only be able to type a new command in the terminal once the **foreground** process is finished.
+
+This is normally wanted but not always, for example when you run a process like `firefox`.
+To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
+
+Please see the following link for more info on the **foreground** and **background**: <https://www.lifewire.com/multitasking-background-foreground-process-2180219>
+
+## View fastqc output
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
+```
+
+Using `firefox` have a look at the output html reports and answer the following questions.
 
 Open all the `fastqc` html files in the directory.
-
-__Note__: The `*` is a wildcard character that represents anything. `*_fastqc.html` represents all the files that end with `_fastqc.html`.
 
 ```{bash eval=FALSE}
 firefox raw_fastqc_output/*_fastqc.html &
 ```
 
-1. How many total reads are there in both the files?
-2. What is the length of the reads.
-3. In the read 1 file, at what base position range does the quality of all the reads go above 28 (I.e. the position where all of the box plot is in the green)?
-4. What is the average GC content of the reads?
+`r hide("Note on *")` 
 
-In this case the reads have been simulated from a genome assembly. This is the reason it looks so nice. Real data from a sequencing machine will unfortunately not look so nice and will require quality trimming and filtering. 
+The `*` is a wildcard character that represents anything.
 
-Generally even if data does look very nice we would carry out quality control to get rid of any poor data that is masked by the very good data. However, for the purposes of time we will skip this at the moment.
+`*_fastqc.html` represents all the files that end with `_fastqc.html`.
 
-For your own interest the genome assembly can be found in the following link:
-https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1
+For more information on wildcard characters please see ou [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/12-Advanced_linux_practice.html#wildcard-characters)
+`r unhide()`
 
-## Poorer quality Genomic dataset {#poortutorial}
+```{r, echo = FALSE}
+opts_p <- c("__42__", answer="__175,697__", "__150__")
+```
+1.  How many total reads/sequences are there in the R1 file? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__42__", "__175,697__", answer="__150__")
+```
+2.  What is the length of the reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__42__", "__175,697__", "__150__")
+```
+3.  What is the average GC (%) content of the reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", answer="__20-40__", "__28-40__")
+```
+4. In R1 at what quality range is base position 1?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", "__20-40__", answer="__28-40__")
+```
+5. In R2 at what quality range are base positions 15-19? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", "__20-40__", answer="__28-40__")
+```
+6. In R1 at what quality range are base positions 45-49?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0-40__", answer="__20-40__", "__28-40__")
+```
+7. In R2 at what quality range is base position 150?  `r longmcq(opts_p)`
+
+In this case the reads have been simulated from a genome assembly.
+This is the reason it looks so nice.
+Real data from a sequencing machine will unfortunately not look as good and will require quality trimming and filtering.
+
+Generally even if data does look very nice we would carry out quality control to get rid of any poor data that is masked by the very good data.
+However, for the purposes of time we will skip this at the moment.
+
+For your own interest the genome assembly can be found in the following link: <https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1>
+
+<!--chapter:end:04-Poorer_quality_data.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Poorer quality genomic dataset {#poortutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
 ```
-Now let us look at actual read data. We will be looking at _Bacillus cereus_ MiSeq data that can be found in the following link:
-https://ccb.jhu.edu/gage_b/datasets/index.html. 
 
-I chose this dataset as it was a good set I found.
+Now let us look at actual read data.
+We will be looking at *Bacillus cereus* MiSeq data that can be found in the following link: <https://ccb.jhu.edu/gage_b/datasets/index.html>.
 
 For the purposes of the tutorial I subsampled the reads down to a more manageable 50,000 pairs, normally read data will not come in such round numbers.
 
-First before running any analysis we need to change directory to the example_2 directory. From the example_1 directory we can use the following command, where `../` represents going up one directory.
+Before running any analysis we need to change directory to the example_2 directory.
+From the example_1 directory we can use the following command, where `../` represents going up one directory.
+
 ```{bash eval=FALSE}
 cd ../example_2
 #List contents of directory
 ls
 ```
 
-### Quality checking
+## Quality checking
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
 ```
 
-Next we\'ll make a directory for the `fastqc` output
+Let's make a directory for the `fastqc` output
+
 ```{bash eval=FALSE}
 mkdir raw_fastqc_output
 ```
 
-Now run `fastqc` on the all paired read files (`*.fastq` representing al the files that end with `.fastq`)
+Run `fastqc` on the all paired read files (`*.fastq` representing all the files that end with `.fastq`)
+
 ```{bash eval=FALSE}
 fastqc -o raw_fastqc_output *.fastq
 ```
 
 We can open the `fastqc` output with the following command
+
 ```{bash eval=FALSE}
 firefox raw_fastqc_output/*_fastqc.html &
 ```
 
-Some typical features to note that are:
+Some typical features to note are:
 
-- The quality decreases towards the end of the reads
-- The R2 reads have poorer quality than the R1 reads
-- The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
+-   The quality decreases towards the end of the reads
+-   The R2 reads have poorer quality than the R1 reads
+-   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
 
-Let\'s answer the same questions from the first example so we can see some of the differences between real and simulated reads. We\'ll add some additional questions on top of those.
+### Quality checking MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
+```
 
-1. How many total reads are there in both the files?
-2. What is the length of the reads?
-3. In the read 1 file, at what base position range does the quality of all the reads go above 28?
-4. In both the read 1 and read 2 file at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green, including the box plot whiskers)?
-5. What is the average GC content of the reads?
-6. Are there any overrepresented sequences?
+Investigate the `fastqc` reports and answer the below question. 
 
-This data is pretty typical of what would normally be seen. We are therefore going to quality trim and filter the data. Unfortunately data straight from the sequencer always needs quality control.
+```{r, echo = FALSE}
+opts_p <- c("__36__", "__35-251__", answer="__50,000__")
+```
+1.  How many total reads/sequences are there in the R2 file? `r longmcq(opts_p)`
 
-### Quality control
+```{r, echo = FALSE}
+opts_p <- c("__36__", answer="__35-251__", "__50,000__")
+```
+2.  What is the length range of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__36__", "__35-251__", "__50,000__")
+```
+3.  What is the average GC (%) content of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__15-19__", "__235-239__", answer="__251__")
+```
+4. At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R1 data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__15-19__", "__235-239__", "__251__")
+```
+5.  At what base position/s does the IQR and whiskers (lines) first completely go above a quality of Q28 for the R2 data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__15-19__", answer="__235-239__", "__251__")
+```
+6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R2 data?`r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__37__", "__129__", "__250-252__")
+```
+7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__37__", answer="__129__", "__250-252__")
+```
+8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__37__", "__129__", answer="__250-252__")
+```
+9. What is the most common base length range for R2 (see the peak of the "Sequence Length Distribution" graph)? `r longmcq(opts_p)`
+
+This data is pretty typical of what would normally be seen.
+We are therefore going to quality trim and filter the data.
+Unfortunately data straight from the sequencer always needs quality control.
+
+## Quality control
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
   knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
 ```
+
 Quality control generally comes in two forms:
 
-1. __Trimming__: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
-2. __Filtering__: This occurs when entire reads are removed. A typical occurrence of this is when a read is too small as we do not want reads below a certain length.
+1.  **Trimming**: This is directly cutting off bits of sequence. This is typical in the form of trimming off low quality bases from the end of reads and trimming off adapters at the start of reads.
+2.  **Filtering**: This occurs when entire reads are removed. A typical occurrence of this is when a read is too small as we do not want reads below a certain length.
 
 To carry this out we are going to use `trimmomatic`.
-http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
+<http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf>
 
-To run `trimmomatic` with the reads we will use the below command. 
+To run `trimmomatic` with the reads we will use the below command.
+
 ```{bash eval=FALSE}
 trimmomatic PE \
 -phred33 \
@@ -253,72 +482,147 @@ B_cereus_R1.fastq B_cereus_R2.fastq \
 SLIDINGWINDOW:4:20 MINLEN:50
 ```
 
-__Parameters__:
+**Parameters**:
 
-- `PE`: Input data consists of paired-end reads.
-- `-phred33`: indicates input data has Phred33 encoding. Phred33 includes Sanger, Illumina 1.8+, and PacBio quality encoding.
-- `B_cereus_R1.fastq B_cereus_R2.fastq`: The input forward and reverse read files.
-- `-baseout`: This parameter is used to create the names of the four output files (more info below).
-- `SLIDINGWINDOW`: This will cause siding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
-- `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
+-   `PE`: Input data consists of paired-end reads.
+-   `-phred33`: indicates input data has Phred33 encoding. Phred33 includes Sanger, Illumina 1.8+, and PacBio quality encoding.
+-   `B_cereus_R1.fastq B_cereus_R2.fastq`: The input forward and reverse read files.
+-   `-baseout`: This parameter is used to create the names of the four output files (more info below).
+-   `SLIDINGWINDOW`: This will cause sliding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
+-   `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
 
-__Note__: When using `trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
+**Note**: When using `trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
 
-Once the command is run it will give you some useful output to the screen.
-Based on it, approximately what percentage of paired reads were kept?
+```{r, echo = FALSE}
+opts_p <- c("__4.73%__", "__14.99%__", answer="__76.62%__")
+```
+Once the command is run it will give you some useful output to the screen. 
+Based on it, what percentage of paired reads were kept? `r longmcq(opts_p)` <br>
 
-__Output__
+**Output**
 
-The command produces four files with names based off the `-baseout` parameter. The files are:
+The command produces four files with names based off the `-baseout` parameter.
+The files are:
 
--`B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The __paired__ forward and reverse reads after successful trimming. In the vast majority of cases these are the two files which will be used for further analysis.
-- `B_cereus_1U.fastq`: The trimmed __unpaired__ forward reads. These are produced when the forward read is retained after trimming but not the matching reverse read. This can be ignored in most cases.
-- `B_cereus_2U.fastq`: The trimmed __unpaired__ reverse reads. These are produced when the reverse read is retained after trimming but not the matching forward read. This can be ignored in most cases.
+- `B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The **paired** forward and reverse reads after successful trimming.
+In the vast majority of cases these are the two files which will be used for further analysis.
+- `B_cereus_1U.fastq`: The trimmed **unpaired** forward reads.
+These are produced when the forward read is retained after trimming but not the matching reverse read.
+This can be ignored in most cases.
+- `B_cereus_2U.fastq`: The trimmed **unpaired** reverse reads.
+These are produced when the reverse read is retained after trimming but not the matching forward read.
+This can be ignored in most cases.
 
-### Post Quality control check
+## Post Quality control check
+
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
 ```
+
 To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
 
 First create a new directory for the `fastqc` output
+
 ```{bash eval=FALSE}
 mkdir trimmomatic_fastqc_output
 ```
 
 Now run `fastqc` on the two paired read files
+
 ```{bash eval=FALSE}
 fastqc -o trimmomatic_fastqc_output \
 B_cereus_1P.fastq B_cereus_2P.fastq
 ```
 
 We can open the `fastqc` output with the following commands
+
 ```{bash eval=FALSE}
 firefox trimmomatic_fastqc_output/*_fastqc.html $
 ```
 
-To see how well the reads have improved let\'s answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
+### Quality checking MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
+```
 
-1. What is the sum of the reads in both the files?
-2. What is the length range of the reads?
-3. In the forward file, does the quality fall below Q28 at any point?
-4. In the reverse reads at what position does the quality drop below Q28 (At what position is the box plot no longer fully in the green, including the box plot whiskers)?
-5. What is the average GC content of the reads?
-6. Are there any overrepresented sequences?
+To see how well the reads have improved answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
+
+```{r, echo = FALSE}
+opts_p <- c("__35__", "__50-251__", answer="__38,309__")
+```
+1.  How many total reads/sequences are there in the R2 file? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__35__", answer="__50-251__", "__38,309__")
+```
+2.  What is the length range of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__35__", "__50-251__", "__38,309__")
+```
+3.  What is the average GC (%) content of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+4. In R1, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+5. In R2, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+6. In R2, do the IQRs drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0__",answer="__37__", "__250-251__")
+```
+7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__0__","__37__", "__250-251__")
+```
+8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0__","__37__", answer="__250-251__")
+```
+9. What is the most common base length range for R2 (see the peak of the "Sequence Length Distribution" graph)? `r longmcq(opts_p)`
 
 Some things to note:
 
-- The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
-- R2 quality is still worse than R1 quality. Again this is normal.
-- The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
-- The overrepresented sequences which were Illumina adapters needed for sequencing were removed by `trimmomatic`. This is good as we don\’t need them any more.
+-   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
+-   R2 quality is still worse than R1 quality. Again this is normal.
+-   The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
+-   The overrepresented sequences, which were Illumina adapters needed for sequencing, were removed by `trimmomatic`. This is good as we don't need/want them any more.
 
-__Note__: If you are getting data from a sequencing centre they will have mostly removed the adapters already. Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing. 
+**Note**: If you are getting data from a sequencing centre they will have most likely removed the adapters already.
+Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
 
-If adapters are present you can use `Cutadapt` to remove them: https://cutadapt.readthedocs.io/en/stable/guide.html
+If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt.readthedocs.io/en/stable/guide.html>
 
-<!--chapter:end:03-QC_tutorials.Rmd-->
+<!--chapter:end:05-Good_quality_data.Rmd-->
 
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
 # QC exercises
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
@@ -335,25 +639,42 @@ https://www.ebi.ac.uk/ena/data/search?query=shotgun
 
 This contains the genomic content of many organisms.
 
-The read data is within the exercise_1 directory. The reads have been subsampled so you will be working on 100,000 paired reads.
+The read data is within your `~/QC_workshop/Illumina_Q/exercise_1` directory (ensure to change directory to this). The reads have been subsampled so you will be working on 100,000 paired reads.
 
-Carry out `fastqc` on the raw reads and answer the below questions.
+Carry out `fastqc` on the raw reads and ponder the below questions.
 
 1. What may be causing the weird GC content at the start of the reads?
-2. The \"Per sequence GC content\" has a weird peak. Why might this be?
+2. The "Per sequence GC content" has a weird peak. Why might this be?
 
 Carry out `trimmomatic` quality control, deciding on the sliding window and the length threshold. After `trimmomatic` carry out `fastqc` on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
 
-1. Is the number of quality controlled reads above 60,000?
-2. Does the quality for either R1 or R2 drop below Q24, if so at what position?
-3. Is the weird GC content still at the start of the read?
-4. Does the \"Per sequence GC content\" still have a weird peak?
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+1. Is the number of quality controlled reads above 60,000? `r longmcq(opts_p)`
 
-In this case it helps to know the adapter sequence, that was used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. 
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+2. Does the quality for either R1 or R2 drop below Q24 (Including the whiskers)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+3. Is the weird GC content still at the start of the read? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+4. Does the "Per sequence GC content" still have a weird peak? `r longmcq(opts_p)`
+
+__Explanations__
+
+In this case it helps to know the adapter sequence, used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. 
 
 In previous tests I have trimmed off the first 20bp to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
 
-As for the weird \"Per sequence GC content\" peak we must remember that the metagenome sample contains many different organisms with different GC contents so this would be normal.
+As for the weird \"Per sequence GC content\" peak, We must remember that the metagenome sample contains many different organisms with different GC contents. Therefore a flat GC peak would be expected.
 
 ## 16S rRNA Metagenetics {#metagenetics}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -361,23 +682,40 @@ knitr::include_graphics(path = "figures/chime.png", auto_pdf = TRUE)
 ```
 Before starting this exercise I must note this is not the normal method to quality control 16S rRNA data. Both QIIME2 and MOTHUR have their own methods but it can be useful to check the quality of 16S rRNA data.
 
-With that in mind we will only use fastQC to check the quality and features of a 16S rRNA dataset.
+With that in mind we will only use `fastqc` to check the quality and features of a 16S rRNA dataset.
 
 The dataset can be found in the following link:
 
 https://www.ebi.ac.uk/ena/data/view/SRR2081030
 
-The dataset in the cluster is the full dataset. It can be found in the exercise_2 directory.
+The dataset in the cluster is the full dataset. It can be found in your `~/QC_workshop/Illumina_Q/exercise_2` directory.
 
-Once you have looked at the `fastqc` output of the reads you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
+Run `fastqc` on the data and view the reports. Looking at the report you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
 
 - The base quality of R2 is very low towards the end. For most 16S rRNA studies the paired reads overlap and so poor quality bases at the end of R1 are corrected by the overlapping R2 reads and vice versa.
-- The \"Per base sequence content\" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the \"Per sequence GC content\", \"Sequence duplication levels\", and \"overrepresented sequences\" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
+- The "Per base sequence content" is heavily biased. This again is normal as we are targeting a specific region within the genome, a 16S rRNA region. This means a lot of the sequences will share very similar content. The fact we are targeting a specific region also makes the "Per sequence GC content", "Sequence duplication levels", and "overrepresented sequences" look worrying and warnings are given. These warnings are designed to help with whole genome data and so they are not useful in this circumstance.
 
 These features show that it is important to understand what your data contains and what analyses you will be carrying out with the data.
 
-<!--chapter:end:04-QC_exercises.Rmd-->
+<!--chapter:end:06-QC_exercises.Rmd-->
 
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
 # MultiQC
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
@@ -401,7 +739,7 @@ Move into the multiqc_example directory:
 cd ~/QC_workshop/Illumina_QC/multiqc_example
 ```
 
-__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment.
+__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environemtn please see the [Conda section](#conda) to activate it.
 
 We will be quality checking 5 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
 
@@ -455,7 +793,7 @@ Investigate the report. Notice how you can hover over parts of the plots to get 
 knitr::include_graphics(path = "figures/cut_crystal.png", auto_pdf = TRUE)
 ``` 
 
-Now that you have looked at the `multiqc` report for the raw data it is time to carry out `fastq` and `multiqc` on the trimmed data.
+Now that you have looked at the `multiqc` report for the raw data it is time to carry out `fastqc` and `multiqc` on the trimmed data.
 
 ```{bash eval=FALSE}
 #Make fastqc output directory
@@ -483,8 +821,25 @@ knitr::include_graphics(path = "figures/r_read.png", auto_pdf = TRUE)
 The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGA dataset
 https://ccb.jhu.edu/gage_b/datasets/index.html.
 
-<!--chapter:end:05-MultiQC.Rmd-->
+<!--chapter:end:07-MultiQC.Rmd-->
 
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
 # (APPENDIX) Appendix {-}
 
 # Useful tools and considerations
@@ -593,5 +948,5 @@ __Installation instructions:__ https://docs.conda.io/projects/conda/en/latest/us
 
 __Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html
 
-<!--chapter:end:06-Useful_Tools_and_Considerations.Rmd-->
+<!--chapter:end:08-Useful_Tools_and_Considerations.Rmd-->
 

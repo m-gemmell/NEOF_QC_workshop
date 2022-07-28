@@ -1,0 +1,107 @@
+# (APPENDIX) Appendix {-}
+
+# Useful tools and considerations
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
+``` 
+
+There are various other useful tools for sequencing QC of Illumina data. Below are some suggestions but there are many more.
+
+## Quality trimming and filtering tools
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
+``` 
+
+### Trim Galore
+From the people who brought you FastQC, Trim Galore. This is a wrapper around cutadapt and FastQC. It has a lot of options and can output fastqc results of the quality controlled reads at the same time.
+
+__Github page:__
+https://github.com/FelixKrueger/TrimGalore
+
+__Manual:__
+https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
+
+## MultiQC
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
+``` 
+MultiQC is a brilliant tool that can be used to collate multiple fastQC reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into 1 MultiQC report and the reverse reads into another.
+
+__Main page:__ https://multiqc.info/
+
+__Documentation:__ https://multiqc.info/docs/
+
+MultiQC can be to collate the output from many other bioinformatic tools.
+
+__Supported tools:__ https://multiqc.info/#supported-tools
+
+## Fasta and fastq processing toolkits
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
+``` 
+Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
+
+### Fastp
+This is a tool designed to be a \"all-in-one\" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
+
+You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
+
+```{bash eval=FALSE}
+fastp --in1 R1.fastq --in2 R2.fastq --out1 R1.120.fastq --out2 R2.120.fastq --max_len1 120 --max_len2 120 --length_required 120
+```
+
+__Main page:__ https://github.com/OpenGene/fastp
+
+### Seqtk
+A tool to process fasta or fastq files. It can carry out many tasks but I primarily use it to:
+
+- convert fastq files to fasta
+```{bash eval=FALSE}
+seqtk seq -a in.fastq > out.fasta
+```
+- subsample paired reads from fastq files
+```{bash eval=FALSE}
+seqtk sample -s100 read1.fastq 10000 > subsample1.fastq
+seqtk sample -s100 read2.fastq 10000 > subsample2.fastq
+```
+
+For more information on how these commands work and for further commands please see the link below.
+
+__Github:__ https://github.com/lh3/seqtk
+
+### FASTX-Toolkit
+A tool to process fasta or fastq files. It is quite useful but unfortunately does not take paired read information into context. This means if a read is removed from the reverse read it will not necessarily be removed from the forward file.
+
+My favourite tool from this is \'fasta_formatter\'. It can be used to set the maximum number of bases that will be on one line in a fasta file. I primarily use this so that each seq in a fasta file is on one line.
+```{bash eval=FALSE}
+fasta_formatter -i in.fasta -o out.fasta -w 0
+```
+
+__Main page:__ http://hannonlab.cshl.edu/fastx_toolkit/
+
+__Commands:__ http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
+
+### BBTools
+BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
+
+__Main page__: https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/
+
+__General usage guide:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/usage-guide/
+
+__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/data-preprocessing/
+
+## Conda
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+``` 
+As you can tell there are many bioinformatic tools. It would take a lot of work to install these all if it was easy. However some tools can be difficult to install. Thankfully conda exists.
+
+Conda is a very useful and highly used package and environmental management system. In other words you can use it to install many tools very easily. Additionally it is very easy to install conda.
+
+__Getting started with conda:__ https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html
+
+__Main page:__ https://docs.conda.io/en/latest/
+
+__Installation instructions:__ https://docs.conda.io/projects/conda/en/latest/user-guide/install/
+
+__Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html
