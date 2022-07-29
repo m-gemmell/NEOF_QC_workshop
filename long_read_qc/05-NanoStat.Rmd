@@ -1,0 +1,117 @@
+# NanoStat
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/metrics.png", auto_pdf = TRUE)
+``` 
+
+The first step is to acquire stats for the sequences in our fastq file. We will use `NanoStat` (https://github.com/wdecoster/nanostat).
+
+`NanoStat` is one of the many tools contained in the `NanoPack` suite (https://github.com/wdecoster/nanopack). We will also use the tools `NanoPlot` and `NanoFilt` downstream.
+
+## NanoStat: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key_black.png", auto_pdf = TRUE)
+```
+
+We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
+
+```{bash eval=FALSE}
+mkdir nanostats
+```
+
+Finally we will now run `NanoStat.` The options used are:
+
+- `-n` : File name/path for the output.
+- `-t` : Number of threads the script can use.
+- `--fastq` : Input data is in fastq format. Other options that can be used are `--fasta`, `--summary`, and `--bam`.
+
+```{bash eval=FALSE}
+NanoStat -n nanostats/Acinetobacter_nanostats.tsv \
+-t 4 --fastq ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq
+```
+
+When the command has finished you can look at the output text file. In this case we will use the convenient `less` command.
+
+```{bash eval=FALSE}
+less nanostats/Acinetobacter_nanostats.tsv
+```
+
+## NanoStat: output {#nanostat_output}
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_black.png", auto_pdf = TRUE)
+``` 
+
+The file contains four sections with informative headers. These are:
+
+1. __General summary__
+   - A list of general summary metrics.
+2. __Number, percentage and megabases of reads above quality cutoffs__
+   - Based on the mean quality value of a read.
+   - The \">Q5\" line shows the number and % of reads with a mean quality above Q5. It also shows the total amount of megabases these reads contain.
+3. __Top 5 highest mean basecall quality scores and their read lengths__
+   - Shows the top 5 reads with the highest mean quality scores.
+4. __Top 5 longest reads and their mean basecall quality score__
+   - Shows the top 5 longest reads.
+ 
+## Nanostat: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
+```
+
+With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
+
+```{r, echo = FALSE}
+opts_p <- c("__9.2__", "__10.2__", answer="__12.3__")
+```
+1.  What is the mean base quality for the read with the highest mean base quality?`r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__9.2__", "__10.2__", "__12.3__")
+```
+2. What is the mean base quality for the longest read?`r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__9.2__", answer="__10.2__", "__12.3__")
+```
+3. What is the mean read quality for all the data?`r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__5,770__", "__6,700.5__", "__25,072__")
+```
+4. What is the length of the read with the 2nd highest mean quality? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__5,770__", "__6,700.5__", answer="__25,072__")
+```
+5.  What is the length of the 3rd longest read? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__5,770__", answer="__6,700.5__", "__25,072__")
+```
+6.  What is the median read length of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0.2Mb__", "__8.8Mb__", answer="__14.1Mb__")
+```
+7.  To the nearest 0.1 Megabases (Mb, i.e. 100,000 bases), what is the total number of bases of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0.2Mb__", answer="__8.8Mb__", "__14.1Mb__")
+```
+8.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__0.2Mb__", "__8.8Mb__", answer="__14.1Mb__")
+```
+9. How many Megabases are within reads with a quality cutoff of >Q5? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__0.2Mb__", "__8.8Mb__", "__14.1Mb__")
+```
+10.  How many Megabases are within reads with a quality cutoff of >Q12? `r longmcq(opts_p)`
+
+## NanoStat: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
+```
+
+We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.

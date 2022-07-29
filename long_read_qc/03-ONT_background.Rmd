@@ -1,0 +1,107 @@
+# (PART\*) ONT {.unnumbered}
+
+# ONT background {#ont}
+```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
+``` 
+
+In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use the fastq files.
+
+Before carrying out analysis we will cover some background of ONT data. This will include [file formats](#ont_file_formats), & [basecalling](#ont_basecalling).
+
+## File formats {#ont_file_formats}
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
+``` 
+
+Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
+
+### Fast5
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/fast5.png", auto_pdf = TRUE)
+``` 
+
+The raw data from ONT machines comes as Fast5 (`.fast5`) files. This contains the signal data from the pore which can be processed into more useful files.
+
+Fast5 files can contain:
+
++ Raw signal data
++ Run metadata
++ fastq-basecalls
++ Other additional analyses
+
+The Fast5 file format is an implementation of the HDF5 file format specifically for ONT sequencing data. For more information on Fast5 and a tool to interface with these types of file please see:
+https://github.com/nanoporetech/ont_fast5_api
+
+### Summary file
+
+The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which describes each sequenced read.
+
+We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
+
+### BAM file
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/bam.png", auto_pdf = TRUE)
+``` 
+
+__BAM__ files (`.bam`) are the binary version of __SAM__ files (`.sam`).
+
+- __SAM__ stands for "Sequence Alignment/Map" (the B in __BAM__ is Binary).
+- __SAM__ files are tab delimited and contain alignment information. 
+- __BAM__ files are not human readable whilst __SAM__ files are.
+- __SAM__ files are larger than __BAM__.
+
+Generally programs that can work on __SAM__ files can also work on __BAM__ files. Due to the size difference it is preferable to store data in __BAM__ format over __SAM__. Even though a BAM file is smaller than its matching __SAM__ file, __BAM__ files are still very large and can be >100GB.
+
+It can be useful to contain unaligned reads from sequencing machines (e.g\. PacBio and ONT) in __BAM__ files as they can contain more metadata in the header and per-record auxiliary tags compared to __fastq__ files. 
+
+If you are working with __SAM__/__BAM__ files the following link will prove useful: 
+https://www.htslib.org/
+
+For more information on the __SAM__ and __BAM__ format please see: 
+https://samtools.github.io/hts-specs/SAMv1.pdf
+
+
+### fastq file
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/fastq.png", auto_pdf = TRUE)
+``` 
+
+The __fastq__ file format is very consistent and so there is no real difference between __fastq__ files for Illumina, PacBio, and ONT data.
+
+All __fastq__ files will contain a number of lines divisible by 4. This is because each entry/sequence will take up four lines consisting of the following information:
+
+1. Header for __fastq__ entry known as the __fastq header__. 
+    + This always begins with a __\'@\'__
+    + This is where you might see the most difference between different data. Different machines and different public databases will use different formats for __fastq__ headers.
+2. Sequence content
+3. Quality header 
+    + Always begins with a \'+\'. Sometimes also contains the same information as __fastq__ header.  
+4. Quality
+    + Each base in the 2nd line will have a corresponding quality value in this line.
+    + Note this uses Phred encoding, of which there are different formats. Most, if not all, new files will use Phred+33 but be careful if you are using older data as it may use a different one. See the \"Encoding\" section in the following link for more info: https://en.wikipedia.org/wiki/FASTQ_format.
+    +  NOTE: __\'@\'__ can be used as a quality value.
+
+An example of the information of one sequence/entry is:
+
+__\@Sequence 1__  
+__CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__  
+__+__  
+__=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
+
+## Basecalling {#ont_basecalling}
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/guppy.png", auto_pdf = TRUE)
+``` 
+
+In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __Fast5__ files to __BAM__ and/or __fastq__ files.
+
+There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
+
+Basecalling with Guppy tutorial:
+
+https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html
+
+Basecalling with Albacore tutorial:
+
+https://denbi-nanopore-training-course.readthedocs.io/en/stable/basecalling/basecalling.html

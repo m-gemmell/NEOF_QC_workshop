@@ -1,0 +1,28 @@
+# ONT Setup
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+```
+
+We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the below commands in. Each terminal will only remember what you have told that terminal.
+
+Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`.
+
+```{bash eval=FALSE}
+. usenanopack-1.1.0
+```
+
+Before carrying out any more commands we will move into the relevant directory.
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/ONT_QC/
+```
+
+Look in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.
+
+```{bash eval=FALSE}
+ls data/*
+```
+
+Each directory has one fastq file. ONT data likes to be organised with data for one sample being in one directory.
+
+To start we will only use the fastq file within the directory called \"Acinetobacter\". As you may have figured out, this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.

@@ -1,6 +1,6 @@
 --- 
 title: "Long read Quality Control"
-author: "Matthew Gemmell & Helen Hipperson"
+author: "Matthew R. Gemmell & Helen Hipperson"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -12,6 +12,23 @@ favicon: figures/NEOF_favicon.png
 description: NEOF book for the Long read quality control workshop
 cover-image: "figures/NEOF.png"
 ---
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
+```{r, echo=FALSE}
+#This book uses ionicons icons using the icons package
+#https://github.com/mitchelloharawild/icons
+#To set this up on your rstudio use the following commands
+# install.packages("remotes")
+#remotes::install_github("mitchelloharawild/icons")
+#download_ionicons()
+```
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)

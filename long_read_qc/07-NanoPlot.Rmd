@@ -1,0 +1,127 @@
+# NanoPlot
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
+``` 
+
+`NanoPlot` can be thought of as the `fastqc` for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for __fastq__, __fasta__, __BAM__, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
+
+ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.
+
+## NanoPlot: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key_green.png", auto_pdf = TRUE)
+```
+
+Prior to running `NanoPlot` we will make a directory for the `NanoPlot` output. As `NanoPlot` creates a lot of files, we'll make a subdirectory for the `NanoPlot` output for the porechopped data.
+
+```{bash eval=FALSE}
+mkdir nanoplot
+mkdir nanoplot/porechop
+```
+
+Now to run `NanoPlot`. The options we will use are:
+
+- `-t`: Number of threads to be used.
+- `--fastq`: Specifies the input path which is a fastq file.
+- `-o`: Directory where the output will be created.
+- `-p`: Prefix of output files. It is useful to have "_" at the end of the prefix.
+- `--plots`: Specifies what type of bivariate plot is to be created (more on this later). I find `hex` to be the best. 
+
+```{bash eval=FALSE}
+NanoPlot -t 4 \
+--fastq porechop/Acinetobacter.porechop.fastq \
+-o nanoplot/porechop -p Acinetobacter_ \
+--plots hex 
+```
+
+You may get the below warning. This is fine and can be ignored.
+
+```{bash, eval = FALSE}
+/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
+  return len(self._mapping)
+/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
+  yield from self._mapping
+```
+
+## NanoPlot: output
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_green.png", auto_pdf = TRUE)
+``` 
+
+List the files in the output directory.
+
+```{bash, eval=FALSE}
+ls nanoplot/porechop/
+```
+
+There are quite a few files. These should all start with \"Acinetobacter_\" thanks to the `-p` option. To quickly check all the results we can open the report html file with firefox.
+
+```{bash eval=FALSE}
+firefox nanoplot/porechop/Acinetobacter_NanoPlot-report.html
+```
+
+The first section contains [`NanoStat` output](#nanostat_output). Quickly look over this and see how it compares to the `NanoStat` output of the pre-porechopped reads.
+
+`r hide("NanoStat of pre-porechopped reads")`
+```{r, echo=FALSE}
+#Create dataframe of the nanostat pre-porechopped data
+df <- read.csv("files/Acinetobacter_nanostats.tsv", 
+               sep = ":",
+               check.names=FALSE)
+df[,2] <- trimws(df[,2],which="both", whitespace="[ \t\r\n]")
+#
+colnames(df) <- c("General summary","values")
+#Display table with flextable
+#https://ardata-fr.github.io/flextable-book/index.html
+library("flextable")
+ft <- flextable(df)
+ft <- autofit(ft)
+ft
+```
+`r unhide()`
+
+After the __Summary Statistics__ section there is a __Plots__ section. This contains the plots:
+
+- __Histogram of read lengths__
+   - Histogram of \"Number of _reads_\" (y) against \"Read length\" (x).
+- __Histogram of read lengths after log transformations__
+   - Histogram of \"Number of _reads_\" (y) against log transformed \"Read length\" (x).
+- __Weighted Histogram of read lengths__
+   - Histogram of \"Number of _bases_\" (y) against \"Read length\" (x).
+- __Weighted Histogram of read lengths after log transformation__
+   - Histogram of \"Number of _bases_\" (y) against log transformed \"Read length\" (x).
+- __Dynamic histogram of Read length__
+   - An interactive Histogram of \"Number of reads\" (y) against \"Read length\" (x) produced by [plotly](https://plotly.com/).
+   - You can zoom into areas by clicking and dragging. 
+      - Make boxes to zoom into a specific area. 
+      - Click and drag left or right only to zoom into a specific part of the x axis. 
+      - Click and drag up or down only to zoom into a specific part of the y axis. 
+      - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
+- __Yield by length__
+   - Plot showing the \"Cumulative yield for minimal length\" (y) by \"Read length\" (x).
+   - The cumulative yield is measured in Gigabases (billion bases).
+   - This plot is useful to know how many bases you would retain if you filtered reads based on read length.
+- __Read lengths vs Average read quality plot using hexagonal bins__
+   - This is the most informative plot. It is the bivariate plot we indicated we wanted as hexagonal with the option `--plots hex`.
+   - Each hex is a bin with a darker colour representing more reads.
+   - At the top of the plot is a histogram of Number of reads against read lengths.
+   - At the right of the plot is a sideways histogram of number of reads against average read quality.
+
+## Nanostat: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
+```
+Questions to be answered with the html file:
+
+- How long is the longest read?
+- What is the highest mean basecall quality score of a read?
+- How many reads have a mean basecall quality score >Q10?
+- Approximately where is the highest density of reads in terms of read lengths and average read quality.
+- Roughly, do the longer reads have relatively high, medium, or low mean qualities?
+
+## NanoStat: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
+```
+
+Using different input files will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.
