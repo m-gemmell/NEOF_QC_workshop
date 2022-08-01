@@ -1,0 +1,52 @@
+# CLR: QC
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
+``` 
+
+The `SequelTools` program has three different tools, specified with the `-t` argument, which are:
+
+- `Q` for quality control
+- `S` for subsampling the data
+- `F` for filtering the data
+
+We will use `Q` to assess our data. Other options used are:
+
+- `-u` to specify the file containing the list of subread .bam files
+- `-o` to specify the name of an output folder for the plots
+- `-p` to specify which plots to produce. 
+  - `b`: A few basic plots
+  - `i`: The basic plots and a few more detailed plots
+  - `a`: generates all available plots. This is what we will use.
+
+```{bash eval=FALSE}
+SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
+```
+
+When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
+
+```{bash eval=FALSE}
+firefox CLR_QC/totalBasesBarplot.pdf
+```
+
+This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and \'longestSubs\' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
+
+There are also plots for the N50 and L50 of each sample:
+
+```{bash eval=FALSE}
+firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf
+```
+
+- N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
+- L50 = the minimum number of subreads whose length makes up the N50 value.
+
+We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. Conversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.
+
+We can see information on the subread lengths in more detail as boxplots and histograms in the following plots:
+
+```{bash eval=FALSE}
+firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf
+```
+
+The boxplots show that Sample3 does indeed have the longest subread lengths, and highest N50 as indicated by the blue diamond. Sample2 has a larger range of subread lengths than Sample1, but has a slightly lower median length and N50 value.
+
+The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads - why do you think this is? (We\'ll come back to this after the filtering step!)

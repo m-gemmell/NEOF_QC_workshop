@@ -1,0 +1,20 @@
+# CLR: Setup
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
+``` 
+
+Before carrying out any specific commands we will first move into the relevant directory.
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/PB_QC/data/CLR
+```
+
+Use `ls` to list the contents of this directory. You will see that there are BAM subreads and scraps files for three samples, plus their BAM index files. These data were generated from high molecular weight DNA for _de novo_ genome assembly.
+
+We will use the `SequelTools` program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:
+
+```{bash eval=FALSE}
+find $(pwd) -name "*subreads.bam" | sort > CLR_subreads.txt
+```
+
+This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file.

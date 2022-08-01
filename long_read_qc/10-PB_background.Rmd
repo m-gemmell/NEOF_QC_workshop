@@ -1,0 +1,90 @@
+# (PART\*) PacBio {.unnumbered}
+
+# PacBio Background {#pb}
+
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/Pacbio_logo.png", auto_pdf = TRUE)
+``` 
+
+In this section we will quality check PacBio sequencing raw data (BAM files), perform a filter to retain only the longest reads and output the data in fastq format.
+
+## File formats
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
+``` 
+
+Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.3).
+
+The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:
+
+- Black, I = Insert DNA, i.e\. the double-stranded DNA of your sample
+- Red, B = Barcodes, optional single (Left or Right) or double (Left & Right) for multiplexing samples
+- Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
+
+```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
+knitr::include_graphics(path = "figures/smrtbell.png", auto_pdf = TRUE)
+``` 
+
+Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
+
+PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. These are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.
+
+A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
+
+```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
+knitr::include_graphics(path = "figures/zmw.png", auto_pdf = TRUE)
+``` 
+
+This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
+For more information see: https://pacbiofileformats.readthedocs.io/en/10.0/Primer.html
+
+__subreads.bam file__
+
+This contains the sequence for each read (or pass) of the insert DNA (grey).
+
+__scraps.bam file__
+
+This contains the adapter (green) and barcode (red) sequences, as well as any low quality (black) regions.
+
+These BAM files will usually have an accompanying PacBio BAM index file (subreads.bam.pbi and scraps.bam.pbi).
+
+## CLR & CCS
+## Tools
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/clr_and_ccs.png", auto_pdf = TRUE)
+``` 
+
+PacBio data can be generated in two ways depending on the goal of the experiment.
+
+- __Continuous Long Reads (CLR)__ the aim is to produce sequence reads as long as possible, such as for genome assembly, sequencing through long repeat regions or finding other large structural variants. CLR runs usually generate one subread (i.e\. there would be just one or one and a bit of the grey insert regions shown above) and sequences have an error rate of ~ 10-15%.
+
+- __Circular Consensus Sequences (CCS)__ the aim is to sequence shorter molecules (up to 10-15kb max), such as amplicons, and to generate accurate consensus sequences. CCS runs generate higher-accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read).
+
+For this tutorial we will carry out quality checking and control on both CLR and CCS BAM files.
+
+## Tools
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
+``` 
+
+### SequelTools
+
+https://github.com/ISUgenomics/SequelTools
+
+We will use the `SequelTools` program to both assess and filter our PacBio CLR and CCS data.
+
+### smrttools
+
+https://www.pacb.com/wp-content/uploads/SMRT_Tools_Reference_Guide_v90.pdf
+
+We will also use `smrttools` from PacBio to:
+
+- Generate any missing index files
+- Generate CCS reads from subreads BAM files
+- Convert BAM to fasta/q format.
+
+### RabbitQC
+
+https://github.com/ZekunYin/RabbitQC
+
+Lastly, we will also use `RabbitQC` to assess the CCS assembled reads in fastq format.
