@@ -52,7 +52,7 @@ The file contains four sections with informative headers. These are:
 4. __Top 5 longest reads and their mean basecall quality score__
    - Shows the top 5 longest reads.
  
-## Nanostat: MCQs
+## NanoStat: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
 ```

@@ -21,7 +21,8 @@ porechop-summary
 nanoplot
 nanoplot-run
 nanoplot-output
-nanostat-mcqs-1
-nanostat-summary-1
+nanoplot-mcqs
+nanoplot-summary
 nanofilt
+nanofilt-run
 final-check

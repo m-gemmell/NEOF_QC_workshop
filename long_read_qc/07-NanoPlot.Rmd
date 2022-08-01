@@ -97,6 +97,7 @@ After the __Summary Statistics__ section there is a __Plots__ section. This cont
       - Click and drag left or right only to zoom into a specific part of the x axis. 
       - Click and drag up or down only to zoom into a specific part of the y axis. 
       - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
+      - Hover over a bar to see the specific values of it.
 - __Yield by length__
    - Plot showing the \"Cumulative yield for minimal length\" (y) by \"Read length\" (x).
    - The cumulative yield is measured in Gigabases (billion bases).
@@ -107,21 +108,52 @@ After the __Summary Statistics__ section there is a __Plots__ section. This cont
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 
-## Nanostat: MCQs
+## NanoPlot: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
 ```
-Questions to be answered with the html file:
+Please attempt the below MCQs with the information in the report html.
 
-- How long is the longest read?
-- What is the highest mean basecall quality score of a read?
-- How many reads have a mean basecall quality score >Q10?
-- Approximately where is the highest density of reads in terms of read lengths and average read quality.
-- Roughly, do the longer reads have relatively high, medium, or low mean qualities?
+```{r, echo = FALSE}
+opts_p <- c(answer="__10.2__", "__6,962.1__", "__8.8Mb__")
+```
+1. What is the mean read quality for all the data?`r longmcq(opts_p)`
 
-## NanoStat: summary
+```{r, echo = FALSE}
+opts_p <- c("__10.2__", answer="__6,962.1__", "__8.8Mb__")
+```
+2.  What is the mean read length of the data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__10.2__", "__6,962.1__", answer="__8.8Mb__")
+```
+3.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__10__", "__146__", answer="__4Mb__")
+```
+4. Approximately how many bases would you retain if you filtered out/removed reads with a length <10,000bp (Yield by length)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__10__", answer="__146__", "__4Mb__")
+```
+5. How many reads have a length between 6,000-6,500 (Dynamic histogram of read lengths) `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__10__", "__146__", "__4Mb__")
+```
+6. How many read have a length between 15K-15.499K (Dynamic histogram of read lengths)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
+```
+7. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
+
+## NanoPlot: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 ```
 
-Using different input files will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.
+We have use `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
+
+You can use `NanoPlot` with different input files. This will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.
