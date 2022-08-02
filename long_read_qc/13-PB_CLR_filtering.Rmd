@@ -1,31 +1,49 @@
-# CLR: Filtering
+# CLR filtering
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ``` 
 
-Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use just the longest PacBio reads for a _de novo_ assembly.
+Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use only the longest PacBio reads for a _de novo_ assembly.
 
-To filter the data by minimum CLR length we will use SequelTools option `-t F`.
+## CLR filtering: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key_purple.png", auto_pdf = TRUE)
+```
 
-Other options used are:
+To filter the data by minimum CLR length we will use `SequelTools` with the `-t F` option. This sets the task mode to filtering.
 
-- `-u` to specify the file containing the list of subread .bam files
-- `-c` to specify the file containing the list of scraps .bam files
-- `-C` to specify to filter by minimum CLR length
-- `-Z` to specify the minimum length to keep a CLR
-- `-f` to specify the format of the output files: `s`=sam, `b`=bam, `2`=both
-- `-o` to specify the name of an output folder for the filtered data files
+Prior to the command, we need to make a `.fofn` file (file of file names) for the scraps.bam files, as these are needed when using the filtering tool.
 
-First we need to make a fofn for the scraps.bam files, as these are needed when using the filtering tool:
 ```{bash eval=FALSE}
 find $(pwd) -name "*scraps.bam" | sort > CLR_scraps.txt
 ```
 
-Then we can run the filtering command. Here we will keep only CLRs of at least 10,000 bp:
+I recommend you view the output file (`CLR_scrap.txt`) with `less` to ensure it contains the file names (1 `scraps.bam` file for each sample in this case).
+
+Then we can run the filtering command. We will retain CLRs with a length of at least 10,000 bp.
+
 ```{bash eval=FALSE}
 SequelTools.sh -t F -u CLR_subreads.txt -c CLR_scraps.txt \
 -C -Z 10000 -f b -o filtered
 ```
+
+__Parameters__:
+
+- `-t`: Task to carry out. `F` for filtering.
+- `-u`: Input file containing the list of subread .bam files.
+- `-c`: Input file containing the list of scraps .bam files.
+- `-C`: Filter by minimum CLR length.
+- `-Z`: Minimum length to keep a CLR.
+- `-f`: Format of the output files: 
+  - `s`=sam
+  - `b`=bam
+  - `2`=both
+- `-o`: Name of an output folder for the filtered data files.
+
+## Quality check filtered data
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
+``` 
 
 When this has finished running the \'filtered\' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
 ```{bash eval=FALSE}
@@ -47,7 +65,7 @@ When this has finished running the \'filt_QC\' folder will contain a text file o
 firefox filt_QC/subreadSizesBoxplots.pdf
 ```
 
-And compare this to the boxplots from the unfiltered data:
+Compare this to the boxplots from the unfiltered data:
 ```{bash eval=FALSE}
 firefox ~/QC_workshop/PB_QC/data/CLR/CLR_QC/subreadSizesBoxplots.pdf
 ```
@@ -66,18 +84,34 @@ filt_QC/Sample3_flt.readLenHists.pdf
 
 For this sample the DNA fragment length of the library was much greater than 10,000 bp, and so the majority of CLRs consist of just one pass of this long insert. The large number of short subreads remaining in the filtered file (blue bars) represent subreads only partially sequenced on the \'return journey\' of the circular library DNA molecule. These are not present when we look only at the longest subread present in each CLR (green bars).
 
-SequelTools doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
+## BAM to fastq
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/convert.png", auto_pdf = TRUE)
+``` 
 
-To do this use the commands `pbindex` and `bam2fastq` from the smrttools package:
+`SequelTools` doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
+
+To do this use the commands `pbindex` and `bam2fastq` from the `smrttools` package.
+
+Prior to converting from bam to fastq we need to index the bam file. This will generate a .pbi index file.
+
 ```{bash eval=FALSE}
 pbindex Sample1_flt.subreads.bam
 ```
 
-Note that you may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
+The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert:
 
-This command generates a .pbi index file that is needed before we can convert the BAM file to fastq format. The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert:
 ```{bash eval=FALSE}
 bam2fastq -o Sample1_filtered Sample1_flt.subreads.bam
 ```
 
-You should now have a compressed fastq file for the CLR-filtered subreads from Sample1.
+__Note__: You may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
+
+You will now have a compressed fastq file for the CLR-filtered subreads from Sample1. You can also carry this out for Sample2 & Sample3 but it is not required.
+
+## CLR filtering: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
+```
+
+We have quality checked and quality controlled our CLR data. This has produced both filtered CLRs and filtered subreads. Next we will learn how to QC CCS data.

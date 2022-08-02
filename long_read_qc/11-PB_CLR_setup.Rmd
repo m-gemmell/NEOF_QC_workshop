@@ -1,4 +1,4 @@
-# CLR: Setup
+# CLR setup
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
 ``` 
@@ -17,4 +17,4 @@ We will use the `SequelTools` program to both assess and filter our PacBio CLR d
 find $(pwd) -name "*subreads.bam" | sort > CLR_subreads.txt
 ```
 
-This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file.
+This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file. It is a good idea to check the contents of the file with `less` to ensure it contains the file names. In this case this would be a `.subreads.bam` for each sample.

@@ -1,7 +1,14 @@
-# CLR: QC
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+# CLR QC
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
 ``` 
+
+In this section we will quality control the CLR (Continuous Long Read) reads with `SequelTools`.
+
+## CLR QC: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key_red.png", auto_pdf = TRUE)
+```
 
 The `SequelTools` program has three different tools, specified with the `-t` argument, which are:
 
@@ -22,31 +29,91 @@ We will use `Q` to assess our data. Other options used are:
 SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 ```
 
-When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
-
-```{bash eval=FALSE}
-firefox CLR_QC/totalBasesBarplot.pdf
+## CLR QC: output
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 
-This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and \'longestSubs\' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
+When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use `firefox` to view the pdf plots.
 
-There are also plots for the N50 and L50 of each sample:
+To open all the pdf files containing the plots you can run the below commands.
 
 ```{bash eval=FALSE}
-firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf
+firefox CLR_QC/*.pdf
 ```
 
-- N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
-- L50 = the minimum number of subreads whose length makes up the N50 value.
+- __totalBasesBarplot.pdf__: Shows the total amount of sequence data (total bases; y axis). It displays this for: 
+  - All of the subreads present
+  - Only the 'longestSubs'. This is the longest subread within each CLR. Ideally we want each CLR to only consist of 1 subread. 
+- __n50s.pdf__: Shows the N50 values of the samples.
+  - N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
+- __l50s.pdf__: Shows the L50 values of the samples.
+  - L50 = the minimum number of subreads whose length makes up the N50 value.
+- __subreadSizesBoxplots.pdf__: Box plots showing the range of subread lengths for the samples.
+- __.readLenHists.pdf__: Contains 2 histograms for subread length.
+  - Histogram of subread lengths
+  - Histogram of longest subread ('longestSubs') lengths.
+  - Each sample has its own __readLenHists.pdf__ file, e.g. __Sample1.readLenHists.pdf__.
+- __psrs.pdf__: Shows the PSR value for each sample.
+  - PSR stands for polymerase-to-subread ratio
+  - It is calculated as the total bases from the longest subreads per CLR divided by the total bases from subreads. 
+  - This is a measure of the effectiveness of library preparation. 
+  - When PSR is close to one the DNA template is mostly the reads of interest.
+  - A total failure of library preparation would result in no reads of interest and a PSR of zero.
+- __zors.pdf__: Shows the ZOR value for each sample.
+  - ZOR stands for ZMW-occupancy-ratio.
+  - This is calculated as the number of CLRs with subreads divided by the number of subreads.
+  - This is a measure of the effectiveness of matching DNA templates with ZMWs. 
+  - When ZOR is zero there are no DNA templates in ZMWs. 
+  - When ZOR is above one then there are more than one DNA template per ZMW on average.
+  - Ideally, this value is exactly one, indicating there was 1 DNA template per ZMW which is what we would want for CLRs.
+
+## CLR QC: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
+```
+
+With the produced files attempt the below questions.
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+1. Which sample has the highest total amount of sequence data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", "__Sample2__", answer="__Sample3__")
+```
+2. Which sample has the highest N50 sizes? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+3. Which sample has the highest L50 sizes? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+4. Which sample has the best PSR value (closest to 1)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+5. Which sample has the best ZOR value (closest to 1 but not above 1)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", "__Sample2__", answer="__Sample3__")
+```
+6. Which sample has the biggest difference when comparing their "Histogram of subread lengths" versus their "Histogram of longest subread length"? `r longmcq(opts_p)`
+
+## CLR QC: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
+```
+
+With the QC we can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequencing and we often achieve and aim for just a single pass of this insert during the PacBio sequencing run.
 
 We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. Conversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.
 
-We can see information on the subread lengths in more detail as boxplots and histograms in the following plots:
-
-```{bash eval=FALSE}
-firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf
-```
-
 The boxplots show that Sample3 does indeed have the longest subread lengths, and highest N50 as indicated by the blue diamond. Sample2 has a larger range of subread lengths than Sample1, but has a slightly lower median length and N50 value.
 
-The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads - why do you think this is? (We\'ll come back to this after the filtering step!)
+The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads. We\'ll discuss this after the filtering step!

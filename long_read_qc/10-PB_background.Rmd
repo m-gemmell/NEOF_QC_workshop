@@ -49,7 +49,6 @@ This contains the adapter (green) and barcode (red) sequences, as well as any lo
 These BAM files will usually have an accompanying PacBio BAM index file (subreads.bam.pbi and scraps.bam.pbi).
 
 ## CLR & CCS
-## Tools
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
 knitr::include_graphics(path = "figures/clr_and_ccs.png", auto_pdf = TRUE)
 ``` 

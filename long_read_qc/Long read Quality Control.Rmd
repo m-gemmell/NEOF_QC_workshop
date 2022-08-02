@@ -904,7 +904,6 @@ This contains the adapter (green) and barcode (red) sequences, as well as any lo
 These BAM files will usually have an accompanying PacBio BAM index file (subreads.bam.pbi and scraps.bam.pbi).
 
 ## CLR & CCS
-## Tools
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
 knitr::include_graphics(path = "figures/clr_and_ccs.png", auto_pdf = TRUE)
 ``` 
@@ -963,7 +962,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# CLR: Setup
+# CLR setup
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
 ``` 
@@ -982,7 +981,7 @@ We will use the `SequelTools` program to both assess and filter our PacBio CLR d
 find $(pwd) -name "*subreads.bam" | sort > CLR_subreads.txt
 ```
 
-This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file.
+This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file. It is a good idea to check the contents of the file with `less` to ensure it contains the file names. In this case this would be a `.subreads.bam` for each sample.
 
 <!--chapter:end:11-PB_CLR_setup.Rmd-->
 
@@ -1003,10 +1002,17 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# CLR: QC
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+# CLR QC
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
 ``` 
+
+In this section we will quality control the CLR (Continuous Long Read) reads with `SequelTools`.
+
+## CLR QC: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key_red.png", auto_pdf = TRUE)
+```
 
 The `SequelTools` program has three different tools, specified with the `-t` argument, which are:
 
@@ -1027,34 +1033,94 @@ We will use `Q` to assess our data. Other options used are:
 SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 ```
 
-When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use firefox to view the pdf plots.
-
-```{bash eval=FALSE}
-firefox CLR_QC/totalBasesBarplot.pdf
+## CLR QC: output
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 
-This shows the total amount of sequence data for each of the three samples, both for all of the subreads present and \'longestSubs\' (the longest subread within each CLR). We can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequenicng and we often achieve just a single pass of this insert during the PacBio sequenicng run.
+When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use `firefox` to view the pdf plots.
 
-There are also plots for the N50 and L50 of each sample:
+To open all the pdf files containing the plots you can run the below commands.
 
 ```{bash eval=FALSE}
-firefox CLR_QC/n50s.pdf CLR_QC/l50s.pdf
+firefox CLR_QC/*.pdf
 ```
 
-- N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
-- L50 = the minimum number of subreads whose length makes up the N50 value.
+- __totalBasesBarplot.pdf__: Shows the total amount of sequence data (total bases; y axis). It displays this for: 
+  - All of the subreads present
+  - Only the 'longestSubs'. This is the longest subread within each CLR. Ideally we want each CLR to only consist of 1 subread. 
+- __n50s.pdf__: Shows the N50 values of the samples.
+  - N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.
+- __l50s.pdf__: Shows the L50 values of the samples.
+  - L50 = the minimum number of subreads whose length makes up the N50 value.
+- __subreadSizesBoxplots.pdf__: Box plots showing the range of subread lengths for the samples.
+- __.readLenHists.pdf__: Contains 2 histograms for subread length.
+  - Histogram of subread lengths
+  - Histogram of longest subread ('longestSubs') lengths.
+  - Each sample has its own __readLenHists.pdf__ file, e.g. __Sample1.readLenHists.pdf__.
+- __psrs.pdf__: Shows the PSR value for each sample.
+  - PSR stands for polymerase-to-subread ratio
+  - It is calculated as the total bases from the longest subreads per CLR divided by the total bases from subreads. 
+  - This is a measure of the effectiveness of library preparation. 
+  - When PSR is close to one the DNA template is mostly the reads of interest.
+  - A total failure of library preparation would result in no reads of interest and a PSR of zero.
+- __zors.pdf__: Shows the ZOR value for each sample.
+  - ZOR stands for ZMW-occupancy-ratio.
+  - This is calculated as the number of CLRs with subreads divided by the number of subreads.
+  - This is a measure of the effectiveness of matching DNA templates with ZMWs. 
+  - When ZOR is zero there are no DNA templates in ZMWs. 
+  - When ZOR is above one then there are more than one DNA template per ZMW on average.
+  - Ideally, this value is exactly one, indicating there was 1 DNA template per ZMW which is what we would want for CLRs.
+
+## CLR QC: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
+```
+
+With the produced files attempt the below questions.
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+1. Which sample has the highest total amount of sequence data? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", "__Sample2__", answer="__Sample3__")
+```
+2. Which sample has the highest N50 sizes? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+3. Which sample has the highest L50 sizes? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+4. Which sample has the best PSR value (closest to 1)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", answer="__Sample2__", "__Sample3__")
+```
+5. Which sample has the best ZOR value (closest to 1 but not above 1)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Sample1__", "__Sample2__", answer="__Sample3__")
+```
+6. Which sample has the biggest difference when comparing their "Histogram of subread lengths" versus their "Histogram of longest subread length"? `r longmcq(opts_p)`
+
+## CLR QC: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
+```
+
+With the QC we can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequencing and we often achieve and aim for just a single pass of this insert during the PacBio sequencing run.
 
 We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. Conversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.
 
-We can see information on the subread lengths in more detail as boxplots and histograms in the following plots:
-
-```{bash eval=FALSE}
-firefox CLR_QC/subreadSizesBoxplots.pdf CLR_QC/*Hists.pdf
-```
-
 The boxplots show that Sample3 does indeed have the longest subread lengths, and highest N50 as indicated by the blue diamond. Sample2 has a larger range of subread lengths than Sample1, but has a slightly lower median length and N50 value.
 
-The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads - why do you think this is? (We\'ll come back to this after the filtering step!)
+The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads. We\'ll discuss this after the filtering step!
 
 <!--chapter:end:12-PB_CLR_QC.Rmd-->
 
@@ -1075,34 +1141,52 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# CLR: Filtering
+# CLR filtering
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ``` 
 
-Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use just the longest PacBio reads for a _de novo_ assembly.
+Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use only the longest PacBio reads for a _de novo_ assembly.
 
-To filter the data by minimum CLR length we will use SequelTools option `-t F`.
+## CLR filtering: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/enter_key_purple.png", auto_pdf = TRUE)
+```
 
-Other options used are:
+To filter the data by minimum CLR length we will use `SequelTools` with the `-t F` option. This sets the task mode to filtering.
 
-- `-u` to specify the file containing the list of subread .bam files
-- `-c` to specify the file containing the list of scraps .bam files
-- `-C` to specify to filter by minimum CLR length
-- `-Z` to specify the minimum length to keep a CLR
-- `-f` to specify the format of the output files: `s`=sam, `b`=bam, `2`=both
-- `-o` to specify the name of an output folder for the filtered data files
+Prior to the command, we need to make a `.fofn` file (file of file names) for the scraps.bam files, as these are needed when using the filtering tool.
 
-First we need to make a fofn for the scraps.bam files, as these are needed when using the filtering tool:
 ```{bash eval=FALSE}
 find $(pwd) -name "*scraps.bam" | sort > CLR_scraps.txt
 ```
 
-Then we can run the filtering command. Here we will keep only CLRs of at least 10,000 bp:
+I recommend you view the output file (`CLR_scrap.txt`) with `less` to ensure it contains the file names (1 `scraps.bam` file for each sample in this case).
+
+Then we can run the filtering command. We will retain CLRs with a length of at least 10,000 bp.
+
 ```{bash eval=FALSE}
 SequelTools.sh -t F -u CLR_subreads.txt -c CLR_scraps.txt \
 -C -Z 10000 -f b -o filtered
 ```
+
+__Parameters__:
+
+- `-t`: Task to carry out. `F` for filtering.
+- `-u`: Input file containing the list of subread .bam files.
+- `-c`: Input file containing the list of scraps .bam files.
+- `-C`: Filter by minimum CLR length.
+- `-Z`: Minimum length to keep a CLR.
+- `-f`: Format of the output files: 
+  - `s`=sam
+  - `b`=bam
+  - `2`=both
+- `-o`: Name of an output folder for the filtered data files.
+
+## Quality check filtered data
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
+``` 
 
 When this has finished running the \'filtered\' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
 ```{bash eval=FALSE}
@@ -1124,7 +1208,7 @@ When this has finished running the \'filt_QC\' folder will contain a text file o
 firefox filt_QC/subreadSizesBoxplots.pdf
 ```
 
-And compare this to the boxplots from the unfiltered data:
+Compare this to the boxplots from the unfiltered data:
 ```{bash eval=FALSE}
 firefox ~/QC_workshop/PB_QC/data/CLR/CLR_QC/subreadSizesBoxplots.pdf
 ```
@@ -1143,21 +1227,194 @@ filt_QC/Sample3_flt.readLenHists.pdf
 
 For this sample the DNA fragment length of the library was much greater than 10,000 bp, and so the majority of CLRs consist of just one pass of this long insert. The large number of short subreads remaining in the filtered file (blue bars) represent subreads only partially sequenced on the \'return journey\' of the circular library DNA molecule. These are not present when we look only at the longest subread present in each CLR (green bars).
 
-SequelTools doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
+## BAM to fastq
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/convert.png", auto_pdf = TRUE)
+``` 
 
-To do this use the commands `pbindex` and `bam2fastq` from the smrttools package:
+`SequelTools` doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
+
+To do this use the commands `pbindex` and `bam2fastq` from the `smrttools` package.
+
+Prior to converting from bam to fastq we need to index the bam file. This will generate a .pbi index file.
+
 ```{bash eval=FALSE}
 pbindex Sample1_flt.subreads.bam
 ```
 
-Note that you may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
+The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert:
 
-This command generates a .pbi index file that is needed before we can convert the BAM file to fastq format. The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert:
 ```{bash eval=FALSE}
 bam2fastq -o Sample1_filtered Sample1_flt.subreads.bam
 ```
 
-You should now have a compressed fastq file for the CLR-filtered subreads from Sample1.
+__Note__: You may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
+
+You will now have a compressed fastq file for the CLR-filtered subreads from Sample1. You can also carry this out for Sample2 & Sample3 but it is not required.
+
+## CLR filtering: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
+```
+
+We have quality checked and quality controlled our CLR data. This has produced both filtered CLRs and filtered subreads. Next we will learn how to QC CCS data.
 
 <!--chapter:end:13-PB_CLR_filtering.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Circular Consensus Sequences
+```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
+knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
+``` 
+
+We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.
+
+For this section we will start with the subreads and carry out the following steps:
+
+1. QC the subreads
+2. Generate CCS reads form the subreads.
+3. QC the CCS reads with `RabbitQC`.
+
+Before carrying out any specific commands we will first move into the relevant directory.
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/PB_QC/data/CCS
+```
+
+## QC the subreads
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
+``` 
+
+OUr current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
+```{bash eval=FALSE}
+find $(pwd) -name "*subreads.bam"  > subreads.txt
+```
+
+With our file of file names (.fofn) created we can run `SequelTools` for quality checking.
+
+```{bash eval=FALSE}
+SequelTools.sh -t Q -p a -u subreads.txt -o S4QC
+```
+
+When these commands have run you will have a \'S4QC\' folder containing the \'summaryTable.txt\' file and the series of plots saved as pdf files. Let\'s have a look at the subread length histogram.
+
+```{bash eval=FALSE}
+firefox S4QC/Sample4.readLenHists.pdf
+```
+
+Many of the longest subreads (green bars) are ~ 4kb (the length of our amplicon), but there are also lots of shorter reads. 
+
+## CCS generation
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/production.png", auto_pdf = TRUE)
+``` 
+
+To generate CCS reads we will use the `ccs` tool from the `smrttools` package. This will also act as a form of filtering.
+
+The full command to generate CCS reads is:
+
+```{bash eval=FALSE}
+ccs --minLength 3500 --minPasses 7 -j 1 Sample4.subreads.bam S4_ccs.bam
+```
+
+__Parameters__:
+
+- `--minLength` to specify the minimum subread length to use to generate a ccs read
+- `--minPasses` to specify the minimum number of subreads per ZMW read to generate a ccs read
+- `-j` to specify the number of threads to use
+- The second last parameter is the input file.
+  - In this case `Sample4.subreads.bam`.
+- The last input is the output file name.
+  - In this case `S4_ccs.bam`.
+
+__Important!__
+Even though this is a heavily downsized dataset this command still takes ~20 minutes to run. To prevent you having to wait we have included the results file already in your directory. If you have typed in the above command to run you can kill it by pressing Ctrl - C.
+
+To see the results summary:
+```{bash eval=FALSE}
+cd ccs_results
+less ccs_report.txt
+```
+
+### CCS MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
+```
+
+```{r, echo = FALSE}
+opts_p <- c("__0%__", answer="__29.16%__", "__70.62%__")
+```
+1. What percentage of the subreads generated a CCS? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__", "__CCS did not converge__")
+```
+1. What was the main reason for failure of CCS generation? `r longmcq(opts_p)`
+
+## RabbitQC
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/rabbit_qc.png", auto_pdf = TRUE)
+``` 
+
+Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
+
+Thankfully an index file `.pbi` was already created when we generated the ccs bam file. We therefore don't need to create this.
+
+The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert. We\'ll also include the option `-u` to give an uncompressed fastq output.
+
+```{bash eval=FALSE}
+bam2fastq -u -o S4_ccs S4_ccs.bam
+```
+
+__Note__: You may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
+
+With the CCS fastq file we\'re ready to run `RabbitQC`.
+```{bash eval=FALSE}
+rabbit_qc -i S4_ccs.fastq -D -w 1 -h S4_ccs_qc.html
+```
+
+__Parameters__:
+
+- `-i` to specify the input fastq file name
+- `-D` to specify these are long-read data (i.e\. not Illumina)
+- `-w` to specify the number of threads
+- `-h` to specify a name for the html results file
+
+view the output using firefox.
+
+```{bash eval=FALSE}
+firefox S4_ccs_qc.html
+```
+
+The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb. In fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplification and sequencing has worked well.
+
+The other plots show the % nucleotide frequencies and mean quality scores for the beginning and end of the reads. These aren\'t especially useful as such a short region is shown, but we can see the quality of the ccs reads is very high, and the main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
+
+## Final summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
+```
+
+That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.
+
+Thanks for reading.
+
+<!--chapter:end:14-CCS.Rmd-->
 
