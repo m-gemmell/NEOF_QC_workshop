@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2022-08-02" />
+<meta name="date" content="2022-08-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,8 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<link href="libs/tabwid-1.0.0/scrool.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -287,58 +285,225 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <button>
 NanoStat of pre-porechopped reads
 </button>
-<template id="2d3b17bd-4593-4772-a51c-f28de7a08bc5"><style>
-.tabwid table{
-  border-spacing:0px !important;
-  border-collapse:collapse;
-  line-height:1;
-  margin-left:auto;
-  margin-right:auto;
-  border-width: 0;
-  display: table;
-  margin-top: 1.275em;
-  margin-bottom: 1.275em;
-  border-color: transparent;
-}
-.tabwid_left table{
-  margin-left:0;
-}
-.tabwid_right table{
-  margin-right:0;
-}
-.tabwid td {
-    padding: 0;
-}
-.tabwid a {
-  text-decoration: none;
-}
-.tabwid thead {
-    background-color: transparent;
-}
-.tabwid tfoot {
-    background-color: transparent;
-}
-.tabwid table tr {
-background-color: transparent;
-}
-</style><div class="tabwid"><style>.cl-960114f0{}.cl-95fa1592{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-95fa2582{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-95fa54b2{width:132.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54b3{width:348.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54bc{width:132.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54bd{width:348.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54c6{width:348.3pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54c7{width:132.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54d0{width:132.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54d1{width:348.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54d2{width:132.4pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54da{width:348.3pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54db{width:348.3pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-95fa54e4{width:132.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-960114f0'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-95fa54db"><p class="cl-95fa2582"><span class="cl-95fa1592">General summary</span></p></td><td class="cl-95fa54e4"><p class="cl-95fa2582"><span class="cl-95fa1592">values</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-95fa54b3"><p class="cl-95fa2582"><span class="cl-95fa1592">Mean read length</span></p></td><td class="cl-95fa54b2"><p class="cl-95fa2582"><span class="cl-95fa1592">7,070.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54b3"><p class="cl-95fa2582"><span class="cl-95fa1592">Mean read quality</span></p></td><td class="cl-95fa54b2"><p class="cl-95fa2582"><span class="cl-95fa1592">10.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54b3"><p class="cl-95fa2582"><span class="cl-95fa1592">Median read length</span></p></td><td class="cl-95fa54b2"><p class="cl-95fa2582"><span class="cl-95fa1592">6,700.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54b3"><p class="cl-95fa2582"><span class="cl-95fa1592">Median read quality</span></p></td><td class="cl-95fa54b2"><p class="cl-95fa2582"><span class="cl-95fa1592">10.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54d1"><p class="cl-95fa2582"><span class="cl-95fa1592">Number of reads</span></p></td><td class="cl-95fa54d0"><p class="cl-95fa2582"><span class="cl-95fa1592">2,000.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54da"><p class="cl-95fa2582"><span class="cl-95fa1592">Read length N50</span></p></td><td class="cl-95fa54d2"><p class="cl-95fa2582"><span class="cl-95fa1592">8,143.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">STDEV read length</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">3,336.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54d1"><p class="cl-95fa2582"><span class="cl-95fa1592">Total bases</span></p></td><td class="cl-95fa54d0"><p class="cl-95fa2582"><span class="cl-95fa1592">14,141,646.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">Number, percentage and megabases of reads above quality cutoffs</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">&gt;Q5</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">2000 (100.0%) 14.1Mb</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">&gt;Q7</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">1998 (99.9%) 14.1Mb</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">&gt;Q10</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">1231 (61.6%) 8.8Mb</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">&gt;Q12</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">29 (1.5%) 0.2Mb</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">&gt;Q15</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">0 (0.0%) 0.0Mb</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54b3"><p class="cl-95fa2582"><span class="cl-95fa1592">Top 5 highest mean basecall quality scores and their read lengths</span></p></td><td class="cl-95fa54b2"><p class="cl-95fa2582"><span class="cl-95fa1592"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">1</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">12.3 (7039)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">2</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">12.3 (5770)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">3</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">12.3 (8052)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">4</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">12.2 (8120)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">5</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">12.2 (3041)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54b3"><p class="cl-95fa2582"><span class="cl-95fa1592">Top 5 longest reads and their mean basecall quality score</span></p></td><td class="cl-95fa54b2"><p class="cl-95fa2582"><span class="cl-95fa1592"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">1</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">34661 (9.2)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">2</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">31549 (8.5)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">3</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">25072 (10.0)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54bd"><p class="cl-95fa2582"><span class="cl-95fa1592">4</span></p></td><td class="cl-95fa54bc"><p class="cl-95fa2582"><span class="cl-95fa1592">24871 (10.3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-95fa54c6"><p class="cl-95fa2582"><span class="cl-95fa1592">5</span></p></td><td class="cl-95fa54c7"><p class="cl-95fa2582"><span class="cl-95fa1592">23185 (10.7)</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="860c4ff1-2138-499e-af8e-4fd1fad48c10"></div>
-<script>
-var dest = document.getElementById("860c4ff1-2138-499e-af8e-4fd1fad48c10");
-var template = document.getElementById("2d3b17bd-4593-4772-a51c-f28de7a08bc5");
-var caption = template.content.querySelector("caption");
-if(caption) {
-  caption.style.cssText = "display:block;text-align:center;";
-  var newcapt = document.createElement("p");
-  newcapt.appendChild(caption)
-  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
-}
-var fantome = dest.attachShadow({mode: 'open'});
-var templateContent = template.content;
-fantome.appendChild(templateContent);
-</script>
-
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+General summary
+</th>
+<th style="text-align:left;">
+values
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mean read length
+</td>
+<td style="text-align:left;">
+7,070.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean read quality
+</td>
+<td style="text-align:left;">
+10.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median read length
+</td>
+<td style="text-align:left;">
+6,700.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median read quality
+</td>
+<td style="text-align:left;">
+10.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of reads
+</td>
+<td style="text-align:left;">
+2,000.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Read length N50
+</td>
+<td style="text-align:left;">
+8,143.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STDEV read length
+</td>
+<td style="text-align:left;">
+3,336.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total bases
+</td>
+<td style="text-align:left;">
+14,141,646.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number, percentage and megabases of reads above quality cutoffs
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&gt;Q5
+</td>
+<td style="text-align:left;">
+2000 (100.0%) 14.1Mb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&gt;Q7
+</td>
+<td style="text-align:left;">
+1998 (99.9%) 14.1Mb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&gt;Q10
+</td>
+<td style="text-align:left;">
+1231 (61.6%) 8.8Mb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&gt;Q12
+</td>
+<td style="text-align:left;">
+29 (1.5%) 0.2Mb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&gt;Q15
+</td>
+<td style="text-align:left;">
+0 (0.0%) 0.0Mb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Top 5 highest mean basecall quality scores and their read lengths
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+12.3 (7039)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+12.3 (5770)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+12.3 (8052)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+12.2 (8120)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+12.2 (3041)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Top 5 longest reads and their mean basecall quality score
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+34661 (9.2)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+31549 (8.5)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+25072 (10.0)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+24871 (10.3)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+23185 (10.7)
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>After the <strong>Summary Statistics</strong> section there is a <strong>Plots</strong> section. This contains the plots:</p>
 <ul>
@@ -394,32 +559,32 @@ fantome.appendChild(templateContent);
 Please attempt the below MCQs with the information in the report html.</p>
 <ol style="list-style-type: decimal">
 <li>What is the mean read quality for all the data?
-<div id="radio_FERYOLEPVD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FERYOLEPVD" value="answer"></input> <span><strong>10.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FERYOLEPVD" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FERYOLEPVD" value=""></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_MDFJBLZYPC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MDFJBLZYPC" value="answer"></input> <span><strong>10.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MDFJBLZYPC" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MDFJBLZYPC" value=""></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>What is the mean read length of the data?
-<div id="radio_GOGQOUZRFJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GOGQOUZRFJ" value=""></input> <span><strong>10.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GOGQOUZRFJ" value="answer"></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GOGQOUZRFJ" value=""></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_CJNXHTABYL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CJNXHTABYL" value=""></input> <span><strong>10.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CJNXHTABYL" value="answer"></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CJNXHTABYL" value=""></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>How many Megabases are within reads with a quality cutoff of &gt;Q10?
-<div id="radio_VQZBURVWSW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VQZBURVWSW" value=""></input> <span><strong>10.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VQZBURVWSW" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VQZBURVWSW" value="answer"></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_CYQFJWFTOA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CYQFJWFTOA" value=""></input> <span><strong>10.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CYQFJWFTOA" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CYQFJWFTOA" value="answer"></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>Approximately how many bases would you retain if you filtered out/removed reads with a length &lt;10,000bp (Yield by length)?
-<div id="radio_NXHGSDRDGN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NXHGSDRDGN" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NXHGSDRDGN" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NXHGSDRDGN" value="answer"></input> <span><strong>4Mb</strong></span></label>
+<div id="radio_PWDMLXEFOV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PWDMLXEFOV" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PWDMLXEFOV" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PWDMLXEFOV" value="answer"></input> <span><strong>4Mb</strong></span></label>
 </div></li>
 <li>How many reads have a length between 6,000-6,500 (Dynamic histogram of read lengths)
-<div id="radio_TZEULQACMH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TZEULQACMH" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TZEULQACMH" value="answer"></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TZEULQACMH" value=""></input> <span><strong>4Mb</strong></span></label>
+<div id="radio_QLEWEVGZUS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QLEWEVGZUS" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QLEWEVGZUS" value="answer"></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QLEWEVGZUS" value=""></input> <span><strong>4Mb</strong></span></label>
 </div></li>
 <li>How many read have a length between 15K-15.499K (Dynamic histogram of read lengths)?
-<div id="radio_QABIHMGTOM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QABIHMGTOM" value="answer"></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QABIHMGTOM" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QABIHMGTOM" value=""></input> <span><strong>4Mb</strong></span></label>
+<div id="radio_CQPDJXNHZZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CQPDJXNHZZ" value="answer"></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CQPDJXNHZZ" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CQPDJXNHZZ" value=""></input> <span><strong>4Mb</strong></span></label>
 </div></li>
 <li>Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads?
-<div id="radio_CZBQVSSUXQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CZBQVSSUXQ" value=""></input> <span><strong>6-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CZBQVSSUXQ" value=""></input> <span><strong>8-10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CZBQVSSUXQ" value="answer"></input> <span><strong>10-12</strong></span></label>
+<div id="radio_FXKGHJFRAS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FXKGHJFRAS" value=""></input> <span><strong>6-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FXKGHJFRAS" value=""></input> <span><strong>8-10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FXKGHJFRAS" value="answer"></input> <span><strong>10-12</strong></span></label>
 </div></li>
 </ol>
 </div>

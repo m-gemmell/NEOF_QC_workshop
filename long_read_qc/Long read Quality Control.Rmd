@@ -601,12 +601,15 @@ df <- read.csv("files/Acinetobacter_nanostats.tsv",
 df[,2] <- trimws(df[,2],which="both", whitespace="[ \t\r\n]")
 #
 colnames(df) <- c("General summary","values")
+#Display table with kable
+library("knitr")
+kable(df)
 #Display table with flextable
 #https://ardata-fr.github.io/flextable-book/index.html
-library("flextable")
-ft <- flextable(df)
-ft <- autofit(ft)
-ft
+# library("flextable")
+# ft <- flextable(df)
+# ft <- autofit(ft)
+# ft
 ```
 `r unhide()`
 
