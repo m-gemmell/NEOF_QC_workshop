@@ -336,7 +336,7 @@ However, for the purposes of time we will skip this at the moment.
 
 For your own interest the genome assembly can be found in the following link: <https://www.ncbi.nlm.nih.gov/nuccore/CP000082.1>
 
-<!--chapter:end:04-Poorer_quality_data.Rmd-->
+<!--chapter:end:04-Good_quality_data.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -438,7 +438,7 @@ opts_p <- c(answer="__15-19__", "__235-239__", "__251__")
 ```{r, echo = FALSE}
 opts_p <- c("__15-19__", answer="__235-239__", "__251__")
 ```
-6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R2 data?`r longmcq(opts_p)`
+6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q20 for the R2 data?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__37__", "__129__", "__250-252__")
@@ -604,7 +604,7 @@ Been sure to check they are not appearing in the Overrepresented sequences or th
 
 If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt.readthedocs.io/en/stable/guide.html>
 
-<!--chapter:end:05-Good_quality_data.Rmd-->
+<!--chapter:end:05-Poorer_quality_data.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({

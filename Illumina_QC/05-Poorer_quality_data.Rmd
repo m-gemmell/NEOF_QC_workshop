@@ -81,7 +81,7 @@ opts_p <- c(answer="__15-19__", "__235-239__", "__251__")
 ```{r, echo = FALSE}
 opts_p <- c("__15-19__", answer="__235-239__", "__251__")
 ```
-6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R2 data?`r longmcq(opts_p)`
+6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q20 for the R2 data?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__37__", "__129__", "__250-252__")
