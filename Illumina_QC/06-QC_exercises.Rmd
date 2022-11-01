@@ -14,7 +14,7 @@ https://www.ebi.ac.uk/ena/data/search?query=shotgun
 
 This contains the genomic content of many organisms.
 
-The read data is within your `~/QC_workshop/Illumina_Q/exercise_1` directory (ensure to change directory to this). The reads have been subsampled so you will be working on 100,000 paired reads.
+The read data is within your `~/QC_workshop/Illumina_QC/exercise_1` directory (ensure to change directory to this). The reads have been subsampled so you will be working on 100,000 paired reads.
 
 Carry out `fastqc` on the raw reads and ponder the below questions.
 
