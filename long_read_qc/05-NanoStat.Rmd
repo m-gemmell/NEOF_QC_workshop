@@ -60,17 +60,17 @@ knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = T
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
 
 ```{r, echo = FALSE}
-opts_p <- c("__9.2__", "__10.2__", answer="__12.3__")
+opts_p <- c("__9.2__", "__9.5__", answer="__12.3__")
 ```
 1.  What is the mean base quality for the read with the highest mean base quality?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__9.2__", "__10.2__", "__12.3__")
+opts_p <- c(answer="__9.2__", "__9.5__", "__12.3__")
 ```
 2. What is the mean base quality for the longest read?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__9.2__", answer="__10.2__", "__12.3__")
+opts_p <- c("__9.2__", answer="__9.5__", "__12.3__")
 ```
 3. What is the mean read quality for all the data?`r longmcq(opts_p)`
 

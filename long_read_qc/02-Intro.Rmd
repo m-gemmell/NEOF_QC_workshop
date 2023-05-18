@@ -13,8 +13,8 @@ Check you have the directory.
 ls ~
 ```
 
-If you do not have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
+If you __do not__ have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ ~
+cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ ~
 ```

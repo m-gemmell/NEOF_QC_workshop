@@ -99,10 +99,10 @@ Check you have the directory.
 ls ~
 ```
 
-If you do not have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
+If you __do not__ have the \"QC_workshop\" directory, the command to copy it all to your home directory is below.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ ~
+cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ ~
 ```
 
 <!--chapter:end:02-Intro.Rmd-->
@@ -258,10 +258,10 @@ knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the below commands in. Each terminal will only remember what you have told that terminal.
 
-Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`.
+Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.
 
 ```{bash eval=FALSE}
-. usenanopack-1.1.0
+. useontqc
 ```
 
 Before carrying out any more commands we will move into the relevant directory.
@@ -361,17 +361,17 @@ knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = T
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
 
 ```{r, echo = FALSE}
-opts_p <- c("__9.2__", "__10.2__", answer="__12.3__")
+opts_p <- c("__9.2__", "__9.5__", answer="__12.3__")
 ```
 1.  What is the mean base quality for the read with the highest mean base quality?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__9.2__", "__10.2__", "__12.3__")
+opts_p <- c(answer="__9.2__", "__9.5__", "__12.3__")
 ```
 2. What is the mean base quality for the longest read?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__9.2__", answer="__10.2__", "__12.3__")
+opts_p <- c("__9.2__", answer="__9.5__", "__12.3__")
 ```
 3. What is the mean read quality for all the data?`r longmcq(opts_p)`
 
@@ -555,22 +555,11 @@ Now to run `NanoPlot`. The options we will use are:
 - `--fastq`: Specifies the input path which is a fastq file.
 - `-o`: Directory where the output will be created.
 - `-p`: Prefix of output files. It is useful to have "_" at the end of the prefix.
-- `--plots`: Specifies what type of bivariate plot is to be created (more on this later). I find `hex` to be the best. 
 
 ```{bash eval=FALSE}
 NanoPlot -t 4 \
 --fastq porechop/Acinetobacter.porechop.fastq \
--o nanoplot/porechop -p Acinetobacter_ \
---plots hex 
-```
-
-You may get the below warning. This is fine and can be ignored.
-
-```{bash, eval = FALSE}
-/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
-  return len(self._mapping)
-/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
-  yield from self._mapping
+-o nanoplot/porechop -p Acinetobacter_ 
 ```
 
 ## NanoPlot: output
@@ -613,31 +602,37 @@ kable(df)
 ```
 `r unhide()`
 
-After the __Summary Statistics__ section there is a __Plots__ section. This contains the plots:
+After the __Summary Statistics__ section there is a __Plots__ section. 
+These are all plots created by [plotly](https://plotly.com/) meaning they are interactive.
+With these plots you can:
 
-- __Histogram of read lengths__
-   - Histogram of \"Number of _reads_\" (y) against \"Read length\" (x).
-- __Histogram of read lengths after log transformations__
-   - Histogram of \"Number of _reads_\" (y) against log transformed \"Read length\" (x).
+  - Make boxes to zoom into a specific area. 
+  - Click and drag left or right only to zoom into a specific part of the x axis. 
+  - Click and drag up or down only to zoom into a specific part of the y axis. 
+  - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
+  - Hover over a points/bars to see the specific values of it.
+
+The plots are:
+
 - __Weighted Histogram of read lengths__
    - Histogram of \"Number of _bases_\" (y) against \"Read length\" (x).
 - __Weighted Histogram of read lengths after log transformation__
    - Histogram of \"Number of _bases_\" (y) against log transformed \"Read length\" (x).
-- __Dynamic histogram of Read length__
-   - An interactive Histogram of \"Number of reads\" (y) against \"Read length\" (x) produced by [plotly](https://plotly.com/).
-   - You can zoom into areas by clicking and dragging. 
-      - Make boxes to zoom into a specific area. 
-      - Click and drag left or right only to zoom into a specific part of the x axis. 
-      - Click and drag up or down only to zoom into a specific part of the y axis. 
-      - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
-      - Hover over a bar to see the specific values of it.
+- __Non weighted histogram of read lengths__
+   - Histogram of \"Number of _reads_\" (y) against \"Read length\" (x).
+- __Non weighted histogram of read lengths after log transformations__
+   - Histogram of \"Number of _reads_\" (y) against log transformed \"Read length\" (x).
 - __Yield by length__
    - Plot showing the \"Cumulative yield for minimal length\" (y) by \"Read length\" (x).
    - The cumulative yield is measured in Gigabases (billion bases).
    - This plot is useful to know how many bases you would retain if you filtered reads based on read length.
-- __Read lengths vs Average read quality plot using hexagonal bins__
-   - This is the most informative plot. It is the bivariate plot we indicated we wanted as hexagonal with the option `--plots hex`.
-   - Each hex is a bin with a darker colour representing more reads.
+- __Read lengths vs Average read quality plot using dots__
+   - Each dot represents a single read.
+   - At the top of the plot is a histogram of Number of reads against read lengths.
+   - At the right of the plot is a sideways histogram of number of reads against average read quality.
+- __Read lengths vs Average read quality kde plot__
+   - Each dot represents a single read with a topology map showing the density of plots. THe darker the area the more dense.
+   - This is the most informative plot.
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 
@@ -648,39 +643,29 @@ knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = T
 Please attempt the below MCQs with the information in the report html.
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__10.2__", "__6,962.1__", "__8.8Mb__")
+opts_p <- c(answer="__9.5__", "__6,962.1__", "__8.8Mb__")
 ```
 1. What is the mean read quality for all the data?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10.2__", answer="__6,962.1__", "__8.8Mb__")
+opts_p <- c("__9.5__", answer="__6,962.1__", "__8.8Mb__")
 ```
 2.  What is the mean read length of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10.2__", "__6,962.1__", answer="__8.8Mb__")
+opts_p <- c("__9.5__", "__6,962.1__", answer="__8.8Mb__")
 ```
 3.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10__", "__146__", answer="__4Mb__")
+opts_p <- c("__10__", "__146__", answer="__4Mb (0.004Gb)__")
 ```
 4. Approximately how many bases would you retain if you filtered out/removed reads with a length <10,000bp (Yield by length)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10__", answer="__146__", "__4Mb__")
-```
-5. How many reads have a length between 6,000-6,500 (Dynamic histogram of read lengths) `r longmcq(opts_p)`
-
-```{r, echo = FALSE}
-opts_p <- c(answer="__10__", "__146__", "__4Mb__")
-```
-6. How many read have a length between 15K-15.499K (Dynamic histogram of read lengths)? `r longmcq(opts_p)`
-
-```{r, echo = FALSE}
 opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ```
-7. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
+5. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
 ## NanoPlot: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -780,8 +765,7 @@ mkdir nanoplot/nanofiltq10minlen500_porechop
 #Run NanoPlot on the fastq file with the filtered and porechopped data
 NanoPlot -t 4 \
 --fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq \
--o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ \
---plots hex 
+-o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_
 ```
 
 Now inspect the report
@@ -1420,4 +1404,56 @@ That is the end of this book. You have learnt how to QC ONT & PacBio data. Of co
 Thanks for reading.
 
 <!--chapter:end:14-CCS.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# (APPENDIX) Appendix {-}
+
+# Mamba installs
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
+```
+
+## Mamba installation {#mamba_install}
+
+Mamba is a reimplementation of conda.
+It is a great tool for installing bioinformatic packages including R packages.
+
+Mamba github: https://github.com/mamba-org/mamba
+
+Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
+
+Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
+
+## ONT QC environment
+To create the mamba environment `ont_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#Illumina QC
+mamba create -n ont_qc
+mamba activate ont_qc
+#Install pip
+mamba install -c anaconda pip
+#Install nanopack with previosuly installed pip
+pip install nanopack
+#Install porechop
+mamba install -c bioconda porechop
+```
+
+<!--chapter:end:15-Appendix.Rmd-->
 

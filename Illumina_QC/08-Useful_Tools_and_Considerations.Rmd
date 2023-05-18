@@ -90,23 +90,7 @@ __General usage guide:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-use
 
 __Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/data-preprocessing/
 
-## Conda
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
-``` 
-As you can tell there are many bioinformatic tools. It would take a lot of work to install these all if it was easy. However some tools can be difficult to install. Thankfully conda exists.
-
-Conda is a very useful and highly used package and environmental management system. In other words you can use it to install many tools very easily. Additionally it is very easy to install conda.
-
-__Getting started with conda:__ https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html
-
-__Main page:__ https://docs.conda.io/en/latest/
-
-__Installation instructions:__ https://docs.conda.io/projects/conda/en/latest/user-guide/install/
-
-__Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html
-
-# Mamba installs
+# Mamba
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```

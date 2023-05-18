@@ -54,3 +54,6 @@ ccs-generation
 ccs-mcqs
 rabbitqc-1
 final-summary
+mamba-installs
+mamba_install
+ont-qc-environment

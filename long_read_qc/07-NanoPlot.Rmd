@@ -25,22 +25,11 @@ Now to run `NanoPlot`. The options we will use are:
 - `--fastq`: Specifies the input path which is a fastq file.
 - `-o`: Directory where the output will be created.
 - `-p`: Prefix of output files. It is useful to have "_" at the end of the prefix.
-- `--plots`: Specifies what type of bivariate plot is to be created (more on this later). I find `hex` to be the best. 
 
 ```{bash eval=FALSE}
 NanoPlot -t 4 \
 --fastq porechop/Acinetobacter.porechop.fastq \
--o nanoplot/porechop -p Acinetobacter_ \
---plots hex 
-```
-
-You may get the below warning. This is fine and can be ignored.
-
-```{bash, eval = FALSE}
-/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:702: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
-  return len(self._mapping)
-/pub39/tea/nsc006/anaconda3/lib/python3.7/_collections_abc.py:720: MatplotlibDeprecationWarning: The global colormaps dictionary is no longer considered public API.
-  yield from self._mapping
+-o nanoplot/porechop -p Acinetobacter_ 
 ```
 
 ## NanoPlot: output
@@ -83,31 +72,37 @@ kable(df)
 ```
 `r unhide()`
 
-After the __Summary Statistics__ section there is a __Plots__ section. This contains the plots:
+After the __Summary Statistics__ section there is a __Plots__ section. 
+These are all plots created by [plotly](https://plotly.com/) meaning they are interactive.
+With these plots you can:
 
-- __Histogram of read lengths__
-   - Histogram of \"Number of _reads_\" (y) against \"Read length\" (x).
-- __Histogram of read lengths after log transformations__
-   - Histogram of \"Number of _reads_\" (y) against log transformed \"Read length\" (x).
+  - Make boxes to zoom into a specific area. 
+  - Click and drag left or right only to zoom into a specific part of the x axis. 
+  - Click and drag up or down only to zoom into a specific part of the y axis. 
+  - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
+  - Hover over a points/bars to see the specific values of it.
+
+The plots are:
+
 - __Weighted Histogram of read lengths__
    - Histogram of \"Number of _bases_\" (y) against \"Read length\" (x).
 - __Weighted Histogram of read lengths after log transformation__
    - Histogram of \"Number of _bases_\" (y) against log transformed \"Read length\" (x).
-- __Dynamic histogram of Read length__
-   - An interactive Histogram of \"Number of reads\" (y) against \"Read length\" (x) produced by [plotly](https://plotly.com/).
-   - You can zoom into areas by clicking and dragging. 
-      - Make boxes to zoom into a specific area. 
-      - Click and drag left or right only to zoom into a specific part of the x axis. 
-      - Click and drag up or down only to zoom into a specific part of the y axis. 
-      - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
-      - Hover over a bar to see the specific values of it.
+- __Non weighted histogram of read lengths__
+   - Histogram of \"Number of _reads_\" (y) against \"Read length\" (x).
+- __Non weighted histogram of read lengths after log transformations__
+   - Histogram of \"Number of _reads_\" (y) against log transformed \"Read length\" (x).
 - __Yield by length__
    - Plot showing the \"Cumulative yield for minimal length\" (y) by \"Read length\" (x).
    - The cumulative yield is measured in Gigabases (billion bases).
    - This plot is useful to know how many bases you would retain if you filtered reads based on read length.
-- __Read lengths vs Average read quality plot using hexagonal bins__
-   - This is the most informative plot. It is the bivariate plot we indicated we wanted as hexagonal with the option `--plots hex`.
-   - Each hex is a bin with a darker colour representing more reads.
+- __Read lengths vs Average read quality plot using dots__
+   - Each dot represents a single read.
+   - At the top of the plot is a histogram of Number of reads against read lengths.
+   - At the right of the plot is a sideways histogram of number of reads against average read quality.
+- __Read lengths vs Average read quality kde plot__
+   - Each dot represents a single read with a topology map showing the density of plots. THe darker the area the more dense.
+   - This is the most informative plot.
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 
@@ -118,39 +113,29 @@ knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = T
 Please attempt the below MCQs with the information in the report html.
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__10.2__", "__6,962.1__", "__8.8Mb__")
+opts_p <- c(answer="__9.5__", "__6,962.1__", "__8.8Mb__")
 ```
 1. What is the mean read quality for all the data?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10.2__", answer="__6,962.1__", "__8.8Mb__")
+opts_p <- c("__9.5__", answer="__6,962.1__", "__8.8Mb__")
 ```
 2.  What is the mean read length of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10.2__", "__6,962.1__", answer="__8.8Mb__")
+opts_p <- c("__9.5__", "__6,962.1__", answer="__8.8Mb__")
 ```
 3.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10__", "__146__", answer="__4Mb__")
+opts_p <- c("__10__", "__146__", answer="__4Mb (0.004Gb)__")
 ```
 4. Approximately how many bases would you retain if you filtered out/removed reads with a length <10,000bp (Yield by length)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10__", answer="__146__", "__4Mb__")
-```
-5. How many reads have a length between 6,000-6,500 (Dynamic histogram of read lengths) `r longmcq(opts_p)`
-
-```{r, echo = FALSE}
-opts_p <- c(answer="__10__", "__146__", "__4Mb__")
-```
-6. How many read have a length between 15K-15.499K (Dynamic histogram of read lengths)? `r longmcq(opts_p)`
-
-```{r, echo = FALSE}
 opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ```
-7. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
+5. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
 ## NanoPlot: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

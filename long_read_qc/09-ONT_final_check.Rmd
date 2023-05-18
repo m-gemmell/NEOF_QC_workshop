@@ -18,8 +18,7 @@ mkdir nanoplot/nanofiltq10minlen500_porechop
 #Run NanoPlot on the fastq file with the filtered and porechopped data
 NanoPlot -t 4 \
 --fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq \
--o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_ \
---plots hex 
+-o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_
 ```
 
 Now inspect the report
