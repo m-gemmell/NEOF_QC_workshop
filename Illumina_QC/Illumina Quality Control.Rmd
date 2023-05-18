@@ -156,7 +156,7 @@ cd ~
 Now copy the specified folder to you home directory.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ .
+cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ .
 ```
 
 Before running any examples let us change directory to the Illumina Quality control directory.
@@ -165,21 +165,33 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
-## Conda
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+## Mamba
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
 
-We need to activate the `illumina_qc` `conda` environment in your terminal so we have access to all the tools we need.
-The first step is to use `chos 8` which is a custom command for our cluster.
-It will Change the Unix OS form version 7 to version 8.
-Version 7 (default in our cluster) is too old for some of the programs.
+This book requires some packages.
+Mamba forge was used to install them.
+To learn more about Mamba-forge and how to create your own environment please see the [appendix](#mamba_install).
 
-```{bash eval=FALSE}
-chos 8
+To set-up your environment for this book please run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
 . useilluminaqc
 ```
+
+You will have successfully activated the environment if you now see `(illumina_qc)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `illumina_qc` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/useilluminaqc
+```
+
+__Tip:__ press `q` to quit `less`.
+
+For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](#mamba_install)
 
 <!--chapter:end:03-Setup.Rmd-->
 
@@ -426,32 +438,32 @@ opts_p <- c(answer="__36__", "__35-251__", "__50,000__")
 3.  What is the average GC (%) content of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__15-19__", "__235-239__", answer="__251__")
+opts_p <- c("__15-19__", "__235-239__", answer="__250-251__")
 ```
 4. At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R1 data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__15-19__", "__235-239__", "__251__")
+opts_p <- c(answer="__15-19__", "__235-239__", "__250-251__")
 ```
 5.  At what base position/s does the IQR and whiskers (lines) first completely go above a quality of Q28 for the R2 data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__15-19__", answer="__235-239__", "__251__")
+opts_p <- c("__15-19__", answer="__235-239__", "__250-251__")
 ```
 6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q20 for the R2 data?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__37__", "__129__", "__250-252__")
+opts_p <- c(answer="__37__", "__129__", "__250-251__")
 ```
 7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__37__", answer="__129__", "__250-252__")
+opts_p <- c("__37__", answer="__129__", "__250-251__")
 ```
 8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__37__", "__129__", answer="__250-252__")
+opts_p <- c("__37__", "__129__", answer="__250-251__")
 ```
 9. What is the most common base length range for R2 (see the peak of the "Sequence Length Distribution" graph)? `r longmcq(opts_p)`
 
@@ -763,9 +775,9 @@ The first step is to carry out `fastqc` in the raw data.
 
 ```{bash eval=FALSE}
 #Make output directory
-mkdir raw_fastq_output
+mkdir raw_fastqc_output
 #Run fastqc
-fastqc -o raw_fastq_output *_R*.fastq
+fastqc -o raw_fastqc_output *_R*.fastq
 ```
 
 Now that we have our `fastqc` output we can carry out `multiqc`. Due to the inherent differences between the forward and reverse reads it is best to make separate `multiqc` reports for them.
@@ -776,8 +788,8 @@ mkdir raw_multiqc_output
 mkdir raw_multiqc_output/r1
 mkdir raw_multiqc_output/r2
 #Run multiqc
-multiqc -o raw_multiqc/r1 raw_fastq_output/*R1*
-multiqc -o raw_multiqc/r2 raw_fastq_output/*R2*
+multiqc -o raw_multiqc/r1 raw_fastqc_output/*R1*
+multiqc -o raw_multiqc/r2 raw_fastqc_output/*R2*
 ```
 
 Now we can open the `multiqc` reports with `firefox`.
@@ -797,16 +809,16 @@ Now that you have looked at the `multiqc` report for the raw data it is time to 
 
 ```{bash eval=FALSE}
 #Make fastqc output directory
-mkdir trimmomatic_fastq_output
+mkdir trimmomatic_fastqc_output
 #Run fastqc
-fastqc -o trimmomatic_fastq_output *P.fastq
+fastqc -o trimmomatic_fastqc_output *P.fastq
 #Create output directories
 mkdir trimmomatic_multiqc_output
 mkdir trimmomatic_multiqc_output/r1
 mkdir trimmomatic_multiqc_output/r2
 #Run multiqc
-multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastq_output/*1P*
-multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastq_output/*2P*
+multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastqc_output/*1P*
+multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastqc_output/*2P*
 #Look at the reports in firefox
 firefox trimmomatic_multiqc_output/*/*.html
 ```
@@ -947,6 +959,34 @@ __Main page:__ https://docs.conda.io/en/latest/
 __Installation instructions:__ https://docs.conda.io/projects/conda/en/latest/user-guide/install/
 
 __Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html
+
+# Mamba installs
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
+```
+
+## Mamba installation {#mamba_install}
+
+Mamba is a reimplementation of conda.
+It is a great tool for installing bioinformatic packages including R packages.
+
+Mamba github: https://github.com/mamba-org/mamba
+
+Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
+
+Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
+
+## Illumina QC environment
+To create the mamba environment `illumina_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#Illumina QC
+mamba create -n illumina_qc
+mamba activate illumina_qc
+mamba install -c bioconda fastqc
+mamba install -c bioconda trimmomatic
+mamba install -c bioconda multiqc
+```
 
 <!--chapter:end:08-Useful_Tools_and_Considerations.Rmd-->
 

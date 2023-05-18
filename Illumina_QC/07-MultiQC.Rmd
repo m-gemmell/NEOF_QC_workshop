@@ -45,9 +45,9 @@ The first step is to carry out `fastqc` in the raw data.
 
 ```{bash eval=FALSE}
 #Make output directory
-mkdir raw_fastq_output
+mkdir raw_fastqc_output
 #Run fastqc
-fastqc -o raw_fastq_output *_R*.fastq
+fastqc -o raw_fastqc_output *_R*.fastq
 ```
 
 Now that we have our `fastqc` output we can carry out `multiqc`. Due to the inherent differences between the forward and reverse reads it is best to make separate `multiqc` reports for them.
@@ -58,8 +58,8 @@ mkdir raw_multiqc_output
 mkdir raw_multiqc_output/r1
 mkdir raw_multiqc_output/r2
 #Run multiqc
-multiqc -o raw_multiqc/r1 raw_fastq_output/*R1*
-multiqc -o raw_multiqc/r2 raw_fastq_output/*R2*
+multiqc -o raw_multiqc/r1 raw_fastqc_output/*R1*
+multiqc -o raw_multiqc/r2 raw_fastqc_output/*R2*
 ```
 
 Now we can open the `multiqc` reports with `firefox`.
@@ -79,16 +79,16 @@ Now that you have looked at the `multiqc` report for the raw data it is time to 
 
 ```{bash eval=FALSE}
 #Make fastqc output directory
-mkdir trimmomatic_fastq_output
+mkdir trimmomatic_fastqc_output
 #Run fastqc
-fastqc -o trimmomatic_fastq_output *P.fastq
+fastqc -o trimmomatic_fastqc_output *P.fastq
 #Create output directories
 mkdir trimmomatic_multiqc_output
 mkdir trimmomatic_multiqc_output/r1
 mkdir trimmomatic_multiqc_output/r2
 #Run multiqc
-multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastq_output/*1P*
-multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastq_output/*2P*
+multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastqc_output/*1P*
+multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastqc_output/*2P*
 #Look at the reports in firefox
 firefox trimmomatic_multiqc_output/*/*.html
 ```

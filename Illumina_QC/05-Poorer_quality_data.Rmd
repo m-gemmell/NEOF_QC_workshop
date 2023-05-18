@@ -69,32 +69,32 @@ opts_p <- c(answer="__36__", "__35-251__", "__50,000__")
 3.  What is the average GC (%) content of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__15-19__", "__235-239__", answer="__251__")
+opts_p <- c("__15-19__", "__235-239__", answer="__250-251__")
 ```
 4. At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R1 data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__15-19__", "__235-239__", "__251__")
+opts_p <- c(answer="__15-19__", "__235-239__", "__250-251__")
 ```
 5.  At what base position/s does the IQR and whiskers (lines) first completely go above a quality of Q28 for the R2 data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__15-19__", answer="__235-239__", "__251__")
+opts_p <- c("__15-19__", answer="__235-239__", "__250-251__")
 ```
 6.  At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q20 for the R2 data?`r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__37__", "__129__", "__250-252__")
+opts_p <- c(answer="__37__", "__129__", "__250-251__")
 ```
 7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__37__", answer="__129__", "__250-252__")
+opts_p <- c("__37__", answer="__129__", "__250-251__")
 ```
 8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__37__", "__129__", answer="__250-252__")
+opts_p <- c("__37__", "__129__", answer="__250-251__")
 ```
 9. What is the most common base length range for R2 (see the peak of the "Sequence Length Distribution" graph)? `r longmcq(opts_p)`
 

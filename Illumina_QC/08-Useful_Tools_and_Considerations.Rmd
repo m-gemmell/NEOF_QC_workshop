@@ -105,3 +105,31 @@ __Main page:__ https://docs.conda.io/en/latest/
 __Installation instructions:__ https://docs.conda.io/projects/conda/en/latest/user-guide/install/
 
 __Cheatsheet:__ https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html
+
+# Mamba installs
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
+```
+
+## Mamba installation {#mamba_install}
+
+Mamba is a reimplementation of conda.
+It is a great tool for installing bioinformatic packages including R packages.
+
+Mamba github: https://github.com/mamba-org/mamba
+
+Mamba installation: https://github.com/conda-forge/miniforge#mambaforge
+
+Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
+
+## Illumina QC environment
+To create the mamba environment `illumina_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#Illumina QC
+mamba create -n illumina_qc
+mamba activate illumina_qc
+mamba install -c bioconda fastqc
+mamba install -c bioconda trimmomatic
+mamba install -c bioconda multiqc
+```

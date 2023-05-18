@@ -21,7 +21,7 @@ cd ~
 Now copy the specified folder to you home directory.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/nsc006/NEOF/QC_workshop/ .
+cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ .
 ```
 
 Before running any examples let us change directory to the Illumina Quality control directory.
@@ -30,18 +30,30 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
-## Conda
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+## Mamba
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
 
-We need to activate the `illumina_qc` `conda` environment in your terminal so we have access to all the tools we need.
-The first step is to use `chos 8` which is a custom command for our cluster.
-It will Change the Unix OS form version 7 to version 8.
-Version 7 (default in our cluster) is too old for some of the programs.
+This book requires some packages.
+Mamba forge was used to install them.
+To learn more about Mamba-forge and how to create your own environment please see the [appendix](#mamba_install).
 
-```{bash eval=FALSE}
-chos 8
+To set-up your environment for this book please run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
 . useilluminaqc
 ```
+
+You will have successfully activated the environment if you now see `(illumina_qc)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `illumina_qc` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/useilluminaqc
+```
+
+__Tip:__ press `q` to quit `less`.
+
+For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](#mamba_install)
