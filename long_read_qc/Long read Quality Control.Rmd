@@ -256,7 +256,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
 ```
 
-We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the below commands in. Each terminal will only remember what you have told that terminal.
+We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 
 Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.
 
@@ -924,11 +924,11 @@ We will also use `smrttools` from PacBio to:
 - Generate CCS reads from subreads BAM files
 - Convert BAM to fasta/q format.
 
-### RabbitQC
+### RabbitQCPlus
 
-https://github.com/ZekunYin/RabbitQC
+https://github.com/RabbitBio/RabbitQCPlus
 
-Lastly, we will also use `RabbitQC` to assess the CCS assembled reads in fastq format.
+Lastly, we will also use `RabbitQCPlus` to assess the CCS assembled reads in fastq format.
 
 <!--chapter:end:10-PB_background.Rmd-->
 
@@ -954,7 +954,15 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
 ``` 
 
-Before carrying out any specific commands we will first move into the relevant directory.
+We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
+
+Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.
+
+```{bash eval=FALSE}
+. usepbqc
+```
+
+Before carrying out any specific commands we will move into the relevant directory.
 
 ```{bash eval=FALSE}
 cd ~/QC_workshop/PB_QC/data/CLR
@@ -1355,9 +1363,9 @@ opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__"
 ```
 1. What was the main reason for failure of CCS generation? `r longmcq(opts_p)`
 
-## RabbitQC
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/rabbit_qc.png", auto_pdf = TRUE)
+## RabbitQCPlus
+```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
+knitr::include_graphics(path = "figures/RabbitQCPlus.png", auto_pdf = TRUE)
 ``` 
 
 Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
@@ -1374,25 +1382,24 @@ __Note__: You may see a long warning message ending with \"No such file or direc
 
 With the CCS fastq file we\'re ready to run `RabbitQC`.
 ```{bash eval=FALSE}
-rabbit_qc -i S4_ccs.fastq -D -w 1 -h S4_ccs_qc.html
+RabbitQCPlus -i S4_ccs.fastq -w 1 --TGS
 ```
 
 __Parameters__:
 
 - `-i` to specify the input fastq file name
-- `-D` to specify these are long-read data (i.e\. not Illumina)
 - `-w` to specify the number of threads
-- `-h` to specify a name for the html results file
+- `--TGS` to specifiy the data is Third Generation Sequencing data (ONT or PB)
 
-view the output using firefox.
+View the output using `firefox`.
 
 ```{bash eval=FALSE}
-firefox S4_ccs_qc.html
+firefox S4_ccs_RabbitQCPlus.html
 ```
 
 The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb. In fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplification and sequencing has worked well.
 
-The other plots show the % nucleotide frequencies and mean quality scores for the beginning and end of the reads. These aren\'t especially useful as such a short region is shown, but we can see the quality of the ccs reads is very high, and the main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
+The other plots show the % nucleotide frequencies (AGCT) and mean quality scores for the beginning and end of the reads. The mean quality plots unfortunately do not show anything because it is such a short region. The main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
 
 ## Final summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1444,15 +1451,59 @@ Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
 To create the mamba environment `ont_qc` run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
-#Illumina QC
+#Oxford Nanopore QC
 mamba create -n ont_qc
 mamba activate ont_qc
 #Install pip
 mamba install -c anaconda pip
-#Install nanopack with previosuly installed pip
+#Install nanopack with previously installed pip
 pip install nanopack
 #Install porechop
 mamba install -c bioconda porechop
+```
+
+## PB QC environment
+To create the mamba environment `pb_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#PacBio QC
+mamba create -n pb_qc
+mamba activate pb_qc
+#Install smrttools
+mamba install -c hcc smrtlink-tools
+#Install git & make for below installs
+mamba install -c anaconda git
+mamba install -c anaconda make
+#R needed for Sequeltools
+mamba install -c conda-forge r-base
+```
+
+Install [SequelTools](https://github.com/ISUgenomics/SequelTools) and [RabbitQCPlus](https://github.com/RabbitBio/RabbitQCPlus) via `git`.
+I suggest creating a directory called "git_installs" in your home directory and running this code there.
+
+```{bash, eval=FALSE}
+#git_installs directory
+mkdir ~/git_installs
+cd ~/git_installs
+#Sequeltools
+git clone https://github.com/ISUgenomics/SequelTools.git
+cd SequelTools/Scripts
+chmod +x *.sh *.py *.R
+cd ~/git_installs
+#RabbitQCPlus
+git clone https://github.com/RabbitBio/RabbitQCPlus.git
+cd RabbitQCPlus
+make -j4
+```
+
+To run these programs in your own machines you will need to use the full path of the command files.
+If you installed these in your "~/git_installs" examples are below.
+
+```{bash, eval=FALSE}
+#Sequeltools.sh help manual
+~/git_installs/SequelTools/Scripts/SequelTools.sh
+#RabbitQCPlus help manual
+~/git_installs/RabbitQCPlus/RabbitQCPlus
 ```
 
 <!--chapter:end:15-Appendix.Rmd-->

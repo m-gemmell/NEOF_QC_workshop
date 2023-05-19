@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 CLR QC | Long read Quality Control</title>
   <meta name="description" content="NEOF book for the Long read quality control workshop" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 CLR QC | Long read Quality Control" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2023-05-18" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="www/webex.css" type="text/css" />
@@ -196,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="10-PB_background.html"><a href="10-PB_background.html#sequeltools"><i class="fa fa-check"></i><b>10.3.1</b> SequelTools</a></li>
 <li class="chapter" data-level="10.3.2" data-path="10-PB_background.html"><a href="10-PB_background.html#smrttools"><i class="fa fa-check"></i><b>10.3.2</b> smrttools</a></li>
-<li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqc"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQC</a></li>
+<li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqcplus"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQCPlus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="11-PB_CLR_setup.html"><a href="11-PB_CLR_setup.html"><i class="fa fa-check"></i><b>11</b> CLR setup</a></li>
@@ -221,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="14.2.1" data-path="14-CCS.html"><a href="14-CCS.html#ccs-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> CCS MCQs</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqc-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQC</a></li>
+<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqcplus-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQCPlus</a></li>
 <li class="chapter" data-level="14.4" data-path="14-CCS.html"><a href="14-CCS.html#final-summary"><i class="fa fa-check"></i><b>14.4</b> Final summary</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -229,6 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="15-Appendix.html"><a href="15-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation</a></li>
 <li class="chapter" data-level="A.2" data-path="15-Appendix.html"><a href="15-Appendix.html#ont-qc-environment"><i class="fa fa-check"></i><b>A.2</b> ONT QC environment</a></li>
+<li class="chapter" data-level="A.3" data-path="15-Appendix.html"><a href="15-Appendix.html#pb-qc-environment"><i class="fa fa-check"></i><b>A.3</b> PB QC environment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -274,14 +279,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>a</code>: generates all available plots. This is what we will use.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="12-PB_CLR_QC.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SequelTools.sh</span> <span class="at">-t</span> Q <span class="at">-p</span> a <span class="at">-u</span> CLR_subreads.txt <span class="at">-o</span> CLR_QC</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="12-PB_CLR_QC.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">SequelTools.sh</span> <span class="at">-t</span> Q <span class="at">-p</span> a <span class="at">-u</span> CLR_subreads.txt <span class="at">-o</span> CLR_QC</span></code></pre></div>
 </div>
 <div id="clr-qc-output" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> CLR QC: output<a href="12-PB_CLR_QC.html#clr-qc-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/output_file_red.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>When this has finished running the CLR_QC folder will contain a 'summaryTable.txt' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use <code>firefox</code> to view the pdf plots.</p>
 <p>To open all the pdf files containing the plots you can run the below commands.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="12-PB_CLR_QC.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/<span class="pp">*</span>.pdf</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="12-PB_CLR_QC.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/<span class="pp">*</span>.pdf</span></code></pre></div>
 <ul>
 <li><strong>totalBasesBarplot.pdf</strong>: Shows the total amount of sequence data (total bases; y axis). It displays this for:
 <ul>
@@ -328,28 +333,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With the produced files attempt the below questions.</p>
 <ol style="list-style-type: decimal">
 <li>Which sample has the highest total amount of sequence data?
-<div id="radio_ROOZBAJEPZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ROOZBAJEPZ" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ROOZBAJEPZ" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ROOZBAJEPZ" value=""></input> <span><strong>Sample3</strong></span></label>
+<div id="radio_JTSLCKEWTF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JTSLCKEWTF" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JTSLCKEWTF" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JTSLCKEWTF" value=""></input> <span><strong>Sample3</strong></span></label>
 </div></li>
 <li>Which sample has the highest N50 sizes?
-<div id="radio_XETRKRQNZP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XETRKRQNZP" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XETRKRQNZP" value=""></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XETRKRQNZP" value="answer"></input> <span><strong>Sample3</strong></span></label>
+<div id="radio_HGDEVTSAVF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HGDEVTSAVF" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HGDEVTSAVF" value=""></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HGDEVTSAVF" value="answer"></input> <span><strong>Sample3</strong></span></label>
 </div></li>
 <li>Which sample has the highest L50 sizes?
-<div id="radio_QNPMJXRASS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QNPMJXRASS" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QNPMJXRASS" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QNPMJXRASS" value=""></input> <span><strong>Sample3</strong></span></label>
+<div id="radio_IHZRGJIWJE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IHZRGJIWJE" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IHZRGJIWJE" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IHZRGJIWJE" value=""></input> <span><strong>Sample3</strong></span></label>
 </div></li>
 <li>Which sample has the best PSR value (closest to 1)?
-<div id="radio_YZYSYXNEBZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YZYSYXNEBZ" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YZYSYXNEBZ" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YZYSYXNEBZ" value=""></input> <span><strong>Sample3</strong></span></label>
+<div id="radio_QMMOVMPXKP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QMMOVMPXKP" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QMMOVMPXKP" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QMMOVMPXKP" value=""></input> <span><strong>Sample3</strong></span></label>
 </div></li>
 <li>Which sample has the best ZOR value (closest to 1 but not above 1)?
-<div id="radio_UJTIMTGPIL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UJTIMTGPIL" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UJTIMTGPIL" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UJTIMTGPIL" value=""></input> <span><strong>Sample3</strong></span></label>
+<div id="radio_ZTCFLTNJQA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZTCFLTNJQA" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZTCFLTNJQA" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZTCFLTNJQA" value=""></input> <span><strong>Sample3</strong></span></label>
 </div></li>
 <li>Which sample has the biggest difference when comparing their "Histogram of subread lengths" versus their "Histogram of longest subread length"?
-<div id="radio_QJBRYMGDWL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QJBRYMGDWL" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QJBRYMGDWL" value=""></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QJBRYMGDWL" value="answer"></input> <span><strong>Sample3</strong></span></label>
+<div id="radio_FMMIMPHJTT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FMMIMPHJTT" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FMMIMPHJTT" value=""></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FMMIMPHJTT" value="answer"></input> <span><strong>Sample3</strong></span></label>
 </div></li>
 </ol>
 </div>

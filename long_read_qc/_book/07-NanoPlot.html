@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 NanoPlot | Long read Quality Control</title>
   <meta name="description" content="NEOF book for the Long read quality control workshop" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 NanoPlot | Long read Quality Control" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2023-05-18" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="www/webex.css" type="text/css" />
@@ -196,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="10-PB_background.html"><a href="10-PB_background.html#sequeltools"><i class="fa fa-check"></i><b>10.3.1</b> SequelTools</a></li>
 <li class="chapter" data-level="10.3.2" data-path="10-PB_background.html"><a href="10-PB_background.html#smrttools"><i class="fa fa-check"></i><b>10.3.2</b> smrttools</a></li>
-<li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqc"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQC</a></li>
+<li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqcplus"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQCPlus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="11-PB_CLR_setup.html"><a href="11-PB_CLR_setup.html"><i class="fa fa-check"></i><b>11</b> CLR setup</a></li>
@@ -221,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="14.2.1" data-path="14-CCS.html"><a href="14-CCS.html#ccs-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> CCS MCQs</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqc-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQC</a></li>
+<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqcplus-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQCPlus</a></li>
 <li class="chapter" data-level="14.4" data-path="14-CCS.html"><a href="14-CCS.html#final-summary"><i class="fa fa-check"></i><b>14.4</b> Final summary</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -229,6 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="15-Appendix.html"><a href="15-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation</a></li>
 <li class="chapter" data-level="A.2" data-path="15-Appendix.html"><a href="15-Appendix.html#ont-qc-environment"><i class="fa fa-check"></i><b>A.2</b> ONT QC environment</a></li>
+<li class="chapter" data-level="A.3" data-path="15-Appendix.html"><a href="15-Appendix.html#pb-qc-environment"><i class="fa fa-check"></i><b>A.3</b> PB QC environment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -458,24 +463,24 @@ With these plots you can:</p>
 Please attempt the below MCQs with the information in the report html.</p>
 <ol style="list-style-type: decimal">
 <li>What is the mean read quality for all the data?
-<div id="radio_MWJGFIPTMY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MWJGFIPTMY" value="answer"></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MWJGFIPTMY" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MWJGFIPTMY" value=""></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_JFPYKYWAOZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JFPYKYWAOZ" value="answer"></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JFPYKYWAOZ" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JFPYKYWAOZ" value=""></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>What is the mean read length of the data?
-<div id="radio_RSJCKDCQSK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RSJCKDCQSK" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RSJCKDCQSK" value="answer"></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RSJCKDCQSK" value=""></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_WRICPMTJVF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WRICPMTJVF" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WRICPMTJVF" value="answer"></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WRICPMTJVF" value=""></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>How many Megabases are within reads with a quality cutoff of &gt;Q10?
-<div id="radio_ZKGCFXZWFJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZKGCFXZWFJ" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZKGCFXZWFJ" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZKGCFXZWFJ" value="answer"></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_TPTLVPYJAZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TPTLVPYJAZ" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TPTLVPYJAZ" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TPTLVPYJAZ" value="answer"></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>Approximately how many bases would you retain if you filtered out/removed reads with a length &lt;10,000bp (Yield by length)?
-<div id="radio_UQHNDBTELW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UQHNDBTELW" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UQHNDBTELW" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UQHNDBTELW" value="answer"></input> <span><strong>4Mb (0.004Gb)</strong></span></label>
+<div id="radio_SZAIYJJUMA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SZAIYJJUMA" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SZAIYJJUMA" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SZAIYJJUMA" value="answer"></input> <span><strong>4Mb (0.004Gb)</strong></span></label>
 </div></li>
 <li>Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads?
-<div id="radio_CPPKIIEPYB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CPPKIIEPYB" value=""></input> <span><strong>6-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPPKIIEPYB" value=""></input> <span><strong>8-10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPPKIIEPYB" value="answer"></input> <span><strong>10-12</strong></span></label>
+<div id="radio_LTQNHZANDJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LTQNHZANDJ" value=""></input> <span><strong>6-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LTQNHZANDJ" value=""></input> <span><strong>8-10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LTQNHZANDJ" value="answer"></input> <span><strong>10-12</strong></span></label>
 </div></li>
 </ol>
 </div>

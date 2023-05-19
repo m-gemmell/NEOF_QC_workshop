@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Mamba installs | Long read Quality Control</title>
   <meta name="description" content="NEOF book for the Long read quality control workshop" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Mamba installs | Long read Quality Control" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2023-05-18" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="www/webex.css" type="text/css" />
@@ -196,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="10-PB_background.html"><a href="10-PB_background.html#sequeltools"><i class="fa fa-check"></i><b>10.3.1</b> SequelTools</a></li>
 <li class="chapter" data-level="10.3.2" data-path="10-PB_background.html"><a href="10-PB_background.html#smrttools"><i class="fa fa-check"></i><b>10.3.2</b> smrttools</a></li>
-<li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqc"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQC</a></li>
+<li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqcplus"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQCPlus</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="11-PB_CLR_setup.html"><a href="11-PB_CLR_setup.html"><i class="fa fa-check"></i><b>11</b> CLR setup</a></li>
@@ -221,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="14.2.1" data-path="14-CCS.html"><a href="14-CCS.html#ccs-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> CCS MCQs</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqc-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQC</a></li>
+<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqcplus-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQCPlus</a></li>
 <li class="chapter" data-level="14.4" data-path="14-CCS.html"><a href="14-CCS.html#final-summary"><i class="fa fa-check"></i><b>14.4</b> Final summary</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -229,6 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="15-Appendix.html"><a href="15-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>A.1</b> Mamba installation</a></li>
 <li class="chapter" data-level="A.2" data-path="15-Appendix.html"><a href="15-Appendix.html#ont-qc-environment"><i class="fa fa-check"></i><b>A.2</b> ONT QC environment</a></li>
+<li class="chapter" data-level="A.3" data-path="15-Appendix.html"><a href="15-Appendix.html#pb-qc-environment"><i class="fa fa-check"></i><b>A.3</b> PB QC environment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -264,15 +269,49 @@ It is a great tool for installing bioinformatic packages including R packages.</
 <div id="ont-qc-environment" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">A.2</span> ONT QC environment<a href="15-Appendix.html#ont-qc-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To create the mamba environment <code>ont_qc</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="15-Appendix.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Illumina QC</span></span>
-<span id="cb41-2"><a href="15-Appendix.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> ont_qc</span>
-<span id="cb41-3"><a href="15-Appendix.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate ont_qc</span>
-<span id="cb41-4"><a href="15-Appendix.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Install pip</span></span>
-<span id="cb41-5"><a href="15-Appendix.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda pip</span>
-<span id="cb41-6"><a href="15-Appendix.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Install nanopack with previosuly installed pip</span></span>
-<span id="cb41-7"><a href="15-Appendix.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install nanopack</span>
-<span id="cb41-8"><a href="15-Appendix.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Install porechop</span></span>
-<span id="cb41-9"><a href="15-Appendix.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> bioconda porechop</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="15-Appendix.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Oxford Nanopore QC</span></span>
+<span id="cb42-2"><a href="15-Appendix.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> ont_qc</span>
+<span id="cb42-3"><a href="15-Appendix.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate ont_qc</span>
+<span id="cb42-4"><a href="15-Appendix.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Install pip</span></span>
+<span id="cb42-5"><a href="15-Appendix.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda pip</span>
+<span id="cb42-6"><a href="15-Appendix.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Install nanopack with previously installed pip</span></span>
+<span id="cb42-7"><a href="15-Appendix.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install nanopack</span>
+<span id="cb42-8"><a href="15-Appendix.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Install porechop</span></span>
+<span id="cb42-9"><a href="15-Appendix.html#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> bioconda porechop</span></code></pre></div>
+</div>
+<div id="pb-qc-environment" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">A.3</span> PB QC environment<a href="15-Appendix.html#pb-qc-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To create the mamba environment <code>pb_qc</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="15-Appendix.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PacBio QC</span></span>
+<span id="cb43-2"><a href="15-Appendix.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> pb_qc</span>
+<span id="cb43-3"><a href="15-Appendix.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate pb_qc</span>
+<span id="cb43-4"><a href="15-Appendix.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Install smrttools</span></span>
+<span id="cb43-5"><a href="15-Appendix.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> hcc smrtlink-tools</span>
+<span id="cb43-6"><a href="15-Appendix.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Install git &amp; make for below installs</span></span>
+<span id="cb43-7"><a href="15-Appendix.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda git</span>
+<span id="cb43-8"><a href="15-Appendix.html#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda make</span>
+<span id="cb43-9"><a href="15-Appendix.html#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">#R needed for Sequeltools</span></span>
+<span id="cb43-10"><a href="15-Appendix.html#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> conda-forge r-base</span></code></pre></div>
+<p>Install <a href="https://github.com/ISUgenomics/SequelTools">SequelTools</a> and <a href="https://github.com/RabbitBio/RabbitQCPlus">RabbitQCPlus</a> via <code>git</code>.
+I suggest creating a directory called "git_installs" in your home directory and running this code there.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="15-Appendix.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#git_installs directory</span></span>
+<span id="cb44-2"><a href="15-Appendix.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/git_installs</span>
+<span id="cb44-3"><a href="15-Appendix.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/git_installs</span>
+<span id="cb44-4"><a href="15-Appendix.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Sequeltools</span></span>
+<span id="cb44-5"><a href="15-Appendix.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ISUgenomics/SequelTools.git</span>
+<span id="cb44-6"><a href="15-Appendix.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> SequelTools/Scripts</span>
+<span id="cb44-7"><a href="15-Appendix.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x <span class="pp">*</span>.sh <span class="pp">*</span>.py <span class="pp">*</span>.R</span>
+<span id="cb44-8"><a href="15-Appendix.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/git_installs</span>
+<span id="cb44-9"><a href="15-Appendix.html#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#RabbitQCPlus</span></span>
+<span id="cb44-10"><a href="15-Appendix.html#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RabbitBio/RabbitQCPlus.git</span>
+<span id="cb44-11"><a href="15-Appendix.html#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> RabbitQCPlus</span>
+<span id="cb44-12"><a href="15-Appendix.html#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span></span></code></pre></div>
+<p>To run these programs in your own machines you will need to use the full path of the command files.
+If you installed these in your "~/git_installs" examples are below.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="15-Appendix.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sequeltools.sh help manual</span></span>
+<span id="cb45-2"><a href="15-Appendix.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/git_installs/SequelTools/Scripts/SequelTools.sh</span></span>
+<span id="cb45-3"><a href="15-Appendix.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">#RabbitQCPlus help manual</span></span>
+<span id="cb45-4"><a href="15-Appendix.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ex">~/git_installs/RabbitQCPlus/RabbitQCPlus</span></span></code></pre></div>
 
 </div>
 </div>
