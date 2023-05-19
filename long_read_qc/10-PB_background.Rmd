@@ -82,8 +82,8 @@ We will also use `smrttools` from PacBio to:
 - Generate CCS reads from subreads BAM files
 - Convert BAM to fasta/q format.
 
-### RabbitQC
+### RabbitQCPlus
 
-https://github.com/ZekunYin/RabbitQC
+https://github.com/RabbitBio/RabbitQCPlus
 
-Lastly, we will also use `RabbitQC` to assess the CCS assembled reads in fastq format.
+Lastly, we will also use `RabbitQCPlus` to assess the CCS assembled reads in fastq format.

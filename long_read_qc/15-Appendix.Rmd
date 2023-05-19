@@ -20,13 +20,57 @@ Mamba guide: https://mamba.readthedocs.io/en/latest/user_guide/mamba.html
 To create the mamba environment `ont_qc` run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
-#Illumina QC
+#Oxford Nanopore QC
 mamba create -n ont_qc
 mamba activate ont_qc
 #Install pip
 mamba install -c anaconda pip
-#Install nanopack with previosuly installed pip
+#Install nanopack with previously installed pip
 pip install nanopack
 #Install porechop
 mamba install -c bioconda porechop
+```
+
+## PB QC environment
+To create the mamba environment `pb_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#PacBio QC
+mamba create -n pb_qc
+mamba activate pb_qc
+#Install smrttools
+mamba install -c hcc smrtlink-tools
+#Install git & make for below installs
+mamba install -c anaconda git
+mamba install -c anaconda make
+#R needed for Sequeltools
+mamba install -c conda-forge r-base
+```
+
+Install [SequelTools](https://github.com/ISUgenomics/SequelTools) and [RabbitQCPlus](https://github.com/RabbitBio/RabbitQCPlus) via `git`.
+I suggest creating a directory called "git_installs" in your home directory and running this code there.
+
+```{bash, eval=FALSE}
+#git_installs directory
+mkdir ~/git_installs
+cd ~/git_installs
+#Sequeltools
+git clone https://github.com/ISUgenomics/SequelTools.git
+cd SequelTools/Scripts
+chmod +x *.sh *.py *.R
+cd ~/git_installs
+#RabbitQCPlus
+git clone https://github.com/RabbitBio/RabbitQCPlus.git
+cd RabbitQCPlus
+make -j4
+```
+
+To run these programs in your own machines you will need to use the full path of the command files.
+If you installed these in your "~/git_installs" examples are below.
+
+```{bash, eval=FALSE}
+#Sequeltools.sh help manual
+~/git_installs/SequelTools/Scripts/SequelTools.sh
+#RabbitQCPlus help manual
+~/git_installs/RabbitQCPlus/RabbitQCPlus
 ```
