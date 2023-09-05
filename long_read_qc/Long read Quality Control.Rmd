@@ -56,8 +56,67 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
 ``` 
 
-This practical session aims to introduce you to Long read Quality Control. The topics covered are:
+This practical session aims to introduce you to Long read Quality Control. 
 
+## Table of contents {-}
+
+```{r, echo=FALSE, align="centre"}
+#Create 2 column dataframe
+column_1 <- c(
+  #1 Data intro
+  '[**Data intro**](#data)', 
+ '[![](figures/Play.png){height="150"}](#data)',
+ #3 ONT setup
+    '[**ONT setup**](#ontsetupchap)', 
+ '[![](figures/conda.png){height="150"}](#ontsetupchap)',
+ #5 Nanoplot
+   '[**NanoPlot**](#nanoplotchap)', 
+ '[![](figures/nanoplot_hexes.png){height="150"}](#nanoplotchap)',
+ #7 ONT final check
+   '[**ONT final check**](#ontcheckchap)', 
+ '[![](figures/finish.png){height="150"}](#ontcheckchap)',
+  #9 CLR setup
+   '[**CLR setup**](#clrsetupchap)', 
+ '[![](figures/clr.png){height="100"}](#clrsetupchap)',
+   #11 CLR filter
+   '[**CLR filtering**](#clrfiltchap)', 
+ '[![](figures/quality_filtering.png){height="150"}](#clrfiltchap)',
+    #13 appendix
+   '[**Appendix**](#mamba_install)', 
+ '[![](figures/mamba_logo.png){height="150"}](#mamba_install)'
+)
+column_2 <- c(
+  #2 ONT
+  '[**ONT background**](#ont)', 
+ '[![](figures/ONT_logo_wo_text.png){height="150"}](#ont)',
+ #4 porechop
+   '[**Porechop**](#porechopchap)', 
+ '[![](figures/porechop_logo_knife.png){height="100"}](#porechopchap)',
+ #6 nanofilt
+   '[**NanoFilt**](#nanofiltchap)', 
+ '[![](figures/quality_filtering.png){height="150"}](#nanofiltchap)',
+ #8 pb background
+   '[**PacBio background**](#pb)', 
+ '[![](figures/Pacbio_logo_wo_text.png){height="150"}](#pb)',
+   #10 CLR qc
+   '[**CLR QC**](#clrqcchap)', 
+ '[![](figures/qc_inspection.png){height="150"}](#clrqcchap)',
+    #12 CCS
+   '[**CLR QC**](#ccschap)', 
+ '[![](figures/ccs.png){height="150"}](#ccschap)',
+ #14 empty
+ "",""
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_styling(position = "center")
+```
 - [Acquiring the workshop data](#data)
 - [ONT quality control](#ont)
 - [PacBio quality control](#pb)
@@ -251,7 +310,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# ONT Setup
+# ONT Setup {#ontsetupchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
 ```
@@ -436,7 +495,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Porechop
+# Porechop {#porechopchap}
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRUE)
 ``` 
@@ -528,7 +587,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# NanoPlot
+# NanoPlot {#nanoplotchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
 ``` 
@@ -695,7 +754,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# NanoFilt
+# NanoFilt {#nanofiltchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ```
@@ -745,7 +804,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Final check
+# Final check {#ontcheckchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ```
@@ -949,7 +1008,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# CLR setup
+# CLR setup {#clrsetupchap}
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
 ``` 
@@ -997,7 +1056,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# CLR QC
+# CLR QC {#clrqcchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
 ``` 
@@ -1136,7 +1195,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# CLR filtering
+# CLR filtering {#clrfiltchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ``` 
@@ -1273,7 +1332,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Circular Consensus Sequences
+# Circular Consensus Sequences {#ccschap}
 ```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
 knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
 ``` 
@@ -1431,12 +1490,12 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```
 # (APPENDIX) Appendix {-}
 
-# Mamba installs
+# Mamba installs {#mamba_install}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
 
-## Mamba installation {#mamba_install}
+## Mamba installation 
 
 Mamba is a reimplementation of conda.
 It is a great tool for installing bioinformatic packages including R packages.

@@ -30,13 +30,48 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
 ``` 
 
-This practical session aims to introduce you to Illumina Quality Control. The topics covered are:
+This practical session aims to introduce you to Illumina Quality Control.
 
-- [Logging in to our teaching environment](#cluster)
-- [Acquiring the workshop data](#data)
-- [Quality control of good quality genomic data](#goodtutorial)
-- [Quality control of poor quality genomic data](#poortutorial)
-- [Quality control of Whole genome shotgun data](#shotgun)
-- [Quality control of 16S rRNA metagenetic data](#metagenetics)
+## Table of contents {-}
+
+```{r, echo=FALSE, align="centre"}
+#Create 2 column dataframe
+column_1 <- c(
+  #1 cluster intro
+  '[**Cluster intro**](#cluster)', 
+ '[![](figures/cluster.png){height="150"}](#cluster)',
+ #3 Good q
+    '[**Good Illumina data**](#goodtutorial)', 
+ '[![](figures/bacteria.png){height="150"}](#goodtutorial)',
+ #5 QC exercise
+   '[**QC exercise**](#qcexercise)', 
+ '[![](figures/exercise.png){height="150"}](#qcexercise)',
+ #7 Appendix
+   '[**Appendix**](#usefultools)', 
+ '[![](figures/toolbox.png){height="150"}](#usefultools)'
+)
+column_2 <- c(
+  #2 setup
+  '[**Setup**](#setupchap)', 
+ '[![](figures/start.png){height="150"}](#setupchap)',
+ #4 poorer q
+   '[**Poorer Illumina data**](#poortutorial)', 
+ '[![](figures/bacteria_2.png){height="150"}](#poortutorial)',
+ #6 MultiQC
+   '[**MultiQC**](#multiqcchap)', 
+ '[![](figures/MultiQC_logo.png){height="100"}](#multiqcchap)',
+ #8 empty
+ "",""
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_styling(position = "center")
+```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -1,4 +1,4 @@
-# CLR filtering
+# CLR filtering {#clrfiltchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
 ``` 

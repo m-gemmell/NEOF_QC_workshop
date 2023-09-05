@@ -1,11 +1,11 @@
 # (APPENDIX) Appendix {-}
 
-# Mamba installs
+# Mamba installs {#mamba_install}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
 
-## Mamba installation {#mamba_install}
+## Mamba installation 
 
 Mamba is a reimplementation of conda.
 It is a great tool for installing bioinformatic packages including R packages.

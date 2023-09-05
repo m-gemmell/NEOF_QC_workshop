@@ -1,4 +1,4 @@
-# Porechop
+# Porechop {#porechopchap}
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRUE)
 ``` 

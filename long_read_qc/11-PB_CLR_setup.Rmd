@@ -1,4 +1,4 @@
-# CLR setup
+# CLR setup {#clrsetupchap}
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
 ``` 

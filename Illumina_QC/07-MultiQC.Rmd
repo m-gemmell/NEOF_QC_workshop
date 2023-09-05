@@ -1,4 +1,4 @@
-# MultiQC
+# MultiQC {#multiqcchap}
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
 ``` 

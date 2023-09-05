@@ -1,6 +1,6 @@
 # (APPENDIX) Appendix {-}
 
-# Useful tools and considerations
+# Useful tools and considerations {#usefultools}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
 ``` 

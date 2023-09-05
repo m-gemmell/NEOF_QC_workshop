@@ -1,4 +1,4 @@
-# NanoPlot
+# NanoPlot {#nanoplotchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
 ``` 

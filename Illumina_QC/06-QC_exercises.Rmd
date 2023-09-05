@@ -1,4 +1,4 @@
-# QC exercises
+# QC exercises {#qcexercise}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
 ```

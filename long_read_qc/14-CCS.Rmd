@@ -1,4 +1,4 @@
-# Circular Consensus Sequences
+# Circular Consensus Sequences {#ccschap}
 ```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
 knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
 ``` 
