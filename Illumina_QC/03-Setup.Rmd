@@ -30,7 +30,7 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
-## Mamba
+## Mamba {#mamba}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```

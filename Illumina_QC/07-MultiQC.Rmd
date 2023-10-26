@@ -2,7 +2,7 @@
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
 ``` 
-`MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into 1 MultiQC report and the reverse reads into another.
+`MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
 
 __Main page:__ https://multiqc.info/
 
@@ -21,7 +21,7 @@ Move into the multiqc_example directory:
 cd ~/QC_workshop/Illumina_QC/multiqc_example
 ```
 
-__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environemtn please see the [Conda section](#conda) to activate it.
+__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environment please see the [Mamba section](#mamba) to activate it.
 
 We will be quality checking 5 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
 
@@ -41,7 +41,7 @@ As you can see from listing the contents you have been provided the raw and trim
 knitr::include_graphics(path = "figures/raw_crystal.png", auto_pdf = TRUE)
 ``` 
 
-The first step is to carry out `fastqc` in the raw data.
+The first step is to carry out `fastqc` on the raw data.
 
 ```{bash eval=FALSE}
 #Make output directory
@@ -93,7 +93,7 @@ multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastqc_output/*2P*
 firefox trimmomatic_multiqc_output/*/*.html
 ```
 
-This is a brilliant use of `MultiQC`. However, it can also be to collate the output from many other bioinformatic tools (https://multiqc.info/#supported-tools).
+This is a brilliant use of `MultiQC`. However, it can also be used to collate the output from many other bioinformatic tools (https://multiqc.info/#supported-tools).
 
 ## Read data
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }

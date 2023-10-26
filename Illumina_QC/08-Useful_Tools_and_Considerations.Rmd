@@ -21,20 +21,6 @@ https://github.com/FelixKrueger/TrimGalore
 __Manual:__
 https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
 
-## MultiQC
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
-``` 
-MultiQC is a brilliant tool that can be used to collate multiple fastQC reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into 1 MultiQC report and the reverse reads into another.
-
-__Main page:__ https://multiqc.info/
-
-__Documentation:__ https://multiqc.info/docs/
-
-MultiQC can be to collate the output from many other bioinformatic tools.
-
-__Supported tools:__ https://multiqc.info/#supported-tools
-
 ## Fasta and fastq processing toolkits
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
@@ -47,7 +33,9 @@ This is a tool designed to be a \"all-in-one\" preprocessor for fastq files. Thi
 You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
 
 ```{bash eval=FALSE}
-fastp --in1 R1.fastq --in2 R2.fastq --out1 R1.120.fastq --out2 R2.120.fastq --max_len1 120 --max_len2 120 --length_required 120
+fastp --in1 R1.fastq --in2 R2.fastq \
+--out1 R1.120.fastq --out2 R2.120.fastq \
+--max_len1 120 --max_len2 120 --length_required 120
 ```
 
 __Main page:__ https://github.com/OpenGene/fastp

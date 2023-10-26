@@ -208,7 +208,7 @@ Before running any examples let us change directory to the Illumina Quality cont
 cd QC_workshop/Illumina_QC/
 ```
 
-## Mamba
+## Mamba {#mamba}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
@@ -592,7 +592,7 @@ B_cereus_1P.fastq B_cereus_2P.fastq
 We can open the `fastqc` output with the following commands
 
 ```{bash eval=FALSE}
-firefox trimmomatic_fastqc_output/*_fastqc.html $
+firefox trimmomatic_fastqc_output/*_fastqc.html &
 ```
 
 ### Quality checking MCQs
@@ -605,7 +605,7 @@ To see how well the reads have improved answer the below questions and compare t
 ```{r, echo = FALSE}
 opts_p <- c("__35__", "__50-251__", answer="__38,309__")
 ```
-1.  How many total reads/sequences are there in the R2 file? `r longmcq(opts_p)`
+1.  How many total reads/sequences are there in the R2 (2P) file? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__35__", answer="__50-251__", "__38,309__")
@@ -620,27 +620,27 @@ opts_p <- c(answer="__35__", "__50-251__", "__38,309__")
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-4. In R1, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+4. In R1 (1P), do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-5. In R2, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+5. In R2 (2P), do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-6. In R2, do the IQRs drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+6. In R2 (2P), do the IQRs drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__0__",answer="__37__", "__250-251__")
 ```
-7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
+7. What is the most common "mean sequence quality" for the reads in R2 (2P) (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__0__","__37__", "__250-251__")
 ```
-8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
+8. What is the total count of overrepresented sequences in R1 (1P)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__0__","__37__", answer="__250-251__")
@@ -649,7 +649,7 @@ opts_p <- c("__0__","__37__", answer="__250-251__")
 
 Some things to note:
 
--   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
+-   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organism).
 -   R2 quality is still worse than R1 quality. Again this is normal.
 -   The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
 -   The overrepresented sequences, which were Illumina adapters needed for sequencing, were removed by `trimmomatic`. This is good as we don't need/want them any more.
@@ -701,7 +701,7 @@ Carry out `fastqc` on the raw reads and ponder the below questions.
 1. What may be causing the weird GC content at the start of the reads?
 2. The "Per sequence GC content" has a weird peak. Why might this be?
 
-Carry out `trimmomatic` quality control, deciding on the sliding window and the length threshold. After `trimmomatic` carry out `fastqc` on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
+Carry out `trimmomatic` quality control, deciding on the sliding window and the length threshold. After `trimmomatic` carry out `fastqc` on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions. If your answers don't match the correct answers below try to rerun trimmomatic with different parameter options.
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
@@ -727,7 +727,7 @@ __Explanations__
 
 In this case it helps to know the adapter sequence, used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. 
 
-In previous tests I have trimmed off the first 20bp to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
+In previous tests I have trimmed off the first 20bps to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
 
 As for the weird \"Per sequence GC content\" peak, We must remember that the metagenome sample contains many different organisms with different GC contents. Therefore a flat GC peak would be expected.
 
@@ -775,7 +775,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
 knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
 ``` 
-`MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into 1 MultiQC report and the reverse reads into another.
+`MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
 
 __Main page:__ https://multiqc.info/
 
@@ -794,7 +794,7 @@ Move into the multiqc_example directory:
 cd ~/QC_workshop/Illumina_QC/multiqc_example
 ```
 
-__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environemtn please see the [Conda section](#conda) to activate it.
+__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environment please see the [Mamba section](#mamba) to activate it.
 
 We will be quality checking 5 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
 
@@ -814,7 +814,7 @@ As you can see from listing the contents you have been provided the raw and trim
 knitr::include_graphics(path = "figures/raw_crystal.png", auto_pdf = TRUE)
 ``` 
 
-The first step is to carry out `fastqc` in the raw data.
+The first step is to carry out `fastqc` on the raw data.
 
 ```{bash eval=FALSE}
 #Make output directory
@@ -866,7 +866,7 @@ multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastqc_output/*2P*
 firefox trimmomatic_multiqc_output/*/*.html
 ```
 
-This is a brilliant use of `MultiQC`. However, it can also be to collate the output from many other bioinformatic tools (https://multiqc.info/#supported-tools).
+This is a brilliant use of `MultiQC`. However, it can also be used to collate the output from many other bioinformatic tools (https://multiqc.info/#supported-tools).
 
 ## Read data
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -918,20 +918,6 @@ https://github.com/FelixKrueger/TrimGalore
 __Manual:__
 https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
 
-## MultiQC
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
-``` 
-MultiQC is a brilliant tool that can be used to collate multiple fastQC reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into 1 MultiQC report and the reverse reads into another.
-
-__Main page:__ https://multiqc.info/
-
-__Documentation:__ https://multiqc.info/docs/
-
-MultiQC can be to collate the output from many other bioinformatic tools.
-
-__Supported tools:__ https://multiqc.info/#supported-tools
-
 ## Fasta and fastq processing toolkits
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
@@ -944,7 +930,9 @@ This is a tool designed to be a \"all-in-one\" preprocessor for fastq files. Thi
 You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
 
 ```{bash eval=FALSE}
-fastp --in1 R1.fastq --in2 R2.fastq --out1 R1.120.fastq --out2 R2.120.fastq --max_len1 120 --max_len2 120 --length_required 120
+fastp --in1 R1.fastq --in2 R2.fastq \
+--out1 R1.120.fastq --out2 R2.120.fastq \
+--max_len1 120 --max_len2 120 --length_required 120
 ```
 
 __Main page:__ https://github.com/OpenGene/fastp

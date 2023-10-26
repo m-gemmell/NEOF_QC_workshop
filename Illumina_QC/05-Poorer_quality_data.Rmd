@@ -180,7 +180,7 @@ B_cereus_1P.fastq B_cereus_2P.fastq
 We can open the `fastqc` output with the following commands
 
 ```{bash eval=FALSE}
-firefox trimmomatic_fastqc_output/*_fastqc.html $
+firefox trimmomatic_fastqc_output/*_fastqc.html &
 ```
 
 ### Quality checking MCQs
@@ -193,7 +193,7 @@ To see how well the reads have improved answer the below questions and compare t
 ```{r, echo = FALSE}
 opts_p <- c("__35__", "__50-251__", answer="__38,309__")
 ```
-1.  How many total reads/sequences are there in the R2 file? `r longmcq(opts_p)`
+1.  How many total reads/sequences are there in the R2 (2P) file? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__35__", answer="__50-251__", "__38,309__")
@@ -208,27 +208,27 @@ opts_p <- c(answer="__35__", "__50-251__", "__38,309__")
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-4. In R1, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+4. In R1 (1P), do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-5. In R2, do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+5. In R2 (2P), do the IQRs and/or whiskers drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-6. In R2, do the IQRs drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
+6. In R2 (2P), do the IQRs drop below Q28 in the "Per base sequence quality" graph? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__0__",answer="__37__", "__250-251__")
 ```
-7. What is the most common "mean sequence quality" for the reads in R2 (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
+7. What is the most common "mean sequence quality" for the reads in R2 (2P) (see the peak of the "Per sequence quality scores" graph)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__0__","__37__", "__250-251__")
 ```
-8. What is the total count of overrepresented sequences in R1? `r longmcq(opts_p)`
+8. What is the total count of overrepresented sequences in R1 (1P)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__0__","__37__", answer="__250-251__")
@@ -237,7 +237,7 @@ opts_p <- c("__0__","__37__", answer="__250-251__")
 
 Some things to note:
 
--   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organisms).
+-   The amount of reads has significantly decreased due to quality control. This is expected, however this will need to be taken into account. If you do not have enough reads for the downstream analysis you will need to be less stringent on the trimming or filtering. What is the minimum number of reads required for downstream analysis? Unfortunately this depends on the specific analysis at hand. For genome assemblies generally the rule of thumb is you want at least 20 times as much bases in the reads as would be in the final assembly (based on the genome size of the organism).
 -   R2 quality is still worse than R1 quality. Again this is normal.
 -   The quality controlled reads of the reverse reads still drop below Q28 towards the end of the reads. This is pretty typical. You could be more stringent but as previously mentioned you may be removing too many reads.
 -   The overrepresented sequences, which were Illumina adapters needed for sequencing, were removed by `trimmomatic`. This is good as we don't need/want them any more.

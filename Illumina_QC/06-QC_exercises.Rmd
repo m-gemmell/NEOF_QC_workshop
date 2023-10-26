@@ -21,7 +21,7 @@ Carry out `fastqc` on the raw reads and ponder the below questions.
 1. What may be causing the weird GC content at the start of the reads?
 2. The "Per sequence GC content" has a weird peak. Why might this be?
 
-Carry out `trimmomatic` quality control, deciding on the sliding window and the length threshold. After `trimmomatic` carry out `fastqc` on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions.
+Carry out `trimmomatic` quality control, deciding on the sliding window and the length threshold. After `trimmomatic` carry out `fastqc` on the trimmed and filtered reads to determine if it was successful. Afterwards answer the following questions. If your answers don't match the correct answers below try to rerun trimmomatic with different parameter options.
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
@@ -47,7 +47,7 @@ __Explanations__
 
 In this case it helps to know the adapter sequence, used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. 
 
-In previous tests I have trimmed off the first 20bp to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
+In previous tests I have trimmed off the first 20bps to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
 
 As for the weird \"Per sequence GC content\" peak, We must remember that the metagenome sample contains many different organisms with different GC contents. Therefore a flat GC peak would be expected.
 
