@@ -1,5 +1,27 @@
 # (APPENDIX) Appendix {-}
 
+# Further resourses
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
+```
+
+- [Long read tools](https://long-read-tools.org/index.html)
+
+## ONT
+
+Unfortunately with ONT you need an account to access a lot of the content on its website.
+
+- [ONT website](https://nanoporetech.com/)
+- [Oxford Nanopore product brochure](https://nanoporetech.com/sites/default/files/s3/literature/Oxford-Nanopore-Product-brochure_Sept2023.pdf)
+
+## PacBio
+
+- [PacBio website](https://www.pacb.com/)
+- [PacBio HiFi sequencing](https://www.pacb.com/technology/hifi-sequencing/)
+- [PacBio HiFI reads brochure](https://www.pacb.com/wp-content/uploads/Application-Brochure-HiFi-Reads-for-Highly-Accurate-Long-read-Sequencing.pdf)
+- [Sequel II and IIe data files](https://www.pacb.com/wp-content/uploads/Sequel_II_and_IIe_Data_Files.pdf)
+- [Revio brochure](https://www.pacb.com/wp-content/uploads/Revio-brochure.pdf)
+
 # Mamba installs {#mamba_install}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)

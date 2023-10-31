@@ -88,7 +88,7 @@ column_2 <- c(
  '[![](figures/quality_filtering.png){height="150"}](#nanofiltchap)',
  #8 pb background
    '[**PacBio background**](#pb)', 
- '[![](figures/Pacbio_logo_wo_text.png){height="150"}](#pb)',
+ '[![](figures/logo_PacBio_web_RGB-1.png){height="150"}](#pb)',
    #10 CLR qc
    '[**CLR QC**](#clrqcchap)', 
  '[![](figures/qc_inspection.png){height="150"}](#clrqcchap)',
