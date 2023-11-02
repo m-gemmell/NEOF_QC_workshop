@@ -31,6 +31,6 @@ Already there is useful information for us on the terminal window.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __\'~\'__ is a shortcut to the user's home directory.
 - Everything after the __\'$\'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
-To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
+To open a new terminal window, right click on the main screen, choose `Terminal`
 
 

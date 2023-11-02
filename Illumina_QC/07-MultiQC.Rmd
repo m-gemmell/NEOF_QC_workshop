@@ -23,7 +23,7 @@ cd ~/QC_workshop/Illumina_QC/multiqc_example
 
 __Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environment please see the [Mamba section](#mamba) to activate it.
 
-We will be quality checking 5 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
+We will be quality checking 4 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
 
 ```{bash eval=FALSE}
 #List all the contents
@@ -100,5 +100,5 @@ This is a brilliant use of `MultiQC`. However, it can also be used to collate th
 knitr::include_graphics(path = "figures/r_read.png", auto_pdf = TRUE)
 ``` 
 
-The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGA dataset
+The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGE-B dataset
 https://ccb.jhu.edu/gage_b/datasets/index.html.

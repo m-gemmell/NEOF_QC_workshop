@@ -153,7 +153,7 @@ Already there is useful information for us on the terminal window.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __\'~\'__ is a shortcut to the user's home directory.
 - Everything after the __\'$\'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
-To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
+To open a new terminal window, right click on the main screen, choose `Terminal`
 
 
 
@@ -321,8 +321,6 @@ You will only be able to type a new command in the terminal once the **foregroun
 
 This is normally wanted but not always, for example when you run a process like `firefox`.
 To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
-
-Please see the following link for more info on the **foreground** and **background**: <https://www.lifewire.com/multitasking-background-foreground-process-2180219>
 
 ## View fastqc output
 
@@ -556,7 +554,7 @@ Based on it, what percentage of paired reads were kept? `r longmcq(opts_p)` <br>
 
 **Output**
 
-The command produces four files with names based off the `-baseout` parameter.
+The command produces four files with names based off the `-baseout` parameter. You can use `ls` to see the output file.
 The files are:
 
 - `B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The **paired** forward and reverse reads after successful trimming.
@@ -690,7 +688,7 @@ knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
 ```
 The data from this exercise comes from the following link:
 
-https://www.ebi.ac.uk/ena/data/search?query=shotgun
+https://www.ebi.ac.uk/ena/browser/view/SRR2081071
 
 This contains the genomic content of many organisms.
 
@@ -796,7 +794,7 @@ cd ~/QC_workshop/Illumina_QC/multiqc_example
 
 __Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environment please see the [Mamba section](#mamba) to activate it.
 
-We will be quality checking 5 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
+We will be quality checking 4 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
 
 ```{bash eval=FALSE}
 #List all the contents
@@ -873,7 +871,7 @@ This is a brilliant use of `MultiQC`. However, it can also be used to collate th
 knitr::include_graphics(path = "figures/r_read.png", auto_pdf = TRUE)
 ``` 
 
-The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGA dataset
+The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGE-B dataset
 https://ccb.jhu.edu/gage_b/datasets/index.html.
 
 <!--chapter:end:07-MultiQC.Rmd-->
@@ -969,11 +967,9 @@ __Commands:__ http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
 ### BBTools
 BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
 
-__Main page__: https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/
+__Main page__: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
 
-__General usage guide:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/usage-guide/
-
-__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/data-preprocessing/
+__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/data-preprocessing/
 
 # Mamba
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }

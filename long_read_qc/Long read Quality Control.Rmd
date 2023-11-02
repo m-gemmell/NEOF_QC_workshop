@@ -289,11 +289,7 @@ There are many tools to carry out basecalling with ONT data. ONT sequencing mach
 
 Basecalling with Guppy tutorial:
 
-https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html
-
-Basecalling with Albacore tutorial:
-
-https://denbi-nanopore-training-course.readthedocs.io/en/stable/basecalling/basecalling.html
+https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html
 
 <!--chapter:end:03-ONT_background.Rmd-->
 
@@ -1494,7 +1490,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```
 # (APPENDIX) Appendix {-}
 
-# Further resourses
+# Further resources
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
 ```

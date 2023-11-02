@@ -100,8 +100,4 @@ There are many tools to carry out basecalling with ONT data. ONT sequencing mach
 
 Basecalling with Guppy tutorial:
 
-https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html
-
-Basecalling with Albacore tutorial:
-
-https://denbi-nanopore-training-course.readthedocs.io/en/stable/basecalling/basecalling.html
+https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html

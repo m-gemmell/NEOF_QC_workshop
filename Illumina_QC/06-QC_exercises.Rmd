@@ -10,7 +10,7 @@ knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
 ```
 The data from this exercise comes from the following link:
 
-https://www.ebi.ac.uk/ena/data/search?query=shotgun
+https://www.ebi.ac.uk/ena/browser/view/SRR2081071
 
 This contains the genomic content of many organisms.
 

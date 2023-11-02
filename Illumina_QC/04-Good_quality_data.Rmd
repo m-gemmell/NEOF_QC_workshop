@@ -65,8 +65,6 @@ You will only be able to type a new command in the terminal once the **foregroun
 This is normally wanted but not always, for example when you run a process like `firefox`.
 To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
 
-Please see the following link for more info on the **foreground** and **background**: <https://www.lifewire.com/multitasking-background-foreground-process-2180219>
-
 ## View fastqc output
 
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }

@@ -72,11 +72,9 @@ __Commands:__ http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
 ### BBTools
 BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
 
-__Main page__: https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/
+__Main page__: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
 
-__General usage guide:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/usage-guide/
-
-__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/data-preprocessing/
+__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/data-preprocessing/
 
 # Mamba
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
