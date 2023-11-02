@@ -13,21 +13,7 @@ description: NEOF book for the Long read quality control workshop
 cover-image: "figures/NEOF.png"
 ---
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 
 ```{r cite-packages, include = FALSE}
@@ -131,21 +117,7 @@ table_df %>%
 <!--chapter:end:01-Long_read_QC.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Data {#data}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -171,21 +143,7 @@ cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ ~
 <!--chapter:end:02-Intro.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) ONT {.unnumbered}
 
@@ -294,21 +252,7 @@ https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/inde
 <!--chapter:end:03-ONT_background.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # ONT Setup {#ontsetupchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -342,21 +286,7 @@ To start we will only use the fastq file within the directory called \"Acinetoba
 <!--chapter:end:04-ONT_setup.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # NanoStat
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -479,21 +409,7 @@ We have carried out our first step of QC by quality checking the __fastq__ file 
 <!--chapter:end:05-NanoStat.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Porechop {#porechopchap}
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
@@ -571,21 +487,7 @@ For more uses of `Porechop` please see the below links:
 <!--chapter:end:06-Porechop.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # NanoPlot {#nanoplotchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -738,21 +640,7 @@ You can use `NanoPlot` with different input files. This will give you different 
 <!--chapter:end:07-NanoPlot.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # NanoFilt {#nanofiltchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -788,21 +676,7 @@ Are the chosen options appropriate? Let\'s find out.
 <!--chapter:end:08-NanoFilt.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Final check {#ontcheckchap}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -883,21 +757,7 @@ We carried out:
 <!--chapter:end:09-ONT_final_check.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) PacBio {.unnumbered}
 
@@ -992,21 +852,7 @@ Lastly, we will also use `RabbitQCPlus` to assess the CCS assembled reads in fas
 <!--chapter:end:10-PB_background.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # CLR setup {#clrsetupchap}
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -1040,21 +886,7 @@ This command line will find all of the files in our current working directory wh
 <!--chapter:end:11-PB_CLR_setup.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # CLR QC {#clrqcchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1179,21 +1011,7 @@ The histograms show the distribution of subread lengths in more detail. Sample3 
 <!--chapter:end:12-PB_CLR_QC.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # CLR filtering {#clrfiltchap}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1316,21 +1134,7 @@ We have quality checked and quality controlled our CLR data. This has produced b
 <!--chapter:end:13-PB_CLR_filtering.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Circular Consensus Sequences {#ccschap}
 ```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
@@ -1472,21 +1276,7 @@ Thanks for reading.
 <!--chapter:end:14-CCS.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (APPENDIX) Appendix {-}
 

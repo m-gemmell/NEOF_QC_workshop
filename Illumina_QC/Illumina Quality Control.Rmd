@@ -13,21 +13,7 @@ description: NEOF book for the Illumina quality control workshop
 cover-image: "figures/NEOF.png"
 ---
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 
 ```{r cite-packages, include = FALSE}
@@ -104,21 +90,7 @@ table_df %>%
 <!--chapter:end:01-Illumina_Quality_Control.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Cluster Introduction {#cluster}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -160,21 +132,7 @@ To open a new terminal window, right click on the main screen, choose `Terminal`
 <!--chapter:end:02-Cluster_Introduction.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Setup {#setupchap}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -239,21 +197,7 @@ For more about mamba and how to create your own `illumina_qc` environment please
 <!--chapter:end:03-Setup.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Good quality genomic dataset {#goodtutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -392,21 +336,7 @@ For your own interest the genome assembly can be found in the following link: <h
 <!--chapter:end:04-Good_quality_data.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Poorer quality genomic dataset {#poortutorial}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -660,21 +590,7 @@ If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt
 <!--chapter:end:05-Poorer_quality_data.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # QC exercises {#qcexercise}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -753,21 +669,7 @@ These features show that it is important to understand what your data contains a
 <!--chapter:end:06-QC_exercises.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # MultiQC {#multiqcchap}
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
@@ -877,21 +779,7 @@ https://ccb.jhu.edu/gage_b/datasets/index.html.
 <!--chapter:end:07-MultiQC.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (APPENDIX) Appendix {-}
 
