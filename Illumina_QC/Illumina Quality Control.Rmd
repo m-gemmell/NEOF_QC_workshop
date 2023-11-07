@@ -731,14 +731,14 @@ mkdir raw_multiqc_output
 mkdir raw_multiqc_output/r1
 mkdir raw_multiqc_output/r2
 #Run multiqc
-multiqc -o raw_multiqc/r1 raw_fastqc_output/*R1*
-multiqc -o raw_multiqc/r2 raw_fastqc_output/*R2*
+multiqc -o raw_multiqc_output/r1 raw_fastqc_output/*R1*
+multiqc -o raw_multiqc_output/r2 raw_fastqc_output/*R2*
 ```
 
 Now we can open the `multiqc` reports with `firefox`.
 
 ```{bash eval=FALSE}
-firefox raw_multiqc/*/*.html
+firefox raw_multiqc_output/*/*.html
 ```
 
 Investigate the report. Notice how you can hover over parts of the plots to get information. If you would like more information there is a handy link to a tutorial video at the top of the report.
