@@ -657,7 +657,7 @@ The dataset can be found in the following link:
 
 https://www.ebi.ac.uk/ena/data/view/SRR2081030
 
-The dataset in the cluster is the full dataset. It can be found in your `~/QC_workshop/Illumina_Q/exercise_2` directory.
+The dataset in the cluster is the full dataset. It can be found in your `~/QC_workshop/Illumina_QC/exercise_2` directory.
 
 Run `fastqc` on the data and view the reports. Looking at the report you may be worried by its appearance, however this is normal for 16S rRNA data. Some explanations for the features are:
 
