@@ -1,0 +1,5 @@
+book_filename: "Introduction to sequencing data and quality control resources"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: FALSE
