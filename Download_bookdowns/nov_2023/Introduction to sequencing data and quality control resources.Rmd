@@ -26,7 +26,7 @@ knitr::include_graphics(path = "figures/magnifying_glass_black.png", auto_pdf = 
 ## Intro & Illumina QC
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/_AcDlI4ezio" 
+<iframe src="https://www.youtube.com/embed/eYwbIm6WaXE" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
