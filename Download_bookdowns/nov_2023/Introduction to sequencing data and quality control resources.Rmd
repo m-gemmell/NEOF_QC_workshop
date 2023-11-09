@@ -35,7 +35,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Long read QC
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/DkAnPbb3LQQ" 
+<iframe src="https://www.youtube.com/embed/fCV7Glw6bHw" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
@@ -62,8 +62,8 @@ Links to the online version of the Bookdowns.
 
 You can download the html files of the bookdown below. Ensure you unzip the directory before use.
 
-- [__Download Illumina QC zipped book__](https://neof-workshops.github.io/QC_91wlgv/resources/bookdown/Illumina_QC.zipped)
-- [__Download Long read QC zipped book__](https://neof-workshops.github.io/QC_91wlgv/resources/bookdown/Long_read_QC.zipped)
+- [__Download Illumina QC zipped book__](https://neof-workshops.github.io/QC_91wlgv/resources/bookdown/Illumina_QC.zip)
+- [__Download Long read QC zipped book__](https://neof-workshops.github.io/QC_91wlgv/resources/bookdown/Long_read_QC.zip)
 
 <!--chapter:end:01-QC.Rmd-->
 
