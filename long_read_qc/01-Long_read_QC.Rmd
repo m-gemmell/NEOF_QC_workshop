@@ -47,7 +47,23 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
 ``` 
 
-This practical session aims to introduce you to Long read Quality Control. 
+The most popular long read sequencers are produced by ONT and PacBio.
+It is beneficial to understand how they work and their error profiles to fully utilise the data they produce.
+This course aims to introduce you to ONT and PacBio quality control and checking.
+
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
+
+At the end of this course learners will be able to:
+
+- Explain how ONT & PacBio sequencing works.
+- Understand the advantages and disadvantages of both technologies.
+- Quality check ONT data with NanoFilt and NanoPlot.
+- Remove ONT adaptors with Porechop.
+- Filter ONT reads by length and quality with NanoFilt.
+- Quality check & filter PacBio data with SequelTools.
+- Convert PacBio BAM files to fastq.
+- Generate PacBio CCS reads from subreads.
+- Quality check PacBio CCS reads with RabbitQCPlus.
 
 ## Table of contents {-}
 

@@ -41,7 +41,20 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
 ``` 
 
-This practical session aims to introduce you to Illumina Quality Control.
+Illumina sequencing technology is the most common method used for DNA sequencing.
+However, it is not perfect and the produced data contains errors.
+This course aims to introduce you to Illumina quality control and checking, vital steps before carrying out most analyses with Illumina data.
+
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
+
+At the end of this book learners will be able to:
+
+- Explain how sequencing by synthesis works.
+- Understand where common Illumina errors come from.
+- Quality check Illumina fastq files with fastQC and multiQC.
+- Quality control Illumina fastq files by trimming and filtering.
+
+
 
 ## Table of contents {-}
 
