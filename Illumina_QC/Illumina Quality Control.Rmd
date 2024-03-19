@@ -32,14 +32,14 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/NEOF.png){style="width:300px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 # Introduction
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/nt_base_colours.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 Illumina sequencing technology is the most common method used for DNA sequencing.
 However, it is not perfect and the produced data contains errors.
@@ -106,17 +106,17 @@ table_df %>%
 library(webexercises)
 ```
 # Cluster Introduction {#cluster}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/cluster.png){style="width:200px"}
+</center>
 
 ## Logon instructions
 For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
 
 You will now be in a logged-in Linux VNC desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/logon_pic.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/logon_pic.png){style="width:800px"}
+</center>
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
@@ -127,9 +127,9 @@ https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## The Terminal Window
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/terminal_window.png){style="width:800px"}
+</center>
 
 Already there is useful information for us on the terminal window.
 
@@ -148,9 +148,9 @@ To open a new terminal window, right click on the main screen, choose `Terminal`
 library(webexercises)
 ```
 # Setup {#setupchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/start.png){style="width:200px"}
+</center>
 
 This tutorial will give hands on experience with quality control of genomic Illumina data.
 
@@ -180,9 +180,9 @@ cd QC_workshop/Illumina_QC/
 ```
 
 ## Mamba {#mamba}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 This book requires some packages.
 Mamba forge was used to install them.
@@ -213,9 +213,9 @@ For more about mamba and how to create your own `illumina_qc` environment please
 library(webexercises)
 ```
 # Good quality genomic dataset {#goodtutorial}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bacteria.png){style="width:200px"}
+</center>
 
 The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
 
@@ -237,10 +237,9 @@ ls
 ```
 
 ## Run fastqc
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key.png){style="width:200px"}
+</center>
 
 We will carry out `fastqc` quality checking of the reads.
 
@@ -264,10 +263,9 @@ p_arcticus_R1.fastq p_arcticus_R2.fastq
 ```
 
 ## Background and Foreground processes
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/background.png){style="width:200px"}
+</center>
 
 The next step is to view the `fastqc` report.
 But first we will talk about **background** and **foreground** processes.
@@ -280,10 +278,9 @@ This is normally wanted but not always, for example when you run a process like 
 To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
 
 ## View fastqc output
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/firefox.png){style="width:100px"}
+</center>
 
 Using `firefox` have a look at the output html reports and answer the following questions.
 
@@ -352,9 +349,9 @@ For your own interest the genome assembly can be found in the following link: <h
 library(webexercises)
 ```
 # Poorer quality genomic dataset {#poortutorial}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bacteria_2.png){style="width:200px"}
+</center>
 
 Now let us look at actual read data.
 We will be looking at *Bacillus cereus* MiSeq data that can be found in the following link: <https://ccb.jhu.edu/gage_b/datasets/index.html>.
@@ -371,9 +368,9 @@ ls
 ```
 
 ## Quality checking
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/magnify_glass_27AUG2020.png){style="width:200px"}
+</center>
 
 Let's make a directory for the `fastqc` output
 
@@ -400,9 +397,9 @@ Some typical features to note are:
 -   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
 
 ### Quality checking MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble.png){style="width:150px"}
+</center>
 
 Investigate the `fastqc` reports and answer the below question. 
 
@@ -456,9 +453,9 @@ We are therefore going to quality trim and filter the data.
 Unfortunately data straight from the sequencer always needs quality control.
 
 ## Quality control
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-  knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/quality_trimming_and_filtering.png){style="width:300px"}
+</center>
 
 Quality control generally comes in two forms:
 
@@ -510,10 +507,9 @@ These are produced when the reverse read is retained after trimming but not the 
 This can be ignored in most cases.
 
 ## Post Quality control check
-
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/magnify_glass_good.png){style="width:200px"}
+</center>
 
 To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
 
@@ -537,9 +533,9 @@ firefox trimmomatic_fastqc_output/*_fastqc.html &
 ```
 
 ### Quality checking MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble.png){style="width:150px"}
+</center>
 
 To see how well the reads have improved answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
 
@@ -606,15 +602,20 @@ If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt
 library(webexercises)
 ```
 # QC exercises {#qcexercise}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/exercise.png){style="width:200px"}
+</center>
+
 Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
 
 ## Whole shotgun metagenomics {#shotgun}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
 ```
+<center>
+![](figures/kraken.png){style="width:200px"}
+</center>
+
 The data from this exercise comes from the following link:
 
 https://www.ebi.ac.uk/ena/browser/view/SRR2081071
@@ -659,9 +660,10 @@ In previous tests I have trimmed off the first 20bps to remove this bias and not
 As for the weird \"Per sequence GC content\" peak, We must remember that the metagenome sample contains many different organisms with different GC contents. Therefore a flat GC peak would be expected.
 
 ## 16S rRNA Metagenetics {#metagenetics}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/chime.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/chime.png){style="width:200px"}
+</center>
+
 Before starting this exercise I must note this is not the normal method to quality control 16S rRNA data. Both QIIME2 and MOTHUR have their own methods but it can be useful to check the quality of 16S rRNA data.
 
 With that in mind we will only use `fastqc` to check the quality and features of a 16S rRNA dataset.
@@ -685,9 +687,10 @@ These features show that it is important to understand what your data contains a
 library(webexercises)
 ```
 # MultiQC {#multiqcchap}
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
+
 `MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
 
 __Main page:__ https://multiqc.info/
@@ -697,9 +700,9 @@ __Documentation:__ https://multiqc.info/docs/
 We will carry out a quick example of using `MultiQC` with `fastqc`data.
 
 ## The data
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/data.png){style="width:100px"}
+</center>
 
 Move into the multiqc_example directory:
 
@@ -723,9 +726,9 @@ ls *P.fastq
 As you can see from listing the contents you have been provided the raw and trimmed data. This is to save you time so all you need to carry out is the `fastqc` and `multiqc` commands.
 
 ## Fastqc of the raw data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/raw_crystal.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/raw_crystal.png){style="width:200px"}
+</center>
 
 The first step is to carry out `fastqc` on the raw data.
 
@@ -757,9 +760,9 @@ firefox raw_multiqc_output/*/*.html
 Investigate the report. Notice how you can hover over parts of the plots to get information. If you would like more information there is a handy link to a tutorial video at the top of the report.
 
 ## Fastqc of the trimmed data
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/cut_crystal.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/cut_crystal.png){style="width:150px"}
+</center>
 
 Now that you have looked at the `multiqc` report for the raw data it is time to carry out `fastqc` and `multiqc` on the trimmed data.
 
@@ -782,9 +785,9 @@ firefox trimmomatic_multiqc_output/*/*.html
 This is a brilliant use of `MultiQC`. However, it can also be used to collate the output from many other bioinformatic tools (https://multiqc.info/#supported-tools).
 
 ## Read data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/r_read.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/r_read.png){style="width:200px"}
+</center>
 
 The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGE-B dataset
 https://ccb.jhu.edu/gage_b/datasets/index.html.
@@ -797,16 +800,16 @@ library(webexercises)
 # (APPENDIX) Appendix {-}
 
 # Useful tools and considerations {#usefultools}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/toolbox.png){style="width:200px"}
+</center>
 
 There are various other useful tools for sequencing QC of Illumina data. Below are some suggestions but there are many more.
 
 ## Quality trimming and filtering tools
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/quality_trimming_and_filtering.png){style="width:200px"}
+</center>
 
 ### Trim Galore
 From the people who brought you FastQC, Trim Galore. This is a wrapper around cutadapt and FastQC. It has a lot of options and can output fastqc results of the quality controlled reads at the same time.
@@ -818,9 +821,10 @@ __Manual:__
 https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
 
 ## Fasta and fastq processing toolkits
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/process.png){style="width:200px"}
+</center>
+
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
 
 ### Fastp
@@ -873,9 +877,9 @@ __Main page__: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tool
 __Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/data-preprocessing/
 
 # Mamba
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 ## Mamba installation and environment {#mamba_install}
 

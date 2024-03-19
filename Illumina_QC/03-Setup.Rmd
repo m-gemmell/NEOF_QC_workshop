@@ -1,7 +1,7 @@
 # Setup {#setupchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/start.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/start.png){style="width:200px"}
+</center>
 
 This tutorial will give hands on experience with quality control of genomic Illumina data.
 
@@ -31,9 +31,9 @@ cd QC_workshop/Illumina_QC/
 ```
 
 ## Mamba {#mamba}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 This book requires some packages.
 Mamba forge was used to install them.

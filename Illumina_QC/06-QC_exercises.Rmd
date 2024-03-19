@@ -1,13 +1,18 @@
 # QC exercises {#qcexercise}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/exercise.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/exercise.png){style="width:200px"}
+</center>
+
 Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
 
 ## Whole shotgun metagenomics {#shotgun}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
 ```
+<center>
+![](figures/kraken.png){style="width:200px"}
+</center>
+
 The data from this exercise comes from the following link:
 
 https://www.ebi.ac.uk/ena/browser/view/SRR2081071
@@ -52,9 +57,10 @@ In previous tests I have trimmed off the first 20bps to remove this bias and not
 As for the weird \"Per sequence GC content\" peak, We must remember that the metagenome sample contains many different organisms with different GC contents. Therefore a flat GC peak would be expected.
 
 ## 16S rRNA Metagenetics {#metagenetics}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/chime.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/chime.png){style="width:200px"}
+</center>
+
 Before starting this exercise I must note this is not the normal method to quality control 16S rRNA data. Both QIIME2 and MOTHUR have their own methods but it can be useful to check the quality of 16S rRNA data.
 
 With that in mind we will only use `fastqc` to check the quality and features of a 16S rRNA dataset.

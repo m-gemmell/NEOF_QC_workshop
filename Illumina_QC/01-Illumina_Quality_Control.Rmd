@@ -29,14 +29,14 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/NEOF.png){style="width:300px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 # Introduction
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/nt_base_colours.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/nt_base_colours.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 Illumina sequencing technology is the most common method used for DNA sequencing.
 However, it is not perfect and the produced data contains errors.

@@ -1,7 +1,7 @@
 # Good quality genomic dataset {#goodtutorial}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/bacteria.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bacteria.png){style="width:200px"}
+</center>
 
 The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
 
@@ -23,10 +23,9 @@ ls
 ```
 
 ## Run fastqc
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key.png){style="width:200px"}
+</center>
 
 We will carry out `fastqc` quality checking of the reads.
 
@@ -50,10 +49,9 @@ p_arcticus_R1.fastq p_arcticus_R2.fastq
 ```
 
 ## Background and Foreground processes
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/background.png){style="width:200px"}
+</center>
 
 The next step is to view the `fastqc` report.
 But first we will talk about **background** and **foreground** processes.
@@ -66,10 +64,9 @@ This is normally wanted but not always, for example when you run a process like 
 To run a process in the **background**, so you can type and run new commands, you can add the symbol `&` to the end of a command.
 
 ## View fastqc output
-
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/firefox.png){style="width:100px"}
+</center>
 
 Using `firefox` have a look at the output html reports and answer the following questions.
 

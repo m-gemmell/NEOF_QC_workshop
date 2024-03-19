@@ -1,7 +1,8 @@
 # MultiQC {#multiqcchap}
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/MultiQC_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
+
 `MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
 
 __Main page:__ https://multiqc.info/
@@ -11,9 +12,9 @@ __Documentation:__ https://multiqc.info/docs/
 We will carry out a quick example of using `MultiQC` with `fastqc`data.
 
 ## The data
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/data.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/data.png){style="width:100px"}
+</center>
 
 Move into the multiqc_example directory:
 
@@ -37,9 +38,9 @@ ls *P.fastq
 As you can see from listing the contents you have been provided the raw and trimmed data. This is to save you time so all you need to carry out is the `fastqc` and `multiqc` commands.
 
 ## Fastqc of the raw data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/raw_crystal.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/raw_crystal.png){style="width:200px"}
+</center>
 
 The first step is to carry out `fastqc` on the raw data.
 
@@ -71,9 +72,9 @@ firefox raw_multiqc_output/*/*.html
 Investigate the report. Notice how you can hover over parts of the plots to get information. If you would like more information there is a handy link to a tutorial video at the top of the report.
 
 ## Fastqc of the trimmed data
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/cut_crystal.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/cut_crystal.png){style="width:150px"}
+</center>
 
 Now that you have looked at the `multiqc` report for the raw data it is time to carry out `fastqc` and `multiqc` on the trimmed data.
 
@@ -96,9 +97,9 @@ firefox trimmomatic_multiqc_output/*/*.html
 This is a brilliant use of `MultiQC`. However, it can also be used to collate the output from many other bioinformatic tools (https://multiqc.info/#supported-tools).
 
 ## Read data
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/r_read.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/r_read.png){style="width:200px"}
+</center>
 
 The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGE-B dataset
 https://ccb.jhu.edu/gage_b/datasets/index.html.

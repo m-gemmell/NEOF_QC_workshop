@@ -1,7 +1,7 @@
 # Poorer quality genomic dataset {#poortutorial}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/bacteria_2.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bacteria_2.png){style="width:200px"}
+</center>
 
 Now let us look at actual read data.
 We will be looking at *Bacillus cereus* MiSeq data that can be found in the following link: <https://ccb.jhu.edu/gage_b/datasets/index.html>.
@@ -18,9 +18,9 @@ ls
 ```
 
 ## Quality checking
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/magnify_glass_27AUG2020.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/magnify_glass_27AUG2020.png){style="width:200px"}
+</center>
 
 Let's make a directory for the `fastqc` output
 
@@ -47,9 +47,9 @@ Some typical features to note are:
 -   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
 
 ### Quality checking MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble.png){style="width:150px"}
+</center>
 
 Investigate the `fastqc` reports and answer the below question. 
 
@@ -103,9 +103,9 @@ We are therefore going to quality trim and filter the data.
 Unfortunately data straight from the sequencer always needs quality control.
 
 ## Quality control
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-  knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/quality_trimming_and_filtering.png){style="width:300px"}
+</center>
 
 Quality control generally comes in two forms:
 
@@ -157,10 +157,9 @@ These are produced when the reverse read is retained after trimming but not the 
 This can be ignored in most cases.
 
 ## Post Quality control check
-
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/magnify_glass_good.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/magnify_glass_good.png){style="width:200px"}
+</center>
 
 To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
 
@@ -184,9 +183,9 @@ firefox trimmomatic_fastqc_output/*_fastqc.html &
 ```
 
 ### Quality checking MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-  knitr::include_graphics(path = "figures/question_bubble.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble.png){style="width:150px"}
+</center>
 
 To see how well the reads have improved answer the below questions and compare to them to the answers of the raw read `fastqc` questions.
 

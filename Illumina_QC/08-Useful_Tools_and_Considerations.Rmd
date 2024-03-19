@@ -1,16 +1,16 @@
 # (APPENDIX) Appendix {-}
 
 # Useful tools and considerations {#usefultools}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/toolbox.png){style="width:200px"}
+</center>
 
 There are various other useful tools for sequencing QC of Illumina data. Below are some suggestions but there are many more.
 
 ## Quality trimming and filtering tools
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/quality_trimming_and_filtering.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/quality_trimming_and_filtering.png){style="width:200px"}
+</center>
 
 ### Trim Galore
 From the people who brought you FastQC, Trim Galore. This is a wrapper around cutadapt and FastQC. It has a lot of options and can output fastqc results of the quality controlled reads at the same time.
@@ -22,9 +22,10 @@ __Manual:__
 https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
 
 ## Fasta and fastq processing toolkits
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/process.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/process.png){style="width:200px"}
+</center>
+
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
 
 ### Fastp
@@ -77,9 +78,9 @@ __Main page__: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tool
 __Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/data-preprocessing/
 
 # Mamba
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 ## Mamba installation and environment {#mamba_install}
 
