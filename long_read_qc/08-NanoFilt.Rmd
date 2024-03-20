@@ -1,7 +1,7 @@
 # NanoFilt {#nanofiltchap}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/quality_filtering.png){style="width:150px"}
+</center>
 
 `NanoFilt` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/nanofilt). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
 
@@ -10,9 +10,9 @@ It is always important to know what your data is and if your planned filtering a
 This data is from a genome so wanting long and high quality reads is appropriate. Overall the quality of our data looks good. The main exception is the low amount of sequencing/coverage. The low coverage is because it is a subset of the whole data for workshop purposes (the full dataset would take too long to run here). There are some shorter length and lower quality reads which we will remove.
 
 ## NanoFilt: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_purple.png){style="width:150px"}
+</center>
 
 First we will create an output directory.
 ```{bash eval=FALSE}

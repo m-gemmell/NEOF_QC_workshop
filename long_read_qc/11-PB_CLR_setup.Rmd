@@ -1,7 +1,7 @@
 # CLR setup {#clrsetupchap}
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/clr.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 

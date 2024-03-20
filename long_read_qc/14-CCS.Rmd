@@ -1,7 +1,7 @@
 # Circular Consensus Sequences {#ccschap}
-```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
-knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/ccs.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.
 
@@ -18,11 +18,11 @@ cd ~/QC_workshop/PB_QC/data/CCS
 ```
 
 ## QC the subreads
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/qc_inspection.png){style="width:200px"}
+</center>
 
-OUr current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
+Our current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
 ```{bash eval=FALSE}
 find $(pwd) -name "*subreads.bam"  > subreads.txt
 ```
@@ -42,9 +42,9 @@ firefox S4QC/Sample4.readLenHists.pdf
 Many of the longest subreads (green bars) are ~ 4kb (the length of our amplicon), but there are also lots of shorter reads. 
 
 ## CCS generation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/production.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/production.png){style="width:200px"}
+</center>
 
 To generate CCS reads we will use the `ccs` tool from the `smrttools` package. This will also act as a form of filtering.
 
@@ -74,9 +74,9 @@ less ccs_report.txt
 ```
 
 ### CCS MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_black.png){style="width:150px"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c("__0%__", answer="__29.16%__", "__70.62%__")
@@ -89,9 +89,9 @@ opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__"
 1. What was the main reason for failure of CCS generation? `r longmcq(opts_p)`
 
 ## RabbitQCPlus
-```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
-knitr::include_graphics(path = "figures/RabbitQCPlus.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
 
@@ -127,9 +127,9 @@ The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp.
 The other plots show the % nucleotide frequencies (AGCT) and mean quality scores for the beginning and end of the reads. The mean quality plots unfortunately do not show anything because it is such a short region. The main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
 
 ## Final summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_black.png){style="width:150px"}
+</center>
 
 That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.
 

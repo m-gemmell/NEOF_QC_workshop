@@ -1,7 +1,7 @@
 # Porechop {#porechopchap}
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/porechop_logo_knife.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 `Porechop` is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences essential for sequencing but of no biological value and so you will typically want them removed.
 
@@ -19,9 +19,9 @@ knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRU
 `Porechop` will look for these adapters at the start and end of each read. Then it will look for adapters within the sequence (known as middle adapters to `Porechop`). If it finds a middle adapter it will conclude that the read is chimeric (a recombinant read containing sequences from 2 or more reads) and split the read. Depending on the number of middle adapters the chimeric read may split into 2 or more reads.
 
 ## Porechop: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_blue.png){style="width:150px"}
+</center>
 
 With all that explanation we will now run `Porechop.` Thankfully the command is relatively straight forward with the options:
 
@@ -40,9 +40,9 @@ porechop -t 4 -i ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq \
 `Porechop` will take a while to run. Whilst it is running, look at the screen output to get an idea of what it is doing. When finished, look at the bottom of the printed results.
 
 ## Porechop: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_blue.png){style="width:150px"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c("__0__", answer="__1,952__", "__79,015__")
@@ -60,9 +60,9 @@ opts_p <- c(answer="__0__", "__1,952__", "__79,015__")
 3. How many reads were split based on middle adapters? `r longmcq(opts_p)`
 
 ## Porechop: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:150px"}
+</center>
 
 `Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads prior to so we can be informed when we filter out poor quality reads and bases.
 

@@ -1,14 +1,14 @@
 # Final check {#ontcheckchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/finish.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 After trimming or filtering reads (quality control) it is always important to carry out a quality check. We will therefore run NanoPlot again.
 
 ## Final NanoPlot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/nanoplot_hexes.png){style="width:200px"}
+</center>
 
 __Note__: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy. 
 
@@ -28,9 +28,9 @@ firefox nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.htm
 ```
 
 ## ONT QC considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/considerations.png){style="width:150px"}
+</center>
 
 Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren\'t left with a lot of poor quality data.
 
@@ -41,9 +41,9 @@ A quick example is data for a genome assembly. For this type of analysis we will
 In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads need to be assembled.
 
 ## NanoFilt Reattempts
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/retry.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/retry.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 Keeping all this in mind, let's say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and nanofiltered?
 
@@ -60,9 +60,9 @@ Tips:
 + Use `NanoPlot` results to compare the Q10 filtering to your own. The `NanoStat` part is especially helpful.
 
 ## ONT Recap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 That is the end of the ONT QC section.
 

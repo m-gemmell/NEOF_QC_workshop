@@ -1,7 +1,7 @@
 # ONT Setup {#ontsetupchap}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/conda.png){style="width:150px"}
+</center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 

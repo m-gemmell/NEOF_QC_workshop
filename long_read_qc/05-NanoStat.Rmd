@@ -1,16 +1,16 @@
 # NanoStat
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/metrics.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/metrics.png){style="width:150px"}
+</center>
 
 The first step is to acquire stats for the sequences in our fastq file. We will use `NanoStat` (https://github.com/wdecoster/nanostat).
 
 `NanoStat` is one of the many tools contained in the `NanoPack` suite (https://github.com/wdecoster/nanopack). We will also use the tools `NanoPlot` and `NanoFilt` downstream.
 
 ## NanoStat: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_black.png){style="width:150px"}
+</center>
 
 We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
 
@@ -36,9 +36,9 @@ less nanostats/Acinetobacter_nanostats.tsv
 ```
 
 ## NanoStat: output {#nanostat_output}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_black.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/output_file_black.png){style="width:150px"}
+</center>
 
 The file contains four sections with informative headers. These are:
 
@@ -53,9 +53,9 @@ The file contains four sections with informative headers. These are:
    - Shows the top 5 longest reads.
  
 ## NanoStat: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_black.png){style="width:150px"}
+</center>
 
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
 
@@ -110,8 +110,8 @@ opts_p <- c(answer="__0.2Mb__", "__8.8Mb__", "__14.1Mb__")
 10.  How many Megabases are within reads with a quality cutoff of >Q12? `r longmcq(opts_p)`
 
 ## NanoStat: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_black.png){style="width:150px"}
+</center>
 
 We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.

@@ -1,9 +1,9 @@
 # (APPENDIX) Appendix {-}
 
 # Further resources
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/further_resources.png){style="width:200px"}
+</center>
 
 - [Long read tools](https://long-read-tools.org/index.html)
 
@@ -23,9 +23,9 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 - [Revio brochure](https://www.pacb.com/wp-content/uploads/Revio-brochure.pdf)
 
 # Mamba installs {#mamba_install}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 ## Mamba installation {#mamba_install}
 

@@ -1,25 +1,25 @@
 # (PART\*) ONT {.unnumbered}
 
 # ONT background {#ont}
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use the fastq files.
 
 Before carrying out analysis we will cover some background of ONT data. This will include [file formats](#ont_file_formats), & [basecalling](#ont_basecalling).
 
 ## File formats {#ont_file_formats}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/files.png){style="width:200px"}
+</center>
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
 
 ### Fast5
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/fast5.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/fast5.png){style="width:150px"}
+</center>
 
 The raw data from ONT machines comes as Fast5 (`.fast5`) files. This contains the signal data from the pore which can be processed into more useful files.
 
@@ -40,9 +40,9 @@ The MinION and GridION output a single sequencing summary file in addition to th
 We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
 
 ### BAM file
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/bam.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/bam.png){style="width:100px"}
+</center>
 
 __BAM__ files (`.bam`) are the binary version of __SAM__ files (`.sam`).
 
@@ -63,9 +63,9 @@ https://samtools.github.io/hts-specs/SAMv1.pdf
 
 
 ### fastq file
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/fastq.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/fastq.png){style="width:150px"}
+</center>
 
 The __fastq__ file format is very consistent and so there is no real difference between __fastq__ files for Illumina, PacBio, and ONT data.
 
@@ -90,9 +90,9 @@ __+__
 __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
 ## Basecalling {#ont_basecalling}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/guppy.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/guppy.png){style="width:200px"}
+</center>
 
 In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __Fast5__ files to __BAM__ and/or __fastq__ files.
 

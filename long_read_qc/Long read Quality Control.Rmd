@@ -41,14 +41,14 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/NEOF.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 # Overview
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/well.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/well.png){style="width:200px"}
+</center>
 
 The most popular long read sequencers are produced by ONT and PacBio.
 It is beneficial to understand how they work and their error profiles to fully utilise the data they produce.
@@ -75,7 +75,7 @@ At the end of this course learners will be able to:
 column_1 <- c(
   #1 Data intro
   '[**Data intro**](#data)', 
- '[![](figures/Play.png){height="150"}](#data)',
+ '[![](figures/Play.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#data)',
  #3 ONT setup
     '[**ONT setup**](#ontsetupchap)', 
  '[![](figures/conda.png){height="150"}](#ontsetupchap)',
@@ -84,21 +84,21 @@ column_1 <- c(
  '[![](figures/nanoplot_hexes.png){height="150"}](#nanoplotchap)',
  #7 ONT final check
    '[**ONT final check**](#ontcheckchap)', 
- '[![](figures/finish.png){height="150"}](#ontcheckchap)',
+ '[![](figures/finish.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#ontcheckchap)',
   #9 CLR setup
    '[**CLR setup**](#clrsetupchap)', 
- '[![](figures/clr.png){height="100"}](#clrsetupchap)',
+ '[![](figures/clr.png){style="height:100px; border-radius:15px; border:5px solid #333333"}](#clrsetupchap)',
    #11 CLR filter
    '[**CLR filtering**](#clrfiltchap)', 
  '[![](figures/quality_filtering.png){height="150"}](#clrfiltchap)',
     #13 appendix
    '[**Appendix**](#mamba_install)', 
- '[![](figures/mamba_logo.png){height="150"}](#mamba_install)'
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#mamba_install)'
 )
 column_2 <- c(
   #2 ONT
   '[**ONT background**](#ont)', 
- '[![](figures/ONT_logo_wo_text.png){height="150"}](#ont)',
+ '[![](figures/ONT_logo_wo_text.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#ont)',
  #4 porechop
    '[**Porechop**](#porechopchap)', 
  '[![](figures/porechop_logo_knife.png){height="100"}](#porechopchap)',
@@ -107,13 +107,13 @@ column_2 <- c(
  '[![](figures/quality_filtering.png){height="150"}](#nanofiltchap)',
  #8 pb background
    '[**PacBio background**](#pb)', 
- '[![](figures/logo_PacBio_web_RGB-1.png){height="150"}](#pb)',
+ '[![](figures/logo_PacBio_web_RGB-1.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#pb)',
    #10 CLR qc
    '[**CLR QC**](#clrqcchap)', 
  '[![](figures/qc_inspection.png){height="150"}](#clrqcchap)',
     #12 CCS
-   '[**CLR QC**](#ccschap)', 
- '[![](figures/ccs.png){height="150"}](#ccschap)',
+   '[**CCS**](#ccschap)', 
+ '[![](figures/ccs.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#ccschap)',
  #14 empty
  "",""
 )
@@ -136,9 +136,9 @@ table_df %>%
 library(webexercises)
 ```
 # Data {#data}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/Play.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/Play.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 ## The data
 
@@ -164,25 +164,25 @@ library(webexercises)
 # (PART\*) ONT {.unnumbered}
 
 # ONT background {#ont}
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/ONT_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use the fastq files.
 
 Before carrying out analysis we will cover some background of ONT data. This will include [file formats](#ont_file_formats), & [basecalling](#ont_basecalling).
 
 ## File formats {#ont_file_formats}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/files.png){style="width:200px"}
+</center>
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
 
 ### Fast5
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/fast5.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/fast5.png){style="width:150px"}
+</center>
 
 The raw data from ONT machines comes as Fast5 (`.fast5`) files. This contains the signal data from the pore which can be processed into more useful files.
 
@@ -203,9 +203,9 @@ The MinION and GridION output a single sequencing summary file in addition to th
 We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
 
 ### BAM file
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/bam.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/bam.png){style="width:100px"}
+</center>
 
 __BAM__ files (`.bam`) are the binary version of __SAM__ files (`.sam`).
 
@@ -226,9 +226,9 @@ https://samtools.github.io/hts-specs/SAMv1.pdf
 
 
 ### fastq file
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/fastq.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/fastq.png){style="width:150px"}
+</center>
 
 The __fastq__ file format is very consistent and so there is no real difference between __fastq__ files for Illumina, PacBio, and ONT data.
 
@@ -253,9 +253,9 @@ __+__
 __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
 ## Basecalling {#ont_basecalling}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/guppy.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/guppy.png){style="width:200px"}
+</center>
 
 In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __Fast5__ files to __BAM__ and/or __fastq__ files.
 
@@ -271,9 +271,9 @@ https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/inde
 library(webexercises)
 ```
 # ONT Setup {#ontsetupchap}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/conda.png){style="width:150px"}
+</center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 
@@ -305,18 +305,18 @@ To start we will only use the fastq file within the directory called \"Acinetoba
 library(webexercises)
 ```
 # NanoStat
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/metrics.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/metrics.png){style="width:150px"}
+</center>
 
 The first step is to acquire stats for the sequences in our fastq file. We will use `NanoStat` (https://github.com/wdecoster/nanostat).
 
 `NanoStat` is one of the many tools contained in the `NanoPack` suite (https://github.com/wdecoster/nanopack). We will also use the tools `NanoPlot` and `NanoFilt` downstream.
 
 ## NanoStat: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_black.png){style="width:150px"}
+</center>
 
 We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
 
@@ -342,9 +342,9 @@ less nanostats/Acinetobacter_nanostats.tsv
 ```
 
 ## NanoStat: output {#nanostat_output}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_black.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/output_file_black.png){style="width:150px"}
+</center>
 
 The file contains four sections with informative headers. These are:
 
@@ -359,9 +359,9 @@ The file contains four sections with informative headers. These are:
    - Shows the top 5 longest reads.
  
 ## NanoStat: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_black.png){style="width:150px"}
+</center>
 
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
 
@@ -416,9 +416,9 @@ opts_p <- c(answer="__0.2Mb__", "__8.8Mb__", "__14.1Mb__")
 10.  How many Megabases are within reads with a quality cutoff of >Q12? `r longmcq(opts_p)`
 
 ## NanoStat: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_black.png){style="width:150px"}
+</center>
 
 We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.
 
@@ -428,9 +428,9 @@ We have carried out our first step of QC by quality checking the __fastq__ file 
 library(webexercises)
 ```
 # Porechop {#porechopchap}
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/porechop_logo_knife.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 `Porechop` is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences essential for sequencing but of no biological value and so you will typically want them removed.
 
@@ -448,9 +448,9 @@ knitr::include_graphics(path = "figures/porechop_logo_knife.png", auto_pdf = TRU
 `Porechop` will look for these adapters at the start and end of each read. Then it will look for adapters within the sequence (known as middle adapters to `Porechop`). If it finds a middle adapter it will conclude that the read is chimeric (a recombinant read containing sequences from 2 or more reads) and split the read. Depending on the number of middle adapters the chimeric read may split into 2 or more reads.
 
 ## Porechop: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_blue.png){style="width:150px"}
+</center>
 
 With all that explanation we will now run `Porechop.` Thankfully the command is relatively straight forward with the options:
 
@@ -469,9 +469,9 @@ porechop -t 4 -i ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq \
 `Porechop` will take a while to run. Whilst it is running, look at the screen output to get an idea of what it is doing. When finished, look at the bottom of the printed results.
 
 ## Porechop: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_blue.png){style="width:150px"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c("__0__", answer="__1,952__", "__79,015__")
@@ -489,9 +489,9 @@ opts_p <- c(answer="__0__", "__1,952__", "__79,015__")
 3. How many reads were split based on middle adapters? `r longmcq(opts_p)`
 
 ## Porechop: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:150px"}
+</center>
 
 `Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads prior to so we can be informed when we filter out poor quality reads and bases.
 
@@ -506,18 +506,18 @@ For more uses of `Porechop` please see the below links:
 library(webexercises)
 ```
 # NanoPlot {#nanoplotchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/nanoplot_hexes.png){style="width:200px"}
+</center>
 
 `NanoPlot` can be thought of as the `fastqc` for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for __fastq__, __fasta__, __BAM__, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
 
 ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.
 
 ## NanoPlot: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_green.png){style="width:150px"}
+</center>
 
 Prior to running `NanoPlot` we will make a directory for the `NanoPlot` output. As `NanoPlot` creates a lot of files, we'll make a subdirectory for the `NanoPlot` output for the porechopped data.
 
@@ -540,9 +540,9 @@ NanoPlot -t 4 \
 ```
 
 ## NanoPlot: output
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_green.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/output_file_green.png){style="width:150px"}
+</center>
 
 List the files in the output directory.
 
@@ -614,9 +614,10 @@ The plots are:
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 
 ## NanoPlot: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_green.png){style="width:150px"}
+</center>
+
 Please attempt the below MCQs with the information in the report html.
 
 ```{r, echo = FALSE}
@@ -645,9 +646,9 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 5. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
 ## NanoPlot: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_green.png){style="width:150px"}
+</center>
 
 We have use `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
 
@@ -659,9 +660,9 @@ You can use `NanoPlot` with different input files. This will give you different 
 library(webexercises)
 ```
 # NanoFilt {#nanofiltchap}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/quality_filtering.png){style="width:150px"}
+</center>
 
 `NanoFilt` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/nanofilt). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
 
@@ -670,9 +671,9 @@ It is always important to know what your data is and if your planned filtering a
 This data is from a genome so wanting long and high quality reads is appropriate. Overall the quality of our data looks good. The main exception is the low amount of sequencing/coverage. The low coverage is because it is a subset of the whole data for workshop purposes (the full dataset would take too long to run here). There are some shorter length and lower quality reads which we will remove.
 
 ## NanoFilt: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_purple.png){style="width:150px"}
+</center>
 
 First we will create an output directory.
 ```{bash eval=FALSE}
@@ -695,16 +696,16 @@ Are the chosen options appropriate? Let\'s find out.
 library(webexercises)
 ```
 # Final check {#ontcheckchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/finish.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 After trimming or filtering reads (quality control) it is always important to carry out a quality check. We will therefore run NanoPlot again.
 
 ## Final NanoPlot
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/nanoplot_hexes.png){style="width:200px"}
+</center>
 
 __Note__: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy. 
 
@@ -724,9 +725,9 @@ firefox nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.htm
 ```
 
 ## ONT QC considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/considerations.png){style="width:150px"}
+</center>
 
 Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren\'t left with a lot of poor quality data.
 
@@ -737,9 +738,9 @@ A quick example is data for a genome assembly. For this type of analysis we will
 In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads need to be assembled.
 
 ## NanoFilt Reattempts
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/retry.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/retry.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 Keeping all this in mind, let's say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and nanofiltered?
 
@@ -756,9 +757,9 @@ Tips:
 + Use `NanoPlot` results to compare the Q10 filtering to your own. The `NanoStat` part is especially helpful.
 
 ## ONT Recap
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/recap.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/recap.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 That is the end of the ONT QC section.
 
@@ -778,17 +779,16 @@ library(webexercises)
 # (PART\*) PacBio {.unnumbered}
 
 # PacBio Background {#pb}
-
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
-knitr::include_graphics(path = "figures/logo_PacBio_web_RGB-1.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/logo_PacBio_web_RGB-1.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+</center>
 
 In this section we will quality check PacBio sequencing raw data (BAM files), perform a filter to retain only the longest reads and output the data in fastq format.
 
 ## File formats
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/files.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/files.png){style="width:150px"}
+</center>
 
 Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.3).
 
@@ -798,9 +798,9 @@ The figure below shows a schematic of a circular DNA molecule of a PacBio librar
 - Red, B = Barcodes, optional single (Left or Right) or double (Left & Right) for multiplexing samples
 - Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
 
-```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
-knitr::include_graphics(path = "figures/smrtbell.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/smrtbell.png){style="width:900px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
 
@@ -808,9 +808,9 @@ PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cel
 
 A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
 
-```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
-knitr::include_graphics(path = "figures/zmw.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/zmw.png){style="width:900px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
 For more information see: https://pacbiofileformats.readthedocs.io/en/10.0/Primer.html
@@ -826,9 +826,9 @@ This contains the adapter (green) and barcode (red) sequences, as well as any lo
 These BAM files will usually have an accompanying PacBio BAM index file (subreads.bam.pbi and scraps.bam.pbi).
 
 ## CLR & CCS
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/clr_and_ccs.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/clr_and_ccs.png){style="width:800px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 PacBio data can be generated in two ways depending on the goal of the experiment.
 
@@ -839,9 +839,9 @@ PacBio data can be generated in two ways depending on the goal of the experiment
 For this tutorial we will carry out quality checking and control on both CLR and CCS BAM files.
 
 ## Tools
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/toolbox.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/toolbox.png){style="width:200px"}
+</center>
 
 ### SequelTools
 
@@ -871,9 +871,9 @@ Lastly, we will also use `RabbitQCPlus` to assess the CCS assembled reads in fas
 library(webexercises)
 ```
 # CLR setup {#clrsetupchap}
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/clr.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/clr.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 
@@ -905,16 +905,16 @@ This command line will find all of the files in our current working directory wh
 library(webexercises)
 ```
 # CLR QC {#clrqcchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/qc_inspection.png){style="width:200px"}
+</center>
 
 In this section we will quality control the CLR (Continuous Long Read) reads with `SequelTools`.
 
 ## CLR QC: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_red.png){style="width:150px"}
+</center>
 
 The `SequelTools` program has three different tools, specified with the `-t` argument, which are:
 
@@ -936,9 +936,9 @@ SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 ```
 
 ## CLR QC: output
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/output_file_red.png){style="width:150px"}
+</center>
 
 When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use `firefox` to view the pdf plots.
 
@@ -975,9 +975,9 @@ firefox CLR_QC/*.pdf
   - Ideally, this value is exactly one, indicating there was 1 DNA template per ZMW which is what we would want for CLRs.
 
 ## CLR QC: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_red.png){style="width:150px"}
+</center>
 
 With the produced files attempt the below questions.
 
@@ -1012,9 +1012,9 @@ opts_p <- c("__Sample1__", "__Sample2__", answer="__Sample3__")
 6. Which sample has the biggest difference when comparing their "Histogram of subread lengths" versus their "Histogram of longest subread length"? `r longmcq(opts_p)`
 
 ## CLR QC: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_red.png){style="width:150px"}
+</center>
 
 With the QC we can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequencing and we often achieve and aim for just a single pass of this insert during the PacBio sequencing run.
 
@@ -1030,16 +1030,16 @@ The histograms show the distribution of subread lengths in more detail. Sample3 
 library(webexercises)
 ```
 # CLR filtering {#clrfiltchap}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/quality_filtering.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/quality_filtering.png){style="width:150px"}
+</center>
 
 Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use only the longest PacBio reads for a _de novo_ assembly.
 
 ## CLR filtering: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_purple.png){style="width:150px"}
+</center>
 
 To filter the data by minimum CLR length we will use `SequelTools` with the `-t F` option. This sets the task mode to filtering.
 
@@ -1072,9 +1072,9 @@ __Parameters__:
 - `-o`: Name of an output folder for the filtered data files.
 
 ## Quality check filtered data
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/qc_inspection.png){style="width:150px"}
+</center>
 
 When this has finished running the \'filtered\' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
 ```{bash eval=FALSE}
@@ -1116,9 +1116,9 @@ filt_QC/Sample3_flt.readLenHists.pdf
 For this sample the DNA fragment length of the library was much greater than 10,000 bp, and so the majority of CLRs consist of just one pass of this long insert. The large number of short subreads remaining in the filtered file (blue bars) represent subreads only partially sequenced on the \'return journey\' of the circular library DNA molecule. These are not present when we look only at the longest subread present in each CLR (green bars).
 
 ## BAM to fastq
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/convert.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/convert.png){style="width:200px; border-radius:90px; border:3px solid #333333; background:white"}
+</center>
 
 `SequelTools` doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
 
@@ -1141,9 +1141,9 @@ __Note__: You may see a long warning message ending with \"No such file or direc
 You will now have a compressed fastq file for the CLR-filtered subreads from Sample1. You can also carry this out for Sample2 & Sample3 but it is not required.
 
 ## CLR filtering: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_purple.png){style="width:150px"}
+</center>
 
 We have quality checked and quality controlled our CLR data. This has produced both filtered CLRs and filtered subreads. Next we will learn how to QC CCS data.
 
@@ -1153,9 +1153,9 @@ We have quality checked and quality controlled our CLR data. This has produced b
 library(webexercises)
 ```
 # Circular Consensus Sequences {#ccschap}
-```{r, fig.align = 'center',out.width= '55%', echo=FALSE }
-knitr::include_graphics(path = "figures/ccs.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/ccs.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.
 
@@ -1172,11 +1172,11 @@ cd ~/QC_workshop/PB_QC/data/CCS
 ```
 
 ## QC the subreads
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/qc_inspection.png){style="width:200px"}
+</center>
 
-OUr current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
+Our current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
 ```{bash eval=FALSE}
 find $(pwd) -name "*subreads.bam"  > subreads.txt
 ```
@@ -1196,9 +1196,9 @@ firefox S4QC/Sample4.readLenHists.pdf
 Many of the longest subreads (green bars) are ~ 4kb (the length of our amplicon), but there are also lots of shorter reads. 
 
 ## CCS generation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/production.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/production.png){style="width:200px"}
+</center>
 
 To generate CCS reads we will use the `ccs` tool from the `smrttools` package. This will also act as a form of filtering.
 
@@ -1228,9 +1228,9 @@ less ccs_report.txt
 ```
 
 ### CCS MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_black.png){style="width:150px"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c("__0%__", answer="__29.16%__", "__70.62%__")
@@ -1243,9 +1243,9 @@ opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__"
 1. What was the main reason for failure of CCS generation? `r longmcq(opts_p)`
 
 ## RabbitQCPlus
-```{r, fig.align = 'center',out.width= '50%', echo=FALSE }
-knitr::include_graphics(path = "figures/RabbitQCPlus.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
 
@@ -1281,9 +1281,9 @@ The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp.
 The other plots show the % nucleotide frequencies (AGCT) and mean quality scores for the beginning and end of the reads. The mean quality plots unfortunately do not show anything because it is such a short region. The main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
 
 ## Final summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_black.png){style="width:150px"}
+</center>
 
 That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.
 
@@ -1297,9 +1297,9 @@ library(webexercises)
 # (APPENDIX) Appendix {-}
 
 # Further resources
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/further_resources.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/further_resources.png){style="width:200px"}
+</center>
 
 - [Long read tools](https://long-read-tools.org/index.html)
 
@@ -1319,9 +1319,9 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 - [Revio brochure](https://www.pacb.com/wp-content/uploads/Revio-brochure.pdf)
 
 # Mamba installs {#mamba_install}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+</center>
 
 ## Mamba installation {#mamba_install}
 

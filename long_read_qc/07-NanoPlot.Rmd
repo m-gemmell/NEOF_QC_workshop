@@ -1,16 +1,16 @@
 # NanoPlot {#nanoplotchap}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/nanoplot_hexes.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/nanoplot_hexes.png){style="width:200px"}
+</center>
 
 `NanoPlot` can be thought of as the `fastqc` for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for __fastq__, __fasta__, __BAM__, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
 
 ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.
 
 ## NanoPlot: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_green.png){style="width:150px"}
+</center>
 
 Prior to running `NanoPlot` we will make a directory for the `NanoPlot` output. As `NanoPlot` creates a lot of files, we'll make a subdirectory for the `NanoPlot` output for the porechopped data.
 
@@ -33,9 +33,9 @@ NanoPlot -t 4 \
 ```
 
 ## NanoPlot: output
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_green.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/output_file_green.png){style="width:150px"}
+</center>
 
 List the files in the output directory.
 
@@ -107,9 +107,10 @@ The plots are:
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 
 ## NanoPlot: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_green.png){style="width:150px"}
+</center>
+
 Please attempt the below MCQs with the information in the report html.
 
 ```{r, echo = FALSE}
@@ -138,9 +139,9 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 5. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
 ## NanoPlot: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_green.png){style="width:150px"}
+</center>
 
 We have use `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
 

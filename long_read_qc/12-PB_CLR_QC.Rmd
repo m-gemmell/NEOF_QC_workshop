@@ -1,14 +1,14 @@
 # CLR QC {#clrqcchap}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/qc_inspection.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/qc_inspection.png){style="width:200px"}
+</center>
 
 In this section we will quality control the CLR (Continuous Long Read) reads with `SequelTools`.
 
 ## CLR QC: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/enter_key_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/enter_key_red.png){style="width:150px"}
+</center>
 
 The `SequelTools` program has three different tools, specified with the `-t` argument, which are:
 
@@ -30,9 +30,9 @@ SequelTools.sh -t Q -p a -u CLR_subreads.txt -o CLR_QC
 ```
 
 ## CLR QC: output
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/output_file_red.png){style="width:150px"}
+</center>
 
 When this has finished running the CLR_QC folder will contain a \'summaryTable.txt\' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use `firefox` to view the pdf plots.
 
@@ -69,9 +69,9 @@ firefox CLR_QC/*.pdf
   - Ideally, this value is exactly one, indicating there was 1 DNA template per ZMW which is what we would want for CLRs.
 
 ## CLR QC: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_red.png){style="width:150px"}
+</center>
 
 With the produced files attempt the below questions.
 
@@ -106,9 +106,9 @@ opts_p <- c("__Sample1__", "__Sample2__", answer="__Sample3__")
 6. Which sample has the biggest difference when comparing their "Histogram of subread lengths" versus their "Histogram of longest subread length"? `r longmcq(opts_p)`
 
 ## CLR QC: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_red.png){style="width:150px"}
+</center>
 
 With the QC we can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequencing and we often achieve and aim for just a single pass of this insert during the PacBio sequencing run.
 
