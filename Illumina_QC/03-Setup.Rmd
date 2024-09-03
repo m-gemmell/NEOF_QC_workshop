@@ -1,13 +1,13 @@
 # Setup {#setupchap}
 <center>
-![](figures/start.png){style="width:200px"}
+![](figures/start.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px"}
 </center>
 
-This tutorial will give hands on experience with quality control of genomic Illumina data.
+This tutorial will give you hands on experience with quality control of genomic Illumina data.
 
 We will look at a good quality dataset followed by a poorer quality data set for practice. Afterwards you will carry out some self directed Quality checking as an exercise.
 
-However, prior to this we need to get our workshops data and setup our environment.
+However, prior to this we need to get our workshop data and setup our environment.
 
 ## Workshop data {#data}
 
@@ -32,7 +32,7 @@ cd QC_workshop/Illumina_QC/
 
 ## Mamba {#mamba}
 <center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
 This book requires some packages.

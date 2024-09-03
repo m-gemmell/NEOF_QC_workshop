@@ -6,9 +6,6 @@
 Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
 
 ## Whole shotgun metagenomics {#shotgun}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
-```
 <center>
 ![](figures/kraken.png){style="width:200px"}
 </center>

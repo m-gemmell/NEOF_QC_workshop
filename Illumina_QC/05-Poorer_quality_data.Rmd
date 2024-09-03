@@ -1,6 +1,6 @@
 # Poorer quality genomic dataset {#poortutorial}
 <center>
-![](figures/bacteria_2.png){style="width:200px"}
+![](figures/bacteria_2.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Now let us look at actual read data.
@@ -19,7 +19,7 @@ ls
 
 ## Quality checking
 <center>
-![](figures/magnify_glass_27AUG2020.png){style="width:200px"}
+![](figures/magnify_glass_27AUG2020.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Let's make a directory for the `fastqc` output
@@ -48,7 +48,7 @@ Some typical features to note are:
 
 ### Quality checking MCQs
 <center>
-![](figures/question_bubble.png){style="width:150px"}
+![](figures/question_bubble.png){style="width:150px; background:white; border-radius:15px; border: solid 5px white"}
 </center>
 
 Investigate the `fastqc` reports and answer the below question. 
@@ -104,7 +104,7 @@ Unfortunately data straight from the sequencer always needs quality control.
 
 ## Quality control
 <center>
-![](figures/quality_trimming_and_filtering.png){style="width:300px"}
+![](figures/quality_trimming_and_filtering.png){style="width:300px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 Quality control generally comes in two forms:
@@ -158,7 +158,7 @@ This can be ignored in most cases.
 
 ## Post Quality control check
 <center>
-![](figures/magnify_glass_good.png){style="width:200px"}
+![](figures/magnify_glass_good.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
@@ -242,6 +242,6 @@ Some things to note:
 -   The overrepresented sequences, which were Illumina adapters needed for sequencing, were removed by `trimmomatic`. This is good as we don't need/want them any more.
 
 **Note**: If you are getting data from a sequencing centre they will have most likely removed the adapters already.
-Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
+Be sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
 
 If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt.readthedocs.io/en/stable/guide.html>

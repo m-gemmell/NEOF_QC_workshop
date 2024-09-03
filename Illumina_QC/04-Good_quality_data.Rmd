@@ -1,6 +1,6 @@
 # Good quality genomic dataset {#goodtutorial}
 <center>
-![](figures/bacteria.png){style="width:200px"}
+![](figures/bacteria.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
@@ -24,7 +24,7 @@ ls
 
 ## Run fastqc
 <center>
-![](figures/enter_key.png){style="width:200px"}
+![](figures/enter_key.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 We will carry out `fastqc` quality checking of the reads.

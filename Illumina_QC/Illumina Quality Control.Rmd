@@ -33,19 +33,19 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ```
 
 <center>
-![](figures/NEOF.png){style="width:300px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>
 
 # Introduction
 <center>
-![](figures/nt_base_colours.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/nt_base_colours.png){style="width:400px; border-radius:15px; background:null"}
 </center>
 
 Illumina sequencing technology is the most common method used for DNA sequencing.
-However, it is not perfect and the produced data contains errors.
+However, it is not perfect and the generated data contains errors.
 This course aims to introduce you to Illumina quality control and checking, vital steps before carrying out most analyses with Illumina data.
 
-Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by this  online interactive book. This book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
 
 At the end of this book learners will be able to:
 
@@ -133,8 +133,8 @@ In our case the terminal window looks like the picture below. We are using the t
 
 Already there is useful information for us on the terminal window.
 
-- __nsc065__: This is the login name, also known as the username. Your screen will show your username for the Linux machine/cluster you are logged into.
-- __gauss03__: This is the machine name the user is logged into.
+- __nsc206__: This is the login name, also known as the username. Your screen will show your username for the Linux machine/cluster you are logged into.
+- __ada02__: This is the machine name the user is logged into.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __\'~\'__ is a shortcut to the user's home directory.
 - Everything after the __\'$\'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
@@ -149,14 +149,14 @@ library(webexercises)
 ```
 # Setup {#setupchap}
 <center>
-![](figures/start.png){style="width:200px"}
+![](figures/start.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px"}
 </center>
 
-This tutorial will give hands on experience with quality control of genomic Illumina data.
+This tutorial will give you hands on experience with quality control of genomic Illumina data.
 
 We will look at a good quality dataset followed by a poorer quality data set for practice. Afterwards you will carry out some self directed Quality checking as an exercise.
 
-However, prior to this we need to get our workshops data and setup our environment.
+However, prior to this we need to get our workshop data and setup our environment.
 
 ## Workshop data {#data}
 
@@ -181,7 +181,7 @@ cd QC_workshop/Illumina_QC/
 
 ## Mamba {#mamba}
 <center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
 This book requires some packages.
@@ -214,7 +214,7 @@ library(webexercises)
 ```
 # Good quality genomic dataset {#goodtutorial}
 <center>
-![](figures/bacteria.png){style="width:200px"}
+![](figures/bacteria.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 The first dataset will comprise of good quality reads for the genome of *Psychrobacter arcticus*.
@@ -238,7 +238,7 @@ ls
 
 ## Run fastqc
 <center>
-![](figures/enter_key.png){style="width:200px"}
+![](figures/enter_key.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 We will carry out `fastqc` quality checking of the reads.
@@ -350,7 +350,7 @@ library(webexercises)
 ```
 # Poorer quality genomic dataset {#poortutorial}
 <center>
-![](figures/bacteria_2.png){style="width:200px"}
+![](figures/bacteria_2.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Now let us look at actual read data.
@@ -369,7 +369,7 @@ ls
 
 ## Quality checking
 <center>
-![](figures/magnify_glass_27AUG2020.png){style="width:200px"}
+![](figures/magnify_glass_27AUG2020.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 Let's make a directory for the `fastqc` output
@@ -398,7 +398,7 @@ Some typical features to note are:
 
 ### Quality checking MCQs
 <center>
-![](figures/question_bubble.png){style="width:150px"}
+![](figures/question_bubble.png){style="width:150px; background:white; border-radius:15px; border: solid 5px white"}
 </center>
 
 Investigate the `fastqc` reports and answer the below question. 
@@ -454,7 +454,7 @@ Unfortunately data straight from the sequencer always needs quality control.
 
 ## Quality control
 <center>
-![](figures/quality_trimming_and_filtering.png){style="width:300px"}
+![](figures/quality_trimming_and_filtering.png){style="width:300px; background:white; border-radius:15px; border: white solid 5px"}
 </center>
 
 Quality control generally comes in two forms:
@@ -508,7 +508,7 @@ This can be ignored in most cases.
 
 ## Post Quality control check
 <center>
-![](figures/magnify_glass_good.png){style="width:200px"}
+![](figures/magnify_glass_good.png){style="width:200px; background:white; border-radius:15px"}
 </center>
 
 To see how successful the quality control has been we need to run `fastqc` on the `trimmomatic` output.
@@ -592,7 +592,7 @@ Some things to note:
 -   The overrepresented sequences, which were Illumina adapters needed for sequencing, were removed by `trimmomatic`. This is good as we don't need/want them any more.
 
 **Note**: If you are getting data from a sequencing centre they will have most likely removed the adapters already.
-Been sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
+Be sure to check they are not appearing in the Overrepresented sequences or the Adapter Content section of the `fastqc` report after trimming before continuing.
 
 If adapters are present you can use `Cutadapt` to remove them: <https://cutadapt.readthedocs.io/en/stable/guide.html>
 
@@ -609,9 +609,6 @@ library(webexercises)
 Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
 
 ## Whole shotgun metagenomics {#shotgun}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/kraken.png", auto_pdf = TRUE)
-```
 <center>
 ![](figures/kraken.png){style="width:200px"}
 </center>
@@ -688,7 +685,7 @@ library(webexercises)
 ```
 # MultiQC {#multiqcchap}
 <center>
-![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
 `MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
@@ -808,7 +805,7 @@ There are various other useful tools for sequencing QC of Illumina data. Below a
 
 ## Quality trimming and filtering tools
 <center>
-![](figures/quality_trimming_and_filtering.png){style="width:200px"}
+![](figures/quality_trimming_and_filtering.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 ### Trim Galore
@@ -822,7 +819,7 @@ https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Gui
 
 ## Fasta and fastq processing toolkits
 <center>
-![](figures/process.png){style="width:200px"}
+![](figures/process.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
@@ -865,9 +862,7 @@ My favourite tool from this is \'fasta_formatter\'. It can be used to set the ma
 fasta_formatter -i in.fasta -o out.fasta -w 0
 ```
 
-__Main page:__ http://hannonlab.cshl.edu/fastx_toolkit/
-
-__Commands:__ http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
+__Github:__ https://github.com/agordon/fastx_toolkit
 
 ### BBTools
 BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
@@ -878,7 +873,7 @@ __Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtool
 
 # Mamba
 <center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px"}
 </center>
 
 ## Mamba installation and environment {#mamba_install}

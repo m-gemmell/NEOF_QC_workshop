@@ -1,6 +1,6 @@
 # MultiQC {#multiqcchap}
 <center>
-![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
 `MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.

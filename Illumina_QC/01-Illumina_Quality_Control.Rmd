@@ -30,19 +30,19 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ```
 
 <center>
-![](figures/NEOF.png){style="width:300px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>
 
 # Introduction
 <center>
-![](figures/nt_base_colours.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/nt_base_colours.png){style="width:400px; border-radius:15px; background:null"}
 </center>
 
 Illumina sequencing technology is the most common method used for DNA sequencing.
-However, it is not perfect and the produced data contains errors.
+However, it is not perfect and the generated data contains errors.
 This course aims to introduce you to Illumina quality control and checking, vital steps before carrying out most analyses with Illumina data.
 
-Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by this  online interactive book. This book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
 
 At the end of this book learners will be able to:
 

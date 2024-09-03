@@ -9,7 +9,7 @@ There are various other useful tools for sequencing QC of Illumina data. Below a
 
 ## Quality trimming and filtering tools
 <center>
-![](figures/quality_trimming_and_filtering.png){style="width:200px"}
+![](figures/quality_trimming_and_filtering.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 ### Trim Galore
@@ -23,7 +23,7 @@ https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Gui
 
 ## Fasta and fastq processing toolkits
 <center>
-![](figures/process.png){style="width:200px"}
+![](figures/process.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px"}
 </center>
 
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
@@ -66,9 +66,7 @@ My favourite tool from this is \'fasta_formatter\'. It can be used to set the ma
 fasta_formatter -i in.fasta -o out.fasta -w 0
 ```
 
-__Main page:__ http://hannonlab.cshl.edu/fastx_toolkit/
-
-__Commands:__ http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
+__Github:__ https://github.com/agordon/fastx_toolkit
 
 ### BBTools
 BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
@@ -79,7 +77,7 @@ __Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtool
 
 # Mamba
 <center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px"}
 </center>
 
 ## Mamba installation and environment {#mamba_install}
