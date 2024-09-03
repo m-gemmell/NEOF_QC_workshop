@@ -9,7 +9,7 @@ The first step is to acquire stats for the sequences in our fastq file. We will 
 
 ## NanoStat: run
 <center>
-![](figures/enter_key_black.png){style="width:150px"}
+![](figures/enter_key_black.png){style="width:150px; background: white; border-radius:15px"}
 </center>
 
 We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
@@ -54,7 +54,7 @@ The file contains four sections with informative headers. These are:
  
 ## NanoStat: MCQs
 <center>
-![](figures/question_bubble_black.png){style="width:150px"}
+![](figures/question_bubble_black.png){style="width:150px; background: white; border-radius:15px; border: 5px white solid"}
 </center>
 
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
@@ -111,7 +111,7 @@ opts_p <- c(answer="__0.2Mb__", "__8.8Mb__", "__14.1Mb__")
 
 ## NanoStat: summary
 <center>
-![](figures/sum_black.png){style="width:150px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:15px; border: white solid 5px"}
 </center>
 
 We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.

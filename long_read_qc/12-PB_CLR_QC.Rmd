@@ -1,6 +1,6 @@
 # CLR QC {#clrqcchap}
 <center>
-![](figures/qc_inspection.png){style="width:200px"}
+![](figures/qc_inspection.png){style="width:200px; background: white; border-radius:15px"}
 </center>
 
 In this section we will quality control the CLR (Continuous Long Read) reads with `SequelTools`.

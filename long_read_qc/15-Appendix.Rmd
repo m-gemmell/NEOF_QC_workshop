@@ -2,7 +2,7 @@
 
 # Further resources
 <center>
-![](figures/further_resources.png){style="width:200px"}
+![](figures/further_resources.png){style="width:200px; background: white; border-radius:50px"}
 </center>
 
 - [Long read tools](https://long-read-tools.org/index.html)
@@ -24,7 +24,7 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 
 # Mamba installs {#mamba_install}
 <center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
 ## Mamba installation {#mamba_install}

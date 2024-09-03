@@ -42,7 +42,7 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ```
 
 <center>
-![](figures/NEOF.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/NEOF_rounded_corners.png){style="width:300px"}
 </center>
 
 # Overview
@@ -137,7 +137,7 @@ library(webexercises)
 ```
 # Data {#data}
 <center>
-![](figures/Play.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/Play.png){style="width:200px; border-radius:15px; border:5px solid white; background:null"}
 </center>
 
 ## The data
@@ -165,7 +165,7 @@ library(webexercises)
 
 # ONT background {#ont}
 <center>
-![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid white; background:null"}
 </center>
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use the fastq files.
@@ -179,12 +179,43 @@ Before carrying out analysis we will cover some background of ONT data. This wil
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
 
+### POD5
+<center>
+![](figures/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:15px"}
+</center>
+
+The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ont tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html), it is very unlikely you need to understand this.
+
+The POD5 file format contains the following information:
+
+- __Reads Table:__ Describes the metadata for each read.
+- __Signal Table:__ Contains the signal data from the sequencer.
+- __Run Info Table:__ Contains information on the `MinKNOW` runs that created the reads that are in the POD5 file.
+
+The POD5 format is quite new and was released as an early preview in May 2022. Prior to POD5 they used Fast5 files. They changed to POD5 with the following design goals in mind:
+
+- Good write performance for MinKNOW
+- Recoverable if the writing process crashes
+- Good read performance for downstream tools, including basecall model generation
+- Efficient use of space
+- Straightforward to implement and maintain
+- Extensibility
+
+POD5 links:
+
+- [Main POD5 github page](https://github.com/nanoporetech/pod5-file-format)
+- [POD5 File FOrmat Design Details](https://github.com/nanoporetech/pod5-file-format/blob/master/docs/DESIGN.md)
+- [POD5 Format Specification](https://github.com/nanoporetech/pod5-file-format/blob/master/docs/SPECIFICATION.md)
+- [POD5 Tools commands](https://github.com/nanoporetech/pod5-file-format/blob/master/python/pod5/README.md#tools)
+
 ### Fast5
 <center>
 ![](figures/fast5.png){style="width:150px"}
 </center>
 
-The raw data from ONT machines comes as Fast5 (`.fast5`) files. This contains the signal data from the pore which can be processed into more useful files.
+The Fast5 format was the previous format used to store raw data from ONT machine. It is now a legacy format. However, if you use older data for your research you may encounter it.
+
+The format contains the signal data from the pore which can be processed into more useful files.
 
 Fast5 files can contain:
 
@@ -196,9 +227,11 @@ Fast5 files can contain:
 The Fast5 file format is an implementation of the HDF5 file format specifically for ONT sequencing data. For more information on Fast5 and a tool to interface with these types of file please see:
 https://github.com/nanoporetech/ont_fast5_api
 
+You can convert a Fast5 file to a Pod5 file with the pod5 tools command [`pod5 convert fast5`](https://github.com/nanoporetech/pod5-file-format/blob/master/python/pod5/README.md#pod5-convert-fast5)
+
 ### Summary file
 
-The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which describes each sequenced read.
+The MinION and GridION output a single sequencing summary file in addition to the POD5/Fast5 files. This file contains metdata which describes each sequenced read.
 
 We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
 
@@ -257,13 +290,20 @@ __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 ![](figures/guppy.png){style="width:200px"}
 </center>
 
-In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __Fast5__ files to __BAM__ and/or __fastq__ files.
+In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
 
-There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
+There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
 
-Basecalling with Guppy tutorial:
+We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. INstead please find some useful links below if you would like to know more.
 
-https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html
+- MinKNOW
+  - [Overview on working with MinKNOW](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/experiment-companion-minknow/v/mke_1013_v1_revde_11apr2016)
+  - [Basecalling algorithms](https://community.nanoporetech.com/technical_documents/data-analysis/v/datd_5000_v1_revt_22aug2016/basecalling-algorithms)
+- Guppy
+  - [Basecalling with Guppy tutorials](https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html)
+  - [Input and output files](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revax_14dec2018/input-and-output-files)
+- Literature
+  - [Comprehensive benchmark and architectural analysis of deep learning models for nanopore sequencing basecalling](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02903-2)
 
 <!--chapter:end:03-ONT_background.Rmd-->
 
@@ -272,7 +312,7 @@ library(webexercises)
 ```
 # ONT Setup {#ontsetupchap}
 <center>
-![](figures/conda.png){style="width:150px"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
@@ -315,7 +355,7 @@ The first step is to acquire stats for the sequences in our fastq file. We will 
 
 ## NanoStat: run
 <center>
-![](figures/enter_key_black.png){style="width:150px"}
+![](figures/enter_key_black.png){style="width:150px; background: white; border-radius:15px"}
 </center>
 
 We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
@@ -360,7 +400,7 @@ The file contains four sections with informative headers. These are:
  
 ## NanoStat: MCQs
 <center>
-![](figures/question_bubble_black.png){style="width:150px"}
+![](figures/question_bubble_black.png){style="width:150px; background: white; border-radius:15px; border: 5px white solid"}
 </center>
 
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
@@ -417,7 +457,7 @@ opts_p <- c(answer="__0.2Mb__", "__8.8Mb__", "__14.1Mb__")
 
 ## NanoStat: summary
 <center>
-![](figures/sum_black.png){style="width:150px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:15px; border: white solid 5px"}
 </center>
 
 We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.
@@ -429,7 +469,7 @@ library(webexercises)
 ```
 # Porechop {#porechopchap}
 <center>
-![](figures/porechop_logo_knife.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/porechop_logo_knife.png){style="width:600px; border-radius:15px; border:5px solid white; background:null"}
 </center>
 
 `Porechop` is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences essential for sequencing but of no biological value and so you will typically want them removed.
@@ -586,7 +626,11 @@ With these plots you can:
   - Make boxes to zoom into a specific area. 
   - Click and drag left or right only to zoom into a specific part of the x axis. 
   - Click and drag up or down only to zoom into a specific part of the y axis. 
-  - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
+  - Click the home icon (
+```{r, echo=FALSE}
+icons::icon_style(icons::fontawesome("home", style="solid"), background = "white")
+```
+) on the top right to reset the axes.
   - Hover over a points/bars to see the specific values of it.
 
 The plots are:
@@ -697,7 +741,7 @@ library(webexercises)
 ```
 # Final check {#ontcheckchap}
 <center>
-![](figures/finish.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/finish.png){style="width:200px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
 After trimming or filtering reads (quality control) it is always important to carry out a quality check. We will therefore run NanoPlot again.
@@ -726,7 +770,7 @@ firefox nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.htm
 
 ## ONT QC considerations
 <center>
-![](figures/considerations.png){style="width:150px"}
+![](figures/considerations.png){style="width:150px; background:white; border-radius:15px"}
 </center>
 
 Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren\'t left with a lot of poor quality data.
@@ -739,7 +783,7 @@ In addition to the amount of bases, the length of reads is also important. One r
 
 ## NanoFilt Reattempts
 <center>
-![](figures/retry.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/retry.png){style="width:200px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
 Keeping all this in mind, let's say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and nanofiltered?
@@ -758,7 +802,7 @@ Tips:
 
 ## ONT Recap
 <center>
-![](figures/recap.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/recap.png){style="width:200px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
 That is the end of the ONT QC section.
@@ -780,7 +824,7 @@ library(webexercises)
 
 # PacBio Background {#pb}
 <center>
-![](figures/logo_PacBio_web_RGB-1.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/logo_PacBio_web_RGB-1.png){style="width:400px; border-radius:15px; background:white"}
 </center>
 
 In this section we will quality check PacBio sequencing raw data (BAM files), perform a filter to retain only the longest reads and output the data in fastq format.
@@ -799,7 +843,7 @@ The figure below shows a schematic of a circular DNA molecule of a PacBio librar
 - Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
 
 <center>
-![](figures/smrtbell.png){style="width:900px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/smrtbell.png){style="width:900px; border-radius:15px; background:null"}
 </center>
 
 Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
@@ -809,7 +853,7 @@ PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cel
 A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
 
 <center>
-![](figures/zmw.png){style="width:900px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/zmw.png){style="width:900px; border-radius:15px; background:null"}
 </center>
 
 This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
@@ -827,7 +871,7 @@ These BAM files will usually have an accompanying PacBio BAM index file (subread
 
 ## CLR & CCS
 <center>
-![](figures/clr_and_ccs.png){style="width:800px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/clr_and_ccs.png){style="width:800px; border-radius:15px; background:null"}
 </center>
 
 PacBio data can be generated in two ways depending on the goal of the experiment.
@@ -872,7 +916,7 @@ library(webexercises)
 ```
 # CLR setup {#clrsetupchap}
 <center>
-![](figures/clr.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/clr.png){style="width:600px; border-radius:15px; background:null"}
 </center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
@@ -906,7 +950,7 @@ library(webexercises)
 ```
 # CLR QC {#clrqcchap}
 <center>
-![](figures/qc_inspection.png){style="width:200px"}
+![](figures/qc_inspection.png){style="width:200px; background: white; border-radius:15px"}
 </center>
 
 In this section we will quality control the CLR (Continuous Long Read) reads with `SequelTools`.
@@ -1117,7 +1161,7 @@ For this sample the DNA fragment length of the library was much greater than 10,
 
 ## BAM to fastq
 <center>
-![](figures/convert.png){style="width:200px; border-radius:90px; border:3px solid #333333; background:white"}
+![](figures/convert.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 `SequelTools` doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.
@@ -1154,7 +1198,7 @@ library(webexercises)
 ```
 # Circular Consensus Sequences {#ccschap}
 <center>
-![](figures/ccs.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/ccs.png){style="width:600px; border-radius:15px; background:null"}
 </center>
 
 We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.
@@ -1173,7 +1217,7 @@ cd ~/QC_workshop/PB_QC/data/CCS
 
 ## QC the subreads
 <center>
-![](figures/qc_inspection.png){style="width:200px"}
+![](figures/qc_inspection.png){style="width:200px; background: white; border-radius:15px"}
 </center>
 
 Our current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
@@ -1229,7 +1273,7 @@ less ccs_report.txt
 
 ### CCS MCQs
 <center>
-![](figures/question_bubble_black.png){style="width:150px"}
+![](figures/question_bubble_black.png){style="width:150px; background:white; border-radius:15px; border:5px white solid"}
 </center>
 
 ```{r, echo = FALSE}
@@ -1244,7 +1288,7 @@ opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__"
 
 ## RabbitQCPlus
 <center>
-![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; background:null"}
 </center>
 
 Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
@@ -1282,7 +1326,7 @@ The other plots show the % nucleotide frequencies (AGCT) and mean quality scores
 
 ## Final summary
 <center>
-![](figures/sum_black.png){style="width:150px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.
@@ -1298,7 +1342,7 @@ library(webexercises)
 
 # Further resources
 <center>
-![](figures/further_resources.png){style="width:200px"}
+![](figures/further_resources.png){style="width:200px; background: white; border-radius:50px"}
 </center>
 
 - [Long read tools](https://long-read-tools.org/index.html)
@@ -1320,7 +1364,7 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 
 # Mamba installs {#mamba_install}
 <center>
-![](figures/mamba_logo.png){style="width:200px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
 ## Mamba installation {#mamba_install}

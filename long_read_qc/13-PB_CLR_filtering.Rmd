@@ -86,7 +86,7 @@ For this sample the DNA fragment length of the library was much greater than 10,
 
 ## BAM to fastq
 <center>
-![](figures/convert.png){style="width:200px; border-radius:90px; border:3px solid #333333; background:white"}
+![](figures/convert.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 `SequelTools` doesn\'t have an option for filtering subreads by length. To do this we can convert the filtered BAM file to a fastq or fasta file and use another downstream tool. The fastq file will not contain any useful information on sequence quality (every base is assigned a quality character of \'!\' which is equal to zero), but this file format is useful if only fastq format is accepted as input for a downstream tool.

@@ -2,7 +2,7 @@
 
 # PacBio Background {#pb}
 <center>
-![](figures/logo_PacBio_web_RGB-1.png){style="width:400px; border-radius:15px; border:5px solid #333333; background:white"}
+![](figures/logo_PacBio_web_RGB-1.png){style="width:400px; border-radius:15px; background:white"}
 </center>
 
 In this section we will quality check PacBio sequencing raw data (BAM files), perform a filter to retain only the longest reads and output the data in fastq format.
@@ -21,7 +21,7 @@ The figure below shows a schematic of a circular DNA molecule of a PacBio librar
 - Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
 
 <center>
-![](figures/smrtbell.png){style="width:900px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/smrtbell.png){style="width:900px; border-radius:15px; background:null"}
 </center>
 
 Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
@@ -31,7 +31,7 @@ PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cel
 A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
 
 <center>
-![](figures/zmw.png){style="width:900px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/zmw.png){style="width:900px; border-radius:15px; background:null"}
 </center>
 
 This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
@@ -49,7 +49,7 @@ These BAM files will usually have an accompanying PacBio BAM index file (subread
 
 ## CLR & CCS
 <center>
-![](figures/clr_and_ccs.png){style="width:800px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/clr_and_ccs.png){style="width:800px; border-radius:15px; background:null"}
 </center>
 
 PacBio data can be generated in two ways depending on the goal of the experiment.

@@ -1,6 +1,6 @@
 # ONT Setup {#ontsetupchap}
 <center>
-![](figures/conda.png){style="width:150px"}
+![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.

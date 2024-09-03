@@ -2,7 +2,7 @@
 
 # ONT background {#ont}
 <center>
-![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid white; background:null"}
 </center>
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use the fastq files.
@@ -16,12 +16,43 @@ Before carrying out analysis we will cover some background of ONT data. This wil
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
 
+### POD5
+<center>
+![](figures/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:15px"}
+</center>
+
+The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ont tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html), it is very unlikely you need to understand this.
+
+The POD5 file format contains the following information:
+
+- __Reads Table:__ Describes the metadata for each read.
+- __Signal Table:__ Contains the signal data from the sequencer.
+- __Run Info Table:__ Contains information on the `MinKNOW` runs that created the reads that are in the POD5 file.
+
+The POD5 format is quite new and was released as an early preview in May 2022. Prior to POD5 they used Fast5 files. They changed to POD5 with the following design goals in mind:
+
+- Good write performance for MinKNOW
+- Recoverable if the writing process crashes
+- Good read performance for downstream tools, including basecall model generation
+- Efficient use of space
+- Straightforward to implement and maintain
+- Extensibility
+
+POD5 links:
+
+- [Main POD5 github page](https://github.com/nanoporetech/pod5-file-format)
+- [POD5 File FOrmat Design Details](https://github.com/nanoporetech/pod5-file-format/blob/master/docs/DESIGN.md)
+- [POD5 Format Specification](https://github.com/nanoporetech/pod5-file-format/blob/master/docs/SPECIFICATION.md)
+- [POD5 Tools commands](https://github.com/nanoporetech/pod5-file-format/blob/master/python/pod5/README.md#tools)
+
 ### Fast5
 <center>
 ![](figures/fast5.png){style="width:150px"}
 </center>
 
-The raw data from ONT machines comes as Fast5 (`.fast5`) files. This contains the signal data from the pore which can be processed into more useful files.
+The Fast5 format was the previous format used to store raw data from ONT machine. It is now a legacy format. However, if you use older data for your research you may encounter it.
+
+The format contains the signal data from the pore which can be processed into more useful files.
 
 Fast5 files can contain:
 
@@ -33,9 +64,11 @@ Fast5 files can contain:
 The Fast5 file format is an implementation of the HDF5 file format specifically for ONT sequencing data. For more information on Fast5 and a tool to interface with these types of file please see:
 https://github.com/nanoporetech/ont_fast5_api
 
+You can convert a Fast5 file to a Pod5 file with the pod5 tools command [`pod5 convert fast5`](https://github.com/nanoporetech/pod5-file-format/blob/master/python/pod5/README.md#pod5-convert-fast5)
+
 ### Summary file
 
-The MinION and GridION output a single sequencing summary file in addition to the Fast5 files. This file contains metdata which describes each sequenced read.
+The MinION and GridION output a single sequencing summary file in addition to the POD5/Fast5 files. This file contains metdata which describes each sequenced read.
 
 We will not use Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
 
@@ -94,10 +127,19 @@ __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 ![](figures/guppy.png){style="width:200px"}
 </center>
 
-In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __Fast5__ files to __BAM__ and/or __fastq__ files.
+In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
 
-There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
+There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy, Dorado, and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
 
-Basecalling with Guppy tutorial:
+We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. INstead please find some useful links below if you would like to know more.
 
-https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html
+- MinKNOW
+  - [Overview on working with MinKNOW](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/experiment-companion-minknow/v/mke_1013_v1_revde_11apr2016)
+  - [Basecalling algorithms](https://community.nanoporetech.com/technical_documents/data-analysis/v/datd_5000_v1_revt_22aug2016/basecalling-algorithms)
+- Guppy
+  - [Basecalling with Guppy tutorials](https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html)
+  - [Input and output files](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revax_14dec2018/input-and-output-files)
+- Dorado
+  - [Github page](https://github.com/nanoporetech/dorado)
+- Literature
+  - [Comprehensive benchmark and architectural analysis of deep learning models for nanopore sequencing basecalling](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02903-2)

@@ -1,6 +1,6 @@
 # Porechop {#porechopchap}
 <center>
-![](figures/porechop_logo_knife.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/porechop_logo_knife.png){style="width:600px; border-radius:15px; border:5px solid white; background:null"}
 </center>
 
 `Porechop` is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences essential for sequencing but of no biological value and so you will typically want them removed.

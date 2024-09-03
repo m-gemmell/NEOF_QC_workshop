@@ -1,6 +1,6 @@
 # Circular Consensus Sequences {#ccschap}
 <center>
-![](figures/ccs.png){style="width:600px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/ccs.png){style="width:600px; border-radius:15px; background:null"}
 </center>
 
 We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.
@@ -19,7 +19,7 @@ cd ~/QC_workshop/PB_QC/data/CCS
 
 ## QC the subreads
 <center>
-![](figures/qc_inspection.png){style="width:200px"}
+![](figures/qc_inspection.png){style="width:200px; background: white; border-radius:15px"}
 </center>
 
 Our current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
@@ -75,7 +75,7 @@ less ccs_report.txt
 
 ### CCS MCQs
 <center>
-![](figures/question_bubble_black.png){style="width:150px"}
+![](figures/question_bubble_black.png){style="width:150px; background:white; border-radius:15px; border:5px white solid"}
 </center>
 
 ```{r, echo = FALSE}
@@ -90,7 +90,7 @@ opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__"
 
 ## RabbitQCPlus
 <center>
-![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; border:5px solid #333333; background:null"}
+![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; background:null"}
 </center>
 
 Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
@@ -128,7 +128,7 @@ The other plots show the % nucleotide frequencies (AGCT) and mean quality scores
 
 ## Final summary
 <center>
-![](figures/sum_black.png){style="width:150px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.

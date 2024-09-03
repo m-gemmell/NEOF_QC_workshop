@@ -79,7 +79,11 @@ With these plots you can:
   - Make boxes to zoom into a specific area. 
   - Click and drag left or right only to zoom into a specific part of the x axis. 
   - Click and drag up or down only to zoom into a specific part of the y axis. 
-  - Click the home icon (`r icons::ionicons("home")`) on the top right to reset the axes.
+  - Click the home icon (
+```{r, echo=FALSE}
+icons::icon_style(icons::fontawesome("home", style="solid"), background = "white")
+```
+) on the top right to reset the axes.
   - Hover over a points/bars to see the specific values of it.
 
 The plots are:
