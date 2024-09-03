@@ -105,7 +105,7 @@ The plots are:
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 - __Read lengths vs Average read quality kde plot__
-   - Each dot represents a single read with a topology map showing the density of plots. THe darker the area the more dense.
+   - Each dot represents a single read with a topology map showing the density of plots. The darker the area the more dense.
    - This is the most informative plot.
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
@@ -147,6 +147,6 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ![](figures/sum_green.png){style="width:150px"}
 </center>
 
-We have use `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
+We have used `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
 
 You can use `NanoPlot` with different input files. This will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.

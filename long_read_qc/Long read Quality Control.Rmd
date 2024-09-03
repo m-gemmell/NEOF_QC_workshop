@@ -184,7 +184,7 @@ Although we will only be using fastq files for this tutorial it is important to 
 ![](figures/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:15px"}
 </center>
 
-The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ont tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html), it is very unlikely you need to understand this.
+The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ont tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html) (it is very unlikely you need to understand Apache Arrow tables).
 
 The POD5 file format contains the following information:
 
@@ -292,9 +292,9 @@ __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
 In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
 
-There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
+There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy, Dorado, and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
 
-We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. INstead please find some useful links below if you would like to know more.
+We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. Instead please find some useful links below if you would like to know more.
 
 - MinKNOW
   - [Overview on working with MinKNOW](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/experiment-companion-minknow/v/mke_1013_v1_revde_11apr2016)
@@ -302,6 +302,8 @@ We will not go into any more detail about basecalling as this is normally carrie
 - Guppy
   - [Basecalling with Guppy tutorials](https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html)
   - [Input and output files](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revax_14dec2018/input-and-output-files)
+- Dorado
+  - [Github page](https://github.com/nanoporetech/dorado)
 - Literature
   - [Comprehensive benchmark and architectural analysis of deep learning models for nanopore sequencing basecalling](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02903-2)
 
@@ -317,7 +319,7 @@ library(webexercises)
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 
-Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.
+Run the following command in a new terminal. To open a new terminal window, right click on the main screen, and choose `Terminal`.
 
 ```{bash eval=FALSE}
 . useontqc
@@ -438,7 +440,7 @@ opts_p <- c("__5,770__", answer="__6,700.5__", "__25,072__")
 ```{r, echo = FALSE}
 opts_p <- c("__0.2Mb__", "__8.8Mb__", answer="__14.1Mb__")
 ```
-7.  To the nearest 0.1 Megabases (Mb, i.e. 100,000 bases), what is the total number of bases of the data? `r longmcq(opts_p)`
+7.  To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__0.2Mb__", answer="__8.8Mb__", "__14.1Mb__")
@@ -533,7 +535,7 @@ opts_p <- c(answer="__0__", "__1,952__", "__79,015__")
 ![](figures/sum_blue.png){style="width:150px"}
 </center>
 
-`Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads prior to so we can be informed when we filter out poor quality reads and bases.
+`Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads so we can be informed when we filter out poor quality reads and bases.
 
 For more uses of `Porechop` please see the below links:
 
@@ -652,7 +654,7 @@ The plots are:
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 - __Read lengths vs Average read quality kde plot__
-   - Each dot represents a single read with a topology map showing the density of plots. THe darker the area the more dense.
+   - Each dot represents a single read with a topology map showing the density of plots. The darker the area the more dense.
    - This is the most informative plot.
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
@@ -694,7 +696,7 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ![](figures/sum_green.png){style="width:150px"}
 </center>
 
-We have use `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
+We have used `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
 
 You can use `NanoPlot` with different input files. This will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.
 
@@ -1075,14 +1077,14 @@ library(webexercises)
 ```
 # CLR filtering {#clrfiltchap}
 <center>
-![](figures/quality_filtering.png){style="width:150px"}
+![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use only the longest PacBio reads for a _de novo_ assembly.
 
 ## CLR filtering: run
 <center>
-![](figures/enter_key_purple.png){style="width:150px"}
+![](figures/enter_key_purple.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 To filter the data by minimum CLR length we will use `SequelTools` with the `-t F` option. This sets the task mode to filtering.
@@ -1117,7 +1119,7 @@ __Parameters__:
 
 ## Quality check filtered data
 <center>
-![](figures/qc_inspection.png){style="width:150px"}
+![](figures/qc_inspection.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 When this has finished running the \'filtered\' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
@@ -1186,7 +1188,7 @@ You will now have a compressed fastq file for the CLR-filtered subreads from Sam
 
 ## CLR filtering: summary
 <center>
-![](figures/sum_purple.png){style="width:150px"}
+![](figures/sum_purple.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 We have quality checked and quality controlled our CLR data. This has produced both filtered CLRs and filtered subreads. Next we will learn how to QC CCS data.

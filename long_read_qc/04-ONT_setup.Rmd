@@ -5,7 +5,7 @@
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
 
-Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.
+Run the following command in a new terminal. To open a new terminal window, right click on the main screen, and choose `Terminal`.
 
 ```{bash eval=FALSE}
 . useontqc

@@ -92,7 +92,7 @@ opts_p <- c("__5,770__", answer="__6,700.5__", "__25,072__")
 ```{r, echo = FALSE}
 opts_p <- c("__0.2Mb__", "__8.8Mb__", answer="__14.1Mb__")
 ```
-7.  To the nearest 0.1 Megabases (Mb, i.e. 100,000 bases), what is the total number of bases of the data? `r longmcq(opts_p)`
+7.  To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__0.2Mb__", answer="__8.8Mb__", "__14.1Mb__")

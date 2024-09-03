@@ -64,7 +64,7 @@ opts_p <- c(answer="__0__", "__1,952__", "__79,015__")
 ![](figures/sum_blue.png){style="width:150px"}
 </center>
 
-`Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads prior to so we can be informed when we filter out poor quality reads and bases.
+`Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads so we can be informed when we filter out poor quality reads and bases.
 
 For more uses of `Porechop` please see the below links:
 

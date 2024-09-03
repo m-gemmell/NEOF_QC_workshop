@@ -1,13 +1,13 @@
 # CLR filtering {#clrfiltchap}
 <center>
-![](figures/quality_filtering.png){style="width:150px"}
+![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 Our quality check of the PacBio data doesn\'t include any assessment of sequence quality. Unaligned PacBio data doesn\'t have a quality score in the same way as the Illumina data we looked at on Tuesday. Quality scores for PacBio are generated when the reads are aligned - either to a reference sequence or subreads aligned to each other to generate CCS reads. However, it is often a good idea to use only the longest PacBio reads for a _de novo_ assembly.
 
 ## CLR filtering: run
 <center>
-![](figures/enter_key_purple.png){style="width:150px"}
+![](figures/enter_key_purple.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 To filter the data by minimum CLR length we will use `SequelTools` with the `-t F` option. This sets the task mode to filtering.
@@ -42,7 +42,7 @@ __Parameters__:
 
 ## Quality check filtered data
 <center>
-![](figures/qc_inspection.png){style="width:150px"}
+![](figures/qc_inspection.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
 When this has finished running the \'filtered\' folder will contain filtered BAM files for all three samples. Move into this folder using `cd`:
@@ -111,7 +111,7 @@ You will now have a compressed fastq file for the CLR-filtered subreads from Sam
 
 ## CLR filtering: summary
 <center>
-![](figures/sum_purple.png){style="width:150px"}
+![](figures/sum_purple.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 We have quality checked and quality controlled our CLR data. This has produced both filtered CLRs and filtered subreads. Next we will learn how to QC CCS data.

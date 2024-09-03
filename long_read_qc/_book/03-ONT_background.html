@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2024-08-29" />
+<meta name="date" content="2024-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -286,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/arrow-logo_chevrons_black-txt_white-bg.png" style="width:150px; border-radius:15px" />
 </center>
-<p>The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension <code>.pod5</code> and is normally created by the ont tool <code>MinKNOW</code>. It is a collection of <a href="https://arrow.apache.org/docs/java/table.html">Apache Arrow tables</a>, it is very unlikely you need to understand this.</p>
+<p>The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension <code>.pod5</code> and is normally created by the ont tool <code>MinKNOW</code>. It is a collection of <a href="https://arrow.apache.org/docs/java/table.html">Apache Arrow tables</a> (it is very unlikely you need to understand Apache Arrow tables).</p>
 <p>The POD5 file format contains the following information:</p>
 <ul>
 <li><strong>Reads Table:</strong> Describes the metadata for each read.</li>
@@ -391,8 +391,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/guppy.png" style="width:200px" />
 </center>
 <p>In short, basecalling is the converting of ONT signals to bases and quality. This step converts the <strong>POD5/Fast5</strong> files to <strong>BAM</strong> and/or <strong>fastq</strong> files.</p>
-<p>There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.</p>
-<p>We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. INstead please find some useful links below if you would like to know more.</p>
+<p>There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy, Dorado, and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.</p>
+<p>We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. Instead please find some useful links below if you would like to know more.</p>
 <ul>
 <li>MinKNOW
 <ul>
@@ -403,6 +403,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/index.html">Basecalling with Guppy tutorials</a></li>
 <li><a href="https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revax_14dec2018/input-and-output-files">Input and output files</a></li>
+</ul></li>
+<li>Dorado
+<ul>
+<li><a href="https://github.com/nanoporetech/dorado">Github page</a></li>
 </ul></li>
 <li>Literature
 <ul>

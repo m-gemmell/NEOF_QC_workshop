@@ -21,7 +21,7 @@ Although we will only be using fastq files for this tutorial it is important to 
 ![](figures/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:15px"}
 </center>
 
-The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ont tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html), it is very unlikely you need to understand this.
+The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ont tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html) (it is very unlikely you need to understand Apache Arrow tables).
 
 The POD5 file format contains the following information:
 
@@ -131,7 +131,7 @@ In short, basecalling is the converting of ONT signals to bases and quality. Thi
 
 There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy, Dorado, and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
 
-We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. INstead please find some useful links below if you would like to know more.
+We will not go into any more detail about basecalling as this is normally carried out by the machine/sequencing centre. Instead please find some useful links below if you would like to know more.
 
 - MinKNOW
   - [Overview on working with MinKNOW](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/experiment-companion-minknow/v/mke_1013_v1_revde_11apr2016)
