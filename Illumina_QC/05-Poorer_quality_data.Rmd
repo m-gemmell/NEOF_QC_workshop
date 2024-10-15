@@ -144,7 +144,7 @@ Based on it, what percentage of paired reads were kept? `r longmcq(opts_p)` <br>
 
 **Output**
 
-The command produces four files with names based off the `-baseout` parameter. You can use `ls` to see the output file.
+The command produces four files with names based off the `-baseout` parameter. You can use `ls` to see the output files.
 The files are:
 
 - `B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The **paired** forward and reverse reads after successful trimming.
