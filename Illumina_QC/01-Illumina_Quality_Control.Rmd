@@ -80,7 +80,7 @@ column_2 <- c(
  '[![](figures/bacteria_2.png){height="150"}](#poortutorial)',
  #6 MultiQC
    '[**MultiQC**](#multiqcchap)', 
- '[![](figures/MultiQC_logo.png){height="100"}](#multiqcchap)',
+ '[![](figures/multiqc_icon_color.png){height="150"}](#multiqcchap)',
  #8 empty
  "",""
 )

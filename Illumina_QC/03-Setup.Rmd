@@ -56,4 +56,4 @@ less /usr/local/bin/useilluminaqc
 
 __Tip:__ press `q` to quit `less`.
 
-For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](#mamba_install)
+For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](#mamba_install).
