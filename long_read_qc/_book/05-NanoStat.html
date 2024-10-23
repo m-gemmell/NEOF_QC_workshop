@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2024-09-13" />
+<meta name="date" content="2024-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,15 +189,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="07-NanoPlot.html"><a href="07-NanoPlot.html#nanoplot-mcqs"><i class="fa fa-check"></i><b>7.3</b> NanoPlot: MCQs</a></li>
 <li class="chapter" data-level="7.4" data-path="07-NanoPlot.html"><a href="07-NanoPlot.html#nanoplot-summary"><i class="fa fa-check"></i><b>7.4</b> NanoPlot: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="08-NanoFilt.html"><a href="08-NanoFilt.html"><i class="fa fa-check"></i><b>8</b> NanoFilt</a>
+<li class="chapter" data-level="8" data-path="08-Chopper.html"><a href="08-Chopper.html"><i class="fa fa-check"></i><b>8</b> Chopper</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-NanoFilt.html"><a href="08-NanoFilt.html#nanofilt-run"><i class="fa fa-check"></i><b>8.1</b> NanoFilt: run</a></li>
+<li class="chapter" data-level="8.1" data-path="08-Chopper.html"><a href="08-Chopper.html#chopper-run"><i class="fa fa-check"></i><b>8.1</b> Chopper: run</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html"><i class="fa fa-check"></i><b>9</b> Final check</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#final-nanoplot"><i class="fa fa-check"></i><b>9.1</b> Final NanoPlot</a></li>
 <li class="chapter" data-level="9.2" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#ont-qc-considerations"><i class="fa fa-check"></i><b>9.2</b> ONT QC considerations</a></li>
-<li class="chapter" data-level="9.3" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#nanofilt-reattempts"><i class="fa fa-check"></i><b>9.3</b> NanoFilt Reattempts</a></li>
+<li class="chapter" data-level="9.3" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#chopper-reattempts"><i class="fa fa-check"></i><b>9.3</b> Chopper Reattempts</a></li>
 <li class="chapter" data-level="9.4" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#ont-recap"><i class="fa fa-check"></i><b>9.4</b> ONT Recap</a></li>
 </ul></li>
 <li class="part"><span><b>PacBio</b></span></li>
@@ -308,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Number, percentage and megabases of reads above quality cutoffs</strong>
 <ul>
 <li>Based on the mean quality value of a read.</li>
-<li>The "&gt;Q5" line shows the number and % of reads with a mean quality above Q5. It also shows the total amount of megabases these reads contain.</li>
+<li>The "&gt;Q10" line shows the number and % of reads with a mean quality above Q10. It also shows the total amount of megabases these reads contain.</li>
 </ul></li>
 <li><strong>Top 5 highest mean basecall quality scores and their read lengths</strong>
 <ul>
@@ -328,44 +328,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With the output of <code>NanoStat</code> and the above info on the output please answer the following Multiple-choice questions.</p>
 <ol style="list-style-type: decimal">
 <li>What is the mean base quality for the read with the highest mean base quality?
-<div id="radio_DJPJMTAJVS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DJPJMTAJVS" value=""></input> <span><strong>9.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DJPJMTAJVS" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DJPJMTAJVS" value="answer"></input> <span><strong>12.3</strong></span></label>
+<div id="radio_HHATWUTQXN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HHATWUTQXN" value=""></input> <span><strong>9.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HHATWUTQXN" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HHATWUTQXN" value="answer"></input> <span><strong>12.3</strong></span></label>
 </div></li>
 <li>What is the mean base quality for the longest read?
-<div id="radio_KJBZSOZAXF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KJBZSOZAXF" value="answer"></input> <span><strong>9.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KJBZSOZAXF" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KJBZSOZAXF" value=""></input> <span><strong>12.3</strong></span></label>
+<div id="radio_OVHRUMSZPD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OVHRUMSZPD" value="answer"></input> <span><strong>9.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OVHRUMSZPD" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OVHRUMSZPD" value=""></input> <span><strong>12.3</strong></span></label>
 </div></li>
 <li>What is the mean read quality for all the data?
-<div id="radio_UNLAMRFFDZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UNLAMRFFDZ" value=""></input> <span><strong>9.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNLAMRFFDZ" value="answer"></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNLAMRFFDZ" value=""></input> <span><strong>12.3</strong></span></label>
+<div id="radio_BNVJRCWCJL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BNVJRCWCJL" value=""></input> <span><strong>9.2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BNVJRCWCJL" value="answer"></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BNVJRCWCJL" value=""></input> <span><strong>12.3</strong></span></label>
 </div></li>
 <li>What is the length of the read with the 2nd highest mean quality?
-<div id="radio_GEBHMKNOZL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GEBHMKNOZL" value="answer"></input> <span><strong>5,770</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GEBHMKNOZL" value=""></input> <span><strong>6,700.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GEBHMKNOZL" value=""></input> <span><strong>25,072</strong></span></label>
+<div id="radio_KORYLUZXAL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KORYLUZXAL" value="answer"></input> <span><strong>5,770</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KORYLUZXAL" value=""></input> <span><strong>6,700.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KORYLUZXAL" value=""></input> <span><strong>25,072</strong></span></label>
 </div></li>
 <li>What is the length of the 3rd longest read?
-<div id="radio_ZQCVHLGUOS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZQCVHLGUOS" value=""></input> <span><strong>5,770</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZQCVHLGUOS" value=""></input> <span><strong>6,700.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZQCVHLGUOS" value="answer"></input> <span><strong>25,072</strong></span></label>
+<div id="radio_IJZAZWIRNI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IJZAZWIRNI" value=""></input> <span><strong>5,770</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IJZAZWIRNI" value=""></input> <span><strong>6,700.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IJZAZWIRNI" value="answer"></input> <span><strong>25,072</strong></span></label>
 </div></li>
 <li>What is the median read length of the data?
-<div id="radio_BVMVAGELVM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BVMVAGELVM" value=""></input> <span><strong>5,770</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BVMVAGELVM" value="answer"></input> <span><strong>6,700.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BVMVAGELVM" value=""></input> <span><strong>25,072</strong></span></label>
+<div id="radio_YIDTTCQAVN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YIDTTCQAVN" value=""></input> <span><strong>5,770</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YIDTTCQAVN" value="answer"></input> <span><strong>6,700.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YIDTTCQAVN" value=""></input> <span><strong>25,072</strong></span></label>
 </div></li>
 <li>To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases of the data?
-<div id="radio_PYZWNGGOSM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PYZWNGGOSM" value=""></input> <span><strong>0.2Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PYZWNGGOSM" value=""></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PYZWNGGOSM" value="answer"></input> <span><strong>14.1Mb</strong></span></label>
+<div id="radio_JKCAPFZXMN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JKCAPFZXMN" value=""></input> <span><strong>0.0Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JKCAPFZXMN" value=""></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JKCAPFZXMN" value="answer"></input> <span><strong>14.1Mb</strong></span></label>
 </div></li>
 <li>How many Megabases are within reads with a quality cutoff of &gt;Q10?
-<div id="radio_HAORWCLNZJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HAORWCLNZJ" value=""></input> <span><strong>0.2Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HAORWCLNZJ" value="answer"></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HAORWCLNZJ" value=""></input> <span><strong>14.1Mb</strong></span></label>
+<div id="radio_REMNBHEPYH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_REMNBHEPYH" value=""></input> <span><strong>0.0Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_REMNBHEPYH" value="answer"></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_REMNBHEPYH" value=""></input> <span><strong>14.1Mb</strong></span></label>
 </div></li>
-<li>How many Megabases are within reads with a quality cutoff of &gt;Q5?
-<div id="radio_IPCTICHBLH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IPCTICHBLH" value=""></input> <span><strong>0.2Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IPCTICHBLH" value=""></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IPCTICHBLH" value="answer"></input> <span><strong>14.1Mb</strong></span></label>
+<li>How many Megabases are within reads with a quality cutoff of &gt;Q15?
+<div id="radio_WOPAMWSFEI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WOPAMWSFEI" value="answer"></input> <span><strong>0.0Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WOPAMWSFEI" value=""></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WOPAMWSFEI" value="answer"></input> <span><strong>14.1Mb</strong></span></label>
 </div></li>
-<li>How many Megabases are within reads with a quality cutoff of &gt;Q12?
-<div id="radio_ORKNSBCSXO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ORKNSBCSXO" value="answer"></input> <span><strong>0.2Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ORKNSBCSXO" value=""></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ORKNSBCSXO" value=""></input> <span><strong>14.1Mb</strong></span></label>
+<li>To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases within reads with a mean quality of Q10 or less (you will need to do some mental maths)?
+<div id="radio_IYWPCZWKAH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IYWPCZWKAH" value="answer"></input> <span><strong>5.3Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IYWPCZWKAH" value=""></input> <span><strong>8.8Mb</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IYWPCZWKAH" value="answer"></input> <span><strong>14.1Mb</strong></span></label>
 </div></li>
 </ol>
 </div>

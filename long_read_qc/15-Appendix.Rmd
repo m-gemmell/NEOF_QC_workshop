@@ -11,8 +11,8 @@
 
 Unfortunately with ONT you need an account to access a lot of the content on its website.
 
+- [Nanopack overview](https://github.com/wdecoster/nanopack)
 - [ONT website](https://nanoporetech.com/)
-- [Oxford Nanopore product brochure](https://nanoporetech.com/sites/default/files/s3/literature/Oxford-Nanopore-Product-brochure_Sept2023.pdf)
 
 ## PacBio
 
@@ -46,12 +46,8 @@ To create the mamba environment `ont_qc` run the below commands in your bash. Yo
 #Oxford Nanopore QC
 mamba create -n ont_qc
 mamba activate ont_qc
-#Install pip
-mamba install -c anaconda pip
-#Install nanopack with previously installed pip
-pip install nanopack
-#Install porechop
-mamba install -c bioconda porechop
+#Install tools
+mamba install -c bioconda porechop nanoplot chopper nanostat
 ```
 
 ## PB QC environment

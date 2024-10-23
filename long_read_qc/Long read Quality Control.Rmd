@@ -103,8 +103,8 @@ column_2 <- c(
    '[**Porechop**](#porechopchap)', 
  '[![](figures/porechop_logo_knife.png){height="100"}](#porechopchap)',
  #6 nanofilt
-   '[**NanoFilt**](#nanofiltchap)', 
- '[![](figures/quality_filtering.png){height="150"}](#nanofiltchap)',
+   '[**Chopper**](#chopper)', 
+ '[![](figures/quality_filtering.png){height="150"}](#chopper)',
  #8 pb background
    '[**PacBio background**](#pb)', 
  '[![](figures/logo_PacBio_web_RGB-1.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#pb)',
@@ -322,7 +322,7 @@ We need to initialise the environment to use the programs we need. This needs to
 Run the following command in a new terminal. To open a new terminal window, right click on the main screen, and choose `Terminal`.
 
 ```{bash eval=FALSE}
-. useontqc
+. useontqcv2
 ```
 
 Before carrying out any more commands we will move into the relevant directory.
@@ -394,7 +394,7 @@ The file contains four sections with informative headers. These are:
    - A list of general summary metrics.
 2. __Number, percentage and megabases of reads above quality cutoffs__
    - Based on the mean quality value of a read.
-   - The \">Q5\" line shows the number and % of reads with a mean quality above Q5. It also shows the total amount of megabases these reads contain.
+   - The \">Q10\" line shows the number and % of reads with a mean quality above Q10. It also shows the total amount of megabases these reads contain.
 3. __Top 5 highest mean basecall quality scores and their read lengths__
    - Shows the top 5 reads with the highest mean quality scores.
 4. __Top 5 longest reads and their mean basecall quality score__
@@ -438,24 +438,24 @@ opts_p <- c("__5,770__", answer="__6,700.5__", "__25,072__")
 6.  What is the median read length of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__0.2Mb__", "__8.8Mb__", answer="__14.1Mb__")
+opts_p <- c("__0.0Mb__", "__8.8Mb__", answer="__14.1Mb__")
 ```
 7.  To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases of the data? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__0.2Mb__", answer="__8.8Mb__", "__14.1Mb__")
+opts_p <- c("__0.0Mb__", answer="__8.8Mb__", "__14.1Mb__")
 ```
 8.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__0.2Mb__", "__8.8Mb__", answer="__14.1Mb__")
+opts_p <- c(answer="__0.0Mb__", "__8.8Mb__", answer="__14.1Mb__")
 ```
-9. How many Megabases are within reads with a quality cutoff of >Q5? `r longmcq(opts_p)`
+9. How many Megabases are within reads with a quality cutoff of >Q15? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__0.2Mb__", "__8.8Mb__", "__14.1Mb__")
+opts_p <- c(answer="__5.3Mb__", "__8.8Mb__", answer="__14.1Mb__")
 ```
-10.  How many Megabases are within reads with a quality cutoff of >Q12? `r longmcq(opts_p)`
+9.  To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases within reads with a mean quality of Q10 or less (you will need to do some mental maths)? `r longmcq(opts_p)`
 
 ## NanoStat: summary
 <center>
@@ -682,14 +682,14 @@ opts_p <- c("__9.5__", "__6,962.1__", answer="__8.8Mb__")
 3.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10__", "__146__", answer="__4Mb (0.004Gb)__")
+opts_p <- c("__10Mb (0.01Gb)__", "__146Mb (0.146Gb)__", answer="__4Mb (0.004Gb)__")
 ```
 4. Approximately how many bases would you retain if you filtered out/removed reads with a length <10,000bp (Yield by length)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ```
-5. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
+5. Look at the Read lengths vs Average read quality plots. In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
 ## NanoPlot: summary
 <center>
@@ -705,38 +705,41 @@ You can use `NanoPlot` with different input files. This will give you different 
 ```{r include=FALSE, cache=FALSE}
 library(webexercises)
 ```
-# NanoFilt {#nanofiltchap}
+# Chopper {#chopper}
 <center>
 ![](figures/quality_filtering.png){style="width:150px"}
 </center>
 
-`NanoFilt` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/nanofilt). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
+`Chopper` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/nanofilt). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
+
+`Chopper` also removes any reads that map to the lambda phage genome. 
+The lambda phage genome is used for DNA Control experiments for ONT sequencers ([ONT DNA Control Experiment overview](https://community.nanoporetech.com/nanopore_learning/lessons/dna-control-experiment)).
 
 It is always important to know what your data is and if your planned filtering and trimming is appropriate. For example, you may be working with amplicon data where the read lengths will vary between 500bp and 750bp. In that case it is useful to set a min length of 500 and a maxlength of 750.
 
 This data is from a genome so wanting long and high quality reads is appropriate. Overall the quality of our data looks good. The main exception is the low amount of sequencing/coverage. The low coverage is because it is a subset of the whole data for workshop purposes (the full dataset would take too long to run here). There are some shorter length and lower quality reads which we will remove.
 
-## NanoFilt: run
+## Chopper: run
 <center>
 ![](figures/enter_key_purple.png){style="width:150px"}
 </center>
 
 First we will create an output directory.
 ```{bash eval=FALSE}
-mkdir nanofilt
+mkdir chopper
 ```
 
-We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with a average read quality less than Q10 (`-q 10`). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from NanoPlot as the majority of reads had a quality of >Q10.
+We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with a average read quality less than Q10 (`-q 10`). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from `NanoPlot` as the majority of reads had a quality of >Q10.
 
 ```{bash eval=FALSE}
-cat porechop/Acinetobacter.porechop.fastq | \
-NanoFilt -l 500 -q 10 > \
-nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq
+chopper -q 10 -l 500 \
+-i porechop/Acinetobacter.porechop.fastq > \
+nanofilt/Acinetobacter.chopperq10minlen500.porechop.fastq
 ```
 
 Are the chosen options appropriate? Let\'s find out.
 
-<!--chapter:end:08-NanoFilt.Rmd-->
+<!--chapter:end:08-Chopper.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 library(webexercises)
@@ -753,21 +756,21 @@ After trimming or filtering reads (quality control) it is always important to ca
 ![](figures/nanoplot_hexes.png){style="width:200px"}
 </center>
 
-__Note__: We are using a long informative output directory name. This is important as we may need to rerun NanoFilt a few more times with different options until we are happy. 
+__Note__: We are using a long informative output directory name. This is important as we may need to rerun `chopper` a few more times with different options until we are happy. 
 
 ```{bash eval=FALSE}
 #Make an output directory before running NanoPlot
-mkdir nanoplot/nanofiltq10minlen500_porechop
+mkdir nanoplot/chopperq10minlen500_porechop
 #Run NanoPlot on the fastq file with the filtered and porechopped data
 NanoPlot -t 4 \
---fastq nanofilt/Acinetobacter.nanofiltq10minlen500.porechop.fastq \
--o nanoplot/nanofiltq10minlen500_porechop/ -p Acinetobacter_
+--fastq chopper/Acinetobacter.chopperq10minlen500.porechop.fastq \
+-o nanoplot/chopperq10minlen500_porechop/ -p Acinetobacter_
 ```
 
 Now inspect the report
 
 ```{bash, eval=FALSE}
-firefox nanoplot/nanofiltq10minlen500_porechop/Acinetobacter_NanoPlot-report.html
+firefox nanoplot/chopperq10minlen500_porechop/Acinetobacter_NanoPlot-report.html
 ```
 
 ## ONT QC considerations
@@ -783,14 +786,14 @@ A quick example is data for a genome assembly. For this type of analysis we will
 
 In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads need to be assembled.
 
-## NanoFilt Reattempts
+## Chopper Reattempts
 <center>
 ![](figures/retry.png){style="width:200px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
-Keeping all this in mind, let's say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and nanofiltered?
+Keeping all this in mind, let's say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and chopper'd?
 
-If not, try running `NanoFilt` with a different choice for `--q` until you do. Then attempt to answer the questions below. These aren't MCQs as you will get different answers based on what value you use for `--q`.
+If not, try running `chopper` with a different choice for `-q` until you do. Then attempt to answer the questions below. These aren't MCQs as you will get different answers based on what value you use for `-q`.
 
 + What is an option that works to get the desired coverage? 
 + Is the overall quality decent (Mean & Median read quality > 10)?
@@ -814,7 +817,7 @@ We carried out:
 - `NanoStat`: Produced read quality and length stats of our raw reads.
 - `Porechop`: Removed adapters from our reads.
 - `NanoPlot`: Produced read quality and length stats and plots of our porechopped reads.
-- `NanoFilt`: Filtered our porechopped reads based on quality and length.
+- `chopper`: Filtered our porechopped reads based on quality and length.
 - Final check: `NanoPlot` of our filtered reads. It is always good to check the quality after every quality control step.
 
 <!--chapter:end:09-ONT_final_check.Rmd-->
@@ -1353,8 +1356,8 @@ library(webexercises)
 
 Unfortunately with ONT you need an account to access a lot of the content on its website.
 
+- [Nanopack overview](https://github.com/wdecoster/nanopack)
 - [ONT website](https://nanoporetech.com/)
-- [Oxford Nanopore product brochure](https://nanoporetech.com/sites/default/files/s3/literature/Oxford-Nanopore-Product-brochure_Sept2023.pdf)
 
 ## PacBio
 
@@ -1388,12 +1391,8 @@ To create the mamba environment `ont_qc` run the below commands in your bash. Yo
 #Oxford Nanopore QC
 mamba create -n ont_qc
 mamba activate ont_qc
-#Install pip
-mamba install -c anaconda pip
-#Install nanopack with previously installed pip
-pip install nanopack
-#Install porechop
-mamba install -c bioconda porechop
+#Install tools
+mamba install -c bioconda porechop nanoplot chopper nanostat
 ```
 
 ## PB QC environment

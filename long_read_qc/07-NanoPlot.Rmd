@@ -133,14 +133,14 @@ opts_p <- c("__9.5__", "__6,962.1__", answer="__8.8Mb__")
 3.  How many Megabases are within reads with a quality cutoff of >Q10?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__10__", "__146__", answer="__4Mb (0.004Gb)__")
+opts_p <- c("__10Mb (0.01Gb)__", "__146Mb (0.146Gb)__", answer="__4Mb (0.004Gb)__")
 ```
 4. Approximately how many bases would you retain if you filtered out/removed reads with a length <10,000bp (Yield by length)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ```
-5. Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads? `r longmcq(opts_p)`
+5. Look at the Read lengths vs Average read quality plots. In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
 ## NanoPlot: summary
 <center>

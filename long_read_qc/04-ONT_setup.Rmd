@@ -8,7 +8,7 @@ We need to initialise the environment to use the programs we need. This needs to
 Run the following command in a new terminal. To open a new terminal window, right click on the main screen, and choose `Terminal`.
 
 ```{bash eval=FALSE}
-. useontqc
+. useontqcv2
 ```
 
 Before carrying out any more commands we will move into the relevant directory.

@@ -23,7 +23,7 @@
 <meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
 
 
-<meta name="date" content="2024-09-13" />
+<meta name="date" content="2024-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="06-Porechop.html"/>
-<link rel="next" href="08-NanoFilt.html"/>
+<link rel="next" href="08-Chopper.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -189,15 +189,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="07-NanoPlot.html"><a href="07-NanoPlot.html#nanoplot-mcqs"><i class="fa fa-check"></i><b>7.3</b> NanoPlot: MCQs</a></li>
 <li class="chapter" data-level="7.4" data-path="07-NanoPlot.html"><a href="07-NanoPlot.html#nanoplot-summary"><i class="fa fa-check"></i><b>7.4</b> NanoPlot: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="08-NanoFilt.html"><a href="08-NanoFilt.html"><i class="fa fa-check"></i><b>8</b> NanoFilt</a>
+<li class="chapter" data-level="8" data-path="08-Chopper.html"><a href="08-Chopper.html"><i class="fa fa-check"></i><b>8</b> Chopper</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-NanoFilt.html"><a href="08-NanoFilt.html#nanofilt-run"><i class="fa fa-check"></i><b>8.1</b> NanoFilt: run</a></li>
+<li class="chapter" data-level="8.1" data-path="08-Chopper.html"><a href="08-Chopper.html#chopper-run"><i class="fa fa-check"></i><b>8.1</b> Chopper: run</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html"><i class="fa fa-check"></i><b>9</b> Final check</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#final-nanoplot"><i class="fa fa-check"></i><b>9.1</b> Final NanoPlot</a></li>
 <li class="chapter" data-level="9.2" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#ont-qc-considerations"><i class="fa fa-check"></i><b>9.2</b> ONT QC considerations</a></li>
-<li class="chapter" data-level="9.3" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#nanofilt-reattempts"><i class="fa fa-check"></i><b>9.3</b> NanoFilt Reattempts</a></li>
+<li class="chapter" data-level="9.3" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#chopper-reattempts"><i class="fa fa-check"></i><b>9.3</b> Chopper Reattempts</a></li>
 <li class="chapter" data-level="9.4" data-path="09-ONT_final_check.html"><a href="09-ONT_final_check.html#ont-recap"><i class="fa fa-check"></i><b>9.4</b> ONT Recap</a></li>
 </ul></li>
 <li class="part"><span><b>PacBio</b></span></li>
@@ -487,24 +487,24 @@ With these plots you can:</p>
 <p>Please attempt the below MCQs with the information in the report html.</p>
 <ol style="list-style-type: decimal">
 <li>What is the mean read quality for all the data?
-<div id="radio_PQOMFJUJEF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PQOMFJUJEF" value="answer"></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PQOMFJUJEF" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PQOMFJUJEF" value=""></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_JJRAETZOKV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JJRAETZOKV" value="answer"></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJRAETZOKV" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJRAETZOKV" value=""></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>What is the mean read length of the data?
-<div id="radio_LXZPPZTIKD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LXZPPZTIKD" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LXZPPZTIKD" value="answer"></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LXZPPZTIKD" value=""></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_JNWIAOGWVO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JNWIAOGWVO" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JNWIAOGWVO" value="answer"></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JNWIAOGWVO" value=""></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>How many Megabases are within reads with a quality cutoff of &gt;Q10?
-<div id="radio_AJRLIHEGIU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AJRLIHEGIU" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AJRLIHEGIU" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AJRLIHEGIU" value="answer"></input> <span><strong>8.8Mb</strong></span></label>
+<div id="radio_ILZDVLQHFB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ILZDVLQHFB" value=""></input> <span><strong>9.5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ILZDVLQHFB" value=""></input> <span><strong>6,962.1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ILZDVLQHFB" value="answer"></input> <span><strong>8.8Mb</strong></span></label>
 </div></li>
 <li>Approximately how many bases would you retain if you filtered out/removed reads with a length &lt;10,000bp (Yield by length)?
-<div id="radio_BAAVTQIOVP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BAAVTQIOVP" value=""></input> <span><strong>10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BAAVTQIOVP" value=""></input> <span><strong>146</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BAAVTQIOVP" value="answer"></input> <span><strong>4Mb (0.004Gb)</strong></span></label>
+<div id="radio_TRNNXCKMKD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TRNNXCKMKD" value=""></input> <span><strong>10Mb (0.01Gb)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TRNNXCKMKD" value=""></input> <span><strong>146Mb (0.146Gb)</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TRNNXCKMKD" value="answer"></input> <span><strong>4Mb (0.004Gb)</strong></span></label>
 </div></li>
-<li>Look at the "Read lengths vs Average read quality plot". In what average quality range are the majority of reads?
-<div id="radio_UNOQNTGVBE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UNOQNTGVBE" value=""></input> <span><strong>6-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNOQNTGVBE" value=""></input> <span><strong>8-10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UNOQNTGVBE" value="answer"></input> <span><strong>10-12</strong></span></label>
+<li>Look at the Read lengths vs Average read quality plots. In what average quality range are the majority of reads?
+<div id="radio_IUCSCPXYGM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IUCSCPXYGM" value=""></input> <span><strong>6-8</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IUCSCPXYGM" value=""></input> <span><strong>8-10</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IUCSCPXYGM" value="answer"></input> <span><strong>10-12</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -730,7 +730,7 @@ window.onload = function() {
         </div>
       </div>
 <a href="06-Porechop.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="08-NanoFilt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="08-Chopper.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

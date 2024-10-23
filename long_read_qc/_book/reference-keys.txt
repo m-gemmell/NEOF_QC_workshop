@@ -24,12 +24,12 @@ nanoplot-run
 nanoplot-output
 nanoplot-mcqs
 nanoplot-summary
-nanofiltchap
-nanofilt-run
+chopper
+chopper-run
 ontcheckchap
 final-nanoplot
 ont-qc-considerations
-nanofilt-reattempts
+chopper-reattempts
 ont-recap
 pb
 file-formats

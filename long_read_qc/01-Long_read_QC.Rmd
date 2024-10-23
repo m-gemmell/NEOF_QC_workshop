@@ -100,8 +100,8 @@ column_2 <- c(
    '[**Porechop**](#porechopchap)', 
  '[![](figures/porechop_logo_knife.png){height="100"}](#porechopchap)',
  #6 nanofilt
-   '[**NanoFilt**](#nanofiltchap)', 
- '[![](figures/quality_filtering.png){height="150"}](#nanofiltchap)',
+   '[**Chopper**](#chopper)', 
+ '[![](figures/quality_filtering.png){height="150"}](#chopper)',
  #8 pb background
    '[**PacBio background**](#pb)', 
  '[![](figures/logo_PacBio_web_RGB-1.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#pb)',

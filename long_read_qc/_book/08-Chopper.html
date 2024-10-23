@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Final check | Long read Quality Control</title>
+  <title>Chapter 8 Chopper | Long read Quality Control</title>
   <meta name="description" content="NEOF book for the Long read quality control workshop" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Final check | Long read Quality Control" />
+  <meta property="og:title" content="Chapter 8 Chopper | Long read Quality Control" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the Long read quality control workshop" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Final check | Long read Quality Control" />
+  <meta name="twitter:title" content="Chapter 8 Chopper | Long read Quality Control" />
   
   <meta name="twitter:description" content="NEOF book for the Long read quality control workshop" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="08-Chopper.html"/>
-<link rel="next" href="10-PB_background.html"/>
+<link rel="prev" href="07-NanoPlot.html"/>
+<link rel="next" href="09-ONT_final_check.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -269,76 +269,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ontcheckchap" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Final check<a href="09-ONT_final_check.html#ontcheckchap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chopper" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Chopper<a href="08-Chopper.html#chopper" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/finish.png" style="width:200px; border-radius:15px; border:5px solid white; background:white" />
+<img src="figures/quality_filtering.png" style="width:150px" />
 </center>
-<p>After trimming or filtering reads (quality control) it is always important to carry out a quality check. We will therefore run NanoPlot again.</p>
-<div id="final-nanoplot" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Final NanoPlot<a href="09-ONT_final_check.html#final-nanoplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>Chopper</code> can be used to remove/filter reads by quality and/or read length (<a href="https://github.com/wdecoster/nanofilt" class="uri">https://github.com/wdecoster/nanofilt</a>). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.</p>
+<p><code>Chopper</code> also removes any reads that map to the lambda phage genome.
+The lambda phage genome is used for DNA Control experiments for ONT sequencers (<a href="https://community.nanoporetech.com/nanopore_learning/lessons/dna-control-experiment">ONT DNA Control Experiment overview</a>).</p>
+<p>It is always important to know what your data is and if your planned filtering and trimming is appropriate. For example, you may be working with amplicon data where the read lengths will vary between 500bp and 750bp. In that case it is useful to set a min length of 500 and a maxlength of 750.</p>
+<p>This data is from a genome so wanting long and high quality reads is appropriate. Overall the quality of our data looks good. The main exception is the low amount of sequencing/coverage. The low coverage is because it is a subset of the whole data for workshop purposes (the full dataset would take too long to run here). There are some shorter length and lower quality reads which we will remove.</p>
+<div id="chopper-run" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Chopper: run<a href="08-Chopper.html#chopper-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/nanoplot_hexes.png" style="width:200px" />
+<img src="figures/enter_key_purple.png" style="width:150px" />
 </center>
-<p><strong>Note</strong>: We are using a long informative output directory name. This is important as we may need to rerun <code>chopper</code> a few more times with different options until we are happy.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb16-1"><a href="09-ONT_final_check.html#cb16-1" tabindex="-1"></a><span class="co">#Make an output directory before running NanoPlot</span></span>
-<span id="cb16-2"><a href="09-ONT_final_check.html#cb16-2" tabindex="-1"></a><span class="fu">mkdir</span> nanoplot/chopperq10minlen500_porechop</span>
-<span id="cb16-3"><a href="09-ONT_final_check.html#cb16-3" tabindex="-1"></a><span class="co">#Run NanoPlot on the fastq file with the filtered and porechopped data</span></span>
-<span id="cb16-4"><a href="09-ONT_final_check.html#cb16-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="at">-t</span> 4 <span class="dt">\</span></span>
-<span id="cb16-5"><a href="09-ONT_final_check.html#cb16-5" tabindex="-1"></a>--fastq chopper/Acinetobacter.chopperq10minlen500.porechop.fastq <span class="dt">\</span></span>
-<span id="cb16-6"><a href="09-ONT_final_check.html#cb16-6" tabindex="-1"></a>-o nanoplot/chopperq10minlen500_porechop/ <span class="at">-p</span> Acinetobacter_</span></code></pre></div>
-<p>Now inspect the report</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb17-1"><a href="09-ONT_final_check.html#cb17-1" tabindex="-1"></a><span class="ex">firefox</span> nanoplot/chopperq10minlen500_porechop/Acinetobacter_NanoPlot-report.html</span></code></pre></div>
-</div>
-<div id="ont-qc-considerations" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> ONT QC considerations<a href="09-ONT_final_check.html#ont-qc-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<center>
-<img src="figures/considerations.png" style="width:150px; background:white; border-radius:15px" />
-</center>
-<p>Ultimately when quality checking we need to take into account how much data we are left with. We need to make sure we have a good amount of bases and reads for our application. However, we also want to make sure we aren't left with a lot of poor quality data.</p>
-<p>Depending on our application the quality of the reads may be less important, or the other way around. This is the same with the amount of reads and bases. What is needed will be clearer when you know what type of data you have. These considerations will be covered in our future workshops of the specific data types</p>
-<p>A quick example is data for a genome assembly. For this type of analysis we will want our number of bases to reach a certain coverage. We'll want a decent quality but a high coverage can help overcome lower quality (more on this in a future workshop). Generally for ONT assemblies you will want 20X - 100X coverage with a higher coverage producing a better assembly (100x coverage= 100bp sequencing data per 1bp of the genome size). Higher coverages may be worse as it can be too much information for an assembly algorithm to cope with.</p>
-<p>In addition to the amount of bases, the length of reads is also important. One read that is 10kbp long is likely better than 10 reads that are each 1kbp long for a genome assembly. This is because less reads need to be assembled.</p>
-</div>
-<div id="chopper-reattempts" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Chopper Reattempts<a href="09-ONT_final_check.html#chopper-reattempts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<center>
-<img src="figures/retry.png" style="width:200px; border-radius:15px; border:5px solid white; background:white" />
-</center>
-<p>Keeping all this in mind, let's say this sequencing is for a genome with a size of 0.5 Mbp (0.5 million base pairs). We want at least 20X coverage (i.e 10,000,000 total bases). Do we have this for the data that was porechopped and chopper'd?</p>
-<p>If not, try running <code>chopper</code> with a different choice for <code>-q</code> until you do. Then attempt to answer the questions below. These aren't MCQs as you will get different answers based on what value you use for <code>-q</code>.</p>
-<ul>
-<li>What is an option that works to get the desired coverage?</li>
-<li>Is the overall quality decent (Mean &amp; Median read quality &gt; 10)?</li>
-<li>What is the N50 of your QC'd reads?</li>
-<li>How many extra reads and bases did you retain compared to the Q10 filtering?</li>
-</ul>
-<p>Tips:</p>
-<ul>
-<li>Make sure your new output paths have unique names.</li>
-<li>Use <code>NanoPlot</code> results to compare the Q10 filtering to your own. The <code>NanoStat</code> part is especially helpful.</li>
-</ul>
-</div>
-<div id="ont-recap" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> ONT Recap<a href="09-ONT_final_check.html#ont-recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<center>
-<img src="figures/recap.png" style="width:200px; border-radius:15px; border:5px solid white; background:white" />
-</center>
-<p>That is the end of the ONT QC section.</p>
-<p>We carried out:</p>
-<ul>
-<li><code>NanoStat</code>: Produced read quality and length stats of our raw reads.</li>
-<li><code>Porechop</code>: Removed adapters from our reads.</li>
-<li><code>NanoPlot</code>: Produced read quality and length stats and plots of our porechopped reads.</li>
-<li><code>chopper</code>: Filtered our porechopped reads based on quality and length.</li>
-<li>Final check: <code>NanoPlot</code> of our filtered reads. It is always good to check the quality after every quality control step.</li>
-</ul>
+<p>First we will create an output directory.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb14-1"><a href="08-Chopper.html#cb14-1" tabindex="-1"></a><span class="fu">mkdir</span> chopper</span></code></pre></div>
+<p>We will filter out sequences that are shorter than 500bp (<code>-l 500bp</code>) and filter out sequences with a average read quality less than Q10 (<code>-q 10</code>). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from <code>NanoPlot</code> as the majority of reads had a quality of &gt;Q10.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb15-1"><a href="08-Chopper.html#cb15-1" tabindex="-1"></a><span class="ex">chopper</span> <span class="at">-q</span> 10 <span class="at">-l</span> 500 <span class="dt">\</span></span>
+<span id="cb15-2"><a href="08-Chopper.html#cb15-2" tabindex="-1"></a>-i porechop/Acinetobacter.porechop.fastq <span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb15-3"><a href="08-Chopper.html#cb15-3" tabindex="-1"></a>nanofilt/Acinetobacter.chopperq10minlen500.porechop.fastq</span></code></pre></div>
+<p>Are the chosen options appropriate? Let's find out.</p>
 
 </div>
 </div>
-
-
-
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -550,8 +505,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="08-Chopper.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="10-PB_background.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="07-NanoPlot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="09-ONT_final_check.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
