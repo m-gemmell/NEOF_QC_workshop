@@ -83,7 +83,7 @@ column_2 <- c(
  '[![](figures/bacteria_2.png){height="150"}](#poortutorial)',
  #6 MultiQC
    '[**MultiQC**](#multiqcchap)', 
- '[![](figures/MultiQC_logo.png){height="100"}](#multiqcchap)',
+ '[![](figures/multiqc_icon_color.png){height="150"}](#multiqcchap)',
  #8 empty
  "",""
 )
@@ -120,7 +120,7 @@ You will now be in a logged-in Linux VNC desktop with two terminals. You will se
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux. 
 
 The following link is a guide to install Mint Linux:  
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
@@ -205,7 +205,7 @@ less /usr/local/bin/useilluminaqc
 
 __Tip:__ press `q` to quit `less`.
 
-For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](#mamba_install)
+For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](#mamba_install).
 
 <!--chapter:end:03-Setup.Rmd-->
 
@@ -481,7 +481,7 @@ SLIDINGWINDOW:4:20 MINLEN:50
 -   `-phred33`: indicates input data has Phred33 encoding. Phred33 includes Sanger, Illumina 1.8+, and PacBio quality encoding.
 -   `B_cereus_R1.fastq B_cereus_R2.fastq`: The input forward and reverse read files.
 -   `-baseout`: This parameter is used to create the names of the four output files (more info below).
--   `SLIDINGWINDOW`: This will cause sliding window trimming to be carried out. The `:4:20` specify the window size (4) and the average quality required to retain the window (20).
+-   `SLIDINGWINDOW`: This will cause sliding window trimming to be carried out. The `:4:20` specifies the window size (4) and the average quality required to retain the window (20).
 -   `MINLEN`: This specifies the minimum length for a read to be retained. We have set this to 50 (`:50`).
 
 **Note**: When using `trimmomatic` on future data ensure you change the input files and the `-baseout` parameter to match your data.
@@ -490,11 +490,11 @@ SLIDINGWINDOW:4:20 MINLEN:50
 opts_p <- c("__4.73%__", "__14.99%__", answer="__76.62%__")
 ```
 Once the command is run it will give you some useful output to the screen. 
-Based on it, what percentage of paired reads were kept? `r longmcq(opts_p)` <br>
+Based on it, what percentage of paired reads were kept? `r longmcq(opts_p)`
 
 **Output**
 
-The command produces four files with names based off the `-baseout` parameter. You can use `ls` to see the output file.
+The command produces four files with names based off the `-baseout` parameter. You can use `ls` to see the output files.
 The files are:
 
 - `B_cereus_1P.fastq` & `B_cereus_2P.fastq`: The **paired** forward and reverse reads after successful trimming.
@@ -685,7 +685,7 @@ library(webexercises)
 ```
 # MultiQC {#multiqcchap}
 <center>
-![](figures/MultiQC_logo.png){style="width:400px; border-radius:15px; border:5px solid white; background:white"}
+![](figures/multiqc_logo_color.png){style="width:400px; border-radius:15px; border:5px solid white; background:white"}
 </center>
 
 `MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
