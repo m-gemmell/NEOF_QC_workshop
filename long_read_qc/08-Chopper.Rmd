@@ -3,7 +3,7 @@
 ![](figures/quality_filtering.png){style="width:150px"}
 </center>
 
-`Chopper` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/nanofilt). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
+`Chopper` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/chopper). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
 
 `Chopper` also removes any reads that map to the lambda phage genome. 
 The lambda phage genome is used for DNA Control experiments for ONT sequencers ([ONT DNA Control Experiment overview](https://community.nanoporetech.com/nanopore_learning/lessons/dna-control-experiment)).

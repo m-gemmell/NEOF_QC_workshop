@@ -1,4 +1,4 @@
-# Circular Consensus Sequences {#ccschap}
+# Circular Consensus Sequences {#pbqcchap}
 <center>
 ![](figures/ccs.png){style="width:600px; border-radius:15px; background:null"}
 </center>

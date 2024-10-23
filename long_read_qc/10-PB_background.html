@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 PacBio Background | 10-PB_background.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 PacBio Background | 10-PB_background.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 PacBio Background | 10-PB_background.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="www/webex.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners_300ppi.png" width=250px></a></li>
+<li><a>Long read QC</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>PacBio</b></span></li>
+<li class="chapter" data-level="1" data-path=""><a href="#pb"><i class="fa fa-check"></i><b>1</b> PacBio Background</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#file-formats"><i class="fa fa-check"></i><b>1.1</b> File formats</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#hifi-reads"><i class="fa fa-check"></i><b>1.2</b> HiFi reads</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#tools"><i class="fa fa-check"></i><b>1.3</b> Tools</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path=""><a href="#hifiadapterfilt"><i class="fa fa-check"></i><b>1.3.1</b> HiFiAdapterFilt</a></li>
+<li class="chapter" data-level="1.3.2" data-path=""><a href="#smrttools"><i class="fa fa-check"></i><b>1.3.2</b> smrttools</a></li>
+<li class="chapter" data-level="1.3.3" data-path=""><a href="#rabbitqcplus"><i class="fa fa-check"></i><b>1.3.3</b> RabbitQCPlus</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+
+
+
+<div id="pb" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> PacBio Background<a href="#pb" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<center>
+<img src="figures/logo_PacBio_web_RGB-1.png" style="width:400px; border-radius:15px; background:white" />
+</center>
+<p>In this section we will convert PacBio sequencing data (BAM files) into fastq files, filter out any adapter sequences and generate quality control plots and statistics.</p>
+<div id="file-formats" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> File formats<a href="#file-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<img src="figures/files.png" style="width:150px" />
+</center>
+<p>Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.4).</p>
+<p>The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:</p>
+<ul>
+<li>Black, I = Insert DNA, i.e. the double-stranded DNA of your sample</li>
+<li>Red, B = Barcodes, optional single (Left or Right) or double (Left &amp; Right) for multiplexing samples</li>
+<li>Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.</li>
+</ul>
+<center>
+<img src="figures/smrtbell.png" style="width:900px; border-radius:15px; background:null" />
+</center>
+<p>Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.</p>
+<p>PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. These are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.</p>
+<p>A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.</p>
+<center>
+<img src="figures/zmw.png" style="width:900px; border-radius:15px; background:null" />
+</center>
+<p>This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
+For more information see: <a href="https://pacbiofileformats.readthedocs.io/en/13.0/Primer.html" class="uri">https://pacbiofileformats.readthedocs.io/en/13.0/Primer.html</a></p>
+</div>
+<div id="hifi-reads" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> HiFi reads<a href="#hifi-reads" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ZMW reads are processed on the sequencing instrument to produce HiFi reads, using the circular consensus (CCS) tool. CCS generates high accuracy sequences from a consensus of many subreads (i.e. there would be several of the grey insert regions shown above in every ZMW read). By taking the consensus sequences (represented by the yellow and purple strands in the diagram below) HiFi reads have an accuracy of Q≥20 (99%)</p>
+<center>
+<img src="figures/hifi.png" style="width:800px; border-radius:15px; background:null" />
+</center>
+<p>For this tutorial we will carry out adapter filtering and quality checking aof a HiFi BAM file.</p>
+</div>
+<div id="tools" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Tools<a href="#tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<center>
+<img src="figures/toolbox.png" style="width:200px" />
+</center>
+<div id="hifiadapterfilt" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> HiFiAdapterFilt<a href="#hifiadapterfilt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://github.com/sheinasim/HiFiAdapterFilt" class="uri">https://github.com/sheinasim/HiFiAdapterFilt</a></p>
+<p>We will use <code>HiFiAdapterFilt</code> to remove any reads containing PacBio adapter sequences.</p>
+</div>
+<div id="smrttools" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> smrttools<a href="#smrttools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://www.pacb.com/wp-content/uploads/SMRT-Tools-Reference-Guide-v13.0.pdf" class="uri">https://www.pacb.com/wp-content/uploads/SMRT-Tools-Reference-Guide-v13.0.pdf</a></p>
+<p>We will also use <code>smrttools</code> from PacBio to:</p>
+<ul>
+<li>Generate any missing index files</li>
+<li>Convert BAM to fasta/q format.</li>
+</ul>
+</div>
+<div id="rabbitqcplus" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> RabbitQCPlus<a href="#rabbitqcplus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://github.com/RabbitBio/RabbitQCPlus" class="uri">https://github.com/RabbitBio/RabbitQCPlus</a></p>
+<p>Lastly, we will also use <code>RabbitQCPlus</code> to assess the CCS assembled reads in fastq format.</p>
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

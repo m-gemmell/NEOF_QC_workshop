@@ -1,4 +1,4 @@
-# CLR setup {#clrsetupchap}
+# PacBio setup {#pbsetupchap}
 <center>
 ![](figures/clr.png){style="width:600px; border-radius:15px; background:null"}
 </center>

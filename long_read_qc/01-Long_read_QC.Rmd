@@ -1,6 +1,6 @@
 --- 
 title: "Long read Quality Control"
-author: "Matthew R. Gemmell & Helen Hipperson"
+author: "Matthew R. Gemmell, Helen Hipperson & Ewan Harney"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -57,12 +57,11 @@ At the end of this course learners will be able to:
 
 - Explain how ONT & PacBio sequencing works.
 - Understand the advantages and disadvantages of both technologies.
-- Quality check ONT data with NanoFilt and NanoPlot.
+- Quality check ONT data with NanoPlot.
 - Remove ONT adaptors with Porechop.
-- Filter ONT reads by length and quality with NanoFilt.
-- Quality check & filter PacBio data with SequelTools.
+- Filter ONT reads by length and quality with Chopper.
+- Filter adapters from PacBio data with HiFiAdapterFilt.
 - Convert PacBio BAM files to fastq.
-- Generate PacBio CCS reads from subreads.
 - Quality check PacBio CCS reads with RabbitQCPlus.
 
 ## Table of contents {-}
@@ -82,15 +81,12 @@ column_1 <- c(
  #7 ONT final check
    '[**ONT final check**](#ontcheckchap)', 
  '[![](figures/finish.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#ontcheckchap)',
-  #9 CLR setup
-   '[**CLR setup**](#clrsetupchap)', 
+  #9 PacBio setup
+   '[**PacBio setup**](#pbsetupchap)', 
  '[![](figures/clr.png){style="height:100px; border-radius:15px; border:5px solid #333333"}](#clrsetupchap)',
-   #11 CLR filter
-   '[**CLR filtering**](#clrfiltchap)', 
- '[![](figures/quality_filtering.png){height="150"}](#clrfiltchap)',
-    #13 appendix
-   '[**Appendix**](#mamba_install)', 
- '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#mamba_install)'
+   #11 PB QC
+   '[**PacBio QC**](#pbqcchap)', 
+ '[![](figures/qc_inspection.png){height="150"}](#clrfiltchap)'
 )
 column_2 <- c(
   #2 ONT
@@ -105,14 +101,12 @@ column_2 <- c(
  #8 pb background
    '[**PacBio background**](#pb)', 
  '[![](figures/logo_PacBio_web_RGB-1.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#pb)',
-   #10 CLR qc
-   '[**CLR QC**](#clrqcchap)', 
- '[![](figures/qc_inspection.png){height="150"}](#clrqcchap)',
-    #12 CCS
-   '[**CCS**](#ccschap)', 
- '[![](figures/ccs.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#ccschap)',
- #14 empty
- "",""
+   #10 PacBio filtering
+   '[**PacBio filtering**](#pbfiltchap)', 
+ '[![](figures/quality_filtering.png){height="150"}](#pbfiltchap)',
+  #13 appendix
+   '[**Appendix**](#mamba_install)', 
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#mamba_install)'
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries
