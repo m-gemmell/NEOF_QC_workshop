@@ -60,7 +60,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -301,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="ont-qc-environment" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">B.2</span> ONT QC environment<a href="14-Appendix.html#ont-qc-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To create the mamba environment <code>ont_qc</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
+<p>To create the mamba environment <code>ont_qc</code> run the below commands in your bash. You will need to have <code>mamba</code> installed first.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb28-1"><a href="14-Appendix.html#cb28-1" tabindex="-1"></a><span class="co">#Oxford Nanopore QC</span></span>
 <span id="cb28-2"><a href="14-Appendix.html#cb28-2" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> ont_qc</span>
 <span id="cb28-3"><a href="14-Appendix.html#cb28-3" tabindex="-1"></a><span class="ex">mamba</span> activate ont_qc</span>
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="pb-qc-environment" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">B.3</span> PB QC environment<a href="14-Appendix.html#pb-qc-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To create the mamba environment <code>pb_qc</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
+<p>To create the mamba environment <code>pb_qc</code> run the below commands in your bash. You will need to have <code>mamba</code> installed first.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb29-1"><a href="14-Appendix.html#cb29-1" tabindex="-1"></a><span class="co">#PacBio QC</span></span>
 <span id="cb29-2"><a href="14-Appendix.html#cb29-2" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> pb_qc</span>
 <span id="cb29-3"><a href="14-Appendix.html#cb29-3" tabindex="-1"></a><span class="ex">mamba</span> activate pb_qc</span>
@@ -321,26 +321,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-8"><a href="14-Appendix.html#cb29-8" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> anaconda make</span>
 <span id="cb29-9"><a href="14-Appendix.html#cb29-9" tabindex="-1"></a><span class="co">#R needed for Sequeltools</span></span>
 <span id="cb29-10"><a href="14-Appendix.html#cb29-10" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-c</span> conda-forge r-base</span></code></pre></div>
-<p>Install <a href="https://github.com/ISUgenomics/SequelTools">SequelTools</a> and <a href="https://github.com/RabbitBio/RabbitQCPlus">RabbitQCPlus</a> via <code>git</code>.
+<p>Install <a href="https://github.com/sheinasim/HiFiAdapterFilt">HiFiAdapterFilt</a> and <a href="https://github.com/RabbitBio/RabbitQCPlus">RabbitQCPlus</a> via <code>git</code>.
 I suggest creating a directory called "git_installs" in your home directory and running this code there.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb30-1"><a href="14-Appendix.html#cb30-1" tabindex="-1"></a><span class="co">#git_installs directory</span></span>
 <span id="cb30-2"><a href="14-Appendix.html#cb30-2" tabindex="-1"></a><span class="fu">mkdir</span> ~/git_installs</span>
 <span id="cb30-3"><a href="14-Appendix.html#cb30-3" tabindex="-1"></a><span class="bu">cd</span> ~/git_installs</span>
-<span id="cb30-4"><a href="14-Appendix.html#cb30-4" tabindex="-1"></a><span class="co">#Sequeltools</span></span>
-<span id="cb30-5"><a href="14-Appendix.html#cb30-5" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ISUgenomics/SequelTools.git</span>
-<span id="cb30-6"><a href="14-Appendix.html#cb30-6" tabindex="-1"></a><span class="bu">cd</span> SequelTools/Scripts</span>
-<span id="cb30-7"><a href="14-Appendix.html#cb30-7" tabindex="-1"></a><span class="fu">chmod</span> +x <span class="pp">*</span>.sh <span class="pp">*</span>.py <span class="pp">*</span>.R</span>
-<span id="cb30-8"><a href="14-Appendix.html#cb30-8" tabindex="-1"></a><span class="bu">cd</span> ~/git_installs</span>
-<span id="cb30-9"><a href="14-Appendix.html#cb30-9" tabindex="-1"></a><span class="co">#RabbitQCPlus</span></span>
-<span id="cb30-10"><a href="14-Appendix.html#cb30-10" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RabbitBio/RabbitQCPlus.git</span>
-<span id="cb30-11"><a href="14-Appendix.html#cb30-11" tabindex="-1"></a><span class="bu">cd</span> RabbitQCPlus</span>
-<span id="cb30-12"><a href="14-Appendix.html#cb30-12" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span></span></code></pre></div>
+<span id="cb30-4"><a href="14-Appendix.html#cb30-4" tabindex="-1"></a><span class="co">#HiFiAdapterFilt</span></span>
+<span id="cb30-5"><a href="14-Appendix.html#cb30-5" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/sheinasim/HiFiAdapterFilt</span>
+<span id="cb30-6"><a href="14-Appendix.html#cb30-6" tabindex="-1"></a><span class="co">#RabbitQCPlus</span></span>
+<span id="cb30-7"><a href="14-Appendix.html#cb30-7" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RabbitBio/RabbitQCPlus.git</span>
+<span id="cb30-8"><a href="14-Appendix.html#cb30-8" tabindex="-1"></a><span class="bu">cd</span> RabbitQCPlus</span>
+<span id="cb30-9"><a href="14-Appendix.html#cb30-9" tabindex="-1"></a><span class="fu">make</span> <span class="at">-j4</span></span></code></pre></div>
 <p>To run these programs in your own machines you will need to use the full path of the command files.
 If you installed these in your "~/git_installs" examples are below.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Appendix.html#cb31-1" tabindex="-1"></a><span class="co">#Sequeltools.sh help manual</span></span>
-<span id="cb31-2"><a href="14-Appendix.html#cb31-2" tabindex="-1"></a><span class="ex">~/git_installs/SequelTools/Scripts/SequelTools.sh</span></span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Appendix.html#cb31-1" tabindex="-1"></a><span class="co">#hifiadapterfilt.sh help manual</span></span>
+<span id="cb31-2"><a href="14-Appendix.html#cb31-2" tabindex="-1"></a><span class="ex">~/git_installs/HiFiAdapterFilt/hifiadapterfilt.sh</span> <span class="at">--help</span></span>
 <span id="cb31-3"><a href="14-Appendix.html#cb31-3" tabindex="-1"></a><span class="co">#RabbitQCPlus help manual</span></span>
-<span id="cb31-4"><a href="14-Appendix.html#cb31-4" tabindex="-1"></a><span class="ex">~/git_installs/RabbitQCPlus/RabbitQCPlus</span></span></code></pre></div>
+<span id="cb31-4"><a href="14-Appendix.html#cb31-4" tabindex="-1"></a><span class="ex">~/git_installs/RabbitQCPlus/RabbitQCPlus</span> <span class="at">--help</span></span></code></pre></div>
 
 </div>
 </div>

@@ -40,7 +40,7 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
 ## ONT QC environment
-To create the mamba environment `ont_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `ont_qc` run the below commands in your bash. You will need to have `mamba` installed first.
 
 ```{bash, eval=FALSE}
 #Oxford Nanopore QC
@@ -51,7 +51,7 @@ mamba install -c bioconda porechop nanoplot chopper nanostat
 ```
 
 ## PB QC environment
-To create the mamba environment `pb_qc` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `pb_qc` run the below commands in your bash. You will need to have `mamba` installed first.
 
 ```{bash, eval=FALSE}
 #PacBio QC
@@ -66,18 +66,15 @@ mamba install -c anaconda make
 mamba install -c conda-forge r-base
 ```
 
-Install [SequelTools](https://github.com/ISUgenomics/SequelTools) and [RabbitQCPlus](https://github.com/RabbitBio/RabbitQCPlus) via `git`.
+Install [HiFiAdapterFilt](https://github.com/sheinasim/HiFiAdapterFilt) and [RabbitQCPlus](https://github.com/RabbitBio/RabbitQCPlus) via `git`.
 I suggest creating a directory called "git_installs" in your home directory and running this code there.
 
 ```{bash, eval=FALSE}
 #git_installs directory
 mkdir ~/git_installs
 cd ~/git_installs
-#Sequeltools
-git clone https://github.com/ISUgenomics/SequelTools.git
-cd SequelTools/Scripts
-chmod +x *.sh *.py *.R
-cd ~/git_installs
+#HiFiAdapterFilt
+git clone https://github.com/sheinasim/HiFiAdapterFilt
 #RabbitQCPlus
 git clone https://github.com/RabbitBio/RabbitQCPlus.git
 cd RabbitQCPlus
@@ -88,8 +85,8 @@ To run these programs in your own machines you will need to use the full path of
 If you installed these in your "~/git_installs" examples are below.
 
 ```{bash, eval=FALSE}
-#Sequeltools.sh help manual
-~/git_installs/SequelTools/Scripts/SequelTools.sh
+#hifiadapterfilt.sh help manual
+~/git_installs/HiFiAdapterFilt/hifiadapterfilt.sh --help
 #RabbitQCPlus help manual
-~/git_installs/RabbitQCPlus/RabbitQCPlus
+~/git_installs/RabbitQCPlus/RabbitQCPlus --help
 ```
