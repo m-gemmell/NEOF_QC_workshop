@@ -1,113 +1,26 @@
-# Circular Consensus Sequences {#pbqcchap}
+# PacBio QC {#pbqcchap}
 <center>
 ![](figures/ccs.png){style="width:600px; border-radius:15px; background:null"}
 </center>
 
-We will now look at some long amplicon sequencing data. These data were generated from ~4 kb PCR amplicons of a mammalian gene region.
+We will now look at some quality metrics of our filtered HiFi sequences.
 
-For this section we will start with the subreads and carry out the following steps:
-
-1. QC the subreads
-2. Generate CCS reads form the subreads.
-3. QC the CCS reads with `RabbitQC`.
-
-Before carrying out any specific commands we will first move into the relevant directory.
+Before carrying out any specific commands first make sure you are in the relevant directory.
 
 ```{bash eval=FALSE}
-cd ~/QC_workshop/PB_QC/data/CCS
+cd ~/QC_workshop/PB_QC/data/hifi
 ```
 
-## QC the subreads
-<center>
-![](figures/qc_inspection.png){style="width:200px; background: white; border-radius:15px"}
-</center>
-
-Our current directory contains one file of subreads from the amplicons sequencing run, named \'Sample4.subreads.bam\'. Even though we just have one file we want to QC, SequelTools still requires a fofn to run:
-```{bash eval=FALSE}
-find $(pwd) -name "*subreads.bam"  > subreads.txt
-```
-
-With our file of file names (.fofn) created we can run `SequelTools` for quality checking.
-
-```{bash eval=FALSE}
-SequelTools.sh -t Q -p a -u subreads.txt -o S4QC
-```
-
-When these commands have run you will have a \'S4QC\' folder containing the \'summaryTable.txt\' file and the series of plots saved as pdf files. Let\'s have a look at the subread length histogram.
-
-```{bash eval=FALSE}
-firefox S4QC/Sample4.readLenHists.pdf
-```
-
-Many of the longest subreads (green bars) are ~ 4kb (the length of our amplicon), but there are also lots of shorter reads. 
-
-## CCS generation
-<center>
-![](figures/production.png){style="width:200px"}
-</center>
-
-To generate CCS reads we will use the `ccs` tool from the `smrttools` package. This will also act as a form of filtering.
-
-The full command to generate CCS reads is:
-
-```{bash eval=FALSE}
-ccs --minLength 3500 --minPasses 7 -j 1 Sample4.subreads.bam S4_ccs.bam
-```
-
-__Parameters__:
-
-- `--minLength` to specify the minimum subread length to use to generate a ccs read
-- `--minPasses` to specify the minimum number of subreads per ZMW read to generate a ccs read
-- `-j` to specify the number of threads to use
-- The second last parameter is the input file.
-  - In this case `Sample4.subreads.bam`.
-- The last input is the output file name.
-  - In this case `S4_ccs.bam`.
-
-__Important!__
-Even though this is a heavily downsized dataset this command still takes ~20 minutes to run. To prevent you having to wait we have included the results file already in your directory. If you have typed in the above command to run you can kill it by pressing Ctrl - C.
-
-To see the results summary:
-```{bash eval=FALSE}
-cd ccs_results
-less ccs_report.txt
-```
-
-### CCS MCQs
-<center>
-![](figures/question_bubble_black.png){style="width:150px; background:white; border-radius:15px; border:5px white solid"}
-</center>
-
-```{r, echo = FALSE}
-opts_p <- c("__0%__", answer="__29.16%__", "__70.62%__")
-```
-1. What percentage of the subreads generated a CCS? `r longmcq(opts_p)`
-
-```{r, echo = FALSE}
-opts_p <- c(answer="__No usable subreads__", "__Insert size too long or small__", "__CCS did not converge__")
-```
-1. What was the main reason for failure of CCS generation? `r longmcq(opts_p)`
-
-## RabbitQCPlus
+## QC the subreads with RabbitQCPlus
 <center>
 ![](figures/RabbitQCPlus.png){style="width:500px; border-radius:15px; background:null"}
 </center>
 
-Lastly, let\'s perform a quality check on the \'ccs.bam\' file to assess the lengths of the ccs reads. `SequelTools` only works with the raw subread BAM files, so we will use an alternative program - `RabbitQC.` However, this program needs a fastq file as input so we will first generate that using the `bam2fastq` tool from smrttools.
+`RabbitQCPlus` generates QC information using a fastq file as input.
 
-Thankfully an index file `.pbi` was already created when we generated the ccs bam file. We therefore don't need to create this.
-
-The `bam2fastq` command requires an output file prefix name, specified by `-o`, and the name of the BAM file we want to convert. We\'ll also include the option `-u` to give an uncompressed fastq output.
-
+Let's run `RabbitQC` on our filtered HiFi data:
 ```{bash eval=FALSE}
-bam2fastq -u -o S4_ccs S4_ccs.bam
-```
-
-__Note__: You may see a long warning message ending with \"No such file or directory\". However, if you run `ls` you should see that the output file has been generated.
-
-With the CCS fastq file we\'re ready to run `RabbitQC`.
-```{bash eval=FALSE}
-RabbitQCPlus -i S4_ccs.fastq -w 1 --TGS
+RabbitQCPlus -i ERR13246467_qc.filt.fastq.gz -w 1 –TGS
 ```
 
 __Parameters__:
@@ -119,12 +32,16 @@ __Parameters__:
 View the output using `firefox`.
 
 ```{bash eval=FALSE}
-firefox S4_ccs_RabbitQCPlus.html
+firefox ERR13246467_qc_RabbitQCPlus.html
 ```
 
-The \"Reads Length Distribution\" shows all but three ccs reads to be > 4,000bp. The majority are ~ 4.4kb. In fact the amplicon is a little longer than 4kb plus the reads contain an index sequence added during PCR to allow multiplexing of multiple samples, but this tight distribution of sizes is a good indication that the amplification and sequencing has worked well.
+The \"Reads Length Distribution\" shows ....
 
-The other plots show the % nucleotide frequencies (AGCT) and mean quality scores for the beginning and end of the reads. The mean quality plots unfortunately do not show anything because it is such a short region. The main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
+The other plots show the % nucleotide frequencies (AGCT) and mean quality scores for the beginning and end of the reads. 
+
+The mean quality plots unfortunately do not show anything because ... 
+
+The main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
 
 ## Final summary
 <center>

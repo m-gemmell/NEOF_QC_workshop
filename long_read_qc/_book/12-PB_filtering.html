@@ -4,34 +4,34 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 CLR QC | Long read Quality Control</title>
+  <title>Chapter 12 PacBio filtering | Long read Quality Control</title>
   <meta name="description" content="NEOF book for the Long read quality control workshop" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 CLR QC | Long read Quality Control" />
+  <meta property="og:title" content="Chapter 12 PacBio filtering | Long read Quality Control" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the Long read quality control workshop" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 CLR QC | Long read Quality Control" />
+  <meta name="twitter:title" content="Chapter 12 PacBio filtering | Long read Quality Control" />
   
   <meta name="twitter:description" content="NEOF book for the Long read quality control workshop" />
   <meta name="twitter:image" content="/figures/NEOF.png" />
 
-<meta name="author" content="Matthew R. Gemmell &amp; Helen Hipperson" />
+<meta name="author" content="Matthew R. Gemmell, Helen Hipperson &amp; Ewan Harney" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
-<link rel="prev" href="11-PB_CLR_setup.html"/>
-<link rel="next" href="13-PB_CLR_filtering.html"/>
+<link rel="prev" href="11-PB_setup.html"/>
+<link rel="next" href="13-PB_QC.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -60,7 +60,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -204,50 +204,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="10-PB_background.html"><a href="10-PB_background.html"><i class="fa fa-check"></i><b>10</b> PacBio Background</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="10-PB_background.html"><a href="10-PB_background.html#file-formats"><i class="fa fa-check"></i><b>10.1</b> File formats</a></li>
-<li class="chapter" data-level="10.2" data-path="10-PB_background.html"><a href="10-PB_background.html#clr-ccs"><i class="fa fa-check"></i><b>10.2</b> CLR &amp; CCS</a></li>
+<li class="chapter" data-level="10.2" data-path="10-PB_background.html"><a href="10-PB_background.html#hifi-reads"><i class="fa fa-check"></i><b>10.2</b> HiFi reads</a></li>
 <li class="chapter" data-level="10.3" data-path="10-PB_background.html"><a href="10-PB_background.html#tools"><i class="fa fa-check"></i><b>10.3</b> Tools</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="10-PB_background.html"><a href="10-PB_background.html#sequeltools"><i class="fa fa-check"></i><b>10.3.1</b> SequelTools</a></li>
+<li class="chapter" data-level="10.3.1" data-path="10-PB_background.html"><a href="10-PB_background.html#hifiadapterfilt"><i class="fa fa-check"></i><b>10.3.1</b> HiFiAdapterFilt</a></li>
 <li class="chapter" data-level="10.3.2" data-path="10-PB_background.html"><a href="10-PB_background.html#smrttools"><i class="fa fa-check"></i><b>10.3.2</b> smrttools</a></li>
 <li class="chapter" data-level="10.3.3" data-path="10-PB_background.html"><a href="10-PB_background.html#rabbitqcplus"><i class="fa fa-check"></i><b>10.3.3</b> RabbitQCPlus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-PB_CLR_setup.html"><a href="11-PB_CLR_setup.html"><i class="fa fa-check"></i><b>11</b> CLR setup</a></li>
-<li class="chapter" data-level="12" data-path="12-PB_CLR_QC.html"><a href="12-PB_CLR_QC.html"><i class="fa fa-check"></i><b>12</b> CLR QC</a>
+<li class="chapter" data-level="11" data-path="11-PB_setup.html"><a href="11-PB_setup.html"><i class="fa fa-check"></i><b>11</b> PacBio setup</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="12-PB_CLR_QC.html"><a href="12-PB_CLR_QC.html#clr-qc-run"><i class="fa fa-check"></i><b>12.1</b> CLR QC: run</a></li>
-<li class="chapter" data-level="12.2" data-path="12-PB_CLR_QC.html"><a href="12-PB_CLR_QC.html#clr-qc-output"><i class="fa fa-check"></i><b>12.2</b> CLR QC: output</a></li>
-<li class="chapter" data-level="12.3" data-path="12-PB_CLR_QC.html"><a href="12-PB_CLR_QC.html#clr-qc-mcqs"><i class="fa fa-check"></i><b>12.3</b> CLR QC: MCQs</a></li>
-<li class="chapter" data-level="12.4" data-path="12-PB_CLR_QC.html"><a href="12-PB_CLR_QC.html#clr-qc-summary"><i class="fa fa-check"></i><b>12.4</b> CLR QC: summary</a></li>
+<li class="chapter" data-level="11.1" data-path="11-PB_setup.html"><a href="11-PB_setup.html#pacbio-smrt-tools"><i class="fa fa-check"></i><b>11.1</b> PacBio SMRT tools</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="13-PB_CLR_filtering.html"><a href="13-PB_CLR_filtering.html"><i class="fa fa-check"></i><b>13</b> CLR filtering</a>
+<li class="chapter" data-level="12" data-path="12-PB_filtering.html"><a href="12-PB_filtering.html"><i class="fa fa-check"></i><b>12</b> PacBio filtering</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-PB_CLR_filtering.html"><a href="13-PB_CLR_filtering.html#clr-filtering-run"><i class="fa fa-check"></i><b>13.1</b> CLR filtering: run</a></li>
-<li class="chapter" data-level="13.2" data-path="13-PB_CLR_filtering.html"><a href="13-PB_CLR_filtering.html#quality-check-filtered-data"><i class="fa fa-check"></i><b>13.2</b> Quality check filtered data</a></li>
-<li class="chapter" data-level="13.3" data-path="13-PB_CLR_filtering.html"><a href="13-PB_CLR_filtering.html#bam-to-fastq"><i class="fa fa-check"></i><b>13.3</b> BAM to fastq</a></li>
-<li class="chapter" data-level="13.4" data-path="13-PB_CLR_filtering.html"><a href="13-PB_CLR_filtering.html#clr-filtering-summary"><i class="fa fa-check"></i><b>13.4</b> CLR filtering: summary</a></li>
+<li class="chapter" data-level="12.1" data-path="12-PB_filtering.html"><a href="12-PB_filtering.html#path"><i class="fa fa-check"></i><b>12.1</b> $PATH</a></li>
+<li class="chapter" data-level="12.2" data-path="12-PB_filtering.html"><a href="12-PB_filtering.html#hifiadapterfilt-1"><i class="fa fa-check"></i><b>12.2</b> HiFiAdapterFilt</a></li>
+<li class="chapter" data-level="12.3" data-path="12-PB_filtering.html"><a href="12-PB_filtering.html#pacbio-adapter-filtering-summary"><i class="fa fa-check"></i><b>12.3</b> PacBio adapter filtering: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-CCS.html"><a href="14-CCS.html"><i class="fa fa-check"></i><b>14</b> Circular Consensus Sequences</a>
+<li class="chapter" data-level="13" data-path="13-PB_QC.html"><a href="13-PB_QC.html"><i class="fa fa-check"></i><b>13</b> PacBio QC</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="14-CCS.html"><a href="14-CCS.html#qc-the-subreads"><i class="fa fa-check"></i><b>14.1</b> QC the subreads</a></li>
-<li class="chapter" data-level="14.2" data-path="14-CCS.html"><a href="14-CCS.html#ccs-generation"><i class="fa fa-check"></i><b>14.2</b> CCS generation</a>
-<ul>
-<li class="chapter" data-level="14.2.1" data-path="14-CCS.html"><a href="14-CCS.html#ccs-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> CCS MCQs</a></li>
-</ul></li>
-<li class="chapter" data-level="14.3" data-path="14-CCS.html"><a href="14-CCS.html#rabbitqcplus-1"><i class="fa fa-check"></i><b>14.3</b> RabbitQCPlus</a></li>
-<li class="chapter" data-level="14.4" data-path="14-CCS.html"><a href="14-CCS.html#final-summary"><i class="fa fa-check"></i><b>14.4</b> Final summary</a></li>
+<li class="chapter" data-level="13.1" data-path="13-PB_QC.html"><a href="13-PB_QC.html#qc-the-subreads-with-rabbitqcplus"><i class="fa fa-check"></i><b>13.1</b> QC the subreads with RabbitQCPlus</a></li>
+<li class="chapter" data-level="13.2" data-path="13-PB_QC.html"><a href="13-PB_QC.html#final-summary"><i class="fa fa-check"></i><b>13.2</b> Final summary</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="15-Appendix.html"><a href="15-Appendix.html"><i class="fa fa-check"></i><b>A</b> Further resources</a>
+<li class="chapter" data-level="A" data-path="14-Appendix.html"><a href="14-Appendix.html"><i class="fa fa-check"></i><b>A</b> Further resources</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="15-Appendix.html"><a href="15-Appendix.html#ont-1"><i class="fa fa-check"></i><b>A.1</b> ONT</a></li>
-<li class="chapter" data-level="A.2" data-path="15-Appendix.html"><a href="15-Appendix.html#pacbio"><i class="fa fa-check"></i><b>A.2</b> PacBio</a></li>
+<li class="chapter" data-level="A.1" data-path="14-Appendix.html"><a href="14-Appendix.html#ont-1"><i class="fa fa-check"></i><b>A.1</b> ONT</a></li>
+<li class="chapter" data-level="A.2" data-path="14-Appendix.html"><a href="14-Appendix.html#pacbio"><i class="fa fa-check"></i><b>A.2</b> PacBio</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="15-Appendix.html"><a href="15-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>B</b> Mamba installs</a>
+<li class="chapter" data-level="B" data-path="14-Appendix.html"><a href="14-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>B</b> Mamba installs</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="15-Appendix.html"><a href="15-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>B.1</b> Mamba installation</a></li>
-<li class="chapter" data-level="B.2" data-path="15-Appendix.html"><a href="15-Appendix.html#ont-qc-environment"><i class="fa fa-check"></i><b>B.2</b> ONT QC environment</a></li>
-<li class="chapter" data-level="B.3" data-path="15-Appendix.html"><a href="15-Appendix.html#pb-qc-environment"><i class="fa fa-check"></i><b>B.3</b> PB QC environment</a></li>
+<li class="chapter" data-level="B.1" data-path="14-Appendix.html"><a href="14-Appendix.html#mamba_install"><i class="fa fa-check"></i><b>B.1</b> Mamba installation</a></li>
+<li class="chapter" data-level="B.2" data-path="14-Appendix.html"><a href="14-Appendix.html#ont-qc-environment"><i class="fa fa-check"></i><b>B.2</b> ONT QC environment</a></li>
+<li class="chapter" data-level="B.3" data-path="14-Appendix.html"><a href="14-Appendix.html#pb-qc-environment"><i class="fa fa-check"></i><b>B.3</b> PB QC environment</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -269,126 +259,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="clrqcchap" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> CLR QC<a href="12-PB_CLR_QC.html#clrqcchap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pbfiltchap" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> PacBio filtering<a href="12-PB_filtering.html#pbfiltchap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/qc_inspection.png" style="width:200px; background: white; border-radius:15px" />
+<img src="figures/quality_filtering.png" style="width:150px; background: white; border-radius:5px" />
 </center>
-<p>In this section we will quality control the CLR (Continuous Long Read) reads with <code>SequelTools</code>.</p>
-<div id="clr-qc-run" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> CLR QC: run<a href="12-PB_CLR_QC.html#clr-qc-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<center>
-<img src="figures/enter_key_red.png" style="width:150px" />
-</center>
-<p>The <code>SequelTools</code> program has three different tools, specified with the <code>-t</code> argument, which are:</p>
-<ul>
-<li><code>Q</code> for quality control</li>
-<li><code>S</code> for subsampling the data</li>
-<li><code>F</code> for filtering the data</li>
-</ul>
-<p>We will use <code>Q</code> to assess our data. Other options used are:</p>
-<ul>
-<li><code>-u</code> to specify the file containing the list of subread .bam files</li>
-<li><code>-o</code> to specify the name of an output folder for the plots</li>
-<li><code>-p</code> to specify which plots to produce.
-<ul>
-<li><code>b</code>: A few basic plots</li>
-<li><code>i</code>: The basic plots and a few more detailed plots</li>
-<li><code>a</code>: generates all available plots. This is what we will use.</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb21-1"><a href="12-PB_CLR_QC.html#cb21-1" tabindex="-1"></a><span class="ex">SequelTools.sh</span> <span class="at">-t</span> Q <span class="at">-p</span> a <span class="at">-u</span> CLR_subreads.txt <span class="at">-o</span> CLR_QC</span></code></pre></div>
+<p>PacBio HiFi reads are generated via CCS analysis which computes a consensus sequence from multiple passes of the circularised SMRTbell molecules. Each 'pass' will be interspersed with an adapter sequence (as shown in 10.1). Whilst the majority of these adapter sequences are removed by the CCS analysis that generates the HiFi BAM file, it is good practice to check for any remaining sequences to ensure they are removed before downstream analysis.</p>
+<p>We will perform this using the software <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08375-1">HiFiAdapterFilt</a>.</p>
+<p>This software has already been installed, but we will start by setting the PATH variable</p>
+<div id="path" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> $PATH<a href="12-PB_filtering.html#path" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The PATH environment variable is a list of directories that an operating system searches to find executable files and commands (programs). If a directory is included in the <code>$PATH</code>, it won’t be necessary to type out the full name of the executable when running a command. Directories can be added to the path on a temporary basis using the export command, but if you close your terminal or start a new session you will have to rerun the export command.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb21-1"><a href="12-PB_filtering.html#cb21-1" tabindex="-1"></a><span class="co"># Add the hifiadapterfilt script and the database to your path</span></span>
+<span id="cb21-2"><a href="12-PB_filtering.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="12-PB_filtering.html#cb21-3" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/pub14/tea/nsc206/git_installs/HiFiAdapterFilt</span>
+<span id="cb21-4"><a href="12-PB_filtering.html#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="12-PB_filtering.html#cb21-5" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/pub14/tea/nsc206/git_installs/HiFiAdapterFilt/DB</span></code></pre></div>
+<p>The echo command displays text on the screen, and we can use it to show the contents of the <code>$PATH</code> environment variable now that we have exported the locations of hifiadapterfilt and hifiadapterfilt/db.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb22-1"><a href="12-PB_filtering.html#cb22-1" tabindex="-1"></a><span class="co"># Check the PATH environment variable with echo</span></span>
+<span id="cb22-2"><a href="12-PB_filtering.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="12-PB_filtering.html#cb22-3" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code></pre></div>
+<p>Great, now we can proceed to adapter filtering.</p>
 </div>
-<div id="clr-qc-output" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> CLR QC: output<a href="12-PB_CLR_QC.html#clr-qc-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hifiadapterfilt-1" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> HiFiAdapterFilt<a href="12-PB_filtering.html#hifiadapterfilt-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/output_file_red.png" style="width:150px" />
+<img src="figures/enter_key_purple.png" style="width:150px; background: white; border-radius:5px" />
 </center>
-<p>When this has finished running the CLR_QC folder will contain a 'summaryTable.txt' file with values on the number and lengths of sequence reads for all three samples, plus a series of plots saved as pdf files. We can use <code>firefox</code> to view the pdf plots.</p>
-<p>To open all the pdf files containing the plots you can run the below commands.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb22-1"><a href="12-PB_CLR_QC.html#cb22-1" tabindex="-1"></a><span class="ex">firefox</span> CLR_QC/<span class="pp">*</span>.pdf</span></code></pre></div>
-<ul>
-<li><strong>totalBasesBarplot.pdf</strong>: Shows the total amount of sequence data (total bases; y axis). It displays this for:
-<ul>
-<li>All of the subreads present</li>
-<li>Only the 'longestSubs'. This is the longest subread within each CLR. Ideally we want each CLR to only consist of 1 subread.</li>
-</ul></li>
-<li><strong>n50s.pdf</strong>: Shows the N50 values of the samples.
-<ul>
-<li>N50 = the median sequence length (in bp) of the data; 50% of the sequence data generated is in subreads equal to or greater than this length.</li>
-</ul></li>
-<li><strong>l50s.pdf</strong>: Shows the L50 values of the samples.
-<ul>
-<li>L50 = the minimum number of subreads whose length makes up the N50 value.</li>
-</ul></li>
-<li><strong>subreadSizesBoxplots.pdf</strong>: Box plots showing the range of subread lengths for the samples.</li>
-<li><strong>.readLenHists.pdf</strong>: Contains 2 histograms for subread length.
-<ul>
-<li>Histogram of subread lengths</li>
-<li>Histogram of longest subread ('longestSubs') lengths.</li>
-<li>Each sample has its own <strong>readLenHists.pdf</strong> file, e.g. <strong>Sample1.readLenHists.pdf</strong>.</li>
-</ul></li>
-<li><strong>psrs.pdf</strong>: Shows the PSR value for each sample.
-<ul>
-<li>PSR stands for polymerase-to-subread ratio</li>
-<li>It is calculated as the total bases from the longest subreads per CLR divided by the total bases from subreads.</li>
-<li>This is a measure of the effectiveness of library preparation.</li>
-<li>When PSR is close to one the DNA template is mostly the reads of interest.</li>
-<li>A total failure of library preparation would result in no reads of interest and a PSR of zero.</li>
-</ul></li>
-<li><strong>zors.pdf</strong>: Shows the ZOR value for each sample.
-<ul>
-<li>ZOR stands for ZMW-occupancy-ratio.</li>
-<li>This is calculated as the number of CLRs with subreads divided by the number of subreads.</li>
-<li>This is a measure of the effectiveness of matching DNA templates with ZMWs.</li>
-<li>When ZOR is zero there are no DNA templates in ZMWs.</li>
-<li>When ZOR is above one then there are more than one DNA template per ZMW on average.</li>
-<li>Ideally, this value is exactly one, indicating there was 1 DNA template per ZMW which is what we would want for CLRs.</li>
-</ul></li>
-</ul>
+<p><a href="https://github.com/sheinasim/HiFiAdapterFilt">HiFiAdapterFilt</a> blasts the reads against a database of PacBio adapter sequences and excludes reads if the match with an adapter is good enough (the default is a blast percent identity match of 97% and a minimum length of 44 bp). It creates a file with the suffix ‘.filt.fastq.gz’ with the adapters removed that can be used for QC and downstream analysis.</p>
+<p>Run HiFiAdapterFilt on the fastq file:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb23-1"><a href="12-PB_filtering.html#cb23-1" tabindex="-1"></a><span class="ex">hifiadapterfilt.sh</span> <span class="at">-p</span> ERR13246467_qc</span></code></pre></div>
+<p>The <code>-p</code> paramter sets the prefix of the file to be filtered.</p>
+<p>Use <code>less</code> to inspect the results to check for adapter contamination:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb24-1"><a href="12-PB_filtering.html#cb24-1" tabindex="-1"></a><span class="fu">less</span> ERR13246467_qc.stats</span></code></pre></div>
 </div>
-<div id="clr-qc-mcqs" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> CLR QC: MCQs<a href="12-PB_CLR_QC.html#clr-qc-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pacbio-adapter-filtering-summary" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> PacBio adapter filtering: summary<a href="12-PB_filtering.html#pacbio-adapter-filtering-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/question_bubble_red.png" style="width:150px" />
+<img src="figures/sum_purple.png" style="width:150px; background: white; border-radius:5px; border: white solid 5px" />
 </center>
-<p>With the produced files attempt the below questions.</p>
-<ol style="list-style-type: decimal">
-<li>Which sample has the highest total amount of sequence data?
-<div id="radio_AFLGKIXLKY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AFLGKIXLKY" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AFLGKIXLKY" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AFLGKIXLKY" value=""></input> <span><strong>Sample3</strong></span></label>
-</div></li>
-<li>Which sample has the highest N50 sizes?
-<div id="radio_LOCRXQYTUW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LOCRXQYTUW" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LOCRXQYTUW" value=""></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LOCRXQYTUW" value="answer"></input> <span><strong>Sample3</strong></span></label>
-</div></li>
-<li>Which sample has the highest L50 sizes?
-<div id="radio_DMXINKMWUI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DMXINKMWUI" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DMXINKMWUI" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DMXINKMWUI" value=""></input> <span><strong>Sample3</strong></span></label>
-</div></li>
-<li>Which sample has the best PSR value (closest to 1)?
-<div id="radio_GTEYVKARYT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GTEYVKARYT" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GTEYVKARYT" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GTEYVKARYT" value=""></input> <span><strong>Sample3</strong></span></label>
-</div></li>
-<li>Which sample has the best ZOR value (closest to 1 but not above 1)?
-<div id="radio_UMYIOKNWQU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UMYIOKNWQU" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UMYIOKNWQU" value="answer"></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UMYIOKNWQU" value=""></input> <span><strong>Sample3</strong></span></label>
-</div></li>
-<li>Which sample has the biggest difference when comparing their "Histogram of subread lengths" versus their "Histogram of longest subread length"?
-<div id="radio_KFHTKZVVHH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KFHTKZVVHH" value=""></input> <span><strong>Sample1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KFHTKZVVHH" value=""></input> <span><strong>Sample2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KFHTKZVVHH" value="answer"></input> <span><strong>Sample3</strong></span></label>
-</div></li>
-</ol>
-</div>
-<div id="clr-qc-summary" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> CLR QC: summary<a href="12-PB_CLR_QC.html#clr-qc-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<center>
-<img src="figures/sum_red.png" style="width:150px" />
-</center>
-<p>With the QC we can see that Sample2 has the largest amount of data, and for all three samples most of the data is contained within the longest subreads. This is expected with CLR data - long fragments of DNA are extracted for sequencing and we often achieve and aim for just a single pass of this insert during the PacBio sequencing run.</p>
-<p>We can see that the N50 is larger for Sample3 compared to Sample1 and Sample2, suggesting the subreads are longer for Sample3. Conversely, the L50 is higher for Sample2, suggesting the subreads are shorter for this sample as more subreads are required to make up the N50 value.</p>
-<p>The boxplots show that Sample3 does indeed have the longest subread lengths, and highest N50 as indicated by the blue diamond. Sample2 has a larger range of subread lengths than Sample1, but has a slightly lower median length and N50 value.</p>
-<p>The histograms show the distribution of subread lengths in more detail. Sample3 shows a big spike of very short subreads. We'll discuss this after the filtering step!</p>
+<p>We have now filtered any remaning sequencing adapters from our HiFi data. Next we will learn how to QC the data.</p>
 
 </div>
 </div>
@@ -603,8 +513,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="11-PB_CLR_setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="13-PB_CLR_filtering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="11-PB_setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="13-PB_QC.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

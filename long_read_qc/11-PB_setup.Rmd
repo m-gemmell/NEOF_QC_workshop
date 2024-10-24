@@ -3,7 +3,7 @@
 ![](figures/clr.png){style="width:600px; border-radius:15px; background:null"}
 </center>
 
-We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
+We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this PacBio section in. Each terminal will only remember what you have told that terminal.
 
 Run the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.
 
@@ -14,15 +14,24 @@ Run the following command in a new terminal. To open a new terminal window, righ
 Before carrying out any specific commands we will move into the relevant directory.
 
 ```{bash eval=FALSE}
-cd ~/QC_workshop/PB_QC/data/CLR
+cd ~/QC_workshop/PB_QC/data/hifi
 ```
 
-Use `ls` to list the contents of this directory. You will see that there are BAM subreads and scraps files for three samples, plus their BAM index files. These data were generated from high molecular weight DNA for _de novo_ genome assembly.
+Use `ls` to list the contents of this directory. You will see that there is a BAM HiFi reads file. [These data](https://www.ebi.ac.uk/ena/browser/view/PRJEB76228) were generated from high molecular weight DNA of the springtail _Orchesella dallaii_ for _de novo_ genome assembly.
 
-We will use the `SequelTools` program to both assess and filter our PacBio CLR data. First we need to make a file of filenames (fofn) for the subreads files. You can do this with the following commands:
+## PacBio SMRT tools
+PacBio's SMRT tools are a set of software applications for analyzing long-read sequencing data. There are many functions in this toolkit, but we are going to just use a couple: pbindex and bam2fastq.
+
+We will use the SMRT Tools package to first index the BAM file and then convert it to fastq format. The index file is necessary for performing the fastq conversion.
+
+You can do this with the following commands:
 
 ```{bash eval=FALSE}
-find $(pwd) -name "*subreads.bam" | sort > CLR_subreads.txt
+# Index the BAM file containing the hifi reads and 
+pbindex ERR13246467_subset.hifi_reads.bam
+
+# Convert the indexed BAM file to fastq format
+bam2fastq ERR13246467_subset.hifi_reads -o ERR13246467_qc
 ```
 
-This command line will find all of the files in our current working directory whose names end in \'subreads.bam\', sorts them alphanumerically and prints these names into a new text file. It is a good idea to check the contents of the file with `less` to ensure it contains the file names. In this case this would be a `.subreads.bam` for each sample.
+Use `ls` to list the contents of this directory. Along with the original BAM file you should now see a `.pbi` index file and a `.fq` fastq file.
