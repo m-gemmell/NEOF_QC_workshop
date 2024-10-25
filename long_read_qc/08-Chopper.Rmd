@@ -27,7 +27,7 @@ We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter
 ```{bash eval=FALSE}
 chopper -q 10 -l 500 \
 -i porechop/Acinetobacter.porechop.fastq > \
-nanofilt/Acinetobacter.chopperq10minlen500.porechop.fastq
+chopper/Acinetobacter.chopperq10minlen500.porechop.fastq
 ```
 
 Are the chosen options appropriate? Let\'s find out.

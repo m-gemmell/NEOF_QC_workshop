@@ -51,7 +51,7 @@ The most popular long read sequencers are produced by ONT and PacBio.
 It is beneficial to understand how they work and their error profiles to fully utilise the data they produce.
 This course aims to introduce you to ONT and PacBio quality control and checking.
 
-Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
 
 At the end of this course learners will be able to:
 
