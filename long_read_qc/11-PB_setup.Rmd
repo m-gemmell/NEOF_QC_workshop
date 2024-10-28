@@ -31,7 +31,7 @@ You can do this with the following commands:
 pbindex ERR13246467_subset.hifi_reads.bam
 
 # Convert the indexed BAM file to fastq format
-bam2fastq ERR13246467_subset.hifi_reads -o ERR13246467_qc
+bam2fastq ERR13246467_subset.hifi_reads.bam -o ERR13246467_qc
 ```
 
-Use `ls` to list the contents of this directory. Along with the original BAM file you should now see a `.pbi` index file and a `.fq` fastq file.
+Use `ls` to list the contents of this directory. Along with the original BAM file you should now see a `.pbi` index file and a `.fastq.gz` compressed fastq file.

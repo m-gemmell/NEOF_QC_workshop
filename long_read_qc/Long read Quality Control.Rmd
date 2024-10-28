@@ -861,7 +861,7 @@ For more information see: https://pacbiofileformats.readthedocs.io/en/13.0/Prime
 
 ## HiFi reads
 
-The ZMW reads are processed on the sequencing instrument to produce HiFi reads, using the circular consensus (CCS) tool. CCS generates high accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read). By taking the consensus sequences (represented by the yellow and purple strands in the diagram below) HiFi reads have an accuracy of Q≥20 (99%)
+The ZMW reads are processed on the sequencing instrument to produce HiFi reads, using the circular consensus (CCS) tool. CCS generates high accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read). By taking the consensus sequences HiFi reads have an accuracy of Q≥20 (99%). In the diagram below the insert region is shown by purple and yellow lines representing the sequences obtained by each strand of the template DNA, sequencing errors by the red bases, and the green line represents the high-accuracy consensus read.
 
 <center>
 ![](figures/hifi.png){style="width:800px; border-radius:15px; background:null"}
@@ -935,10 +935,10 @@ You can do this with the following commands:
 pbindex ERR13246467_subset.hifi_reads.bam
 
 # Convert the indexed BAM file to fastq format
-bam2fastq ERR13246467_subset.hifi_reads -o ERR13246467_qc
+bam2fastq ERR13246467_subset.hifi_reads.bam -o ERR13246467_qc
 ```
 
-Use `ls` to list the contents of this directory. Along with the original BAM file you should now see a `.pbi` index file and a `.fq` fastq file.
+Use `ls` to list the contents of this directory. Along with the original BAM file you should now see a `.pbi` index file and a `.fastq.gz` compressed fastq file.
 
 <!--chapter:end:11-PB_setup.Rmd-->
 
@@ -1035,7 +1035,7 @@ cd ~/QC_workshop/PB_QC/data/hifi
 
 Let's run `RabbitQC` on our filtered HiFi data:
 ```{bash eval=FALSE}
-RabbitQCPlus -i ERR13246467_qc.filt.fastq.gz -w 1 –TGS
+RabbitQCPlus -i ERR13246467_qc.filt.fastq.gz -w 1 --TGS
 ```
 
 __Parameters__:
@@ -1047,7 +1047,7 @@ __Parameters__:
 View the output using `firefox`.
 
 ```{bash eval=FALSE}
-firefox ERR13246467_qc_RabbitQCPlus.html
+firefox ERR13246467_qc.filt_RabbitQCPlus.html
 ```
 
 The \"Reads Length Distribution\" shows ....

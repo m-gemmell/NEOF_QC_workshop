@@ -20,7 +20,7 @@ cd ~/QC_workshop/PB_QC/data/hifi
 
 Let's run `RabbitQC` on our filtered HiFi data:
 ```{bash eval=FALSE}
-RabbitQCPlus -i ERR13246467_qc.filt.fastq.gz -w 1 –TGS
+RabbitQCPlus -i ERR13246467_qc.filt.fastq.gz -w 1 --TGS
 ```
 
 __Parameters__:
@@ -32,7 +32,7 @@ __Parameters__:
 View the output using `firefox`.
 
 ```{bash eval=FALSE}
-firefox ERR13246467_qc_RabbitQCPlus.html
+firefox ERR13246467_qc.filt_RabbitQCPlus.html
 ```
 
 The \"Reads Length Distribution\" shows ....
