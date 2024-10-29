@@ -45,7 +45,7 @@ Run HiFiAdapterFilt on the fastq file:
 hifiadapterfilt.sh -p ERR13246467_qc
 ```
 
-The `-p` paramter sets the prefix of the file to be filtered.
+The `-p` parameter sets the prefix of the file to be filtered.
 
 Use `less` to inspect the results to check for adapter contamination:
 
@@ -53,6 +53,22 @@ Use `less` to inspect the results to check for adapter contamination:
 less ERR13246467_qc.stats
 ```
 
+```{r, echo = FALSE}
+opts_p <- c("__99.99%__", "__2__", answer="__13798__")
+```
+How many CCS reads are in the unfiltered dataset?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__99.99%__", answer="__2__", "__13798__")
+```
+How many adapter contaminated reads were found?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__99.99%__", "__2__", "__13798__")
+```
+What percentage of CCS reads are retained (i.e. unfiltered)?  `r longmcq(opts_p)`
+
+Very few reads were found to contain adapter sequences. This isn't entirely unexpected as the CCS algorithm on the instrument will filter out most of them. However, the authors of HiFiAdapterFilt found that >95% of published HiFi datasets did contain some adapter sequences, so it is worthwile to check and remove these.
 
 ## PacBio adapter filtering: summary
 <center>

@@ -35,13 +35,40 @@ View the output using `firefox`.
 firefox ERR13246467_qc.filt_RabbitQCPlus.html
 ```
 
-The \"Reads Length Distribution\" shows ....
+At the top of the html file are some summary tables followed by a histogram showing the distribution of read lengths in the fastq file (with a bin width of 10). You can zoom in on parts of the histogram by dragging the arrows along the bars at the bottom and to the right of the plot.
 
-The other plots show the % nucleotide frequencies (AGCT) and mean quality scores for the beginning and end of the reads. 
+```{r, echo = FALSE}
+opts_p <- c("__7370__", answer="__10540__", "__11300__")
+```
+Which bin contains the greatest number of reads?  `r longmcq(opts_p)`
 
-The mean quality plots unfortunately do not show anything because ... 
+Underneath the plot showing the distribution of read lengths are two quality plots showing the phred quality of head and tail bases (the first and last 100 bases in a read).
 
-The main advantage of `RabbitQC` is that it is a very fast way to assess the processed read lengths.
+Strangely these plots appear to be empty. However, try ‘mousing over’ the empty plot. What do you see? Does this give an idea as to why the plots might be empty? When you think you might have an answer, click on the button below:
+
+`r hide("Why are the RabbitQCPlus plots empty?")`
+Quality scores for PacBio [fastq](https://en.wikipedia.org/wiki/FASTQ_format) files follow the sanger convention, running from 0 and 93 (ASCII 33-126). Unfortunately, the output of RabbitQCPlus plots a figure where the y-axis is limited to display between 0 and 42. While this is fine for Illumina data, it means that we don’t see any results in the plots for PacBio data. Mousing over the plot can reveal the quality scores at each position. You should see that quality scores are mostly in the range of 83-86. 
+`r unhide()`
+
+One solution to this problem is to use an alternative program to inspect quality. In [Chapter 4](https://neof-workshops.github.io/QC_91wlgv/Illumina/04-Good_quality_data.html) of the Illumina QC bookdown you used a program called fastqc to inspect the quality of Illumina data. How might you use fastqc to inspect the quality of this PacBio hifi file? Have a go at this before checking the answer below.
+
+
+`r hide("Inspecting PacBio data quality with fastqc")`
+```{r, eval=FALSE}
+#Open a new terminal and activate the illuminaqc environment
+. useilluminaqc
+#Navigate to the directory containing the hifi fastq file
+cd QC_workshop/PB_QC/data/hifi
+#Create an output directory for the fastqc file
+mkdir fastqc_output
+#Run fastqc
+fastqc -o fastqc_output/ ERR13246467_qc.filt.fastq.gz
+#View the file with firefox
+firefox fastqc_output/ERR13246467_qc.filt.fastqc.html
+```
+`r unhide()`
+
+You should now be able to view the fastqc quality plots for the PacBio hifi fastq file. RabbitQCPlus is considerably quicker and more efficient than fastqc at generating plots, which can be very useful when dealing with many and/or large files. If you want to do a quick inspection of summary tables, read length distribution and GC content, and don’t mind ‘mousing-over’ the quality plots, RabbitQCPlus is a useful tool. But if you want a more detailed visual output, consider using fastqc (either on the complete file, or on a subset of reads).
 
 ## Final summary
 <center>
