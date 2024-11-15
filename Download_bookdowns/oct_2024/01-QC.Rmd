@@ -53,8 +53,6 @@ Note:
 
 [QC files](http://www.cgr.liv.ac.uk/illum/CGRworkshops_2d2a70d27a9db718/downloads/QC_workshop.zip)
 
-[PacBio HiFi data](https://neof-workshops.github.io/QC_91wlgv/resources/pb_data/ERR13246467_subset.hifi_reads.bam)
-
 ## Bookdown html
 
 Links to the online version of the Bookdowns.
