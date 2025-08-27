@@ -29,7 +29,7 @@ https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Gui
 Sometimes a fasta/fastq file will need to be modified to be properly used with a file or to remove a specific feature. Thankfully if you need to carry out a specific action someone else has probably needed to before you. Below are some tools that can be used to modify fasta/fastq files.
 
 ### Fastp
-This is a tool designed to be a \"all-in-one\" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
+This is a tool designed to be an \"all-in-one\" preprocessor for fastq files. This includes quality control. I find it very useful as the tool will only do what you tell it to do. This means you can tell it to only carry out length filtering and it will only do length filtering (unlike Trim Galore which will insist on quality trimming). 
 
 You could therefore use the below command to trim all reads to a length of 120 and remove any read pairs where at least one read has a length shorter than 120. You'll then only have reads that are a length of 120. This is required for a few tools.
 
@@ -67,13 +67,6 @@ fasta_formatter -i in.fasta -o out.fasta -w 0
 ```
 
 __Github:__ https://github.com/agordon/fastx_toolkit
-
-### BBTools
-BBTools is a collection of various tools. There are tools for deduplication, mapping, merging, and more. There is a lot so if you are interested it would be best to look at the links below.
-
-__Main page__: https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/
-
-__Data Preprocessing:__ https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/data-preprocessing/
 
 # Mamba
 <center>

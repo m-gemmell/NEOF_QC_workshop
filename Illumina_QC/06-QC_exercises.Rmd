@@ -1,13 +1,15 @@
 # QC exercises {#qcexercise}
 <center>
-![](figures/exercise.png){style="width:200px"}
+![](figures/exercise.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer after which there will be info on the data and what the QC has shown.
+Now you will carry out Quality checking and control of a whole genome shotgun study and a 16S rRNA study. 
+You will run through the Quality checking and Quality control using the examples to help you. There will be questions to answer. 
+After the question there will be info on the data and what the QC has shown.
 
 ## Whole shotgun metagenomics {#shotgun}
 <center>
-![](figures/kraken.png){style="width:200px"}
+![](figures/kraken.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
 The data from this exercise comes from the following link:
@@ -49,16 +51,16 @@ __Explanations__
 
 In this case it helps to know the adapter sequence, used for the Illumina sequencing, was Nextera. Nextera is decent but I and others online have experienced it has a slight bias. It prefers to ligate to certain sequence patterns, this bias is then shown as the GC content bias at the start of reads. Fortunately the rest of the GC content is fine. 
 
-In previous tests I have trimmed off the first 20bps to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. 
+In previous tests I have trimmed off the first 20bps to remove this bias and not removed the first 20bp. I found there was little difference in the downstream results for the two methods. I therefore normally retain the first 20bp.
 
 As for the weird \"Per sequence GC content\" peak, We must remember that the metagenome sample contains many different organisms with different GC contents. Therefore a flat GC peak would be expected.
 
 ## 16S rRNA Metagenetics {#metagenetics}
 <center>
-![](figures/chime.png){style="width:200px"}
+![](figures/chime.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-Before starting this exercise I must note this is not the normal method to quality control 16S rRNA data. Both QIIME2 and MOTHUR have their own methods but it can be useful to check the quality of 16S rRNA data.
+Before starting this exercise I must note this is not the normal method to quality control 16S rRNA data. Both QIIME2 and other 16S pipelines have their own methods but it can be useful to check the quality of 16S rRNA data beofre analysis.
 
 With that in mind we will only use `fastqc` to check the quality and features of a 16S rRNA dataset.
 

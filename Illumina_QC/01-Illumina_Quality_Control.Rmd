@@ -60,27 +60,27 @@ At the end of this book learners will be able to:
 column_1 <- c(
   #1 cluster intro
   '[**Cluster intro**](#cluster)', 
- '[![](figures/cluster.png){height="150"}](#cluster)',
+ '[![](figures/cluster.png){style="height:150px; background:white; border-radius:5px; border: white solid 5px"}](#cluster)',
  #3 Good q
     '[**Good Illumina data**](#goodtutorial)', 
- '[![](figures/bacteria.png){height="150"}](#goodtutorial)',
+ '[![](figures/bacteria.png){style="height:150px; background:white; border-radius:5px; border: white solid 5px"}](#goodtutorial)',
  #5 QC exercise
    '[**QC exercise**](#qcexercise)', 
- '[![](figures/exercise.png){height="150"}](#qcexercise)',
+ '[![](figures/exercise.png){style="height:150px; background:white; border-radius:5px; border: white solid 5px"}](#qcexercise)',
  #7 Appendix
    '[**Appendix**](#usefultools)', 
- '[![](figures/toolbox.png){height="150"}](#usefultools)'
+ '[![](figures/toolbox.png){style="height:150px; background:white; border-radius:5px; border: white solid 5px"}](#usefultools)'
 )
 column_2 <- c(
   #2 setup
   '[**Setup**](#setupchap)', 
- '[![](figures/start.png){height="150"}](#setupchap)',
+ '[![](figures/start.png){style="height:150px; background:white; border-radius:5px; border: white solid 5px"}](#setupchap)',
  #4 poorer q
    '[**Poorer Illumina data**](#poortutorial)', 
- '[![](figures/bacteria_2.png){height="150"}](#poortutorial)',
+ '[![](figures/bacteria_2.png){style="height:150px; background:white; border-radius:5px; border: white solid 5px"}](#poortutorial)',
  #6 MultiQC
    '[**MultiQC**](#multiqcchap)', 
- '[![](figures/multiqc_icon_color.png){height="150"}](#multiqcchap)',
+ '[![](figures/multiqc_logo_color.png){style="height:100px; background:white; border-radius:5px; border: white solid 5px"}](#multiqcchap)',
  #8 empty
  "",""
 )

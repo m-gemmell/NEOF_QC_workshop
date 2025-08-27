@@ -41,7 +41,7 @@ Now we can run **`fastqc`**.
 
 -   The below command can be run over one line excluding the `\`.
 -   Alternatively, you can type `\` during a command and then press the enter key. The next line on the command line will start with `>`. This will allow you to continue typing the command on the line. This can be used to type one command over multiple lines.
--   For more information on bash escape please see our [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/05-Tips_and_tricks.html#bash-escape)
+-   For more information on bash escape please see our [Intro to unix materials](https://neof-workshops.github.io/Unix_nxcdf7/Course/05-Tips_and_tricks.html#bash-escape)
 
 ```{bash eval=FALSE}
 fastqc -o raw_fastqc_output \
@@ -82,7 +82,7 @@ The `*` is a wildcard character that represents anything.
 
 `*_fastqc.html` represents all the files that end with `_fastqc.html`.
 
-For more information on wildcard characters please see ou [Intro to unix materials](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_Unix/12-Advanced_linux_practice.html#wildcard-characters)
+For more information on wildcard characters please see our [Intro to unix materials](https://neof-workshops.github.io/Unix_nxcdf7/Course/12-Advanced_linux_practice.html#wildcard-characters)
 `r unhide()`
 
 ```{r, echo = FALSE}

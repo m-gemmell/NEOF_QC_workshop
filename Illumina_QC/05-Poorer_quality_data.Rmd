@@ -44,7 +44,7 @@ Some typical features to note are:
 
 -   The quality decreases towards the end of the reads
 -   The R2 reads have poorer quality than the R1 reads
--   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range.
+-   The read sizes have a range compared to all being one size, however most of the reads are towards the long end of the range
 
 ### Quality checking MCQs
 <center>

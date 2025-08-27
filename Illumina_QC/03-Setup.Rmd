@@ -36,8 +36,8 @@ cd QC_workshop/Illumina_QC/
 </center>
 
 This book requires some packages.
-Mamba forge was used to install them.
-To learn more about Mamba-forge and how to create your own environment please see the [appendix](#mamba_install).
+Miniforge was used to install them.
+To learn more about Miniforge and how to create your own environment please see the [appendix](#mamba_install).
 
 To set-up your environment for this book please run the following code (you must include the full stop and space at the front of the command).
 
