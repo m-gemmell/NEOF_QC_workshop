@@ -1,6 +1,6 @@
 # Chopper {#chopper}
 <center>
-![](figures/quality_filtering.png){style="width:150px"}
+![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 `Chopper` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/chopper). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
@@ -14,7 +14,7 @@ This data is from a genome so wanting long and high quality reads is appropriate
 
 ## Chopper: run
 <center>
-![](figures/enter_key_purple.png){style="width:150px"}
+![](figures/enter_key_purple.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 First we will create an output directory.
@@ -22,7 +22,7 @@ First we will create an output directory.
 mkdir chopper
 ```
 
-We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with a average read quality less than Q10 (`-q 10`). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from `NanoPlot` as the majority of reads had a quality of >Q10.
+We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with an average read quality less than Q10 (`-q 10`). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from `NanoPlot` as the majority of reads had a quality of >Q10.
 
 ```{bash eval=FALSE}
 chopper -q 10 -l 500 \

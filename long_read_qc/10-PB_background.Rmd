@@ -9,7 +9,7 @@ In this section we will convert PacBio sequencing data (BAM files) into fastq fi
 
 ## File formats
 <center>
-![](figures/files.png){style="width:150px"}
+![](figures/files.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.4).
@@ -43,16 +43,16 @@ For more information see: https://pacbiofileformats.readthedocs.io/en/13.0/Prime
 The ZMW reads are processed on the sequencing instrument to produce HiFi reads, using the circular consensus (CCS) tool. CCS generates high accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read). By taking the consensus sequences HiFi reads have an accuracy of Q≥20 (99%). In the diagram below the insert region is shown by purple and yellow lines representing the sequences obtained by each strand of the template DNA, sequencing errors by the red bases, and the green line represents the high-accuracy consensus read.
 
 <center>
-![](figures/hifi.png){style="width:800px; border-radius:15px; background:null"}
+![](figures/hifi.png){style="width:800px; border-radius:15px; background:null; border: white solid 5px"}
 </center>
 
 
 
-For this tutorial we will carry out adapter filtering and quality checking aof a HiFi BAM file.
+For this tutorial we will carry out adapter filtering and quality checking of a HiFi BAM file.
 
 ## Tools
 <center>
-![](figures/toolbox.png){style="width:200px"}
+![](figures/toolbox.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 ### HiFiAdapterFilt
@@ -61,11 +61,11 @@ https://github.com/sheinasim/HiFiAdapterFilt
 
 We will use `HiFiAdapterFilt` to remove any reads containing PacBio adapter sequences.
 
-### smrttools
+### SMRTlink tools
 
-https://www.pacb.com/wp-content/uploads/SMRT-Tools-Reference-Guide-v13.0.pdf
+https://www.pacb.com/smrt-link/
 
-We will also use `smrttools` from PacBio to:
+We will also use `SMRTlink tools` from PacBio to:
 
 - Generate any missing index files
 - Convert BAM to fasta/q format.

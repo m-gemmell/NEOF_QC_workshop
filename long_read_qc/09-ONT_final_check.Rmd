@@ -7,7 +7,7 @@ After trimming or filtering reads (quality control) it is always important to ca
 
 ## Final NanoPlot
 <center>
-![](figures/nanoplot_hexes.png){style="width:200px"}
+![](figures/nanoplot_hexes.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 __Note__: We are using a long informative output directory name. This is important as we may need to rerun `chopper` a few more times with different options until we are happy. 

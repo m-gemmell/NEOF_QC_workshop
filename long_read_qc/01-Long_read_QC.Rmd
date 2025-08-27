@@ -71,42 +71,42 @@ At the end of this course learners will be able to:
 column_1 <- c(
   #1 Data intro
   '[**Data intro**](#data)', 
- '[![](figures/Play.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#data)',
+ '[![](figures/Play.png){style="height:150px; border-radius:5px; border:5px solid white"}](#data)',
  #3 ONT setup
     '[**ONT setup**](#ontsetupchap)', 
- '[![](figures/conda.png){height="150"}](#ontsetupchap)',
+ '[![](figures/conda.png){style="height:150px; border-radius:5px; border:5px solid white; background: white"}](#ontsetupchap)',
  #5 Nanoplot
    '[**NanoPlot**](#nanoplotchap)', 
- '[![](figures/nanoplot_hexes.png){height="150"}](#nanoplotchap)',
+ '[![](figures/nanoplot_hexes.png){style="height:150px; border-radius:5px; background:white"}](#nanoplotchap)',
  #7 ONT final check
    '[**ONT final check**](#ontcheckchap)', 
- '[![](figures/finish.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#ontcheckchap)',
+ '[![](figures/finish.png){style="height:150px; border-radius:5px; border:5px solid white; background:white"}](#ontcheckchap)',
   #9 PacBio setup
    '[**PacBio setup**](#pbsetupchap)', 
- '[![](figures/clr.png){style="height:100px; border-radius:15px; border:5px solid #333333"}](#clrsetupchap)',
+ '[![](figures/clr.png){style="width:500px; border-radius:5px"}](#pbsetupchap)',
    #11 PB QC
    '[**PacBio QC**](#pbqcchap)', 
- '[![](figures/qc_inspection.png){height="150"}](#clrfiltchap)'
+ '[![](figures/qc_inspection.png){style="height:150px; border-radius:5px; background: white"}](#pbqcchap)'
 )
 column_2 <- c(
   #2 ONT
   '[**ONT background**](#ont)', 
- '[![](figures/ONT_logo_wo_text.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#ont)',
+ '[![](figures/ONT_logo_wo_text.png){style="height:150px; border-radius:5px; border:5px solid white"}](#ont)',
  #4 porechop
    '[**Porechop**](#porechopchap)', 
- '[![](figures/porechop_logo_knife.png){height="100"}](#porechopchap)',
- #6 nanofilt
+ '[![](figures/porechop_logo_knife.png){style="width:500px; border-radius:5px; border:5px solid white"}](#porechopchap)',
+ #6 Chopper
    '[**Chopper**](#chopper)', 
- '[![](figures/quality_filtering.png){height="150"}](#chopper)',
+ '[![](figures/quality_filtering.png){style="height:150px; border-radius:5px; border:5px solid white; background:white"}](#chopper)',
  #8 pb background
    '[**PacBio background**](#pb)', 
- '[![](figures/logo_PacBio_web_RGB-1.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#pb)',
+ '[![](figures/logo_PacBio_web_RGB-1.png){style="width:500px; border-radius:5px; background:white"}](#pb)',
    #10 PacBio filtering
    '[**PacBio filtering**](#pbfiltchap)', 
- '[![](figures/quality_filtering.png){height="150"}](#pbfiltchap)',
+ '[![](figures/quality_filtering.png){style="height:150px; border-radius:5px; border:5px solid white; background:white"}](#pbfiltchap)',
   #13 appendix
    '[**Appendix**](#mamba_install)', 
- '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#mamba_install)'
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:5px; border:5px solid white"}](#mamba_install)'
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries

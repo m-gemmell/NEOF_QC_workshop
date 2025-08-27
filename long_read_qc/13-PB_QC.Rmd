@@ -44,7 +44,7 @@ Which bin contains the greatest number of reads?  `r longmcq(opts_p)`
 
 Underneath the plot showing the distribution of read lengths are two quality plots showing the phred quality of head and tail bases (the first and last 100 bases in a read). You should see that quality scores are mostly in the range of 83-86.
 
-RabbitQCPlus does not show the quality across the entire lengths of the reads. Due to the varibale length of PacBIo reads you dod not normally want to at the quality over the entire length but in case you do, one solution  is to use an alternative program to inspect quality. In [Chapter 4](https://neof-workshops.github.io/QC_91wlgv/Illumina/04-Good_quality_data.html) of the Illumina QC bookdown you used a program called fastqc to inspect the quality of Illumina data. How might you use fastqc to inspect the quality of this PacBio hifi file? Have a go at this before checking the answer below.
+RabbitQCPlus does not show the quality across the entire lengths of the reads. Due to the variable length of PacBio reads you do not normally want to view the quality over the entire length but in case you do, one solution  is to use an alternative program to inspect quality. In [Chapter 4](https://neof-workshops.github.io/QC_91wlgv/Illumina/04-Good_quality_data.html) of the Illumina QC bookdown you used a program called fastqc to inspect the quality of Illumina data. How might you use fastqc to inspect the quality of this PacBio hifi file? Have a go at this before checking the answer below.
 
 
 `r hide("Inspecting PacBio data quality with fastqc")`
@@ -66,7 +66,7 @@ You should now be able to view the fastqc quality plots for the PacBio hifi fast
 
 ## Final summary
 <center>
-![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.

@@ -1,6 +1,6 @@
 # NanoPlot {#nanoplotchap}
 <center>
-![](figures/nanoplot_hexes.png){style="width:200px"}
+![](figures/nanoplot_hexes.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 `NanoPlot` can be thought of as the `fastqc` for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for __fastq__, __fasta__, __BAM__, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
@@ -9,7 +9,7 @@ ONT data has much lower quality scores than Illumina with Q10 being good. If you
 
 ## NanoPlot: run
 <center>
-![](figures/enter_key_green.png){style="width:150px"}
+![](figures/enter_key_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Prior to running `NanoPlot` we will make a directory for the `NanoPlot` output. As `NanoPlot` creates a lot of files, we'll make a subdirectory for the `NanoPlot` output for the porechopped data.
@@ -112,7 +112,7 @@ The plots are:
 
 ## NanoPlot: MCQs
 <center>
-![](figures/question_bubble_green.png){style="width:150px"}
+![](figures/question_bubble_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Please attempt the below MCQs with the information in the report html.
@@ -144,7 +144,7 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 
 ## NanoPlot: summary
 <center>
-![](figures/sum_green.png){style="width:150px"}
+![](figures/sum_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 We have used `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.

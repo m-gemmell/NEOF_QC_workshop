@@ -74,42 +74,42 @@ At the end of this course learners will be able to:
 column_1 <- c(
   #1 Data intro
   '[**Data intro**](#data)', 
- '[![](figures/Play.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#data)',
+ '[![](figures/Play.png){style="height:150px; border-radius:5px; border:5px solid white"}](#data)',
  #3 ONT setup
     '[**ONT setup**](#ontsetupchap)', 
- '[![](figures/conda.png){height="150"}](#ontsetupchap)',
+ '[![](figures/conda.png){style="height:150px; border-radius:5px; border:5px solid white; background: white"}](#ontsetupchap)',
  #5 Nanoplot
    '[**NanoPlot**](#nanoplotchap)', 
- '[![](figures/nanoplot_hexes.png){height="150"}](#nanoplotchap)',
+ '[![](figures/nanoplot_hexes.png){style="height:150px; border-radius:5px; background:white"}](#nanoplotchap)',
  #7 ONT final check
    '[**ONT final check**](#ontcheckchap)', 
- '[![](figures/finish.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#ontcheckchap)',
+ '[![](figures/finish.png){style="height:150px; border-radius:5px; border:5px solid white; background:white"}](#ontcheckchap)',
   #9 PacBio setup
    '[**PacBio setup**](#pbsetupchap)', 
- '[![](figures/clr.png){style="height:100px; border-radius:15px; border:5px solid #333333"}](#clrsetupchap)',
+ '[![](figures/clr.png){style="width:500px; border-radius:5px"}](#pbsetupchap)',
    #11 PB QC
    '[**PacBio QC**](#pbqcchap)', 
- '[![](figures/qc_inspection.png){height="150"}](#clrfiltchap)'
+ '[![](figures/qc_inspection.png){style="height:150px; border-radius:5px; background: white"}](#pbqcchap)'
 )
 column_2 <- c(
   #2 ONT
   '[**ONT background**](#ont)', 
- '[![](figures/ONT_logo_wo_text.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#ont)',
+ '[![](figures/ONT_logo_wo_text.png){style="height:150px; border-radius:5px; border:5px solid white"}](#ont)',
  #4 porechop
    '[**Porechop**](#porechopchap)', 
- '[![](figures/porechop_logo_knife.png){height="100"}](#porechopchap)',
- #6 nanofilt
+ '[![](figures/porechop_logo_knife.png){style="width:500px; border-radius:5px; border:5px solid white"}](#porechopchap)',
+ #6 Chopper
    '[**Chopper**](#chopper)', 
- '[![](figures/quality_filtering.png){height="150"}](#chopper)',
+ '[![](figures/quality_filtering.png){style="height:150px; border-radius:5px; border:5px solid white; background:white"}](#chopper)',
  #8 pb background
    '[**PacBio background**](#pb)', 
- '[![](figures/logo_PacBio_web_RGB-1.png){style="height:150px; border-radius:15px; border:5px solid #333333; background:white"}](#pb)',
+ '[![](figures/logo_PacBio_web_RGB-1.png){style="width:500px; border-radius:5px; background:white"}](#pb)',
    #10 PacBio filtering
    '[**PacBio filtering**](#pbfiltchap)', 
- '[![](figures/quality_filtering.png){height="150"}](#pbfiltchap)',
+ '[![](figures/quality_filtering.png){style="height:150px; border-radius:5px; border:5px solid white; background:white"}](#pbfiltchap)',
   #13 appendix
    '[**Appendix**](#mamba_install)', 
- '[![](figures/mamba_logo.png){style="height:150px; border-radius:15px; border:5px solid #333333"}](#mamba_install)'
+ '[![](figures/mamba_logo.png){style="height:150px; border-radius:5px; border:5px solid white"}](#mamba_install)'
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries
@@ -159,7 +159,7 @@ library(webexercises)
 
 # ONT background {#ont}
 <center>
-![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid white; background:null"}
+![](figures/ONT_logo.png){style="width:600px; border-radius:5px; border:5px solid white; background:null"}
 </center>
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use fastq files.
@@ -168,7 +168,7 @@ Before carrying out analysis we will cover some background of ONT data. This wil
 
 ## File formats {#ont_file_formats}
 <center>
-![](figures/files.png){style="width:200px"}
+![](figures/files.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
@@ -204,7 +204,7 @@ POD5 links:
 
 ### Fast5
 <center>
-![](figures/fast5.png){style="width:150px"}
+![](figures/fast5.png){style="width:150px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 The Fast5 format was the previous format used to store raw data from ONT machine. It is now a legacy format. However, if you use older data for your research you may encounter it.
@@ -231,7 +231,7 @@ We will not use POD5, Fast5 or summary files for this tutorial as they are not n
 
 ### BAM file
 <center>
-![](figures/bam.png){style="width:100px"}
+![](figures/bam.png){style="width:100px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 __BAM__ files (`.bam`) are the binary version of __SAM__ files (`.sam`).
@@ -254,7 +254,7 @@ https://samtools.github.io/hts-specs/SAMv1.pdf
 
 ### fastq file
 <center>
-![](figures/fastq.png){style="width:150px"}
+![](figures/fastq.png){style="width:150px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 The __fastq__ file format is very consistent and so there is no real difference between __fastq__ files for Illumina, PacBio, and ONT data.
@@ -266,7 +266,7 @@ All __fastq__ files will contain a number of lines divisible by 4. This is becau
     + This is where you might see the most difference between different data. Different machines and different public databases will use different formats for __fastq__ headers.
 2. Sequence content
 3. Quality header 
-    + Always begins with a \'+\'. Sometimes also contains the same information as __fastq__ header.  
+    + Always begins with a \'+\'. Sometimes also contains the same information as the __fastq__ header.  
 4. Quality
     + Each base in the 2nd line will have a corresponding quality value in this line.
     + Note this uses Phred encoding, of which there are different formats. Most, if not all, new files will use Phred+33 but be careful if you are using older data as it may use a different one. See the \"Encoding\" section in the following link for more info: https://en.wikipedia.org/wiki/FASTQ_format.
@@ -281,10 +281,10 @@ __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
 ## Basecalling {#ont_basecalling}
 <center>
-![](figures/guppy.png){style="width:200px"}
+![](figures/guppy.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
-In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
+In short, basecalling is the conversion of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
 
 There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy, Dorado, and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
 
@@ -342,7 +342,7 @@ library(webexercises)
 ```
 # NanoStat
 <center>
-![](figures/metrics.png){style="width:150px"}
+![](figures/metrics.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 The first step is to acquire stats for the sequences in our fastq file. We will use `NanoStat` (https://github.com/wdecoster/nanostat).
@@ -351,10 +351,10 @@ The first step is to acquire stats for the sequences in our fastq file. We will 
 
 ## NanoStat: run
 <center>
-![](figures/enter_key_black.png){style="width:150px; background: white; border-radius:15px"}
+![](figures/enter_key_black.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
-We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output.
+We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output to.
 
 ```{bash eval=FALSE}
 mkdir nanostats
@@ -396,7 +396,7 @@ The file contains four sections with informative headers. These are:
  
 ## NanoStat: MCQs
 <center>
-![](figures/question_bubble_black.png){style="width:150px; background: white; border-radius:15px; border: 5px white solid"}
+![](figures/question_bubble_black.png){style="width:150px; background: white; border-radius:5px; border: 5px white solid"}
 </center>
 
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
@@ -453,7 +453,7 @@ opts_p <- c(answer="__5.3Mb__", "__8.8Mb__", answer="__14.1Mb__")
 
 ## NanoStat: summary
 <center>
-![](figures/sum_black.png){style="width:150px; background: white; border-radius:15px; border: white solid 5px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.
@@ -485,10 +485,10 @@ library(webexercises)
 
 ## Porechop: run
 <center>
-![](figures/enter_key_blue.png){style="width:150px"}
+![](figures/enter_key_blue.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
-With all that explanation we will now run `Porechop.` Thankfully the command is relatively straight forward with the options:
+With all that explanation we will now run `Porechop`. Thankfully the command is relatively straight forward with the options:
 
 - `-t`: Number of threads to be used.
 - `-i`: Input path of a fasta file, fastq file, or a directory. If a directory is specified it will be recursively searched for fastq files.
@@ -506,7 +506,7 @@ porechop -t 4 -i ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq \
 
 ## Porechop: MCQs
 <center>
-![](figures/question_bubble_blue.png){style="width:150px"}
+![](figures/question_bubble_blue.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 ```{r, echo = FALSE}
@@ -526,7 +526,7 @@ opts_p <- c(answer="__0__", "__1,952__", "__79,015__")
 
 ## Porechop: summary
 <center>
-![](figures/sum_blue.png){style="width:150px"}
+![](figures/sum_blue.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 `Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads so we can be informed when we filter out poor quality reads and bases.
@@ -543,7 +543,7 @@ library(webexercises)
 ```
 # NanoPlot {#nanoplotchap}
 <center>
-![](figures/nanoplot_hexes.png){style="width:200px"}
+![](figures/nanoplot_hexes.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 `NanoPlot` can be thought of as the `fastqc` for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for __fastq__, __fasta__, __BAM__, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
@@ -552,7 +552,7 @@ ONT data has much lower quality scores than Illumina with Q10 being good. If you
 
 ## NanoPlot: run
 <center>
-![](figures/enter_key_green.png){style="width:150px"}
+![](figures/enter_key_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Prior to running `NanoPlot` we will make a directory for the `NanoPlot` output. As `NanoPlot` creates a lot of files, we'll make a subdirectory for the `NanoPlot` output for the porechopped data.
@@ -655,7 +655,7 @@ The plots are:
 
 ## NanoPlot: MCQs
 <center>
-![](figures/question_bubble_green.png){style="width:150px"}
+![](figures/question_bubble_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Please attempt the below MCQs with the information in the report html.
@@ -687,7 +687,7 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 
 ## NanoPlot: summary
 <center>
-![](figures/sum_green.png){style="width:150px"}
+![](figures/sum_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 We have used `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
@@ -701,7 +701,7 @@ library(webexercises)
 ```
 # Chopper {#chopper}
 <center>
-![](figures/quality_filtering.png){style="width:150px"}
+![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 `Chopper` can be used to remove/filter reads by quality and/or read length (https://github.com/wdecoster/chopper). This is very useful as you will most likely want long and good quality reads for downstream processes, such as genome assemblies.
@@ -715,7 +715,7 @@ This data is from a genome so wanting long and high quality reads is appropriate
 
 ## Chopper: run
 <center>
-![](figures/enter_key_purple.png){style="width:150px"}
+![](figures/enter_key_purple.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 First we will create an output directory.
@@ -723,7 +723,7 @@ First we will create an output directory.
 mkdir chopper
 ```
 
-We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with a average read quality less than Q10 (`-q 10`). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from `NanoPlot` as the majority of reads had a quality of >Q10.
+We will filter out sequences that are shorter than 500bp (`-l 500bp`) and filter out sequences with an average read quality less than Q10 (`-q 10`). We have chosen these values as they are a good default for genomic data. Q10 appeared to be a good choice from `NanoPlot` as the majority of reads had a quality of >Q10.
 
 ```{bash eval=FALSE}
 chopper -q 10 -l 500 \
@@ -747,7 +747,7 @@ After trimming or filtering reads (quality control) it is always important to ca
 
 ## Final NanoPlot
 <center>
-![](figures/nanoplot_hexes.png){style="width:200px"}
+![](figures/nanoplot_hexes.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 __Note__: We are using a long informative output directory name. This is important as we may need to rerun `chopper` a few more times with different options until we are happy. 
@@ -830,7 +830,7 @@ In this section we will convert PacBio sequencing data (BAM files) into fastq fi
 
 ## File formats
 <center>
-![](figures/files.png){style="width:150px"}
+![](figures/files.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.4).
@@ -864,16 +864,16 @@ For more information see: https://pacbiofileformats.readthedocs.io/en/13.0/Prime
 The ZMW reads are processed on the sequencing instrument to produce HiFi reads, using the circular consensus (CCS) tool. CCS generates high accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read). By taking the consensus sequences HiFi reads have an accuracy of Q≥20 (99%). In the diagram below the insert region is shown by purple and yellow lines representing the sequences obtained by each strand of the template DNA, sequencing errors by the red bases, and the green line represents the high-accuracy consensus read.
 
 <center>
-![](figures/hifi.png){style="width:800px; border-radius:15px; background:null"}
+![](figures/hifi.png){style="width:800px; border-radius:15px; background:null; border: white solid 5px"}
 </center>
 
 
 
-For this tutorial we will carry out adapter filtering and quality checking aof a HiFi BAM file.
+For this tutorial we will carry out adapter filtering and quality checking of a HiFi BAM file.
 
 ## Tools
 <center>
-![](figures/toolbox.png){style="width:200px"}
+![](figures/toolbox.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 ### HiFiAdapterFilt
@@ -882,11 +882,11 @@ https://github.com/sheinasim/HiFiAdapterFilt
 
 We will use `HiFiAdapterFilt` to remove any reads containing PacBio adapter sequences.
 
-### smrttools
+### SMRTlink tools
 
-https://www.pacb.com/wp-content/uploads/SMRT-Tools-Reference-Guide-v13.0.pdf
+https://www.pacb.com/smrt-link/
 
-We will also use `smrttools` from PacBio to:
+We will also use `SMRTlink tools` from PacBio to:
 
 - Generate any missing index files
 - Convert BAM to fasta/q format.
@@ -904,7 +904,7 @@ library(webexercises)
 ```
 # PacBio setup {#pbsetupchap}
 <center>
-![](figures/clr.png){style="width:600px; border-radius:15px; background:null"}
+![](figures/clr.png){style="width:600px; border-radius:5px; background:null"}
 </center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this PacBio section in. Each terminal will only remember what you have told that terminal.
@@ -923,10 +923,10 @@ cd ~/QC_workshop/PB_QC/data/hifi
 
 Use `ls` to list the contents of this directory. You will see that there is a BAM HiFi reads file. [These data](https://www.ebi.ac.uk/ena/browser/view/PRJEB76228) were generated from high molecular weight DNA of the springtail _Orchesella dallaii_ for _de novo_ genome assembly.
 
-## PacBio SMRT tools
-PacBio's SMRT tools are a set of software applications for analyzing long-read sequencing data. There are many functions in this toolkit, but we are going to just use a couple: pbindex and bam2fastq.
+## PacBio SMRTlink tools
+PacBio's SMRTlink tools are a set of software applications for analyzing long-read sequencing data. There are many functions in this toolkit, but we are going to just use a couple: pbindex and bam2fastq.
 
-We will use the SMRT Tools package to first index the BAM file and then convert it to fastq format. The index file is necessary for performing the fastq conversion.
+We will use the SMRTlink Tools package to first index the BAM file and then convert it to fastq format. The index file is necessary for performing the fastq conversion.
 
 You can do this with the following commands:
 
@@ -947,14 +947,14 @@ library(webexercises)
 ```
 # PacBio filtering {#pbfiltchap}
 <center>
-![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px"}
+![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 PacBio HiFi reads are generated via CCS analysis which computes a consensus sequence from multiple passes of the circularised SMRTbell molecules. Each 'pass' will be interspersed with an adapter sequence (as shown in 10.1). Whilst the majority of these adapter sequences are removed by the CCS analysis that generates the HiFi BAM file, it is good practice to check for any remaining sequences to ensure they are removed before downstream analysis.
 
 We will perform this using the software [HiFiAdapterFilt](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08375-1). 
 
-This software has already been installed, but we will start by setting the PATH variable
+This software has already been installed, but we will start by setting the PATH variable.
 
 ## $PATH
 
@@ -981,7 +981,7 @@ Great, now we can proceed to adapter filtering.
 ## HiFiAdapterFilt
 
 <center>
-![](figures/enter_key_purple.png){style="width:150px; background: white; border-radius:5px"}
+![](figures/enter_key_purple.png){style="width:150px; ; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 [HiFiAdapterFilt](https://github.com/sheinasim/HiFiAdapterFilt) blasts the reads against a database of PacBio adapter sequences and excludes reads if the match with an adapter is good enough (the default is a blast percent identity match of 97% and a minimum length of 44 bp). It creates a file with the suffix ‘.filt.fastq.gz’ with the adapters removed that can be used for QC and downstream analysis.
@@ -1075,7 +1075,7 @@ Which bin contains the greatest number of reads?  `r longmcq(opts_p)`
 
 Underneath the plot showing the distribution of read lengths are two quality plots showing the phred quality of head and tail bases (the first and last 100 bases in a read). You should see that quality scores are mostly in the range of 83-86.
 
-RabbitQCPlus does not show the quality across the entire lengths of the reads. Due to the varibale length of PacBIo reads you dod not normally want to at the quality over the entire length but in case you do, one solution  is to use an alternative program to inspect quality. In [Chapter 4](https://neof-workshops.github.io/QC_91wlgv/Illumina/04-Good_quality_data.html) of the Illumina QC bookdown you used a program called fastqc to inspect the quality of Illumina data. How might you use fastqc to inspect the quality of this PacBio hifi file? Have a go at this before checking the answer below.
+RabbitQCPlus does not show the quality across the entire lengths of the reads. Due to the variable length of PacBio reads you do not normally want to view the quality over the entire length but in case you do, one solution  is to use an alternative program to inspect quality. In [Chapter 4](https://neof-workshops.github.io/QC_91wlgv/Illumina/04-Good_quality_data.html) of the Illumina QC bookdown you used a program called fastqc to inspect the quality of Illumina data. How might you use fastqc to inspect the quality of this PacBio hifi file? Have a go at this before checking the answer below.
 
 
 `r hide("Inspecting PacBio data quality with fastqc")`
@@ -1097,7 +1097,7 @@ You should now be able to view the fastqc quality plots for the PacBio hifi fast
 
 ## Final summary
 <center>
-![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px"}
+![](figures/sum_black.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 That is the end of this book. You have learnt how to QC ONT & PacBio data. Of course there are various other tools out there and the field is always advancing so we suggest you also have a look what is out there.
@@ -1130,7 +1130,6 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 - [PacBio website](https://www.pacb.com/)
 - [PacBio HiFi sequencing](https://www.pacb.com/technology/hifi-sequencing/)
 - [PacBio HiFI reads brochure](https://www.pacb.com/wp-content/uploads/Application-Brochure-HiFi-Reads-for-Highly-Accurate-Long-read-Sequencing.pdf)
-- [Sequel II and IIe data files](https://www.pacb.com/wp-content/uploads/Sequel_II_and_IIe_Data_Files.pdf)
 - [Revio brochure](https://www.pacb.com/wp-content/uploads/Revio-brochure.pdf)
 
 # Mamba installs {#mamba_install}
@@ -1138,7 +1137,7 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 ![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
-## Mamba installation {#mamba_install}
+## Mamba installation
 
 Mamba is a reimplementation of conda. It is a great tool for installing bioinformatic packages including R packages.
 

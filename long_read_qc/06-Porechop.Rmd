@@ -20,10 +20,10 @@
 
 ## Porechop: run
 <center>
-![](figures/enter_key_blue.png){style="width:150px"}
+![](figures/enter_key_blue.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
-With all that explanation we will now run `Porechop.` Thankfully the command is relatively straight forward with the options:
+With all that explanation we will now run `Porechop`. Thankfully the command is relatively straight forward with the options:
 
 - `-t`: Number of threads to be used.
 - `-i`: Input path of a fasta file, fastq file, or a directory. If a directory is specified it will be recursively searched for fastq files.
@@ -41,7 +41,7 @@ porechop -t 4 -i ./data/Acinetobacter/Acinetobacter_genome_ONT.fastq \
 
 ## Porechop: MCQs
 <center>
-![](figures/question_bubble_blue.png){style="width:150px"}
+![](figures/question_bubble_blue.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 ```{r, echo = FALSE}
@@ -61,7 +61,7 @@ opts_p <- c(answer="__0__", "__1,952__", "__79,015__")
 
 ## Porechop: summary
 <center>
-![](figures/sum_blue.png){style="width:150px"}
+![](figures/sum_blue.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 `Porechop` did its job and removed adapters successfully. The next step is to view the quality of our reads so we can be informed when we filter out poor quality reads and bases.

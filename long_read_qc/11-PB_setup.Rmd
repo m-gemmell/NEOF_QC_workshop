@@ -1,6 +1,6 @@
 # PacBio setup {#pbsetupchap}
 <center>
-![](figures/clr.png){style="width:600px; border-radius:15px; background:null"}
+![](figures/clr.png){style="width:600px; border-radius:5px; background:null"}
 </center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this PacBio section in. Each terminal will only remember what you have told that terminal.
@@ -19,10 +19,10 @@ cd ~/QC_workshop/PB_QC/data/hifi
 
 Use `ls` to list the contents of this directory. You will see that there is a BAM HiFi reads file. [These data](https://www.ebi.ac.uk/ena/browser/view/PRJEB76228) were generated from high molecular weight DNA of the springtail _Orchesella dallaii_ for _de novo_ genome assembly.
 
-## PacBio SMRT tools
-PacBio's SMRT tools are a set of software applications for analyzing long-read sequencing data. There are many functions in this toolkit, but we are going to just use a couple: pbindex and bam2fastq.
+## PacBio SMRTlink tools
+PacBio's SMRTlink tools are a set of software applications for analyzing long-read sequencing data. There are many functions in this toolkit, but we are going to just use a couple: pbindex and bam2fastq.
 
-We will use the SMRT Tools package to first index the BAM file and then convert it to fastq format. The index file is necessary for performing the fastq conversion.
+We will use the SMRTlink Tools package to first index the BAM file and then convert it to fastq format. The index file is necessary for performing the fastq conversion.
 
 You can do this with the following commands:
 

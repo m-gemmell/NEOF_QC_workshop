@@ -2,7 +2,7 @@
 
 # ONT background {#ont}
 <center>
-![](figures/ONT_logo.png){style="width:600px; border-radius:15px; border:5px solid white; background:null"}
+![](figures/ONT_logo.png){style="width:600px; border-radius:5px; border:5px solid white; background:null"}
 </center>
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use fastq files.
@@ -11,7 +11,7 @@ Before carrying out analysis we will cover some background of ONT data. This wil
 
 ## File formats {#ont_file_formats}
 <center>
-![](figures/files.png){style="width:200px"}
+![](figures/files.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
@@ -47,7 +47,7 @@ POD5 links:
 
 ### Fast5
 <center>
-![](figures/fast5.png){style="width:150px"}
+![](figures/fast5.png){style="width:150px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 The Fast5 format was the previous format used to store raw data from ONT machine. It is now a legacy format. However, if you use older data for your research you may encounter it.
@@ -74,7 +74,7 @@ We will not use POD5, Fast5 or summary files for this tutorial as they are not n
 
 ### BAM file
 <center>
-![](figures/bam.png){style="width:100px"}
+![](figures/bam.png){style="width:100px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 __BAM__ files (`.bam`) are the binary version of __SAM__ files (`.sam`).
@@ -97,7 +97,7 @@ https://samtools.github.io/hts-specs/SAMv1.pdf
 
 ### fastq file
 <center>
-![](figures/fastq.png){style="width:150px"}
+![](figures/fastq.png){style="width:150px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
 The __fastq__ file format is very consistent and so there is no real difference between __fastq__ files for Illumina, PacBio, and ONT data.
@@ -109,7 +109,7 @@ All __fastq__ files will contain a number of lines divisible by 4. This is becau
     + This is where you might see the most difference between different data. Different machines and different public databases will use different formats for __fastq__ headers.
 2. Sequence content
 3. Quality header 
-    + Always begins with a \'+\'. Sometimes also contains the same information as __fastq__ header.  
+    + Always begins with a \'+\'. Sometimes also contains the same information as the __fastq__ header.  
 4. Quality
     + Each base in the 2nd line will have a corresponding quality value in this line.
     + Note this uses Phred encoding, of which there are different formats. Most, if not all, new files will use Phred+33 but be careful if you are using older data as it may use a different one. See the \"Encoding\" section in the following link for more info: https://en.wikipedia.org/wiki/FASTQ_format.
@@ -124,10 +124,10 @@ __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
 ## Basecalling {#ont_basecalling}
 <center>
-![](figures/guppy.png){style="width:200px"}
+![](figures/guppy.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
 </center>
 
-In short, basecalling is the converting of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
+In short, basecalling is the conversion of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
 
 There are many tools to carry out basecalling with ONT data. ONT sequencing machines carry this out with in built programs. However, if you are interested in the tools used for this the primary ones are MinKNOW, Guppy, Dorado, and Albacore. Unfortunately it is quite hard to find information about these tools unless you own an ONT machine.
 

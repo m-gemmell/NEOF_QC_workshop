@@ -19,7 +19,6 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 - [PacBio website](https://www.pacb.com/)
 - [PacBio HiFi sequencing](https://www.pacb.com/technology/hifi-sequencing/)
 - [PacBio HiFI reads brochure](https://www.pacb.com/wp-content/uploads/Application-Brochure-HiFi-Reads-for-Highly-Accurate-Long-read-Sequencing.pdf)
-- [Sequel II and IIe data files](https://www.pacb.com/wp-content/uploads/Sequel_II_and_IIe_Data_Files.pdf)
 - [Revio brochure](https://www.pacb.com/wp-content/uploads/Revio-brochure.pdf)
 
 # Mamba installs {#mamba_install}
@@ -27,7 +26,7 @@ Unfortunately with ONT you need an account to access a lot of the content on its
 ![](figures/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
 </center>
 
-## Mamba installation {#mamba_install}
+## Mamba installation
 
 Mamba is a reimplementation of conda. It is a great tool for installing bioinformatic packages including R packages.
 

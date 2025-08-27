@@ -1,13 +1,13 @@
 # PacBio filtering {#pbfiltchap}
 <center>
-![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px"}
+![](figures/quality_filtering.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 PacBio HiFi reads are generated via CCS analysis which computes a consensus sequence from multiple passes of the circularised SMRTbell molecules. Each 'pass' will be interspersed with an adapter sequence (as shown in 10.1). Whilst the majority of these adapter sequences are removed by the CCS analysis that generates the HiFi BAM file, it is good practice to check for any remaining sequences to ensure they are removed before downstream analysis.
 
 We will perform this using the software [HiFiAdapterFilt](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08375-1). 
 
-This software has already been installed, but we will start by setting the PATH variable
+This software has already been installed, but we will start by setting the PATH variable.
 
 ## $PATH
 
@@ -34,7 +34,7 @@ Great, now we can proceed to adapter filtering.
 ## HiFiAdapterFilt
 
 <center>
-![](figures/enter_key_purple.png){style="width:150px; background: white; border-radius:5px"}
+![](figures/enter_key_purple.png){style="width:150px; ; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 [HiFiAdapterFilt](https://github.com/sheinasim/HiFiAdapterFilt) blasts the reads against a database of PacBio adapter sequences and excludes reads if the match with an adapter is good enough (the default is a blast percent identity match of 97% and a minimum length of 44 bp). It creates a file with the suffix ‘.filt.fastq.gz’ with the adapters removed that can be used for QC and downstream analysis.
