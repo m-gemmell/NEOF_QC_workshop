@@ -13,6 +13,14 @@ description: NEOF book for the Introduction to sequencing data and quality contr
 cover-image: "figures/NEOF.png"
 ---
 
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
 <center>
 ![](figures/neof_rounded_corners.png){style="width:300px"}
 </center>
@@ -26,18 +34,62 @@ knitr::include_graphics(path = "figures/magnifying_glass_black.png", auto_pdf = 
 ## Intro & Illumina QC
 
 <div class="container">
+<iframe src="https://www.youtube.com/embed/22Jg80g3W5o" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/U_RkeDVU2cg" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/22Jg80g3W5o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+`r hide("29 OCT 2024")`
+<div class="container">
 <iframe src="https://www.youtube.com/embed/90Ui1zRPoDw" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+`r unhide()`
+
+`r hide("07 NOV 2023")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/eYwbIm6WaXE" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
+`r hide("01 NOV 2022")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/_AcDlI4ezio" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
 
 [__Slides__](https://docs.google.com/presentation/d/1cDsANotscTCIaHo9AjTeDIhGdJw7A1oYbPo_8GUoNuk/edit?usp=sharing)
 
 ## Long read QC
 
 <div class="container">
+<iframe src="https://www.youtube.com/embed/Vz10UDnTjr4" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+`r hide("31 OCT 2024")`
+<div class="container">
 <iframe src="https://www.youtube.com/embed/08bC0UVBxzM" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+`r unhide()`
+
+`r hide("09 NOV 2023")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/fCV7Glw6bHw" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
 
 [__Slides__](https://docs.google.com/presentation/d/1potCBbhlyGvZAbJ8tDWFc1iu2FrH3rPjNQXiVDSr43Q/edit?usp=sharing)
 
