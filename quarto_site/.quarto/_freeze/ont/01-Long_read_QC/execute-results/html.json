@@ -1,0 +1,15 @@
+{
+  "hash": "c8d6fce230950f165816da75a2c87df8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n\n:::\n\n\n<center>\n![](/images/NEOF_rounded_corners.png){style=\"width:300px\"}\n</center>\n\n# Overview\n<center>\n![](/images/well.png){style=\"width:200px\"}\n</center>\n\nThe most popular long read sequencers are produced by ONT and PacBio.\nIt is beneficial to understand how they work and their error profiles to fully utilise the data they produce.\nThis course aims to introduce you to ONT and PacBio quality control and checking.\n\nSessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book contains theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.\n\nAt the end of this course learners will be able to:\n\n- Explain how ONT & PacBio sequencing works.\n- Understand the advantages and disadvantages of both technologies.\n- Quality check ONT data with NanoPlot.\n- Remove ONT adaptors with Porechop.\n- Filter ONT reads by length and quality with Chopper.\n- Filter adapters from PacBio data with HiFiAdapterFilt.\n- Convert PacBio BAM files to fastq.\n- Quality check PacBio CCS reads with RabbitQCPlus.\n\n## Table of contents {-}\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

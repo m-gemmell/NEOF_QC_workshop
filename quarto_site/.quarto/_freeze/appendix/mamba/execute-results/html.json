@@ -1,0 +1,15 @@
+{
+  "hash": "cf267cb4d2ee6fde3959485051983c7a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Mamba\n\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:5px\" fig-align=\"center\"}\n\n## Mamba installation\n\nOnce you start using bioinformatic tools you will notice that a lot of installing is required. I would highly suggest using Mamba for this purpose.\n\nMamba is a reimplementation of conda. It is a great tool for installing bioinformatic packages including R packages.\n\nMamba github: <https://github.com/mamba-org/mamba>\n\nThe best way to use Mamba is to install Miniforge. It has both Conda and Mamba commands.\n\nMiniforge installation: <https://github.com/conda-forge/miniforge>\n\nMamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>\n\n## Illumina QC environment\nTo create the mamba environment `illumina_qc` run the below commands in your bash. You will need to have installed `mamba` first.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n#Illumina QC\nmamba create -n illumina_qc\nmamba activate illumina_qc\nmamba install -c bioconda fastqc\nmamba install -c bioconda trimmomatic\nmamba install -c bioconda multiqc\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

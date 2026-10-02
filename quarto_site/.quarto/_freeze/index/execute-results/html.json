@@ -1,0 +1,19 @@
+{
+  "hash": "ba237aa87cb25e43d1e982aca41b78c2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Introduction\n![](/images/magnify_glass.png){style=\"width:200px; background: white; border-radius:5px; border: white 5px solid\" fig-align=\"center\"}\n\nIllumina sequencing technology is the most common method used for DNA sequencing. However, it is not perfect and the produced data contains errors. This course aims to introduce you to Illumina quality control and checking, vital steps before carrying out most analyses with Illumina data.\n\nAdditionally, the most popular long read sequencers are produced by ONT and PacBio. It is beneficial to understand how they work and their error profiles to fully utilise the data they produce. This course aims to introduce you to ONT and PacBio quality control and checking.\n\nSessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.\n\n## Learning outcomes\n![](/images/chalkboard.png){style=\"width:200px\" fig-align=\"center\"}\n\nAt the end of this course learners will be able to:\n\n- Explain how sequencing by synthesis works\n- Understand where common Illumina errors come from\n- Quality check Illumina fastq files with fastQC and multiQC\n- Quality control Illumina fastq files by trimming and filtering\n- Explain how ONT & PacBio sequencing works\n- Understand the advantages and disadvantages of both technologies\n- Quality check ONT data with NanoPlot\n- Remove ONT adaptors with Porechop\n- Filter ONT reads by length and quality with Chopper\n- Filter adapters from PacBio data with HiFiAdapterFilt\n- Convert PacBio BAM files to fastq\n- Quality check PacBio CCS reads with RabbitQCPlus\n\n## Order\n\n1. Cluster intro\n2. Illumina QC\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n```{=html}\n<span class=\"tippy html-widget html-fill-item\" height=\"464px\" id=\"htmlwidget-be2dc0b75eeb027b5325\" width=\"100%\"></span>\n<script type=\"application/json\" data-for=\"htmlwidget-be2dc0b75eeb027b5325\">{\"x\":{\"element\":\"os\",\"opts\":{\"content\":\"Operating System\",\"arrow\":true,\"placement\":\"bottom\"}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n\n::: {.cell-output-display}\n\n```{=html}\n<span class=\"tippy html-widget html-fill-item\" height=\"464px\" id=\"htmlwidget-b1bd66030966d3761b1f\" width=\"100%\"></span>\n<script type=\"application/json\" data-for=\"htmlwidget-b1bd66030966d3761b1f\">{\"x\":{\"element\":\"gui\",\"opts\":{\"content\":\"Graphical User Interface\",\"arrow\":true,\"placement\":\"bottom\"}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"site_libs/htmltools-fill-0.5.9/fill.css\" rel=\"stylesheet\" />\n<script src=\"site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\n<link href=\"site_libs/tippyjs-3.2.0/themes/google.css\" rel=\"stylesheet\" />\n<link href=\"site_libs/tippyjs-3.2.0/themes/light-border.css\" rel=\"stylesheet\" />\n<link href=\"site_libs/tippyjs-3.2.0/themes/light.css\" rel=\"stylesheet\" />\n<link href=\"site_libs/tippyjs-3.2.0/themes/translucent.css\" rel=\"stylesheet\" />\n<script src=\"site_libs/tippyjs-3.2.0/tippy.all.min.js\"></script>\n<script src=\"site_libs/tippy-binding-0.1.0/tippy.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

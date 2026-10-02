@@ -1,0 +1,26 @@
+# Illumina intro
+
+![](/images/nt_base_colours.png){style="width:400px; border-radius:15px; background:null" fig-align="center"}
+
+Illumina sequencing technology is the most common method used for DNA sequencing.
+However, it is not perfect and the generated data contains errors.
+This course aims to introduce you to Illumina quality control and checking, vital steps before carrying out most analyses with Illumina data.
+
+At the end of this part learners will be able to:
+
+- Explain how sequencing by synthesis works.
+- Understand where common Illumina errors come from.
+- Quality check Illumina fastq files with fastQC and multiQC.
+- Quality control Illumina fastq files by trimming and filtering.
+
+## Content
+
+This part contains the following sections and pages:
+
+
+
+This tutorial will give you hands on experience with quality control of genomic Illumina data.
+
+We will look at a good quality dataset followed by a poorer quality data set for practice. Afterwards you will carry out some self directed Quality checking as an exercise.
+
+However, prior to this we need to get our workshop data and setup our environment.

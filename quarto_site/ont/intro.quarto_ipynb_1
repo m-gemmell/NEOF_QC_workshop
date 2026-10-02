@@ -1,0 +1,40 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Data {#data}\n",
+        "<center>\n",
+        "![](/images/Play.png){style=\"width:200px; border-radius:15px; border:5px solid white; background:null\"}\n",
+        "</center>\n",
+        "\n",
+        "## The data\n",
+        "\n",
+        "The data for today is in the \\\"QC_workshop\\\" directory that you copied into your home directory (\\\"~\\\") in the Illumina QC day.\n",
+        "\n",
+        "Check you have the directory.\n",
+        "\n",
+        "```{bash, eval=FALSE}\n",
+        "ls ~\n",
+        "```\n",
+        "\n",
+        "If you __do not__ have the \\\"QC_workshop\\\" directory, the command to copy it all to your home directory is below.\n",
+        "\n",
+        "```{bash eval=FALSE}\n",
+        "cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ ~\n",
+        "```"
+      ],
+      "id": "67d57d76"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

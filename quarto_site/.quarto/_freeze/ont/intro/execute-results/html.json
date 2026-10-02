@@ -1,0 +1,15 @@
+{
+  "hash": "65b0e6545d023211da95918fee8e48cb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Intro {#data}\n<center>\n![](/images/Play.png){style=\"width:200px; border-radius:15px; border:5px solid white; background:null\"}\n</center>\n\nThe most popular long read sequencers are produced by ONT and PacBio.\nIt is beneficial to understand how they work and their error profiles to fully utilise the data they produce.\n\nAt the end of this part learners will be able to:\n\n- Explain how ONT & PacBio sequencing works\n- Understand the advantages and disadvantages of both technologies\n- Quality check ONT data with NanoPlot\n- Remove ONT adaptors with Porechop\n- Filter ONT reads by length and quality with Chopper\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

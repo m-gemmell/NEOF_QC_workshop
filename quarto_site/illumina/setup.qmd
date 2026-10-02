@@ -1,0 +1,55 @@
+---
+engine: knitr
+---
+# Setup
+![](/images/start.png){style="width:200px; background:white; border-radius:15px; border:white solid 5px" fig-align="center"}
+
+Before carrying out any analysis we need to get our workshop data and setup our environment.
+
+## Workshop data
+![](/images/data.png){style="width:150px; background:white; border-radius:15px; border:white solid 5px" fig-align="center"}
+
+Before we can carry on with the workshop you will need the workshop data.
+First ensure you are in your home directory.
+
+```{bash eval=FALSE}
+cd ~
+```
+
+Now copy the specified folder to you home directory.
+
+```{bash eval=FALSE}
+cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ .
+```
+
+Before running any examples let us change directory to the Illumina Quality control directory.
+
+```{bash eval=FALSE}
+cd QC_workshop/Illumina_QC/
+```
+
+## Mamba
+![](/images/mamba_logo.png){style="width:200px; border-radius:15px; background:null" fig-align="center"}
+
+This book requires some packages.
+Miniforge was used to install them.
+To learn more about Miniforge and how to create your own environment please see the [appendix](/appendix/mamba.qmd).
+
+To set-up your environment for this book please run the following code (you must include the full stop and space at the front of the command).
+
+```{bash, eval=FALSE}
+. useilluminaqc
+```
+
+You will have successfully activated the environment if you now see `(illumina_qc)` at the start of your command prompt. 
+This indicates you are now in the mamba environment called `illumina_qc` created by the instructor.
+
+If you are interested in the use script you can look at its contents.
+
+```{bash, eval=FALSE}
+less /usr/local/bin/useilluminaqc
+```
+
+__Tip:__ press `q` to quit `less`.
+
+For more about mamba and how to create your own `illumina_qc` environment please see the [appendix](/appendix/mamba.qmd).

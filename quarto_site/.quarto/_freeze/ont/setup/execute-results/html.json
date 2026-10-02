@@ -1,0 +1,15 @@
+{
+  "hash": "36a6a5413e2b3655ca607e3f95fa9630",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Setup\n<center>\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:15px; background:null\"}\n</center>\n\nAs with the Illumina part we need to make sure we have the tutorial data and setup our environment.\n\n## The data\n\nThe data for today is in the \\\"QC_workshop\\\" directory that you copied into your home directory (\\\"~\\\") in the Illumina QC day.\n\nCheck you have the directory.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\nls ~\n```\n:::\n\n\nIf you __do not__ have the \\\"QC_workshop\\\" directory, the command to copy it all to your home directory is below.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncp -r /pub14/tea/nsc206/NEOF/QC_workshop/ ~\n```\n:::\n\n\n## Mamba environment\n<center>\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:15px; background:null\"}\n</center>\n\nWe need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.\n\nRun the following command in a new terminal. To open a new terminal window, right click on the main screen, and choose `Terminal`.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n. useontqcv2\n```\n:::\n\n\nBefore carrying out any more commands we will move into the relevant directory.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd ~/QC_workshop/ONT_QC/\n```\n:::\n\n\nLook in the directory called data and you will notice there are a few directories. You can see the contents of all these directories with the below command.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\nls data/*\n```\n:::\n\n\nEach directory has one fastq file. ONT data likes to be organised with data for one sample being in one directory.\n\nTo start we will only use the fastq file within the directory called \\\"Acinetobacter\\\". As you may have figured out, this contains ONT sequencing data of an Acinetobacter genome. Specifically the data is a subset of the SRA (Sequence Read Archive) Run: SRR7119550.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,44 @@
+---
+engine: knitr
+---
+# Introduction
+![](/images/magnify_glass.png){style="width:200px; background: white; border-radius:5px; border: white 5px solid" fig-align="center"}
+
+Illumina sequencing technology is the most common method used for DNA sequencing. However, it is not perfect and the produced data contains errors. This course aims to introduce you to Illumina quality control and checking, vital steps before carrying out most analyses with Illumina data.
+
+Additionally, the most popular long read sequencers are produced by ONT and PacBio. It is beneficial to understand how they work and their error profiles to fully utilise the data they produce. This course aims to introduce you to ONT and PacBio quality control and checking.
+
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory, practice code, and exercises. Multiple choice questions will guide the interpretation of results.
+
+## Learning outcomes
+![](/images/chalkboard.png){style="width:200px" fig-align="center"}
+
+At the end of this course learners will be able to:
+
+- Explain how sequencing by synthesis works
+- Understand where common Illumina errors come from
+- Quality check Illumina fastq files with fastQC and multiQC
+- Quality control Illumina fastq files by trimming and filtering
+- Explain how ONT & PacBio sequencing works
+- Understand the advantages and disadvantages of both technologies
+- Quality check ONT data with NanoPlot
+- Remove ONT adaptors with Porechop
+- Filter ONT reads by length and quality with Chopper
+- Filter adapters from PacBio data with HiFiAdapterFilt
+- Convert PacBio BAM files to fastq
+- Quality check PacBio CCS reads with RabbitQCPlus
+
+## Order
+
+1. Cluster intro
+2. Illumina QC
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "os", 
+                  tooltip = "Operating System",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "gui", 
+                  tooltip = "Graphical User Interface",
+                  arrow = TRUE, placement = "bottom")
+```

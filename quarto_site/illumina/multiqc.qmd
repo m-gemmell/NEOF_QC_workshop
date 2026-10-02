@@ -1,0 +1,98 @@
+---
+engine: knitr
+---
+# MultiQC {#multiqcchap}
+![](/images/multiqc_logo_color.png){style="width:400px; border-radius:15px; border:5px solid white; background:white" fig-align="center"}
+
+`MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
+
+__Main page:__ https://multiqc.info/
+
+__Documentation:__ https://multiqc.info/docs/
+
+We will carry out a quick example of using `MultiQC` with `fastqc`data.
+
+## The data
+![](/images/data.png){style="width:150px; background: white; border-radius:5px" fig-align="center"}
+
+Move into the multiqc_example directory:
+
+```{bash eval=FALSE}
+cd ~/QC_workshop/Illumina_QC/multiqc_example
+```
+
+__Note__: Ensure you are in the `illumina_qc` `conda` environment. If `(illumina_qc)` is at the start of your command prompt in your current terminal you are in the environment. If you are not in the environment please see the [Mamba section](#mamba) to activate it.
+
+We will be quality checking 4 _Aeromonas hydrophila_ samples. List the contents of the directory and you will see the fastq files containing our data.
+
+```{bash eval=FALSE}
+#List all the contents
+ls
+#List the raw fastq files
+ls *_R*.fastq
+#List the paired fastq files trimmed with trimmomatic
+ls *P.fastq
+```
+
+As you can see from listing the contents you have been provided the raw and trimmed data. This is to save you time so all you need to carry out is the `fastqc` and `multiqc` commands.
+
+## Fastqc of the raw data
+![](/images/raw_crystal.png){style="width:150px; background: white; border-radius:5px; border: 5px white solid" fig-align="center"}
+
+The first step is to carry out `fastqc` on the raw data.
+
+```{bash eval=FALSE}
+#Make output directory
+mkdir raw_fastqc_output
+#Run fastqc
+fastqc -o raw_fastqc_output *_R*.fastq
+```
+
+Now that we have our `fastqc` output we can carry out `multiqc`. Due to the inherent differences between the forward and reverse reads it is best to make separate `multiqc` reports for them.
+
+```{bash eval=FALSE}
+#Create output directories
+mkdir raw_multiqc_output
+mkdir raw_multiqc_output/r1
+mkdir raw_multiqc_output/r2
+#Run multiqc
+multiqc -o raw_multiqc_output/r1 raw_fastqc_output/*R1*
+multiqc -o raw_multiqc_output/r2 raw_fastqc_output/*R2*
+```
+
+Now we can open the `multiqc` reports with `firefox`.
+
+```{bash eval=FALSE}
+firefox raw_multiqc_output/*/*.html
+```
+
+Investigate the report. Notice how you can hover over parts of the plots to get information. If you would like more information there is a handy link to a tutorial video at the top of the report.
+
+## Fastqc of the trimmed data
+![](/images/cut_crystal.png){style="width:150px;background:white; border-radius:5px; border: 5px solid white" fig-align="center"}
+
+Now that you have looked at the `multiqc` report for the raw data it is time to carry out `fastqc` and `multiqc` on the trimmed data.
+
+```{bash eval=FALSE}
+#Make fastqc output directory
+mkdir trimmomatic_fastqc_output
+#Run fastqc
+fastqc -o trimmomatic_fastqc_output *P.fastq
+#Create output directories
+mkdir trimmomatic_multiqc_output
+mkdir trimmomatic_multiqc_output/r1
+mkdir trimmomatic_multiqc_output/r2
+#Run multiqc
+multiqc -o trimmomatic_multiqc_output/r1 trimmomatic_fastqc_output/*1P*
+multiqc -o trimmomatic_multiqc_output/r2 trimmomatic_fastqc_output/*2P*
+#Look at the reports in firefox
+firefox trimmomatic_multiqc_output/*/*.html
+```
+
+This is a brilliant use of `MultiQC`. However, it can also be used to collate the output from many other bioinformatic tools (<https://multiqc.info/#supported-tools>).
+
+## Read data
+![](/images/r_read.png){style="width:300px; background:white; border-radius:5px" fig-align="center"}
+
+The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGE-B dataset
+<https://ccb.jhu.edu/gage_b/datasets/index.html>.

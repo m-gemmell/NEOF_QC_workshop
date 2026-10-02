@@ -1,0 +1,15 @@
+{
+  "hash": "461807fe400ae3a3bc87458817c8f385",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Setup\n![](/images/start.png){style=\"width:200px; background:white; border-radius:15px; border:white solid 5px\" fig-align=\"center\"}\n\nBefore carrying out any analysis we need to get our workshop data and setup our environment.\n\n## Workshop data\n![](/images/data.png){style=\"width:150px; background:white; border-radius:15px; border:white solid 5px\" fig-align=\"center\"}\n\nBefore we can carry on with the workshop you will need the workshop data.\nFirst ensure you are in your home directory.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd ~\n```\n:::\n\n\nNow copy the specified folder to you home directory.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncp -r /pub14/tea/nsc206/NEOF/QC_workshop/ .\n```\n:::\n\n\nBefore running any examples let us change directory to the Illumina Quality control directory.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd QC_workshop/Illumina_QC/\n```\n:::\n\n\n## Mamba\n![](/images/mamba_logo.png){style=\"width:200px; border-radius:15px; background:null\" fig-align=\"center\"}\n\nThis book requires some packages.\nMiniforge was used to install them.\nTo learn more about Miniforge and how to create your own environment please see the [appendix](/appendix/mamba.qmd).\n\nTo set-up your environment for this book please run the following code (you must include the full stop and space at the front of the command).\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n. useilluminaqc\n```\n:::\n\n\nYou will have successfully activated the environment if you now see `(illumina_qc)` at the start of your command prompt. \nThis indicates you are now in the mamba environment called `illumina_qc` created by the instructor.\n\nIf you are interested in the use script you can look at its contents.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\nless /usr/local/bin/useilluminaqc\n```\n:::\n\n\n__Tip:__ press `q` to quit `less`.\n\nFor more about mamba and how to create your own `illumina_qc` environment please see the [appendix](/appendix/mamba.qmd).",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
