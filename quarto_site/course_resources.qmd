@@ -70,8 +70,8 @@ Note:
 
 ## Bookdown
 
-[__Online website link__](https://neof-workshops.github.io/Linux_nxcdf7/)
+[__Online website link__](https://neof-workshops.github.io/QC_91wlgv/)
 
 You can download the html files of the site below. Ensure you unzip the directory before use.
 
-[__Download zipped htmls__](https://neof-workshops.github.io/Linux_nxcdf7/Resources/course_html.zip)
+[__Download zipped htmls__](https://neof-workshops.github.io/QC_91wlgv/resources/course_html.zip)
