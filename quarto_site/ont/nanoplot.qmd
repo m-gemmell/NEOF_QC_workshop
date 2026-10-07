@@ -2,18 +2,14 @@
 engine: knitr
 ---
 # NanoPlot
-<center>
-![](/images/nanoplot_hexes.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
-</center>
+![](/images/nanoplot_hexes.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
 
 `NanoPlot` can be thought of as the `fastqc` for ONT data. It produces a lot of useful visualisations to investigate the quality of ONT sequencing data. It can be used for __fastq__, __fasta__, __BAM__, and sequencing summary files. The link for its github page is: https://github.com/wdecoster/NanoPlot
 
 ONT data has much lower quality scores than Illumina with Q10 being good. If you have enough coverage and length the low quality can be corrected by downstream processes not covered in this tutorial.
 
-## NanoPlot: run
-<center>
-![](/images/enter_key_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
-</center>
+## Run
+![](/images/enter_key_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
 
 Prior to running `NanoPlot` we will make a directory for the `NanoPlot` output. As `NanoPlot` creates a lot of files, we'll make a subdirectory for the `NanoPlot` output for the porechopped data.
 
@@ -35,10 +31,8 @@ NanoPlot -t 4 \
 -o nanoplot/porechop -p Acinetobacter_ 
 ```
 
-## NanoPlot: output
-<center>
-![](/images/output_file_green.png){style="width:150px"}
-</center>
+## Output
+![](/images/output_file_green.png){style="width:150px" fig-align="center"}
 
 List the files in the output directory.
 
@@ -52,9 +46,9 @@ There are quite a few files. These should all start with \"Acinetobacter_\" than
 firefox nanoplot/porechop/Acinetobacter_NanoPlot-report.html
 ```
 
-The first section contains [`NanoStat` output](#nanostat_output). Quickly look over this and see how it compares to the `NanoStat` output of the pre-porechopped reads.
+The first section contains [`NanoStat` output](/ont/nanostat.qmd#output). Quickly look over this and see how it compares to the `NanoStat` output of the pre-porechopped reads.
 
-`r hide("NanoStat of pre-porechopped reads")`
+::: {.callout-note collapse="true" title="NanoStat of pre-porechopped reads"}
 ```{r, echo=FALSE}
 #Create dataframe of the nanostat pre-porechopped data
 df <- read.csv("files/Acinetobacter_nanostats.tsv", 
@@ -73,7 +67,7 @@ kable(df)
 # ft <- autofit(ft)
 # ft
 ```
-`r unhide()`
+:::
 
 After the __Summary Statistics__ section there is a __Plots__ section. 
 These are all plots created by [plotly](https://plotly.com/) meaning they are interactive.
@@ -83,9 +77,7 @@ With these plots you can:
   - Click and drag left or right only to zoom into a specific part of the x axis. 
   - Click and drag up or down only to zoom into a specific part of the y axis. 
   - Click the home icon (
-```{r, echo=FALSE}
-icons::icon_style(icons::fontawesome("home", style="solid"), background = "white")
-```
+`r icons::icon_style(icons::fontawesome("home", style="solid"), fill = "#648fff")`
 ) on the top right to reset the axes.
   - Hover over a points/bars to see the specific values of it.
 
@@ -113,10 +105,8 @@ The plots are:
    - At the top of the plot is a histogram of Number of reads against read lengths.
    - At the right of the plot is a sideways histogram of number of reads against average read quality.
 
-## NanoPlot: MCQs
-<center>
-![](/images/question_bubble_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
-</center>
+## MCQs
+![](/images/question_bubble_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
 
 Please attempt the below MCQs with the information in the report html.
 
@@ -145,11 +135,9 @@ opts_p <- c("__6-8__", "__8-10__", answer="__10-12__")
 ```
 5. Look at the Read lengths vs Average read quality plots. In what average quality range are the majority of reads? `r longmcq(opts_p)`
 
-## NanoPlot: summary
-<center>
-![](/images/sum_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
-</center>
+## Summary
+![](/images/sum_green.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
 
 We have used `NanoPlot` to produce read quality and length stats in table and plot form. Our data still looks good after porechopping but we still need to carry out some filtering.
 
-You can use `NanoPlot` with different input files. This will give you different plots. For more details please see the \"Plots Generated\" section on: https://github.com/wdecoster/NanoPlot.
+You can use `NanoPlot` with different input files. This will give you different plots. For more details please see the \"Plots Generated\" section on: <https://github.com/wdecoster/NanoPlot>.

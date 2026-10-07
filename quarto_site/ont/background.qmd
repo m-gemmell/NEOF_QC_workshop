@@ -1,23 +1,17 @@
 # Background
-<center>
-![](/images/ONT_logo.png){style="width:600px; border-radius:5px; border:5px solid white; background:null"}
-</center>
+![](/images/ONT_logo.png){style="width:600px; border-radius:5px; border:5px solid white; background:null" fig-align="center"}
 
 In this section we are going to carry out a quick QC of ONT data using the tool suite NanoPack and the tool Porechop. For this we will use fastq files.
 
 Before carrying out analysis we will cover some background of ONT data. This will include [file formats](#ont_file_formats), & [basecalling](#ont_basecalling).
 
 ## File formats {#ont_file_formats}
-<center>
-![](/images/files.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
-</center>
+![](/images/files.png){style="width:200px; border-radius:5px; border:5px solid white; background:white" fig-align="center"}
 
 Although we will only be using fastq files for this tutorial it is important to know the other file formats you may encounter when working with ONT data.
 
 ### POD5
-<center>
-![](/images/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:15px"}
-</center>
+![](/images/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:5px" fig-align="center"}
 
 The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ONT tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html) (it is very unlikely you need to understand Apache Arrow tables).
 
@@ -44,9 +38,7 @@ POD5 links:
 - [POD5 Tools commands](https://github.com/nanoporetech/pod5-file-format/blob/master/python/pod5/README.md#tools)
 
 ### Fast5
-<center>
-![](/images/fast5.png){style="width:150px; border-radius:5px; border:5px solid white; background:white"}
-</center>
+![](/images/fast5.png){style="width:150px; border-radius:5px; border:5px solid white; background:white" fig-align="center"}
 
 The Fast5 format was the previous format used to store raw data from ONT machine. It is now a legacy format. However, if you use older data for your research you may encounter it.
 
@@ -71,9 +63,7 @@ The MinION and GridION output a single sequencing summary file in addition to th
 We will not use POD5, Fast5 or summary files for this tutorial as they are not needed most of the time. It is likely these files will not be initially provided to you by a sequencing service as they are very large. However, if you do require them you can always ask but be careful with how long the sequencing centre will retain your data.
 
 ### BAM file
-<center>
-![](/images/bam.png){style="width:100px; border-radius:5px; border:5px solid white; background:white"}
-</center>
+![](/images/bam.png){style="width:150px; border-radius:5px; border:5px solid white; background:white" fig-align="center"}
 
 __BAM__ files (`.bam`) are the binary version of __SAM__ files (`.sam`).
 
@@ -94,9 +84,7 @@ https://samtools.github.io/hts-specs/SAMv1.pdf
 
 
 ### fastq file
-<center>
-![](/images/fastq.png){style="width:150px; border-radius:5px; border:5px solid white; background:white"}
-</center>
+![](/images/fastq.png){style="width:150px; border-radius:5px; border:5px solid white; background:white" fig-align="center"}
 
 The __fastq__ file format is very consistent and so there is no real difference between __fastq__ files for Illumina, PacBio, and ONT data.
 
@@ -120,10 +108,8 @@ __CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__
 __+__  
 __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
-## Basecalling {#ont_basecalling}
-<center>
-![](/images/guppy.png){style="width:200px; border-radius:5px; border:5px solid white; background:white"}
-</center>
+## Basecalling 
+![](/images/guppy.png){style="width:200px; border-radius:5px; border:5px solid white; background:white" fig-align="center"}
 
 In short, basecalling is the conversion of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.
 

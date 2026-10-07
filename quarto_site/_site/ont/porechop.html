@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -80,12 +77,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-5a2acb6f4ed5aeb23a104ba421924b87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ff86afcab613e4ddd69836011fbfac3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-3fa8645101ca5b03c5f6878d083093ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3fbfb9e15b7eceb0614fa0e45b1ed118.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e9621d18273f200127958bf85f509ae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -416,9 +413,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#porechop" id="toc-porechop" class="nav-link active" data-scroll-target="#porechop">Porechop</a>
   <ul class="collapse">
-  <li><a href="#porechop-run" id="toc-porechop-run" class="nav-link" data-scroll-target="#porechop-run">Porechop: run</a></li>
-  <li><a href="#porechop-mcqs" id="toc-porechop-mcqs" class="nav-link" data-scroll-target="#porechop-mcqs">Porechop: MCQs</a></li>
-  <li><a href="#porechop-summary" id="toc-porechop-summary" class="nav-link" data-scroll-target="#porechop-summary">Porechop: summary</a></li>
+  <li><a href="#run" id="toc-run" class="nav-link" data-scroll-target="#run">Run</a></li>
+  <li><a href="#mcqs" id="toc-mcqs" class="nav-link" data-scroll-target="#mcqs">MCQs</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -432,9 +429,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="porechop" class="level1">
 <h1>Porechop</h1>
-<center>
-<img src="../images/porechop_logo_knife.png" class="img-fluid" style="width:600px; border-radius:15px; border:5px solid white; background:null">
-</center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/porechop_logo_knife.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:600px; border-radius:15px; border:5px solid white; background:null"></p>
+</figure>
+</div>
 <p><code>Porechop</code> is a tool to find and remove adapters from ONT data (https://github.com/rrwick/Porechop). Adapters are artificial sequences essential for sequencing but of no biological value and so you will typically want them removed.</p>
 <p><code>Porechop</code> is no longer supported but it still works and is a good tool. Depending on which basecaller was used on your data, adapter removal may have already been carried out. However, it is always best to run <code>porechop</code> if you are not sure.</p>
 <p><code>Porechop</code> has a list of known adapters it will look for and remove. These contain:</p>
@@ -447,11 +446,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Rapid barcoding</li>
 </ul>
 <p><code>Porechop</code> will look for these adapters at the start and end of each read. Then it will look for adapters within the sequence (known as middle adapters to <code>Porechop</code>). If it finds a middle adapter it will conclude that the read is chimeric (a recombinant read containing sequences from 2 or more reads) and split the read. Depending on the number of middle adapters the chimeric read may split into 2 or more reads.</p>
-<section id="porechop-run" class="level2">
-<h2 class="anchored" data-anchor-id="porechop-run">Porechop: run</h2>
-<center>
-<img src="../images/enter_key_blue.png" class="img-fluid" style="width:150px; background: white; border-radius:5px; border: white solid 5px">
-</center>
+<section id="run" class="level2">
+<h2 class="anchored" data-anchor-id="run">Run</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/enter_key_blue.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background: white; border-radius:5px; border: white solid 5px"></p>
+</figure>
+</div>
 <p>With all that explanation we will now run <code>Porechop</code>. Thankfully the command is relatively straight forward with the options:</p>
 <ul>
 <li><code>-t</code>: Number of threads to be used.</li>
@@ -467,40 +468,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>Porechop</code> will take a while to run. Whilst it is running, look at the screen output to get an idea of what it is doing. When finished, look at the bottom of the printed results.</p>
 </section>
-<section id="porechop-mcqs" class="level2">
-<h2 class="anchored" data-anchor-id="porechop-mcqs">Porechop: MCQs</h2>
-<center>
-<img src="../images/question_bubble_blue.png" class="img-fluid" style="width:150px; background: white; border-radius:5px; border: white solid 5px">
-</center>
+<section id="mcqs" class="level2">
+<h2 class="anchored" data-anchor-id="mcqs">MCQs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/question_bubble_blue.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background: white; border-radius:5px; border: white solid 5px"></p>
+</figure>
+</div>
 <ol type="1">
 <li>How many reads had adapters trimmed from their start?
-<div id="radio_GETOVNFZLH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GETOVNFZLH" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GETOVNFZLH" value="answer"> <span><strong>1,952</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GETOVNFZLH" value=""> <span><strong>79,015</strong></span></label>
+<div id="radio_GEOAJGDPKL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GEOAJGDPKL" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GEOAJGDPKL" value="answer"> <span><strong>1,952</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GEOAJGDPKL" value=""> <span><strong>79,015</strong></span></label>
 </div></li>
 </ol>
 <ol start="2" type="1">
 <li>How many bases were removed by adapters being trimmed from the end of reads?
-<div id="radio_QFJJWTNHYA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QFJJWTNHYA" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QFJJWTNHYA" value=""> <span><strong>1,952</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QFJJWTNHYA" value="answer"> <span><strong>79,015</strong></span></label>
+<div id="radio_LFKRJEKLVT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LFKRJEKLVT" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LFKRJEKLVT" value=""> <span><strong>1,952</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LFKRJEKLVT" value="answer"> <span><strong>79,015</strong></span></label>
 </div></li>
 </ol>
 <ol start="3" type="1">
 <li>How many reads were split based on middle adapters?
-<div id="radio_UQZCRHBGKE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UQZCRHBGKE" value="answer"> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UQZCRHBGKE" value=""> <span><strong>1,952</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UQZCRHBGKE" value=""> <span><strong>79,015</strong></span></label>
+<div id="radio_AKYXLTEPWD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AKYXLTEPWD" value="answer"> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AKYXLTEPWD" value=""> <span><strong>1,952</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AKYXLTEPWD" value=""> <span><strong>79,015</strong></span></label>
 </div></li>
 </ol>
 </section>
-<section id="porechop-summary" class="level2">
-<h2 class="anchored" data-anchor-id="porechop-summary">Porechop: summary</h2>
-<center>
-<img src="../images/sum_blue.png" class="img-fluid" style="width:150px; background: white; border-radius:5px; border: white solid 5px">
-</center>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/sum_blue.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background: white; border-radius:5px; border: white solid 5px"></p>
+</figure>
+</div>
 <p><code>Porechop</code> did its job and removed adapters successfully. The next step is to view the quality of our reads so we can be informed when we filter out poor quality reads and bases.</p>
 <p>For more uses of <code>Porechop</code> please see the below links:</p>
 <ul>
-<li>https://github.com/rrwick/Porechop#quick-usage-examples</li>
-<li>https://github.com/rrwick/Porechop#full-usage</li>
+<li><a href="https://github.com/rrwick/Porechop#quick-usage-examples" class="uri">https://github.com/rrwick/Porechop#quick-usage-examples</a></li>
+<li><a href="https://github.com/rrwick/Porechop#full-usage" class="uri">https://github.com/rrwick/Porechop#full-usage</a></li>
 </ul>
 
 
@@ -510,210 +515,416 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </main> <!-- /main -->
 <script>
 
+
+
 /* update total correct if #webex-total_correct exists */
+
 update_total_correct = function() {
+
   console.log("webex: update total_correct");
 
+
+
   var t = document.getElementsByClassName("webex-total_correct");
+
   for (var i = 0; i < t.length; i++) {
+
     p = t[i].parentElement;
+
     var correct = p.getElementsByClassName("webex-correct").length;
+
     var solvemes = p.getElementsByClassName("webex-solveme").length;
+
     var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+
     var selects = p.getElementsByClassName("webex-select").length;
 
+
+
     t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+
   }
+
 }
+
+
 
 /* webex-solution button toggling function */
+
 b_func = function() {
+
   console.log("webex: toggle hide");
 
+
+
   var cl = this.parentElement.classList;
+
   if (cl.contains('open')) {
+
     cl.remove("open");
+
   } else {
+
     cl.add("open");
+
   }
+
 }
+
+
 
 /* check answers */
+
 check_func = function() {
+
   console.log("webex: check answers");
 
+
+
   var cl = this.parentElement.classList;
+
   if (cl.contains('unchecked')) {
+
     cl.remove("unchecked");
+
     this.innerHTML = "Hide Answers";
+
   } else {
+
     cl.add("unchecked");
+
     this.innerHTML = "Show Answers";
+
   }
+
 }
+
+
 
 /* function for checking solveme answers */
+
 solveme_func = function(e) {
+
   console.log("webex: check solveme");
 
+
+
   var real_answers = JSON.parse(this.dataset.answer);
+
   var my_answer = this.value;
+
   var cl = this.classList;
+
   if (cl.contains("ignorecase")) {
+
     my_answer = my_answer.toLowerCase();
+
   }
+
   if (cl.contains("nospaces")) {
+
     my_answer = my_answer.replace(/ /g, "")
+
   }
+
+
 
   if (my_answer == "") {
+
     cl.remove("webex-correct");
+
     cl.remove("webex-incorrect");
+
   } else if (real_answers.includes(my_answer)) {
+
     cl.add("webex-correct");
+
     cl.remove("webex-incorrect");
+
   } else {
+
     cl.add("webex-incorrect");
+
     cl.remove("webex-correct");
+
   }
+
+
 
   // match numeric answers within a specified tolerance
+
   if(this.dataset.tol > 0){
+
     var tol = JSON.parse(this.dataset.tol);
+
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+
     if (matches.reduce((a, b) => a + b, 0) > 0) {
+
       cl.add("webex-correct");
+
     } else {
+
       cl.remove("webex-correct");
+
     }
+
   }
+
+
 
   // added regex bit
+
   if (cl.contains("regex")){
+
     answer_regex = RegExp(real_answers.join("|"))
+
     if (answer_regex.test(my_answer)) {
+
       cl.add("webex-correct");
+
     }
+
   }
 
+
+
   update_total_correct();
+
 }
 
+
+
 /* function for checking select answers */
+
 select_func = function(e) {
+
   console.log("webex: check select");
+
+
 
   var cl = this.classList
 
+
+
   /* add style */
+
   cl.remove("webex-incorrect");
+
   cl.remove("webex-correct");
+
   if (this.value == "answer") {
+
     cl.add("webex-correct");
+
   } else if (this.value != "blank") {
+
     cl.add("webex-incorrect");
+
   }
 
+
+
   update_total_correct();
+
 }
+
+
 
 /* function for checking radiogroups answers */
+
 radiogroups_func = function(e) {
+
   console.log("webex: check radiogroups");
 
+
+
   var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+
   var cl = checked_button.parentElement.classList;
+
   var labels = checked_button.parentElement.parentElement.children;
 
+
+
   /* get rid of styles */
+
   for (i = 0; i < labels.length; i++) {
+
     labels[i].classList.remove("webex-incorrect");
+
     labels[i].classList.remove("webex-correct");
+
   }
+
+
 
   /* add style */
+
   if (checked_button.value == "answer") {
+
     cl.add("webex-correct");
+
   } else {
+
     cl.add("webex-incorrect");
+
   }
 
+
+
   update_total_correct();
+
 }
+
+
 
 window.onload = function() {
+
   console.log("webex onload");
+
   /* set up solution buttons */
+
   var buttons = document.getElementsByTagName("button");
 
+
+
   for (var i = 0; i < buttons.length; i++) {
+
     if (buttons[i].parentElement.classList.contains('webex-solution')) {
+
       buttons[i].onclick = b_func;
+
     }
+
   }
+
+
 
   var check_sections = document.getElementsByClassName("webex-check");
+
   console.log("check:", check_sections.length);
+
   for (var i = 0; i < check_sections.length; i++) {
+
     check_sections[i].classList.add("unchecked");
 
+
+
     let btn = document.createElement("button");
+
     btn.innerHTML = "Show Answers";
+
     btn.classList.add("webex-check-button");
+
     btn.onclick = check_func;
+
     check_sections[i].appendChild(btn);
 
+
+
     let spn = document.createElement("span");
+
     spn.classList.add("webex-total_correct");
+
     check_sections[i].appendChild(spn);
+
   }
+
+
 
   /* set up webex-solveme inputs */
+
   var solveme = document.getElementsByClassName("webex-solveme");
 
+
+
   for (var i = 0; i < solveme.length; i++) {
+
     /* make sure input boxes don't auto-anything */
+
     solveme[i].setAttribute("autocomplete","off");
+
     solveme[i].setAttribute("autocorrect", "off");
+
     solveme[i].setAttribute("autocapitalize", "off");
+
     solveme[i].setAttribute("spellcheck", "false");
+
     solveme[i].value = "";
 
+
+
     /* adjust answer for ignorecase or nospaces */
+
     var cl = solveme[i].classList;
+
     var real_answer = solveme[i].dataset.answer;
+
     if (cl.contains("ignorecase")) {
+
       real_answer = real_answer.toLowerCase();
+
     }
+
     if (cl.contains("nospaces")) {
+
       real_answer = real_answer.replace(/ /g, "");
+
     }
+
     solveme[i].dataset.answer = real_answer;
 
+
+
     /* attach checking function */
+
     solveme[i].onkeyup = solveme_func;
+
     solveme[i].onchange = solveme_func;
 
+
+
     solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+
   }
+
+
 
   /* set up radiogroups */
+
   var radiogroups = document.getElementsByClassName("webex-radiogroup");
+
   for (var i = 0; i < radiogroups.length; i++) {
+
     radiogroups[i].onchange = radiogroups_func;
+
   }
+
+
 
   /* set up selects */
+
   var selects = document.getElementsByClassName("webex-select");
+
   for (var i = 0; i < selects.length; i++) {
+
     selects[i].onchange = select_func;
+
     selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+
   }
 
+
+
   update_total_correct();
+
 }
 
+
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

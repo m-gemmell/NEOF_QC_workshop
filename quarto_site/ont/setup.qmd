@@ -2,13 +2,12 @@
 engine: knitr
 ---
 # Setup
-<center>
-![](/images/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
-</center>
+![](/images/setup_2.png){style="width:200px; border-radius:5px; background:white" fig-align="center"}
 
 As with the Illumina part we need to make sure we have the tutorial data and setup our environment.
 
 ## The data
+![](/images/data.png){style="width:150px; border-radius:5px; background:white" fig-align="center"}
 
 The data for today is in the \"QC_workshop\" directory that you copied into your home directory (\"~\") in the Illumina QC day.
 
@@ -26,7 +25,7 @@ cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ ~
 
 ## Mamba environment
 <center>
-![](/images/mamba_logo.png){style="width:200px; border-radius:15px; background:null"}
+![](/images/mamba_logo.png){style="width:200px; border-radius:5px; background:null" fig-align="center"}
 </center>
 
 We need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this ONT section in. Each terminal will only remember what you have told that terminal.
@@ -37,7 +36,7 @@ Run the following command in a new terminal. To open a new terminal window, righ
 . useontqcv2
 ```
 
-Before carrying out any more commands we will move into the relevant directory.
+Before carrying out any more commands move into the relevant directory.
 
 ```{bash eval=FALSE}
 cd ~/QC_workshop/ONT_QC/

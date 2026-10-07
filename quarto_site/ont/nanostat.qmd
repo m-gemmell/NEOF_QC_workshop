@@ -2,18 +2,14 @@
 engine: knitr
 ---
 # NanoStat
-<center>
-![](/images/metrics.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
-</center>
+![](/images/metrics.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px" fig-align="center" fig-align="center"}
 
 The first step is to acquire stats for the sequences in our fastq file. We will use `NanoStat` (https://github.com/wdecoster/nanostat).
 
 `NanoStat` is one of the many tools contained in the `NanoPack` suite (https://github.com/wdecoster/nanopack). We will also use the tools `NanoPlot` and `NanoFilt` downstream.
 
-## NanoStat: run
-<center>
-![](/images/enter_key_black.png){style="width:150px; background: white; border-radius:5px"}
-</center>
+## Run
+![](/images/enter_key_black.png){style="width:150px; background: white; border-radius:5px" fig-align="center"}
 
 We want to have a tidy set of directories at the end of this analysis. It would be an untidy mess if we had all the output files in the current directory. We will therefore be making directories and subdirectories to send our output to.
 
@@ -38,10 +34,8 @@ When the command has finished you can look at the output text file. In this case
 less nanostats/Acinetobacter_nanostats.tsv
 ```
 
-## NanoStat: output {#nanostat_output}
-<center>
-![](/images/output_file_black.png){style="width:150px"}
-</center>
+## Output
+![](/images/output_file_black.png){style="width:125px" fig-align="center"}
 
 The file contains four sections with informative headers. These are:
 
@@ -55,10 +49,8 @@ The file contains four sections with informative headers. These are:
 4. __Top 5 longest reads and their mean basecall quality score__
    - Shows the top 5 longest reads.
  
-## NanoStat: MCQs
-<center>
-![](/images/question_bubble_black.png){style="width:150px; background: white; border-radius:5px; border: 5px white solid"}
-</center>
+## MCQs
+![](/images/question_bubble_black.png){style="width:150px; background: white; border-radius:5px; border: 5px white solid" fig-align="center"}
 
 With the output of `NanoStat` and the above info on the output please answer the following Multiple-choice questions.
 
@@ -112,9 +104,7 @@ opts_p <- c(answer="__5.3Mb__", "__8.8Mb__", answer="__14.1Mb__")
 ```
 9.  To the nearest 0.1 Megabases (i.e. 100,000 bases), what is the total number of bases within reads with a mean quality of Q10 or less (you will need to do some mental maths)? `r longmcq(opts_p)`
 
-## NanoStat: summary
-<center>
-![](/images/sum_black.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px"}
-</center>
+## Summary
+![](/images/sum_black.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
 
 We have carried out our first step of QC by quality checking the __fastq__ file with `NanoStat`. Overall the data has good quality, for ONT data >Q10 is good. However, there is some poor quality data so quality control will be needed.

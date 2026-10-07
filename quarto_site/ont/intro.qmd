@@ -2,9 +2,7 @@
 engine: knitr
 ---
 # Intro {#data}
-<center>
-![](/images/Play.png){style="width:200px; border-radius:15px; border:5px solid white; background:null"}
-</center>
+![](/images/Play.png){style="width:200px; border-radius:5px; border:5px solid white; background:null" fig-align="center"}
 
 The most popular long read sequencers are produced by ONT and PacBio.
 It is beneficial to understand how they work and their error profiles to fully utilise the data they produce.
