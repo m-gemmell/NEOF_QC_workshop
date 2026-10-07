@@ -199,5 +199,20 @@
   },
   "ont/nanoplot.qmd": {
     "nanoplot.html": "10f8afda"
+  },
+  "pacbio/setup.qmd": {
+    "setup.html": "27c8a6ea"
+  },
+  "pacbio/qc.qmd": {
+    "qc.html": "faac4243"
+  },
+  "pacbio/filtering.qmd": {
+    "filtering.html": "657fedef"
+  },
+  "pacbio/background.qmd": {
+    "background.html": "fecb7a56"
+  },
+  "pacbio/intro.qmd": {
+    "intro.html": "3193e59e"
   }
 }

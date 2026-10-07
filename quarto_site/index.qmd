@@ -30,8 +30,11 @@ At the end of this course learners will be able to:
 
 ## Order
 
-1. Cluster intro
-2. Illumina QC
+1. [Cluster intro](/cluster_intro.qmd)
+2. [Illumina](/illumina/intro.qmd)
+3. [ONT](/ont/intro.qmd)
+4. [PacBio](/pacbio/intro.qmd)
+5. [Appendix](/appendix/neof.qmd)
 
 ```{r, echo=FALSE}
 #Tippy tooltips

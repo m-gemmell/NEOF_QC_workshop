@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,12 +80,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-5a2acb6f4ed5aeb23a104ba421924b87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3fbfb9e15b7eceb0614fa0e45b1ed118.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7e9621d18273f200127958bf85f509ae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-5ff86afcab613e4ddd69836011fbfac3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-3fa8645101ca5b03c5f6878d083093ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -309,6 +312,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">ONT</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../pacbio/intro.html"> 
+<span class="menu-text">PacBio</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../appendix/neof.html"> 
 <span class="menu-text">Appendix</span></a>
   </li>  
@@ -356,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../illumina/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Illumina intro</span></a>
+ <span class="menu-text">Intro</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -425,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Poorer quality genomic dataset</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/bacteria_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:200px; background:white; border-radius:5px"></p>
+<p><img src="../images/bacteria_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:200px; background:white; border-radius:5px"></p>
 </figure>
 </div>
 <p>Now let us look at actual read data. We will be looking at <em>Bacillus cereus</em> MiSeq data that can be found in the following link: <a href="https://ccb.jhu.edu/gage_b/datasets/index.html" class="uri">https://ccb.jhu.edu/gage_b/datasets/index.html</a>.</p>
@@ -440,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="quality-checking">Quality checking</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/magnify_glass_27AUG2020.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:200px; background:white; border-radius:5px; border: white solid 5px"></p>
+<p><img src="../images/magnify_glass_27AUG2020.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:200px; background:white; border-radius:5px; border: white solid 5px"></p>
 </figure>
 </div>
 <p>Let’s make a directory for the <code>fastqc</code> output</p>
@@ -465,62 +472,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="quality-checking-mcqs">Quality checking MCQs</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/question_bubble.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background:white; border-radius:15px; border: solid 5px white"></p>
+<p><img src="../images/question_bubble.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background:white; border-radius:15px; border: solid 5px white"></p>
 </figure>
 </div>
 <p>Investigate the <code>fastqc</code> reports and answer the below question.</p>
 <ol type="1">
 <li>How many total reads/sequences are there in the R2 file?
-<div id="radio_JEFDHQVYVC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JEFDHQVYVC" value=""> <span><strong>36</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JEFDHQVYVC" value=""> <span><strong>35-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JEFDHQVYVC" value="answer"> <span><strong>50,000</strong></span></label>
+<div id="radio_SQXDSYZNHA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SQXDSYZNHA" value=""> <span><strong>36</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SQXDSYZNHA" value=""> <span><strong>35-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SQXDSYZNHA" value="answer"> <span><strong>50,000</strong></span></label>
 </div></li>
 </ol>
 <ol start="2" type="1">
 <li>What is the length range of the data?
-<div id="radio_VFKGNADZWQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VFKGNADZWQ" value=""> <span><strong>36</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VFKGNADZWQ" value="answer"> <span><strong>35-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VFKGNADZWQ" value=""> <span><strong>50,000</strong></span></label>
+<div id="radio_VCSAJIQNRM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VCSAJIQNRM" value=""> <span><strong>36</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VCSAJIQNRM" value="answer"> <span><strong>35-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VCSAJIQNRM" value=""> <span><strong>50,000</strong></span></label>
 </div></li>
 </ol>
 <ol start="3" type="1">
 <li>What is the average GC (%) content of the data?
-<div id="radio_AHFDIGJAPQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AHFDIGJAPQ" value="answer"> <span><strong>36</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AHFDIGJAPQ" value=""> <span><strong>35-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AHFDIGJAPQ" value=""> <span><strong>50,000</strong></span></label>
+<div id="radio_WABZZRQQOB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WABZZRQQOB" value="answer"> <span><strong>36</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WABZZRQQOB" value=""> <span><strong>35-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WABZZRQQOB" value=""> <span><strong>50,000</strong></span></label>
 </div></li>
 </ol>
 <ol start="4" type="1">
 <li>At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q28 for the R1 data?
-<div id="radio_WLIANRWDZJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WLIANRWDZJ" value=""> <span><strong>15-19</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WLIANRWDZJ" value=""> <span><strong>235-239</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WLIANRWDZJ" value="answer"> <span><strong>250-251</strong></span></label>
+<div id="radio_MMTSYGGJAN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MMTSYGGJAN" value=""> <span><strong>15-19</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MMTSYGGJAN" value=""> <span><strong>235-239</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MMTSYGGJAN" value="answer"> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="5" type="1">
 <li>At what base position/s does the IQR and whiskers (lines) first completely go above a quality of Q28 for the R2 data?
-<div id="radio_ETKLAYXAIK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ETKLAYXAIK" value="answer"> <span><strong>15-19</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ETKLAYXAIK" value=""> <span><strong>235-239</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ETKLAYXAIK" value=""> <span><strong>250-251</strong></span></label>
+<div id="radio_WNWAVPZPFZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WNWAVPZPFZ" value="answer"> <span><strong>15-19</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WNWAVPZPFZ" value=""> <span><strong>235-239</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WNWAVPZPFZ" value=""> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="6" type="1">
 <li>At what base position/s does the IQR (Interquartile Range/yellow box) drop below a quality of Q20 for the R2 data?
-<div id="radio_BYFHUAJUZP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BYFHUAJUZP" value=""> <span><strong>15-19</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BYFHUAJUZP" value="answer"> <span><strong>235-239</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BYFHUAJUZP" value=""> <span><strong>250-251</strong></span></label>
+<div id="radio_PDOGOTWJOL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PDOGOTWJOL" value=""> <span><strong>15-19</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PDOGOTWJOL" value="answer"> <span><strong>235-239</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PDOGOTWJOL" value=""> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="7" type="1">
 <li>What is the most common “mean sequence quality” for the reads in R2 (see the peak of the “Per sequence quality scores” graph)?
-<div id="radio_EZFDMDQMTJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EZFDMDQMTJ" value="answer"> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EZFDMDQMTJ" value=""> <span><strong>129</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EZFDMDQMTJ" value=""> <span><strong>250-251</strong></span></label>
+<div id="radio_CLMBCJQPEL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CLMBCJQPEL" value="answer"> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CLMBCJQPEL" value=""> <span><strong>129</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CLMBCJQPEL" value=""> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="8" type="1">
 <li>What is the total count of overrepresented sequences in R1?
-<div id="radio_XUEEOQWCSZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XUEEOQWCSZ" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XUEEOQWCSZ" value="answer"> <span><strong>129</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XUEEOQWCSZ" value=""> <span><strong>250-251</strong></span></label>
+<div id="radio_VXVITIBTZN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VXVITIBTZN" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VXVITIBTZN" value="answer"> <span><strong>129</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VXVITIBTZN" value=""> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="9" type="1">
 <li>What is the most common base length range for R2 (see the peak of the “Sequence Length Distribution” graph)?
-<div id="radio_DTLNMEWLZH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DTLNMEWLZH" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTLNMEWLZH" value=""> <span><strong>129</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTLNMEWLZH" value="answer"> <span><strong>250-251</strong></span></label>
+<div id="radio_BBOKAGXEKA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BBOKAGXEKA" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BBOKAGXEKA" value=""> <span><strong>129</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BBOKAGXEKA" value="answer"> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <p>This data is pretty typical of what would normally be seen. We are therefore going to quality trim and filter the data. Unfortunately data straight from the sequencer always needs quality control.</p>
@@ -530,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="quality-control">Quality control</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/quality_trimming_and_filtering.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:300px; background:white; border-radius:15px; border: white solid 5px"></p>
+<p><img src="../images/quality_trimming_and_filtering.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:300px; background:white; border-radius:15px; border: white solid 5px"></p>
 </figure>
 </div>
 <p>Quality control generally comes in two forms:</p>
@@ -558,8 +565,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Note</strong>: When using <code>trimmomatic</code> on future data ensure you change the input files and the <code>-baseout</code> parameter to match your data.</p>
 Once the command is run it will give you some useful output to the screen. Based on it, what percentage of paired reads were kept?
-<div id="radio_UFFIREEUKG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UFFIREEUKG" value=""> <span><strong>4.73%</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UFFIREEUKG" value=""> <span><strong>14.99%</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UFFIREEUKG" value="answer"> <span><strong>76.62%</strong></span></label>
+<div id="radio_AHLQPZJDXO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AHLQPZJDXO" value=""> <span><strong>4.73%</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AHLQPZJDXO" value=""> <span><strong>14.99%</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AHLQPZJDXO" value="answer"> <span><strong>76.62%</strong></span></label>
 </div>
 <p><strong>Output</strong></p>
 <p>The command produces four files with names based off the <code>-baseout</code> parameter. You can use <code>ls</code> to see the output files. The files are:</p>
@@ -573,7 +580,7 @@ Once the command is run it will give you some useful output to the screen. Based
 <h2 class="anchored" data-anchor-id="post-quality-control-check">Post Quality control check</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/magnify_glass_good.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:200px; background:white; border-radius:5px; border: white solid 5px"></p>
+<p><img src="../images/magnify_glass_good.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:200px; background:white; border-radius:5px; border: white solid 5px"></p>
 </figure>
 </div>
 <p>To see how successful the quality control has been we need to run <code>fastqc</code> on the <code>trimmomatic</code> output.</p>
@@ -594,62 +601,62 @@ Once the command is run it will give you some useful output to the screen. Based
 <h3 class="anchored" data-anchor-id="quality-checking-mcqs-1">Quality checking MCQs</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/question_bubble_green.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background: white; border-radius:5px; border: white solid 5px"></p>
+<p><img src="../images/question_bubble_green.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150px; background: white; border-radius:5px; border: white solid 5px"></p>
 </figure>
 </div>
 <p>To see how well the reads have improved answer the below questions and compare to them to the answers of the raw read <code>fastqc</code> questions.</p>
 <ol type="1">
 <li>How many total reads/sequences are there in the R2 (2P) file?
-<div id="radio_CVVPPSNXHR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CVVPPSNXHR" value=""> <span><strong>35</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CVVPPSNXHR" value=""> <span><strong>50-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CVVPPSNXHR" value="answer"> <span><strong>38,309</strong></span></label>
+<div id="radio_NCCWMWJAQB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NCCWMWJAQB" value=""> <span><strong>35</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NCCWMWJAQB" value=""> <span><strong>50-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NCCWMWJAQB" value="answer"> <span><strong>38,309</strong></span></label>
 </div></li>
 </ol>
 <ol start="2" type="1">
 <li>What is the length range of the data?
-<div id="radio_LDDBMCJYCH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LDDBMCJYCH" value=""> <span><strong>35</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LDDBMCJYCH" value="answer"> <span><strong>50-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LDDBMCJYCH" value=""> <span><strong>38,309</strong></span></label>
+<div id="radio_VDHNXQCCZY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VDHNXQCCZY" value=""> <span><strong>35</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VDHNXQCCZY" value="answer"> <span><strong>50-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VDHNXQCCZY" value=""> <span><strong>38,309</strong></span></label>
 </div></li>
 </ol>
 <ol start="3" type="1">
 <li>What is the average GC (%) content of the data?
-<div id="radio_DDHWXCYRQS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DDHWXCYRQS" value="answer"> <span><strong>35</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DDHWXCYRQS" value=""> <span><strong>50-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DDHWXCYRQS" value=""> <span><strong>38,309</strong></span></label>
+<div id="radio_VCZIPIRKVI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VCZIPIRKVI" value="answer"> <span><strong>35</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VCZIPIRKVI" value=""> <span><strong>50-251</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VCZIPIRKVI" value=""> <span><strong>38,309</strong></span></label>
 </div></li>
 </ol>
 <ol start="4" type="1">
 <li>In R1 (1P), do the IQRs and/or whiskers drop below Q28 in the “Per base sequence quality” graph?
-<div id="radio_NHWMYTQPLM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NHWMYTQPLM" value=""> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NHWMYTQPLM" value="answer"> <span><strong>No</strong></span></label>
+<div id="radio_JJRXEHSYSO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JJRXEHSYSO" value=""> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJRXEHSYSO" value="answer"> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <ol start="5" type="1">
 <li>In R2 (2P), do the IQRs and/or whiskers drop below Q28 in the “Per base sequence quality” graph?
-<div id="radio_ZJKGTGGYAW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZJKGTGGYAW" value="answer"> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZJKGTGGYAW" value=""> <span><strong>No</strong></span></label>
+<div id="radio_ELNVGIJXVZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ELNVGIJXVZ" value="answer"> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ELNVGIJXVZ" value=""> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <ol start="6" type="1">
 <li>In R2 (2P), do the IQRs drop below Q28 in the “Per base sequence quality” graph?
-<div id="radio_QOEBJCTMFW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QOEBJCTMFW" value=""> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QOEBJCTMFW" value="answer"> <span><strong>No</strong></span></label>
+<div id="radio_DTQVAODSYA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DTQVAODSYA" value=""> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTQVAODSYA" value="answer"> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <ol start="7" type="1">
 <li>What is the most common “mean sequence quality” for the reads in R2 (2P) (see the peak of the “Per sequence quality scores” graph)?
-<div id="radio_FRFESPEEED" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FRFESPEEED" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FRFESPEEED" value="answer"> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FRFESPEEED" value=""> <span><strong>250-251</strong></span></label>
+<div id="radio_XJNNSPEDZX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XJNNSPEDZX" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XJNNSPEDZX" value="answer"> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XJNNSPEDZX" value=""> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="8" type="1">
 <li>What is the total count of overrepresented sequences in R1 (1P)?
-<div id="radio_KRBZUYXJSZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KRBZUYXJSZ" value="answer"> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KRBZUYXJSZ" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KRBZUYXJSZ" value=""> <span><strong>250-251</strong></span></label>
+<div id="radio_NGWOUSYHHX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NGWOUSYHHX" value="answer"> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NGWOUSYHHX" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NGWOUSYHHX" value=""> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <ol start="9" type="1">
 <li>What is the most common base length range for R2 (see the peak of the “Sequence Length Distribution” graph)?
-<div id="radio_CFRTMXIDHJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CFRTMXIDHJ" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFRTMXIDHJ" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFRTMXIDHJ" value="answer"> <span><strong>250-251</strong></span></label>
+<div id="radio_UHZAKPVKGQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UHZAKPVKGQ" value=""> <span><strong>0</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UHZAKPVKGQ" value=""> <span><strong>37</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UHZAKPVKGQ" value="answer"> <span><strong>250-251</strong></span></label>
 </div></li>
 </ol>
 <p>Some things to note:</p>
@@ -670,416 +677,210 @@ Once the command is run it will give you some useful output to the screen. Based
 </main> <!-- /main -->
 <script>
 
-
-
 /* update total correct if #webex-total_correct exists */
-
 update_total_correct = function() {
-
   console.log("webex: update total_correct");
 
-
-
   var t = document.getElementsByClassName("webex-total_correct");
-
   for (var i = 0; i < t.length; i++) {
-
     p = t[i].parentElement;
-
     var correct = p.getElementsByClassName("webex-correct").length;
-
     var solvemes = p.getElementsByClassName("webex-solveme").length;
-
     var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
-
     var selects = p.getElementsByClassName("webex-select").length;
 
-
-
     t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
-
   }
-
 }
-
-
 
 /* webex-solution button toggling function */
-
 b_func = function() {
-
   console.log("webex: toggle hide");
 
-
-
   var cl = this.parentElement.classList;
-
   if (cl.contains('open')) {
-
     cl.remove("open");
-
   } else {
-
     cl.add("open");
-
   }
-
 }
-
-
 
 /* check answers */
-
 check_func = function() {
-
   console.log("webex: check answers");
 
-
-
   var cl = this.parentElement.classList;
-
   if (cl.contains('unchecked')) {
-
     cl.remove("unchecked");
-
     this.innerHTML = "Hide Answers";
-
   } else {
-
     cl.add("unchecked");
-
     this.innerHTML = "Show Answers";
-
   }
-
 }
-
-
 
 /* function for checking solveme answers */
-
 solveme_func = function(e) {
-
   console.log("webex: check solveme");
 
-
-
   var real_answers = JSON.parse(this.dataset.answer);
-
   var my_answer = this.value;
-
   var cl = this.classList;
-
   if (cl.contains("ignorecase")) {
-
     my_answer = my_answer.toLowerCase();
-
   }
-
   if (cl.contains("nospaces")) {
-
     my_answer = my_answer.replace(/ /g, "")
-
   }
-
-
 
   if (my_answer == "") {
-
     cl.remove("webex-correct");
-
     cl.remove("webex-incorrect");
-
   } else if (real_answers.includes(my_answer)) {
-
     cl.add("webex-correct");
-
     cl.remove("webex-incorrect");
-
   } else {
-
     cl.add("webex-incorrect");
-
     cl.remove("webex-correct");
-
   }
-
-
 
   // match numeric answers within a specified tolerance
-
   if(this.dataset.tol > 0){
-
     var tol = JSON.parse(this.dataset.tol);
-
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
-
     if (matches.reduce((a, b) => a + b, 0) > 0) {
-
       cl.add("webex-correct");
-
     } else {
-
       cl.remove("webex-correct");
-
     }
-
   }
-
-
 
   // added regex bit
-
   if (cl.contains("regex")){
-
     answer_regex = RegExp(real_answers.join("|"))
-
     if (answer_regex.test(my_answer)) {
-
       cl.add("webex-correct");
-
     }
-
   }
 
-
-
   update_total_correct();
-
 }
 
-
-
 /* function for checking select answers */
-
 select_func = function(e) {
-
   console.log("webex: check select");
-
-
 
   var cl = this.classList
 
-
-
   /* add style */
-
   cl.remove("webex-incorrect");
-
   cl.remove("webex-correct");
-
   if (this.value == "answer") {
-
     cl.add("webex-correct");
-
   } else if (this.value != "blank") {
-
     cl.add("webex-incorrect");
-
   }
 
-
-
   update_total_correct();
-
 }
-
-
 
 /* function for checking radiogroups answers */
-
 radiogroups_func = function(e) {
-
   console.log("webex: check radiogroups");
 
-
-
   var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
-
   var cl = checked_button.parentElement.classList;
-
   var labels = checked_button.parentElement.parentElement.children;
 
-
-
   /* get rid of styles */
-
   for (i = 0; i < labels.length; i++) {
-
     labels[i].classList.remove("webex-incorrect");
-
     labels[i].classList.remove("webex-correct");
-
   }
-
-
 
   /* add style */
-
   if (checked_button.value == "answer") {
-
     cl.add("webex-correct");
-
   } else {
-
     cl.add("webex-incorrect");
-
   }
 
-
-
   update_total_correct();
-
 }
-
-
 
 window.onload = function() {
-
   console.log("webex onload");
-
   /* set up solution buttons */
-
   var buttons = document.getElementsByTagName("button");
 
-
-
   for (var i = 0; i < buttons.length; i++) {
-
     if (buttons[i].parentElement.classList.contains('webex-solution')) {
-
       buttons[i].onclick = b_func;
-
     }
-
   }
-
-
 
   var check_sections = document.getElementsByClassName("webex-check");
-
   console.log("check:", check_sections.length);
-
   for (var i = 0; i < check_sections.length; i++) {
-
     check_sections[i].classList.add("unchecked");
 
-
-
     let btn = document.createElement("button");
-
     btn.innerHTML = "Show Answers";
-
     btn.classList.add("webex-check-button");
-
     btn.onclick = check_func;
-
     check_sections[i].appendChild(btn);
 
-
-
     let spn = document.createElement("span");
-
     spn.classList.add("webex-total_correct");
-
     check_sections[i].appendChild(spn);
-
   }
-
-
 
   /* set up webex-solveme inputs */
-
   var solveme = document.getElementsByClassName("webex-solveme");
 
-
-
   for (var i = 0; i < solveme.length; i++) {
-
     /* make sure input boxes don't auto-anything */
-
     solveme[i].setAttribute("autocomplete","off");
-
     solveme[i].setAttribute("autocorrect", "off");
-
     solveme[i].setAttribute("autocapitalize", "off");
-
     solveme[i].setAttribute("spellcheck", "false");
-
     solveme[i].value = "";
 
-
-
     /* adjust answer for ignorecase or nospaces */
-
     var cl = solveme[i].classList;
-
     var real_answer = solveme[i].dataset.answer;
-
     if (cl.contains("ignorecase")) {
-
       real_answer = real_answer.toLowerCase();
-
     }
-
     if (cl.contains("nospaces")) {
-
       real_answer = real_answer.replace(/ /g, "");
-
     }
-
     solveme[i].dataset.answer = real_answer;
 
-
-
     /* attach checking function */
-
     solveme[i].onkeyup = solveme_func;
-
     solveme[i].onchange = solveme_func;
 
-
-
     solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
-
   }
-
-
 
   /* set up radiogroups */
-
   var radiogroups = document.getElementsByClassName("webex-radiogroup");
-
   for (var i = 0; i < radiogroups.length; i++) {
-
     radiogroups[i].onchange = radiogroups_func;
-
   }
-
-
 
   /* set up selects */
-
   var selects = document.getElementsByClassName("webex-select");
-
   for (var i = 0; i < selects.length; i++) {
-
     selects[i].onchange = select_func;
-
     selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
-
   }
 
-
-
   update_total_correct();
-
 }
 
-
-
 </script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

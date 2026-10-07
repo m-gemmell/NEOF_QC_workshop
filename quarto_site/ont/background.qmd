@@ -13,7 +13,7 @@ Although we will only be using fastq files for this tutorial it is important to 
 ### POD5
 ![](/images/arrow-logo_chevrons_black-txt_white-bg.png){style="width:150px; border-radius:5px" fig-align="center"}
 
-The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ONT tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/java/table.html) (it is very unlikely you need to understand Apache Arrow tables).
+The POD5 format is the ONT created format to store nanopore DNA data in an easily accessible manner. The files end with the extension `.pod5` and is normally created by the ONT tool `MinKNOW`. It is a collection of [Apache Arrow tables](https://arrow.apache.org/docs/cpp/tables.html) (it is very unlikely you need to understand Apache Arrow tables).
 
 The POD5 file format contains the following information:
 
@@ -108,7 +108,7 @@ __CTGTTAAATACCGACTTGCGTCAGGTGCGTGAACAACTGGGCCGCTTT__
 __+__  
 __=<<<=>\@\@\@ACDCBCDAC\@BAA\@BA\@BBCBBDA\@BB\@>CD\@A\@B?B\@\@__
 
-## Basecalling 
+## Basecalling {#ont_basecalling}
 ![](/images/guppy.png){style="width:200px; border-radius:5px; border:5px solid white; background:white" fig-align="center"}
 
 In short, basecalling is the conversion of ONT signals to bases and quality. This step converts the __POD5/Fast5__ files to __BAM__ and/or __fastq__ files.

@@ -23,6 +23,8 @@ website:
         href: "illumina/intro.qmd"
       - text: "ONT"
         href: ont/intro.qmd
+      - text: "PacBio"
+        href: pacbio/intro.qmd
       - text: "Appendix"
         href: appendix/neof.qmd
 ###Navbar right
@@ -74,6 +76,16 @@ website:
         - href: ont/nanoplot.qmd
         - href: ont/chopper.qmd
         - href: ont/final_check.qmd
+    - id: PacBio
+      title: "PacBio"
+      style: "floating"
+      collapse-level: 2
+      contents:
+        - href: pacbio/intro.qmd
+        - href: pacbio/background.qmd
+        - href: pacbio/setup.qmd
+        - href: pacbio/filtering.qmd
+        - href: pacbio/qc.qmd
     - id: Appendix
       title: "Appendix"
       style: "floating"

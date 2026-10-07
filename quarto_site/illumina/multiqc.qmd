@@ -6,9 +6,9 @@ engine: knitr
 
 `MultiQC` is a brilliant tool that can be used to collate multiple `fastqc` reports into one interactive html file. This means if you have 100 sets of paired reads you can look at 2 htmls rather than 200 FastQC reports. I say 2 htmls because it is best to put the forward reads into one MultiQC report and the reverse reads into another.
 
-__Main page:__ https://multiqc.info/
+__Main page:__ <https://multiqc.info/>
 
-__Documentation:__ https://multiqc.info/docs/
+__Documentation:__ <https://multiqc.info/docs/>
 
 We will carry out a quick example of using `MultiQC` with `fastqc`data.
 
@@ -96,3 +96,7 @@ This is a brilliant use of `MultiQC`. However, it can also be used to collate th
 
 The read data was simulated from the _Aeromonas hydrophila_ genome assembly in the GAGE-B dataset
 <https://ccb.jhu.edu/gage_b/datasets/index.html>.
+
+## Next step
+
+Amazing! With the Illumina QC part complete please continue to the [ONT QC part](/ont/intro.qmd).

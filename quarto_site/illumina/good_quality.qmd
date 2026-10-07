@@ -78,7 +78,7 @@ The `*` is a wildcard character that represents anything.
 
 `*_fastqc.html` represents all the files that end with `_fastqc.html`.
 
-For more information on wildcard characters please see our [Intro to unix materials](https://neof-workshops.github.io/Linux_nxcdf7/advanced/advanced_linux_practice.html#wildcard-characters).
+For more information on wildcard characters please see our [Intro to Linux materials](https://neof-workshops.github.io/Linux_nxcdf7/advanced/advanced_linux_practice.html#wildcard-characters).
 :::
 
 ```{r, echo = FALSE}

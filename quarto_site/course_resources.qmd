@@ -4,33 +4,55 @@
 library(webexercises)
 ```
 
-## Videos & slides
+## Intro & Illumina QC
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/9EEeOC4gpV0" 
+<iframe src="https://www.youtube.com/embed/22Jg80g3W5o" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
-[__Slides__](https://docs.google.com/presentation/d/1DlVAlNRlb4TjgRAlCG5OphyS_W3UGA0htN0-9WvItQ0/edit?usp=sharing)
+[__Slides__](https://docs.google.com/presentation/d/1cDsANotscTCIaHo9AjTeDIhGdJw7A1oYbPo_8GUoNuk/edit?usp=sharing)
 
-
-`r hide("07 OCT 2025 recording")`
+`r hide("29 OCT 2024")`
 <div class="container">
-<iframe src="https://www.youtube.com/embed/_nRzVrjFOb0" 
-frameborder="0" allowfullscreen class="video"></iframe>
-</div>
-`r unhide()`
-
-`r hide("08 OCT 2024 recording")`
-<div class="container">
-<iframe src="https://www.youtube.com/embed/yMKqbABhbnE" 
+<iframe src="https://www.youtube.com/embed/90Ui1zRPoDw" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 `r unhide()`
 
-`r hide("28 NOV 2023 recording")`
+`r hide("07 NOV 2023")`
 <div class="container">
-<iframe src="https://www.youtube.com/embed/x6fLv-ewGHQ" 
+<iframe src="https://www.youtube.com/embed/eYwbIm6WaXE" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
+`r hide("01 NOV 2022")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/_AcDlI4ezio" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
+## Long read QC
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/Vz10UDnTjr4" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+[__Slides__](https://docs.google.com/presentation/d/1potCBbhlyGvZAbJ8tDWFc1iu2FrH3rPjNQXiVDSr43Q/edit?usp=sharing)
+
+`r hide("31 OCT 2024")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/08bC0UVBxzM" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
+`r hide("09 NOV 2023")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/fCV7Glw6bHw" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 `r unhide()`
@@ -39,9 +61,12 @@ frameborder="0" allowfullscreen class="video"></iframe>
 
 The below compressed directory is provided so you may attempt the workshop materials on a computer/cluster available to you.
 
-Note: The file locations will not match.
+Note:
 
-[__Download files__](https://neof-workshops.github.io/Linux_nxcdf7/Resources/Files/Linux.zip)
+- The file locations will not match
+- Copy the link and paste it to your browser's address bar.
+
+[QC files](https://cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/Intro_to_QC/Files/QC_workshop.zip)
 
 ## Bookdown
 

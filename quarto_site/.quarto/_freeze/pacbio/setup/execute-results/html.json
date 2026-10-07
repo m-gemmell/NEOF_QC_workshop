@@ -1,0 +1,15 @@
+{
+  "hash": "e798e03442eaf0acc17927c1c46c8396",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\n---\n# Setup\n![](/images/clr.png){style=\"width:600px; border-radius:5px; background:null\" fig-align=\"center\"}\n\nWe need to initialise the environment to use the programs we need. This needs to be done in each terminal you want to run the commands from this PacBio section in. Each terminal will only remember what you have told that terminal.\n\nRun the following command in a new terminal. To open a new terminal window, right click on the main screen, choose `Terminal`.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n. usepbqc\n```\n:::\n\n\nBefore carrying out any specific commands we will move into the relevant directory.\n\n\n::: {.cell}\n\n```{.bash .cell-code}\ncd ~/QC_workshop/PB_QC/data/hifi\n```\n:::\n\n\nUse `ls` to list the contents of this directory. You will see that there is a BAM HiFi reads file. [These data](https://www.ebi.ac.uk/ena/browser/view/PRJEB76228) were generated from high molecular weight DNA of the springtail _Orchesella dallaii_ for _de novo_ genome assembly.\n\n## PacBio SMRTlink tools\nPacBio's SMRTlink tools are a set of software applications for analyzing long-read sequencing data. There are many functions in this toolkit, but we are going to just use a couple: pbindex and bam2fastq.\n\nWe will use the SMRTlink Tools package to first index the BAM file and then convert it to fastq format. The index file is necessary for performing the fastq conversion.\n\nYou can do this with the following commands:\n\n\n::: {.cell}\n\n```{.bash .cell-code}\n# Index the BAM file containing the hifi reads and \npbindex ERR13246467_subset.hifi_reads.bam\n\n# Convert the indexed BAM file to fastq format\nbam2fastq ERR13246467_subset.hifi_reads.bam -o ERR13246467_qc\n```\n:::\n\n\nUse `ls` to list the contents of this directory. Along with the original BAM file you should now see a `.pbi` index file and a `.fastq.gz` compressed fastq file.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -43,6 +43,9 @@ Already there is useful information for us on the terminal window.
 
 To open a new terminal window, right click on the main screen, choose `Terminal`.
 
+## Next step
+
+WIth the cluster intro please continue onto the [Illumina part](/illumina/intro.qmd).
 
 ```{r, echo=FALSE}
 #Tippy tooltips

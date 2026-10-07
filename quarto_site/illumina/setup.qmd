@@ -9,8 +9,7 @@ Before carrying out any analysis we need to get our workshop data and setup our 
 ## Workshop data
 ![](/images/data.png){style="width:150px; background:white; border-radius:15px; border:white solid 5px" fig-align="center"}
 
-Before we can carry on with the workshop you will need the workshop data.
-First ensure you are in your home directory.
+Before copying over the workshop directory ensure you are in your home directory.
 
 ```{bash eval=FALSE}
 cd ~
@@ -22,7 +21,7 @@ Now copy the specified folder to you home directory.
 cp -r /pub14/tea/nsc206/NEOF/QC_workshop/ .
 ```
 
-Before running any examples let us change directory to the Illumina Quality control directory.
+Before running any examples  change directory to the Illumina Quality control directory.
 
 ```{bash eval=FALSE}
 cd QC_workshop/Illumina_QC/

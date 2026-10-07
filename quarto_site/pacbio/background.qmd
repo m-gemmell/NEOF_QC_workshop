@@ -1,0 +1,64 @@
+---
+engine: knitr
+---
+# Background
+![](/images/logo_PacBio_web_RGB-1.png){style="width:400px; border-radius:15px; background:white" fig-align="center"}
+
+In this section we will convert PacBio sequencing data (BAM files) into fastq files, filter out any adapter sequences and generate quality control plots and statistics.
+
+## File formats
+![](/images/files.png){style="width:150px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
+
+Sequence data from PacBio are output as subreads in unaligned BAM format. (Further explanation of the BAM format is in section 3.1.4).
+
+The figure below shows a schematic of a circular DNA molecule of a PacBio library with the colours representing:
+
+- Black, I = Insert DNA, i.e\. the double-stranded DNA of your sample
+- Red, B = Barcodes, optional single (Left or Right) or double (Left & Right) for multiplexing samples
+- Green, A = Adapter, SMRTbell adapters with a double-stranded stem and single-stranded hairpin loop.
+
+![](/images/smrtbell.png){style="width:900px; border-radius:15px; background:null" fig-align="center"}
+
+Sequencing follows the direction of the arrows and continues around until either the end of the sequencing run or if the DNA polymerase fails.
+
+PacBio sequencing takes place in Zero-Mode Waveguides (ZMWs) on a sequencing cell. These are tiny holes where a DNA polymerase binds a single molecule of DNA for sequencing, and each DNA base is detected when a labelled nucleotide is incorporated and fluoresces when excited by light.
+
+A ZMW read consists of the data collected from a single ZMW, with the HQ (high quality) region recorded when just a single molecule of DNA is present in the ZMW.
+
+![](/images/zmw.png){style="width:900px; border-radius:15px; background:null" fig-align="center"}
+
+This schematic shows the structure of a ZMW read in linear format. Insert DNA subreads are interspersed with the barcode and adapter sequence of the SMRTbell library.
+For more information see: <https://pacbiofileformats.readthedocs.io/en/13.0/Primer.html>
+
+
+## HiFi reads
+
+The ZMW reads are processed on the sequencing instrument to produce HiFi reads, using the circular consensus (CCS) tool. CCS generates high accuracy sequences from a consensus of many subreads (i.e\. there would be several of the grey insert regions shown above in every ZMW read). By taking the consensus sequences HiFi reads have an accuracy of Q≥20 (99%). In the diagram below the insert region is shown by purple and yellow lines representing the sequences obtained by each strand of the template DNA, sequencing errors by the red bases, and the green line represents the high-accuracy consensus read.
+
+![](/images/hifi.png){style="width:800px; border-radius:15px; background:null; border: white solid 5px" fig-align="center"}
+
+For this tutorial we will carry out adapter filtering and quality checking of a HiFi BAM file.
+
+## Tools
+![](/images/toolbox.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px" fig-align="center"}
+
+### HiFiAdapterFilt
+
+<https://github.com/sheinasim/HiFiAdapterFilt>
+
+We will use `HiFiAdapterFilt` to remove any reads containing PacBio adapter sequences.
+
+### SMRTlink tools
+
+<https://www.pacb.com/smrt-link/>
+
+We will also use `SMRTlink tools` from PacBio to:
+
+- Generate any missing index files
+- Convert BAM to fasta/q format.
+
+### RabbitQCPlus
+
+<https://github.com/RabbitBio/RabbitQCPlus>
+
+Lastly, we will also use `RabbitQCPlus` to assess the CCS assembled reads in fastq format.

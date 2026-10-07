@@ -1,0 +1,10 @@
+# Intro
+![](/images/Play.png){style="width:200px; border-radius:5px; border:5px solid white; background:null" fig-align="center"}
+
+With [Illumina](/illumina/intro.qmd) and [ONT](/ont/intro.qmd) QC covered we can move onto the final of the main three, PacBio.
+
+At the end of this part learners will be able to:
+
+- Filter adapters from PacBio data with HiFiAdapterFilt
+- Convert PacBio BAM files to fastq
+- Quality check PacBio CCS reads with RabbitQCPlus
